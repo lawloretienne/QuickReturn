@@ -1,13 +1,12 @@
 package com.etiennelawlor.quickreturn.views;
 
-/**
- * Created by etiennelawlor on 6/23/14.
- */
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.ScrollView;
 
-
+/**
+ * @author Cyril Mottier
+ */
 public class NotifyingScrollView extends ScrollView {
 
     // region Member Variables

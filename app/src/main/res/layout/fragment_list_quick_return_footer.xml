@@ -2,12 +2,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.etiennelawlor.quickreturn.views.NotifyingListView
+    <com.etiennelawlor.quickreturn.views.QuickReturnListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@android:id/list">
 
-    </com.etiennelawlor.quickreturn.views.NotifyingListView>
+    </com.etiennelawlor.quickreturn.views.QuickReturnListView>
 
 
     <TextView   android:id="@+id/quick_return_tv"

@@ -1,52 +1,127 @@
 package com.etiennelawlor.quickreturn.fragments;
 
+import android.annotation.SuppressLint;
 import android.app.ListFragment;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.TranslateAnimation;
+import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.etiennelawlor.quickreturn.R;
 import com.etiennelawlor.quickreturn.views.NotifyingListView;
-import com.etiennelawlor.quickreturn.views.NotifyingScrollView;
+import com.etiennelawlor.quickreturn.views.QuickReturnListView;
 
 /**
  * Created by etiennelawlor on 6/23/14.
  */
 public class QuickReturnFooterListFragment extends ListFragment {
 
+    // region Constants
+    private static final int STATE_ONSCREEN = 0;
+    private static final int STATE_OFFSCREEN = 1;
+    private static final int STATE_RETURNING = 2;
+    // endregion
+
     // region Member Variables
-    private NotifyingListView mNotifyingListView;
+    private QuickReturnListView mQuickReturnListView;
     private TextView mQuickReturnTextView;
     private boolean mQuickReturnViewVisible = true;
     private String[] mValues;
+    private int mQuickReturnHeight;
+    private int mState = STATE_ONSCREEN;
+    private int mScrollY;
+    private int mMinRawY = 0;
+    private TranslateAnimation mAnim;
     // endregion
 
     //region Listeners
+    private AbsListView.OnScrollListener mQuickReturnListViewOnScrollListener = new AbsListView.OnScrollListener() {
+        @SuppressLint("NewApi")
+        @Override
+        public void onScroll(AbsListView view, int firstVisibleItem,
+        int visibleItemCount, int totalItemCount) {
 
-    private NotifyingListView.OnScrollChangedListener mOnScrollChangedListener = new NotifyingListView.OnScrollChangedListener() {
-        public void onScrollChanged(ListView who, int l, int t, int oldl, int oldt) {
-            if(t>=oldt){
-                if(mQuickReturnViewVisible){
-                    mQuickReturnTextView.setVisibility(View.GONE);
-                    Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_footer_down);
-                    mQuickReturnTextView.startAnimation(animation);
-                    mQuickReturnViewVisible = false;
-                }
-            } else {
-                if(!mQuickReturnViewVisible){
-                    mQuickReturnTextView.setVisibility(View.VISIBLE);
-                    Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_footer_up);
-                    mQuickReturnTextView.startAnimation(animation);
-                    mQuickReturnViewVisible = true;
-                }
+            mScrollY = 0;
+            int translationY = 0;
+
+            if (mQuickReturnListView.scrollYIsComputed()) {
+                mScrollY = mQuickReturnListView.getComputedScrollY();
             }
+
+            int rawY = mScrollY;
+
+            switch (mState) {
+                case STATE_OFFSCREEN:
+                    if (rawY >= mMinRawY) {
+                        mMinRawY = rawY;
+                    } else {
+                        mState = STATE_RETURNING;
+                    }
+                    translationY = rawY;
+                    break;
+
+                case STATE_ONSCREEN:
+                    if (rawY > mQuickReturnHeight) {
+                        mState = STATE_OFFSCREEN;
+                        mMinRawY = rawY;
+                    }
+                    translationY = rawY;
+                    break;
+
+                case STATE_RETURNING:
+
+                    translationY = (rawY - mMinRawY) + mQuickReturnHeight;
+
+                    System.out.println(translationY);
+                    if (translationY < 0) {
+                        translationY = 0;
+                        mMinRawY = rawY + mQuickReturnHeight;
+                    }
+
+                    if (rawY == 0) {
+                        mState = STATE_ONSCREEN;
+                        translationY = 0;
+                    }
+
+                    if (translationY > mQuickReturnHeight) {
+                        mState = STATE_OFFSCREEN;
+                        mMinRawY = rawY;
+                    }
+                    break;
+            }
+
+            /** this can be used if the build is below honeycomb **/
+            if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.HONEYCOMB) {
+                mAnim = new TranslateAnimation(0, 0, translationY,
+                        translationY);
+                mAnim.setFillAfter(true);
+                mAnim.setDuration(0);
+                mQuickReturnTextView.startAnimation(mAnim);
+            } else {
+                mQuickReturnTextView.setTranslationY(translationY);
+            }
+
+        }
+
+        @Override
+        public void onScrollStateChanged(AbsListView view, int scrollState) {
+        }
+    };
+
+    private ViewTreeObserver.OnGlobalLayoutListener mQuickReturnListViewOnGlobalLayoutListener = new ViewTreeObserver.OnGlobalLayoutListener() {
+        @Override
+        public void onGlobalLayout() {
+            mQuickReturnHeight = mQuickReturnTextView.getHeight();
+            mQuickReturnListView.computeScrollY();
         }
     };
     //endregion
@@ -82,20 +157,19 @@ public class QuickReturnFooterListFragment extends ListFragment {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_list_item_1, android.R.id.text1, mValues);
 
-        mNotifyingListView.setAdapter(adapter);
+        mQuickReturnListView.setAdapter(adapter);
 
-        mNotifyingListView.setOnScrollChangedListener(mOnScrollChangedListener);
-        mNotifyingListView.setOverScrollEnabled(false);
+        mQuickReturnListView.getViewTreeObserver().addOnGlobalLayoutListener(mQuickReturnListViewOnGlobalLayoutListener);
 
+        mQuickReturnListView.setOnScrollListener(mQuickReturnListViewOnScrollListener);
     }
 
     // endregion
 
     // region Helper Methods
     private void bindUIElements(View view){
-        mNotifyingListView = (NotifyingListView) view.findViewById(android.R.id.list);
+        mQuickReturnListView = (QuickReturnListView) view.findViewById(android.R.id.list);
         mQuickReturnTextView = (TextView) view.findViewById(R.id.quick_return_tv);
     }
     // endregion
 }
-

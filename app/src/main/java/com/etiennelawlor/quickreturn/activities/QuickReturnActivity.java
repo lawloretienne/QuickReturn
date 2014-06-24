@@ -8,19 +8,10 @@ import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.etiennelawlor.quickreturn.R;
-import com.etiennelawlor.quickreturn.fragments.QuickReturnFooterFragment;
 import com.etiennelawlor.quickreturn.fragments.QuickReturnFooterListFragment;
-import com.etiennelawlor.quickreturn.fragments.QuickReturnHeaderFooterFragment;
-import com.etiennelawlor.quickreturn.fragments.QuickReturnHeaderFragment;
-
-import java.util.Locale;
+import com.etiennelawlor.quickreturn.fragments.QuickReturnFragment;
 
 
 public class QuickReturnActivity extends Activity implements ActionBar.TabListener {
@@ -127,23 +118,34 @@ public class QuickReturnActivity extends Activity implements ActionBar.TabListen
 
         @Override
         public Fragment getItem(int position) {
+            Bundle bundle = new Bundle();
             switch (position) {
                 case 0:
-                    return QuickReturnHeaderFragment.newInstance();
+                    bundle.putString(getString(R.string.quick_return_type),
+                            QuickReturnFragment.QuickReturnType.HEADER.name());
+                    return QuickReturnFragment.newInstance(bundle);
                 case 1:
-                    return QuickReturnFooterFragment.newInstance();
+                    bundle.putString(getString(R.string.quick_return_type),
+                            QuickReturnFragment.QuickReturnType.FOOTER.name());
+                    return QuickReturnFragment.newInstance(bundle);
                 case 2:
-                    return QuickReturnHeaderFooterFragment.newInstance();
-//                case 3:
-//                    return QuickReturnFooterListFragment.newInstance();
+                    bundle.putString(getString(R.string.quick_return_type),
+                            QuickReturnFragment.QuickReturnType.BOTH.name());
+                    return QuickReturnFragment.newInstance(bundle);
+                case 3:
+                    return QuickReturnFooterListFragment.newInstance();
                 default:
-                    return QuickReturnHeaderFragment.newInstance();
+                    bundle.putString(getString(R.string.quick_return_type),
+                            QuickReturnFragment.QuickReturnType.HEADER.name());
+                    return QuickReturnFragment.newInstance(bundle);
             }
         }
 
+
+
         @Override
         public int getCount() {
-            // Show 3 total pages.
+            // Show 4 total pages.
             return 4;
         }
 
@@ -156,8 +158,8 @@ public class QuickReturnActivity extends Activity implements ActionBar.TabListen
                     return getString(R.string.footer);
                 case 2:
                     return getString(R.string.header_footer);
-//                case 3:
-//                    return "Footer List";
+                case 3:
+                    return "Footer List";
             }
             return null;
         }

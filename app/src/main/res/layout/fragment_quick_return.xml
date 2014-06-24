@@ -12,7 +12,7 @@
     </com.etiennelawlor.quickreturn.views.NotifyingScrollView>
 
 
-    <TextView   android:id="@+id/quick_return_tv"
+    <TextView   android:id="@+id/quick_return_header_tv"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:background="@color/transparent_black_ninty"
@@ -20,6 +20,17 @@
         android:text="@string/header"
         android:textColor="@android:color/white"
         android:gravity="center"
+        android:visibility="gone"/>
+
+    <TextView   android:id="@+id/quick_return_footer_tv"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/transparent_black_ninty"
+        android:textSize="16sp"
+        android:text="@string/footer"
+        android:textColor="@android:color/white"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
         android:visibility="gone"/>
 
 </RelativeLayout>
