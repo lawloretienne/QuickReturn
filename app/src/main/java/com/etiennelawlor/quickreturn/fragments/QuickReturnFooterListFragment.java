@@ -155,7 +155,7 @@ public class QuickReturnFooterListFragment extends ListFragment {
         mValues = getResources().getStringArray(R.array.languages);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_list_item_1, android.R.id.text1, mValues);
+                R.layout.list_item, R.id.item_tv, mValues);
 
         mQuickReturnListView.setAdapter(adapter);
 

@@ -14,7 +14,7 @@
         android:gravity="center"
         android:text="@string/lorem_ipsum"
         android:textColor="@android:color/black"
-        android:textSize="20sp"
+        android:textSize="18sp"
         app:textFont="Roboto_Light"/>
 
 </LinearLayout>
