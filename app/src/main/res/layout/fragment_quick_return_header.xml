@@ -1,0 +1,26 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.etiennelawlor.quickreturn.views.NotifyingScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scroll_view">
+
+        <include layout="@layout/scrollview_content"/>
+
+    </com.etiennelawlor.quickreturn.views.NotifyingScrollView>
+
+
+    <TextView   android:id="@+id/quick_return_tv"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/transparent_black_ninty"
+        android:textSize="16sp"
+        android:text="@string/header"
+        android:textColor="@android:color/white"
+        android:gravity="center"
+        android:visibility="gone"/>
+
+</RelativeLayout>
+
