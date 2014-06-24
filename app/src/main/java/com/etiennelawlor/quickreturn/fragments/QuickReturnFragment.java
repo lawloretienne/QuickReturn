@@ -130,19 +130,6 @@ public class QuickReturnFragment extends Fragment {
         if(getArguments() != null) {
             mQuickReturnType = QuickReturnType.valueOf(getArguments().getString("QUICK_RETURN_TYPE"));
         }
-
-        switch (mQuickReturnType){
-            case HEADER:
-                mQuickReturnHeaderViewVisible = false;
-                break;
-            case FOOTER:
-                mQuickReturnFooterViewVisible = true;
-                break;
-            case BOTH:
-                mQuickReturnHeaderViewVisible = false;
-                mQuickReturnFooterViewVisible = true;
-                break;
-        }
     }
 
     @Override
@@ -157,6 +144,21 @@ public class QuickReturnFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         bindUIElements(view);
+
+        switch (mQuickReturnType){
+            case HEADER:
+                mQuickReturnHeaderViewVisible = false;
+                break;
+            case FOOTER:
+                mQuickReturnFooterViewVisible = true;
+                mQuickReturnFooterTextView.setVisibility(View.VISIBLE);
+                break;
+            case BOTH:
+                mQuickReturnHeaderViewVisible = false;
+                mQuickReturnFooterViewVisible = true;
+                mQuickReturnFooterTextView.setVisibility(View.VISIBLE);
+                break;
+        }
 
         mNotifyingScrollView.setOnScrollChangedListener(mOnScrollChangedListener);
         mNotifyingScrollView.setOverScrollEnabled(false);
