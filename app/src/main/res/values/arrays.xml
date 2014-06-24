@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="languages">
+        <item>Bulgarian (bg)</item>
+        <item>Chinese Simplified (zh-CN)</item>
+        <item>Chinese Traditional (zh-TW)</item>
+        <item>Catalan (ca)</item>
+        <item>Croatian (hr)</item>
+        <item>Czech (cs)</item>
+        <item>Danish (da)</item>
+        <item>Dutch (nl)</item>
+        <item>English (en)</item>
+        <item>Filipino (tl)</item>
+        <item>Finnish (fi)</item>
+        <item>French (fr)</item>
+        <item>German (de)</item>
+        <item>Greek (el)</item>
+        <item>Indonesian (id)</item>
+        <item>Italian (it)</item>
+        <item>Japanese (ja)</item>
+        <item>Korean (ko)</item>
+        <item>Latvian (lv)</item>
+        <item>Lithuanian (lt)</item>
+        <item>Norwegian (no)</item>
+        <item>Polish (pl)</item>
+        <item>Portuguese (pt-PT)</item>
+        <item>Romanian (ro)</item>
+        <item>Russian (ru)</item>
+        <item>Spanish (es)</item>
+        <item>Serbian (sr)</item>
+        <item>Slovak (sk)</item>
+        <item>Slovenian (sl)</item>
+        <item>Swedish (sv)</item>
+        <item>Ukrainian (uk)</item>
+    </array>
+</resources>

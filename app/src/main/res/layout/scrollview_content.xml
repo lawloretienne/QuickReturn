@@ -1,88 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@android:color/white"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@android:color/holo_red_dark"
-        android:gravity="center"
-        android:text="@string/section_one"
-        android:textColor="@android:color/white"
-        android:textSize="20sp" />
-
-    <View
+    <com.etiennelawlor.quickreturn.views.CustomFontTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?android:attr/dividerHorizontal" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@android:color/holo_green_dark"
+        android:padding="10dp"
         android:gravity="center"
-        android:text="@string/section_two"
-        android:textColor="@android:color/white"
-        android:textSize="20sp" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?android:attr/dividerHorizontal" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@android:color/holo_blue_dark"
-        android:gravity="center"
-        android:text="@string/section_three"
-        android:textColor="@android:color/white"
-        android:textSize="20sp" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?android:attr/dividerHorizontal" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@android:color/holo_orange_dark"
-        android:gravity="center"
-        android:text="@string/section_four"
-        android:textColor="@android:color/white"
-        android:textSize="20sp" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?android:attr/dividerHorizontal" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@android:color/holo_purple"
-        android:gravity="center"
-        android:text="@string/section_five"
-        android:textColor="@android:color/white"
-        android:textSize="20sp" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?android:attr/dividerHorizontal" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@android:color/holo_blue_bright"
-        android:gravity="center"
-        android:text="@string/section_six"
-        android:textColor="@android:color/white"
-        android:textSize="20sp" />
+        android:text="@string/lorem_ipsum"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        app:textFont="Roboto_Light"/>
 
 </LinearLayout>

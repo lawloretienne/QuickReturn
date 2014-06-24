@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CustomFontTextView">
+        <attr name="textFont" format="enum">
+            <enum name="Roboto_Black" value="0" />
+            <enum name="Roboto_BlackItalic" value="1" />
+            <enum name="Roboto_Bold" value="2" />
+            <enum name="Roboto_BoldCondensed" value="3" />
+            <enum name="Roboto_BoldCondensedItalic" value="4" />
+            <enum name="Roboto_BoldItalic" value="5" />
+            <enum name="Roboto_Condensed" value="6" />
+            <enum name="Roboto_CondensedItalic" value="7" />
+            <enum name="Roboto_Italic" value="8" />
+            <enum name="Roboto_Light" value="9" />
+            <enum name="Roboto_LightItalic" value="0" />
+            <enum name="Roboto_Medium" value="11" />
+            <enum name="Roboto_MediumItalic" value="12" />
+            <enum name="Roboto_Regular" value="13" />
+            <enum name="Roboto_Thin" value="14" />
+            <enum name="Roboto_ThinItalic" value="15" />
+        </attr>
+    </declare-styleable>
+
+</resources>
