@@ -2,13 +2,14 @@ package com.etiennelawlor.quickreturn.views;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.widget.ListView;
 import android.widget.ScrollView;
 
 
 /**
  * Created by etiennelawlor on 6/23/14.
  */
-public class NotifyingListView extends ScrollView {
+public class NotifyingListView extends ListView {
 
     // region Member Variables
     private boolean mIsOverScrollEnabled = true;
@@ -17,7 +18,7 @@ public class NotifyingListView extends ScrollView {
 
     // region Interfaces
     public interface OnScrollChangedListener {
-        void onScrollChanged(ScrollView who, int l, int t, int oldl, int oldt);
+        void onScrollChanged(ListView who, int l, int t, int oldl, int oldt);
     }
     // endregion
 
