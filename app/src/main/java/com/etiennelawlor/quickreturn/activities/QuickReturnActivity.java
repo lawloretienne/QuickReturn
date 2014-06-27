@@ -12,6 +12,7 @@ import android.support.v4.view.ViewPager;
 import com.etiennelawlor.quickreturn.R;
 import com.etiennelawlor.quickreturn.fragments.QuickReturnFooterListFragment;
 import com.etiennelawlor.quickreturn.fragments.QuickReturnFragment;
+import com.etiennelawlor.quickreturn.fragments.QuickReturnHeaderListFragment;
 
 
 public class QuickReturnActivity extends Activity implements ActionBar.TabListener {
@@ -132,6 +133,8 @@ public class QuickReturnActivity extends Activity implements ActionBar.TabListen
                     bundle.putString(getString(R.string.quick_return_type),
                             QuickReturnFragment.QuickReturnType.BOTH.name());
                     return QuickReturnFragment.newInstance(bundle);
+//                case 3:
+//                    return QuickReturnHeaderListFragment.newInstance();
                 case 3:
                     return QuickReturnFooterListFragment.newInstance();
                 default:
@@ -145,7 +148,6 @@ public class QuickReturnActivity extends Activity implements ActionBar.TabListen
 
         @Override
         public int getCount() {
-            // Show 4 total pages.
             return 4;
         }
 
@@ -158,6 +160,8 @@ public class QuickReturnActivity extends Activity implements ActionBar.TabListen
                     return getString(R.string.footer);
                 case 2:
                     return getString(R.string.header_footer);
+//                case 3:
+//                    return "Header List";
                 case 3:
                     return "Footer List";
             }
