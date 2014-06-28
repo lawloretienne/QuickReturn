@@ -6,8 +6,14 @@
         <!--android:orderInCategory="100"-->
         <!--android:showAsAction="never" />-->
 
+    <!--<item android:id="@+id/action_donate"-->
+        <!--android:title="@string/action_donate"-->
+        <!--android:icon="@drawable/ic_action_github"-->
+        <!--android:showAsAction="always" />-->
+
     <item android:id="@+id/action_github"
         android:title="@string/action_github"
         android:icon="@drawable/ic_action_github"
         android:showAsAction="always" />
+
 </menu>

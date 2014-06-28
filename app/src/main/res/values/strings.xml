@@ -8,6 +8,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="action_github">Github</string>
+    <string name="action_donate">Donate</string>
     <string name="section_one">Section One</string>
     <string name="section_two">Section Two</string>
     <string name="section_three">Section Three</string>

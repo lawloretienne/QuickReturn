@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.etiennelawlor.quickreturn" >
 
+    <uses-permission android:name="com.android.vending.BILLING" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -17,5 +19,7 @@
             </intent-filter>
         </activity>
     </application>
+
+
 
 </manifest>

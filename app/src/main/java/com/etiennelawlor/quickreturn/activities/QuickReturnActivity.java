@@ -5,18 +5,30 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.IBinder;
+import android.os.RemoteException;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.android.vending.billing.IInAppBillingService;
 import com.etiennelawlor.quickreturn.R;
 import com.etiennelawlor.quickreturn.fragments.QuickReturnFooterListFragment;
 import com.etiennelawlor.quickreturn.fragments.QuickReturnFragment;
 import com.etiennelawlor.quickreturn.fragments.QuickReturnHeaderListFragment;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 
 public class QuickReturnActivity extends Activity implements ActionBar.TabListener {
@@ -24,6 +36,20 @@ public class QuickReturnActivity extends Activity implements ActionBar.TabListen
     // region Member Variables
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
+    private IInAppBillingService mService;
+
+    private ServiceConnection mServiceConn = new ServiceConnection() {
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            mService = null;
+        }
+
+        @Override
+        public void onServiceConnected(ComponentName name,
+                                       IBinder service) {
+            mService = IInAppBillingService.Stub.asInterface(service);
+        }
+    };
     // endregion
 
     // region Lifecycle Methods
@@ -31,6 +57,9 @@ public class QuickReturnActivity extends Activity implements ActionBar.TabListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quickreturn);
+
+        bindService(new Intent("com.android.vending.billing.InAppBillingService.BIND"),
+                mServiceConn, Context.BIND_AUTO_CREATE);
 
         // Set up the action bar.
         final ActionBar actionBar = getActionBar();
@@ -81,10 +110,17 @@ public class QuickReturnActivity extends Activity implements ActionBar.TabListen
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_github) {
-            openWebPage("https://github.com/lawloretienne/QuickReturn");
-            return true;
+        switch (id){
+            case R.id.action_github:
+                openWebPage("https://github.com/lawloretienne/QuickReturn");
+                return true;
+//            case R.id.action_donate:
+//                donate();
+//                return true;
+            default:
+                break;
         }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -111,6 +147,46 @@ public class QuickReturnActivity extends Activity implements ActionBar.TabListen
         Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
+        }
+    }
+
+    public void donate() {
+        ArrayList<String> skuList = new ArrayList<String> ();
+        skuList.add("premiumUpgrade");
+        skuList.add("gas");
+        Bundle querySkus = new Bundle();
+        querySkus.putStringArrayList("ITEM_ID_LIST", skuList);
+
+        try {
+            Bundle skuDetails = mService.getSkuDetails(3,
+                    getPackageName(), "inapp", querySkus);
+
+            int response = skuDetails.getInt("RESPONSE_CODE");
+            if (response == 0) {
+                ArrayList<String> responseList
+                        = skuDetails.getStringArrayList("DETAILS_LIST");
+
+                for (String thisResponse : responseList) {
+                    JSONObject object = null;
+                    try {
+                        object = new JSONObject(thisResponse);
+                        String sku = object.getString("productId");
+                        String price = object.getString("price");
+                        if (sku.equals("premiumUpgrade")) {
+                            Log.d(getClass().getSimpleName(), "price - "+price);
+//                            mPremiumUpgradePrice = price;
+                        } else if (sku.equals("gas")) {
+                            Log.d(getClass().getSimpleName(), "price - "+price);
+//                            mGasPrice = price;
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }
+        } catch (RemoteException e) {
+            e.printStackTrace();
         }
     }
     // endregion
