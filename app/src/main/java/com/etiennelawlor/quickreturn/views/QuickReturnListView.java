@@ -21,6 +21,9 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ListView;
 
+/**
+ * @author Lars Werkman
+ */
 public class QuickReturnListView extends ListView {
 
     private int mItemCount;
