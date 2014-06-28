@@ -133,9 +133,9 @@ public class QuickReturnActivity extends Activity implements ActionBar.TabListen
                     bundle.putString(getString(R.string.quick_return_type),
                             QuickReturnFragment.QuickReturnType.BOTH.name());
                     return QuickReturnFragment.newInstance(bundle);
-//                case 3:
-//                    return QuickReturnHeaderListFragment.newInstance();
                 case 3:
+                    return QuickReturnHeaderListFragment.newInstance();
+                case 4:
                     return QuickReturnFooterListFragment.newInstance();
                 default:
                     bundle.putString(getString(R.string.quick_return_type),
@@ -148,7 +148,7 @@ public class QuickReturnActivity extends Activity implements ActionBar.TabListen
 
         @Override
         public int getCount() {
-            return 4;
+            return 5;
         }
 
         @Override
@@ -160,9 +160,9 @@ public class QuickReturnActivity extends Activity implements ActionBar.TabListen
                     return getString(R.string.footer);
                 case 2:
                     return getString(R.string.header_footer);
-//                case 3:
-//                    return "Header List";
                 case 3:
+                    return "Header List";
+                case 4:
                     return "Footer List";
             }
             return null;
