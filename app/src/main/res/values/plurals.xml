@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="beer_cheers">
+        <item quantity="one">Cheers!!! Thanks for the beer.</item>
+        <item quantity="other">Cheers!!! Thanks for the beers.</item>
+    </plurals>
+</resources>

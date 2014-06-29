@@ -16,7 +16,9 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.support.v13.app.FragmentPagerAdapter;
+import android.support.v13.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
@@ -43,9 +45,32 @@ import de.keyboardsurfer.android.widget.crouton.Style;
 public class QuickReturnActivity extends Activity implements ActionBar.TabListener {
 
     // region Constants
+
+    // Server Response Codes (http://developer.android.com/google/play/billing/billing_reference.html)
     private static final int BILLING_RESPONSE_RESULT_OK = 0;
+    private static final int BILLING_RESPONSE_RESULT_USER_CANCELED = 1;
+    private static final int BILLING_RESPONSE_RESULT_BILLING_UNAVAILABLE = 3;
+    private static final int BILLING_RESPONSE_RESULT_ITEM_UNAVAILABLE =	4;
+    private static final int BILLING_RESPONSE_RESULT_DEVELOPER_ERROR = 5;
+    private static final int BILLING_RESPONSE_RESULT_ERROR = 6;
+    private static final int BILLING_RESPONSE_RESULT_ITEM_ALREADY_OWNED	= 7;
+    private static final int BILLING_RESPONSE_RESULT_ITEM_NOT_OWNED	= 8;
+
     private static final int BUY_REQUEST_CODE = 4;
+
     private static final String ITEM_TYPE_INAPP = "inapp";
+
+    private static final String RESPONSE_INAPP_PURCHASE_DATA = "INAPP_PURCHASE_DATA";
+    private static final String RESPONSE_INAPP_SIGNATURE = "INAPP_DATA_SIGNATURE";
+    private static final String RESPONSE_CODE = "RESPONSE_CODE";
+    private static final String RESPONSE_GET_SKU_DETAILS_LIST = "DETAILS_LIST";
+    private static final String RESPONSE_BUY_INTENT = "BUY_INTENT";
+    private static final String GET_SKU_DETAILS_ITEM_LIST = "ITEM_ID_LIST";
+    private static final String RESPONSE_INAPP_ITEM_LIST = "INAPP_PURCHASE_ITEM_LIST";
+    private static final String RESPONSE_INAPP_PURCHASE_DATA_LIST = "INAPP_PURCHASE_DATA_LIST";
+    private static final String RESPONSE_INAPP_SIGNATURE_LIST = "INAPP_DATA_SIGNATURE_LIST";
+    private static final String RESPONSE_INAPP_PURCHASE_SIGNATURE_LIST = "INAPP_PURCHASE_SIGNATURE_LIST";
+    private static final String INAPP_CONTINUATION_TOKEN = "INAPP_CONTINUATION_TOKEN";
     // endregion
 
     // region Member Variables
@@ -127,34 +152,87 @@ public class QuickReturnActivity extends Activity implements ActionBar.TabListen
                 case RESULT_OK:
                     Log.d(getClass().getSimpleName(), "onActivityResult() : RESULT_OK");
 
-                    responseCode = data.getIntExtra("RESPONSE_CODE", -5);
-                    String purchaseData = data.getStringExtra("RESPONSE_INAPP_PURCHASE_DATA");
-                    String signature = data.getStringExtra("RESPONSE_INAPP_SIGNATURE");
+                    responseCode = data.getIntExtra(RESPONSE_CODE, -5);
 
-                    // handle purchase here (for a permanent item like a premium upgrade,
-                    // this means dispensing the benefits of the upgrade; for a consumable
-                    // item like "X gold coins", typically the application would initiate
-                    // consumption of the purchase here)
+                    switch (responseCode){
+                        case BILLING_RESPONSE_RESULT_OK:
+                            String signature = data.getStringExtra(RESPONSE_INAPP_SIGNATURE);
+
+                            String purchaseData = data.getStringExtra(RESPONSE_INAPP_PURCHASE_DATA);
+
+                            JSONObject object = null;
+                            try {
+                                object = new JSONObject(purchaseData);
+
+                                // sample data
+                                // "purchaseToken" -> "inapp:com.etiennelawlor.quickreturn:android.test.purchased"
+                                // "developerPayload" -> "bGoa+V7g/yqDXvKRqq+JTFn4uQZbPiQJo4pf9RzK"
+                                // "packageName" -> "com.etiennelawlor.quickreturn"
+                                // "purchaseState" -> "0"
+                                // "orderId" -> "transactionId.android.test.purchased"
+                                // "purchaseTime" -> "0"
+                                // "productId" -> "android.test.purchased"
+                                //
+
+                                String sku = object.getString("productId");
+
+                                if(!TextUtils.isEmpty(sku)){
+                                    if (sku.equals(getString(R.string.buy_one_beer))) {
+                                        showCrouton(android.R.color.holo_green_light, getResources().getQuantityString(R.plurals.beer_cheers, 1, 1));
+                                    } else if (sku.equals(getString(R.string.buy_two_beers))) {
+                                        showCrouton(android.R.color.holo_green_light, getResources().getQuantityString(R.plurals.beer_cheers, 2, 2));
+                                    } else if (sku.equals(getString(R.string.buy_four_beers))) {
+                                        showCrouton(android.R.color.holo_green_light, getResources().getQuantityString(R.plurals.beer_cheers, 4, 4));
+                                    } else if (sku.equals("android.test.purchased")) {
+                                        showCrouton(android.R.color.holo_green_light, "Test Purchase completed");
+                                    }
+                                }
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                            // handle purchase here (for a permanent item like a premium upgrade,
+                            // this means dispensing the benefits of the upgrade; for a consumable
+                            // item like "X gold coins", typically the application would initiate
+                            // consumption of the purchase here)
+                            break;
+                        case BILLING_RESPONSE_RESULT_USER_CANCELED:
+                            Log.d(getClass().getSimpleName(), "donate() : User pressed back or canceled a dialog");
+                            break;
+                        case BILLING_RESPONSE_RESULT_BILLING_UNAVAILABLE:
+                            Log.d(getClass().getSimpleName(), "donate() : Billing API version is not supported for the type requested");
+                            break;
+                        case BILLING_RESPONSE_RESULT_ITEM_UNAVAILABLE:
+                            Log.d(getClass().getSimpleName(), "donate() : Requested product is not available for purchase");
+                            break;
+                        case BILLING_RESPONSE_RESULT_DEVELOPER_ERROR:
+                            Log.d(getClass().getSimpleName(), "donate() : Invalid arguments provided to the API. This error can also " +
+                                    "indicate that the application was not correctly signed or properly set up for In-app Billing in " +
+                                    "Google Play, or does not have the necessary permissions in its manifest");
+                            break;
+                        case BILLING_RESPONSE_RESULT_ERROR:
+                            Log.d(getClass().getSimpleName(), "donate() : Fatal error during the API action");
+                            break;
+                        case BILLING_RESPONSE_RESULT_ITEM_ALREADY_OWNED:
+                            Log.d(getClass().getSimpleName(), "donate() : Failure to purchase since item is already owned");
+                            showCrouton(android.R.color.holo_red_light, R.string.item_already_owned);
+                            break;
+                        case BILLING_RESPONSE_RESULT_ITEM_NOT_OWNED:
+                            Log.d(getClass().getSimpleName(), "donate() : Failure to consume since item is not owned");
+                            break;
+                        default:
+                            break;
+                    }
+
+
                     break;
                 case RESULT_CANCELED:
                     Log.d(getClass().getSimpleName(), "onActivityResult() : RESULT_CANCELED");
 
-                    responseCode = data.getIntExtra("RESPONSE_CODE", -5);
+                    responseCode = data.getIntExtra(RESPONSE_CODE, -5);
 
-                    Style croutonStyle = new Style.Builder()
-                            .setHeight(QuickReturnUtils.dp2px(this, 50))
-//                                .setTextColor(getResources().getColor(R.color.white))
-                            .setGravity(Gravity.CENTER)
-                            .setBackgroundColor(R.color.steel_blue)
-                            .build();
-
-                    Crouton.makeText(this, R.string.result_canceled, croutonStyle)
-                            .setConfiguration(new Configuration.Builder()
-                                    .setDuration(Configuration.DURATION_SHORT)
-                                    .setInAnimation(R.anim.crouton_in_delayed)
-                                    .setOutAnimation(R.anim.crouton_out)
-                                    .build())
-                            .show();
+                    showCrouton(android.R.color.holo_red_light, R.string.beer_order_canceled);
 
                     break;
                 default:
@@ -163,6 +241,8 @@ public class QuickReturnActivity extends Activity implements ActionBar.TabListen
 
         }
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -224,21 +304,96 @@ public class QuickReturnActivity extends Activity implements ActionBar.TabListen
     }
 
     public void donate(String productSku) {
+        try {
+
+//            getAllSkus();
+
+//            getAllPurchases();
+
+//            consumePurchase();
+
+            String developerPayload = "bGoa+V7g/yqDXvKRqq+JTFn4uQZbPiQJo4pf9RzK";
+
+            Bundle bundle = mService.getBuyIntent(3, getPackageName(),
+                    productSku, ITEM_TYPE_INAPP, developerPayload);
+
+            // Test Item
+//            Bundle bundle = mService.getBuyIntent(3, getPackageName(),
+//                    "android.test.purchased", ITEM_TYPE_INAPP, developerPayload);
+
+            PendingIntent pendingIntent = bundle.getParcelable(RESPONSE_BUY_INTENT);
+            int responseCode = bundle.getInt(RESPONSE_CODE);
+
+            switch (responseCode){
+                case BILLING_RESPONSE_RESULT_OK:
+                    startIntentSenderForResult(pendingIntent.getIntentSender(), BUY_REQUEST_CODE, new Intent(),
+                            Integer.valueOf(0), Integer.valueOf(0), Integer.valueOf(0));
+                    break;
+                case BILLING_RESPONSE_RESULT_USER_CANCELED:
+                    Log.d(getClass().getSimpleName(), "donate() : User pressed back or canceled a dialog");
+                    break;
+                case BILLING_RESPONSE_RESULT_BILLING_UNAVAILABLE:
+                    Log.d(getClass().getSimpleName(), "donate() : Billing API version is not supported for the type requested");
+                    break;
+                case BILLING_RESPONSE_RESULT_ITEM_UNAVAILABLE:
+                    Log.d(getClass().getSimpleName(), "donate() : Requested product is not available for purchase");
+                    break;
+                case BILLING_RESPONSE_RESULT_DEVELOPER_ERROR:
+                    Log.d(getClass().getSimpleName(), "donate() : Invalid arguments provided to the API. This error can also " +
+                            "indicate that the application was not correctly signed or properly set up for In-app Billing in " +
+                            "Google Play, or does not have the necessary permissions in its manifest");
+                    break;
+                case BILLING_RESPONSE_RESULT_ERROR:
+                    Log.d(getClass().getSimpleName(), "donate() : Fatal error during the API action");
+                    break;
+                case BILLING_RESPONSE_RESULT_ITEM_ALREADY_OWNED:
+                    Log.d(getClass().getSimpleName(), "donate() : Failure to purchase since item is already owned");
+                    showCrouton(android.R.color.holo_red_light, R.string.item_already_owned);
+                    break;
+                case BILLING_RESPONSE_RESULT_ITEM_NOT_OWNED:
+                    Log.d(getClass().getSimpleName(), "donate() : Failure to consume since item is not owned");
+                    break;
+                default:
+                    break;
+            }
+
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        } catch (IntentSender.SendIntentException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void consumePurchase(){
+        //            "purchaseToken": "inapp:com.etiennelawlor.quickreturn:android.test.purchased"
+
+        String token = "inapp:com.etiennelawlor.quickreturn:android.test.purchased";
+        try {
+            int response = mService.consumePurchase(3, getPackageName(), token);
+            Log.d(getClass().getSimpleName(), "consumePurchase() : response - "+response);
+
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void getAllSkus(){
         ArrayList<String> skuList = new ArrayList<String> ();
         skuList.add("buy_one_beer");
         skuList.add("buy_two_beers");
         skuList.add("buy_four_beers");
         Bundle querySkus = new Bundle();
-        querySkus.putStringArrayList("ITEM_ID_LIST", skuList);
+        querySkus.putStringArrayList(GET_SKU_DETAILS_ITEM_LIST, skuList);
 
         try {
             Bundle skuDetails = mService.getSkuDetails(3,
                     getPackageName(), ITEM_TYPE_INAPP, querySkus);
 
-            int response = skuDetails.getInt("RESPONSE_CODE");
+            int response = skuDetails.getInt(RESPONSE_CODE);
             if (response == BILLING_RESPONSE_RESULT_OK) {
                 ArrayList<String> responseList
-                        = skuDetails.getStringArrayList("DETAILS_LIST");
+                        = skuDetails.getStringArrayList(RESPONSE_GET_SKU_DETAILS_LIST);
 
                 for (String thisResponse : responseList) {
                     JSONObject object = null;
@@ -247,13 +402,13 @@ public class QuickReturnActivity extends Activity implements ActionBar.TabListen
                         String sku = object.getString("productId");
                         String price = object.getString("price");
 
-                        if (sku.equals("buy_one_beer")) {
+                        if (sku.equals(getString(R.string.buy_one_beer))) {
                             Log.d(getClass().getSimpleName(), "price - "+price);
 //                            mPremiumUpgradePrice = price;
-                        } else if (sku.equals("buy_two_beers")) {
+                        } else if (sku.equals(getString(R.string.buy_two_beers))) {
                             Log.d(getClass().getSimpleName(), "price - "+price);
 //                            mGasPrice = price;
-                        } else if (sku.equals("buy_four_beers")) {
+                        } else if (sku.equals(getString(R.string.buy_four_beers))) {
                             Log.d(getClass().getSimpleName(), "price - "+price);
 //                            mGasPrice = price;
                         }
@@ -263,25 +418,61 @@ public class QuickReturnActivity extends Activity implements ActionBar.TabListen
 
                 }
             }
-
-            String developerPayload = "bGoa+V7g/yqDXvKRqq+JTFn4uQZbPiQJo4pf9RzJ";
-
-            Bundle bundle = mService.getBuyIntent(3, getPackageName(),
-                    productSku, ITEM_TYPE_INAPP, developerPayload);
-
-            PendingIntent pendingIntent = bundle.getParcelable("BUY_INTENT");
-            if (bundle.getInt("RESPONSE_CODE") == BILLING_RESPONSE_RESULT_OK) {
-                // Start purchase flow (this brings up the Google Play UI).
-                // Result will be delivered through onActivityResult().
-                startIntentSenderForResult(pendingIntent.getIntentSender(), BUY_REQUEST_CODE, new Intent(),
-                        Integer.valueOf(0), Integer.valueOf(0), Integer.valueOf(0));
-            }
-
         } catch (RemoteException e) {
             e.printStackTrace();
-        } catch (IntentSender.SendIntentException e) {
+        }
+    }
+
+    private void getAllPurchases(){
+        try {
+            Bundle purchases = mService.getPurchases(3, getPackageName(), ITEM_TYPE_INAPP, INAPP_CONTINUATION_TOKEN);
+            if (purchases.getInt(RESPONSE_CODE) == BILLING_RESPONSE_RESULT_OK) {
+                ArrayList mySkus, myPurchases, mySignatures;
+                mySkus = purchases.getStringArrayList(RESPONSE_INAPP_ITEM_LIST);
+                myPurchases = purchases.getStringArrayList(RESPONSE_INAPP_PURCHASE_DATA_LIST);
+                mySignatures = purchases.getStringArrayList(RESPONSE_INAPP_PURCHASE_SIGNATURE_LIST);
+                Log.d(getClass().getSimpleName(), "getAllPurchases() : purchases");
+
+                // handle items here
+            }
+        } catch (RemoteException e) {
             e.printStackTrace();
         }
+
+    }
+
+    private void showCrouton(int colorRes, int messageRes){
+        Style croutonStyle = new Style.Builder()
+                .setHeight(QuickReturnUtils.dp2px(this, 50))
+//                                .setTextColor(getResources().getColor(R.color.white))
+                .setGravity(Gravity.CENTER)
+                .setBackgroundColor(colorRes)
+                .build();
+
+        Crouton.makeText(this, messageRes, croutonStyle)
+                .setConfiguration(new Configuration.Builder()
+                        .setDuration(Configuration.DURATION_SHORT)
+                        .setInAnimation(R.anim.crouton_in_delayed)
+                        .setOutAnimation(R.anim.crouton_out)
+                        .build())
+                .show();
+    }
+
+    private void showCrouton(int colorRes, String message){
+        Style croutonStyle = new Style.Builder()
+                .setHeight(QuickReturnUtils.dp2px(this, 50))
+//                                .setTextColor(getResources().getColor(R.color.white))
+                .setGravity(Gravity.CENTER)
+                .setBackgroundColor(colorRes)
+                .build();
+
+        Crouton.makeText(this, message, croutonStyle)
+                .setConfiguration(new Configuration.Builder()
+                        .setDuration(Configuration.DURATION_SHORT)
+                        .setInAnimation(R.anim.crouton_in_delayed)
+                        .setOutAnimation(R.anim.crouton_out)
+                        .build())
+                .show();
     }
     // endregion
 
@@ -291,7 +482,7 @@ public class QuickReturnActivity extends Activity implements ActionBar.TabListen
      * A {@link android.support.v13.app.FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
      */
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+    public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
 
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
