@@ -5,9 +5,11 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.content.ServiceConnection;
 import android.net.Uri;
 import android.os.Bundle;
@@ -32,6 +34,12 @@ import java.util.ArrayList;
 
 
 public class QuickReturnActivity extends Activity implements ActionBar.TabListener {
+
+    // region Constants
+    private static final int BILLING_RESPONSE_RESULT_OK = 0;
+    private static final int BUY_REQUEST_CODE = 4;
+    private static final String ITEM_TYPE_INAPP = "inapp";
+    // endregion
 
     // region Member Variables
     private SectionsPagerAdapter mSectionsPagerAdapter;
@@ -114,9 +122,9 @@ public class QuickReturnActivity extends Activity implements ActionBar.TabListen
             case R.id.action_github:
                 openWebPage("https://github.com/lawloretienne/QuickReturn");
                 return true;
-//            case R.id.action_donate:
-//                donate();
-//                return true;
+            case R.id.action_donate:
+                donate();
+                return true;
             default:
                 break;
         }
@@ -152,17 +160,18 @@ public class QuickReturnActivity extends Activity implements ActionBar.TabListen
 
     public void donate() {
         ArrayList<String> skuList = new ArrayList<String> ();
-        skuList.add("premiumUpgrade");
-        skuList.add("gas");
+        skuList.add("buy_one_beer");
+        skuList.add("buy_two_beers");
+        skuList.add("buy_four_beers");
         Bundle querySkus = new Bundle();
         querySkus.putStringArrayList("ITEM_ID_LIST", skuList);
 
         try {
             Bundle skuDetails = mService.getSkuDetails(3,
-                    getPackageName(), "inapp", querySkus);
+                    getPackageName(), ITEM_TYPE_INAPP, querySkus);
 
             int response = skuDetails.getInt("RESPONSE_CODE");
-            if (response == 0) {
+            if (response == BILLING_RESPONSE_RESULT_OK) {
                 ArrayList<String> responseList
                         = skuDetails.getStringArrayList("DETAILS_LIST");
 
@@ -172,10 +181,14 @@ public class QuickReturnActivity extends Activity implements ActionBar.TabListen
                         object = new JSONObject(thisResponse);
                         String sku = object.getString("productId");
                         String price = object.getString("price");
-                        if (sku.equals("premiumUpgrade")) {
+
+                        if (sku.equals("buy_one_beer")) {
                             Log.d(getClass().getSimpleName(), "price - "+price);
 //                            mPremiumUpgradePrice = price;
-                        } else if (sku.equals("gas")) {
+                        } else if (sku.equals("buy_two_beers")) {
+                            Log.d(getClass().getSimpleName(), "price - "+price);
+//                            mGasPrice = price;
+                        } else if (sku.equals("buy_four_beers")) {
                             Log.d(getClass().getSimpleName(), "price - "+price);
 //                            mGasPrice = price;
                         }
@@ -185,7 +198,23 @@ public class QuickReturnActivity extends Activity implements ActionBar.TabListen
 
                 }
             }
+
+            String developerPayload = "bGoa+V7g/yqDXvKRqq+JTFn4uQZbPiQJo4pf9RzJ";
+
+            Bundle bundle = mService.getBuyIntent(3, getPackageName(),
+                    "buy_two_beer", ITEM_TYPE_INAPP, developerPayload);
+
+            PendingIntent pendingIntent = bundle.getParcelable("BUY_INTENT");
+            if (bundle.getInt("RESPONSE_CODE") == BILLING_RESPONSE_RESULT_OK) {
+                // Start purchase flow (this brings up the Google Play UI).
+                // Result will be delivered through onActivityResult().
+                startIntentSenderForResult(pendingIntent.getIntentSender(), BUY_REQUEST_CODE, new Intent(),
+                        Integer.valueOf(0), Integer.valueOf(0), Integer.valueOf(0));
+            }
+
         } catch (RemoteException e) {
+            e.printStackTrace();
+        } catch (IntentSender.SendIntentException e) {
             e.printStackTrace();
         }
     }
