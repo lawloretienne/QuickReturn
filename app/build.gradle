@@ -42,4 +42,5 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:support-v13:19.+'
     compile 'de.keyboardsurfer.android.widget:crouton:1.8.4'
+    compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
 }

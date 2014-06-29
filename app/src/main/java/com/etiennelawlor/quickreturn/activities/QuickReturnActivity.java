@@ -20,16 +20,20 @@ import android.support.v13.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.android.vending.billing.IInAppBillingService;
+import com.astuetz.PagerSlidingTabStrip;
 import com.etiennelawlor.quickreturn.R;
 import com.etiennelawlor.quickreturn.fragments.QuickReturnFacebookFragment;
 import com.etiennelawlor.quickreturn.fragments.QuickReturnFooterListFragment;
 import com.etiennelawlor.quickreturn.fragments.QuickReturnFragment;
 import com.etiennelawlor.quickreturn.fragments.QuickReturnHeaderListFragment;
+import com.etiennelawlor.quickreturn.fragments.QuickReturnTwitterFragment;
+import com.etiennelawlor.quickreturn.interfaces.QuickReturnInterface;
 import com.etiennelawlor.quickreturn.utils.QuickReturnUtils;
 
 import org.json.JSONException;
@@ -42,7 +46,7 @@ import de.keyboardsurfer.android.widget.crouton.Crouton;
 import de.keyboardsurfer.android.widget.crouton.Style;
 
 
-public class QuickReturnActivity extends Activity implements ActionBar.TabListener {
+public class QuickReturnActivity extends Activity implements ActionBar.TabListener, QuickReturnInterface {
 
     // region Constants
 
@@ -75,6 +79,8 @@ public class QuickReturnActivity extends Activity implements ActionBar.TabListen
 
     // region Member Variables
     private SectionsPagerAdapter mSectionsPagerAdapter;
+    private PagerSlidingTabStrip mTabs;
+
     private ViewPager mViewPager;
     private IInAppBillingService mService;
 
@@ -103,7 +109,7 @@ public class QuickReturnActivity extends Activity implements ActionBar.TabListen
 
         // Set up the action bar.
         final ActionBar actionBar = getActionBar();
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+//        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -113,15 +119,51 @@ public class QuickReturnActivity extends Activity implements ActionBar.TabListen
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
+        final int pageMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, getResources()
+                .getDisplayMetrics());
+        mViewPager.setPageMargin(pageMargin);
+
+        mTabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
+//        mTabs.setTabBackground(R.color.indigo);
+        mTabs.setIndicatorColorResource(R.color.steel_blue);
+//        mTabs.setTextColor(getResources().getColor(android.R.color.white));
+
+        mTabs.setViewPager(mViewPager);
+
         // When swiping between different sections, select the corresponding
         // tab. We can also use ActionBar.Tab#select() to do this if we have
         // a reference to the Tab.
-        mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
-            @Override
-            public void onPageSelected(int position) {
-                actionBar.setSelectedNavigationItem(position);
-            }
-        });
+//        mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+//            @Override
+//            public void onPageSelected(int position) {
+//                int navigationMode = actionBar.getNavigationMode();
+//                if(navigationMode == ActionBar.NAVIGATION_MODE_TABS)
+//                    actionBar.setSelectedNavigationItem(position);
+//            }
+//
+////            @Override
+////            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+////                int alphaCurrent = (int) (255 - (128*Math.abs(positionOffset)));
+////                int alphaNext = (int) (128 + (128*Math.abs(positionOffset)));
+////                if (positionOffset != 0) {
+////                    switch(position) {
+////                        case 0:
+////                            actionBar.getTabAt(0).setsetTheAlpha(alphaCurrent);
+////                            tab0.setTheAlpha(alphaCurrent);
+////                            tab1.setTheAlpha(alphaNext);
+////                            break;
+////                        case 1:
+////                            tab1.setTheAlpha(alphaCurrent);
+////                            tab2.setTheAlpha(alphaNext);
+////                            break;
+////                        case 2:
+////                            tab2.setTheAlpha(alphaCurrent);
+////                            tab3.setTheAlpha(alphaNext);
+////                            break;
+////                    }
+////                }
+////            }
+//        });
 
         // For each of the sections in the app, add a tab to the action bar.
         for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
@@ -291,6 +333,18 @@ public class QuickReturnActivity extends Activity implements ActionBar.TabListen
 
     @Override
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+    }
+    // endregion
+
+    // region QuickReturnInterface Methods
+    @Override
+    public PagerSlidingTabStrip getTabs() {
+        return mTabs;
+    }
+
+    @Override
+    public ViewPager getViewPager() {
+        return mViewPager;
     }
     // endregion
 
@@ -493,23 +547,25 @@ public class QuickReturnActivity extends Activity implements ActionBar.TabListen
             Bundle bundle = new Bundle();
             switch (position) {
                 case 0:
+                    return QuickReturnTwitterFragment.newInstance();
+                case 1:
+                    return QuickReturnFacebookFragment.newInstance();
+                case 2:
+                    return QuickReturnHeaderListFragment.newInstance();
+                case 3:
+                    return QuickReturnFooterListFragment.newInstance();
+                case 4:
                     bundle.putString(getString(R.string.quick_return_type),
                             QuickReturnFragment.QuickReturnType.HEADER.name());
                     return QuickReturnFragment.newInstance(bundle);
-                case 1:
+                case 5:
                     bundle.putString(getString(R.string.quick_return_type),
                             QuickReturnFragment.QuickReturnType.FOOTER.name());
                     return QuickReturnFragment.newInstance(bundle);
-                case 2:
+                case 6:
                     bundle.putString(getString(R.string.quick_return_type),
                             QuickReturnFragment.QuickReturnType.BOTH.name());
                     return QuickReturnFragment.newInstance(bundle);
-                case 3:
-                    return QuickReturnHeaderListFragment.newInstance();
-                case 4:
-                    return QuickReturnFooterListFragment.newInstance();
-                case 5:
-                    return QuickReturnFacebookFragment.newInstance();
                 default:
                     bundle.putString(getString(R.string.quick_return_type),
                             QuickReturnFragment.QuickReturnType.HEADER.name());
@@ -521,24 +577,26 @@ public class QuickReturnActivity extends Activity implements ActionBar.TabListen
 
         @Override
         public int getCount() {
-            return 6;
+            return 7;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return getString(R.string.header);
+                    return getString(R.string.twitter);
                 case 1:
-                    return getString(R.string.footer);
-                case 2:
-                    return getString(R.string.header_footer);
-                case 3:
-                    return getString(R.string.header_list);
-                case 4:
-                    return getString(R.string.footer_list);
-                case 5:
                     return getString(R.string.facebook);
+                case 2:
+                    return getString(R.string.header_list);
+                case 3:
+                    return getString(R.string.footer_list);
+                case 4:
+                    return getString(R.string.header);
+                case 5:
+                    return getString(R.string.footer);
+                case 6:
+                    return getString(R.string.header_footer);
             }
             return null;
         }

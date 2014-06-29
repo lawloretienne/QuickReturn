@@ -2,6 +2,7 @@
 <resources>
 
     <array name="languages">
+        <item></item>
         <item>Bulgarian (bg)</item>
         <item>Chinese Simplified (zh-CN)</item>
         <item>Chinese Traditional (zh-TW)</item>

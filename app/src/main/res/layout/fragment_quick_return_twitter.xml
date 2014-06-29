@@ -1,0 +1,84 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.etiennelawlor.quickreturn.views.QuickReturnListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@android:id/list"/>
+
+    <!--<com.etiennelawlor.quickreturn.views.CustomFontTextView-->
+        <!--android:id="@+id/quick_return_tv"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="80dp"-->
+        <!--android:background="@color/transparent_black_ninty"-->
+        <!--android:textSize="22sp"-->
+        <!--android:text="@string/footer"-->
+        <!--android:textColor="@android:color/white"-->
+        <!--android:gravity="center"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--app:textFont="Roboto_Bold"/>-->
+
+    <!--<TextView-->
+        <!--android:id="@+id/quick_return_header_tv"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:padding="10dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_margin="20dp"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:background="@drawable/shape_rounded_rectangle"-->
+        <!--android:textSize="14sp"-->
+        <!--android:text="@string/new_stories"-->
+        <!--android:textColor="@android:color/white"-->
+        <!--android:gravity="center"/>-->
+
+
+
+    <LinearLayout
+        android:id="@+id/quick_return_footer_ll"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@android:color/white"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        >
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/transparent_black_five"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:paddingRight="5dp">
+
+            <EditText
+                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="6"
+                android:textSize="16sp"
+                android:layout_margin="5dp"
+                android:hint="@string/whats_happening"/>
+
+            <ImageView
+                android:layout_height="30dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:src="@android:drawable/ic_menu_gallery"/>
+
+            <ImageView
+                android:layout_height="30dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:src="@android:drawable/ic_menu_camera"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>
+
