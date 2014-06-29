@@ -18,6 +18,7 @@ import android.os.RemoteException;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -26,11 +27,16 @@ import com.etiennelawlor.quickreturn.R;
 import com.etiennelawlor.quickreturn.fragments.QuickReturnFooterListFragment;
 import com.etiennelawlor.quickreturn.fragments.QuickReturnFragment;
 import com.etiennelawlor.quickreturn.fragments.QuickReturnHeaderListFragment;
+import com.etiennelawlor.quickreturn.utils.QuickReturnUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+
+import de.keyboardsurfer.android.widget.crouton.Configuration;
+import de.keyboardsurfer.android.widget.crouton.Crouton;
+import de.keyboardsurfer.android.widget.crouton.Style;
 
 
 public class QuickReturnActivity extends Activity implements ActionBar.TabListener {
@@ -103,7 +109,59 @@ public class QuickReturnActivity extends Activity implements ActionBar.TabListen
                             .setTabListener(this));
         }
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        Crouton.cancelAllCroutons();
+    }
     // endregion
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == BUY_REQUEST_CODE) {
+            int responseCode;
+
+            switch (resultCode){
+                case RESULT_OK:
+                    Log.d(getClass().getSimpleName(), "onActivityResult() : RESULT_OK");
+
+                    responseCode = data.getIntExtra("RESPONSE_CODE", -5);
+                    String purchaseData = data.getStringExtra("RESPONSE_INAPP_PURCHASE_DATA");
+                    String signature = data.getStringExtra("RESPONSE_INAPP_SIGNATURE");
+
+                    // handle purchase here (for a permanent item like a premium upgrade,
+                    // this means dispensing the benefits of the upgrade; for a consumable
+                    // item like "X gold coins", typically the application would initiate
+                    // consumption of the purchase here)
+                    break;
+                case RESULT_CANCELED:
+                    Log.d(getClass().getSimpleName(), "onActivityResult() : RESULT_CANCELED");
+
+                    responseCode = data.getIntExtra("RESPONSE_CODE", -5);
+
+                    Style croutonStyle = new Style.Builder()
+                            .setHeight(QuickReturnUtils.dp2px(this, 50))
+//                                .setTextColor(getResources().getColor(R.color.white))
+                            .setGravity(Gravity.CENTER)
+                            .setBackgroundColor(R.color.steel_blue)
+                            .build();
+
+                    Crouton.makeText(this, R.string.result_canceled, croutonStyle)
+                            .setConfiguration(new Configuration.Builder()
+                                    .setDuration(Configuration.DURATION_SHORT)
+                                    .setInAnimation(R.anim.crouton_in_delayed)
+                                    .setOutAnimation(R.anim.crouton_out)
+                                    .build())
+                            .show();
+
+                    break;
+                default:
+                    break;
+            }
+
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
