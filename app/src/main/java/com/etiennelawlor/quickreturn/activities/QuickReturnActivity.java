@@ -24,6 +24,7 @@ import android.view.MenuItem;
 
 import com.android.vending.billing.IInAppBillingService;
 import com.etiennelawlor.quickreturn.R;
+import com.etiennelawlor.quickreturn.fragments.QuickReturnFacebookFragment;
 import com.etiennelawlor.quickreturn.fragments.QuickReturnFooterListFragment;
 import com.etiennelawlor.quickreturn.fragments.QuickReturnFragment;
 import com.etiennelawlor.quickreturn.fragments.QuickReturnHeaderListFragment;
@@ -310,6 +311,8 @@ public class QuickReturnActivity extends Activity implements ActionBar.TabListen
                     return QuickReturnHeaderListFragment.newInstance();
                 case 4:
                     return QuickReturnFooterListFragment.newInstance();
+                case 5:
+                    return QuickReturnFacebookFragment.newInstance();
                 default:
                     bundle.putString(getString(R.string.quick_return_type),
                             QuickReturnFragment.QuickReturnType.HEADER.name());
@@ -321,7 +324,7 @@ public class QuickReturnActivity extends Activity implements ActionBar.TabListen
 
         @Override
         public int getCount() {
-            return 5;
+            return 6;
         }
 
         @Override
@@ -334,9 +337,11 @@ public class QuickReturnActivity extends Activity implements ActionBar.TabListen
                 case 2:
                     return getString(R.string.header_footer);
                 case 3:
-                    return "Header List";
+                    return getString(R.string.header_list);
                 case 4:
-                    return "Footer List";
+                    return getString(R.string.footer_list);
+                case 5:
+                    return getString(R.string.facebook);
             }
             return null;
         }
