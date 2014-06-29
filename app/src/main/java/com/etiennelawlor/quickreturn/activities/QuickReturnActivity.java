@@ -181,8 +181,14 @@ public class QuickReturnActivity extends Activity implements ActionBar.TabListen
             case R.id.action_github:
                 openWebPage("https://github.com/lawloretienne/QuickReturn");
                 return true;
-            case R.id.action_donate:
-                donate();
+            case R.id.buy_one_beer:
+                donate(getString(R.string.buy_one_beer));
+                return true;
+            case R.id.buy_two_beers:
+                donate(getString(R.string.buy_two_beers));
+                return true;
+            case R.id.buy_four_beers:
+                donate(getString(R.string.buy_four_beers));
                 return true;
             default:
                 break;
@@ -217,7 +223,7 @@ public class QuickReturnActivity extends Activity implements ActionBar.TabListen
         }
     }
 
-    public void donate() {
+    public void donate(String productSku) {
         ArrayList<String> skuList = new ArrayList<String> ();
         skuList.add("buy_one_beer");
         skuList.add("buy_two_beers");
@@ -261,7 +267,7 @@ public class QuickReturnActivity extends Activity implements ActionBar.TabListen
             String developerPayload = "bGoa+V7g/yqDXvKRqq+JTFn4uQZbPiQJo4pf9RzJ";
 
             Bundle bundle = mService.getBuyIntent(3, getPackageName(),
-                    "buy_two_beer", ITEM_TYPE_INAPP, developerPayload);
+                    productSku, ITEM_TYPE_INAPP, developerPayload);
 
             PendingIntent pendingIntent = bundle.getParcelable("BUY_INTENT");
             if (bundle.getInt("RESPONSE_CODE") == BILLING_RESPONSE_RESULT_OK) {

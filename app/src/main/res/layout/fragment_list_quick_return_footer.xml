@@ -6,9 +6,7 @@
     <com.etiennelawlor.quickreturn.views.QuickReturnListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@android:id/list">
-
-    </com.etiennelawlor.quickreturn.views.QuickReturnListView>
+        android:id="@android:id/list"/>
 
     <!--<com.etiennelawlor.quickreturn.views.CustomFontTextView-->
         <!--android:id="@+id/quick_return_tv"-->

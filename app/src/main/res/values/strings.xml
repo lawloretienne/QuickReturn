@@ -31,4 +31,10 @@
     <string name="footer_list">Footer List</string>
     <string name="facebook">Facebook</string>
 
+    <string name="buy_one_beer">buy_one_beer</string>
+    <string name="buy_two_beers">buy_two_beers</string>
+    <string name="buy_four_beers">buy_four_beers</string>
+
+
+
 </resources>

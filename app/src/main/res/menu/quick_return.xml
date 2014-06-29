@@ -9,7 +9,16 @@
     <item android:id="@+id/action_donate"
         android:title="@string/action_donate"
         android:icon="@drawable/ic_action_donate"
-        android:showAsAction="always" />
+        android:showAsAction="always">
+        <menu>
+            <item android:id="@+id/buy_one_beer"
+                android:title="Buy me a beer"/>
+            <item android:id="@+id/buy_two_beers"
+                android:title="Buy me two beers" />
+            <item android:id="@+id/buy_four_beers"
+                android:title="Buy me four beers" />
+        </menu>
+    </item>
 
     <item android:id="@+id/action_github"
         android:title="@string/action_github"
