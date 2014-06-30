@@ -72,8 +72,26 @@ public class QuickReturnFacebookActivity extends QuickReturnBaseActivity impleme
         mViewPager.setPageMargin(pageMargin);
 
         mTabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
+        mTabs.setAllCaps(false);
+        mTabs.setShouldExpand(true);
+        mTabs.setTextSize(QuickReturnUtils.dp2px(this, 16));
 //        mTabs.setTabBackground(R.color.indigo);
         mTabs.setIndicatorColorResource(R.color.steel_blue);
+//        mTabs.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+//            @Override
+//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+//
+//            }
+//
+//            @Override
+//            public void onPageSelected(int position) {
+//            }
+//
+//            @Override
+//            public void onPageScrollStateChanged(int state) {
+//
+//            }
+//        });
 //        mTabs.setTextColor(getResources().getColor(android.R.color.white));
 
         mTabs.setViewPager(mViewPager);
@@ -114,16 +132,18 @@ public class QuickReturnFacebookActivity extends QuickReturnBaseActivity impleme
 //        });
 
         // For each of the sections in the app, add a tab to the action bar.
-        for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
-            // Create a tab with text corresponding to the page title defined by
-            // the adapter. Also specify this Activity object, which implements
-            // the TabListener interface, as the callback (listener) for when
-            // this tab is selected.
-            actionBar.addTab(
-                    actionBar.newTab()
-                            .setText(mSectionsPagerAdapter.getPageTitle(i))
-                            .setTabListener(this));
-        }
+//        for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
+//            // Create a tab with text corresponding to the page title defined by
+//            // the adapter. Also specify this Activity object, which implements
+//            // the TabListener interface, as the callback (listener) for when
+//            // this tab is selected.
+//            actionBar.addTab(
+//                    actionBar.newTab()
+//                            .setText(mSectionsPagerAdapter.getPageTitle(i))
+////                            .setIcon()
+//                            .setTabListener(this)
+//            );
+//        }
     }
     // endregion
 
@@ -207,6 +227,7 @@ public class QuickReturnFacebookActivity extends QuickReturnBaseActivity impleme
             }
             return null;
         }
+
     }
 
     // endregion

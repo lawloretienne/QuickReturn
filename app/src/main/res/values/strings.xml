@@ -17,6 +17,7 @@
     <string name="section_six">Section Six</string>
     <string name="header">Header</string>
     <string name="footer">Footer</string>
+    <string name="both">Both</string>
     <string name="header_footer">Header &amp; Footer</string>
     <string name="result_canceled">Result Canceled</string>
     <string name="beer_order_canceled">Your beer order did not go through</string>

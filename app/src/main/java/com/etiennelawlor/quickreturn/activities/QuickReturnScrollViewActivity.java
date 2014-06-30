@@ -72,6 +72,9 @@ public class QuickReturnScrollViewActivity extends QuickReturnBaseActivity imple
         mViewPager.setPageMargin(pageMargin);
 
         mTabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
+        mTabs.setAllCaps(false);
+        mTabs.setShouldExpand(true);
+        mTabs.setTextSize(QuickReturnUtils.dp2px(this, 16));
 //        mTabs.setTabBackground(R.color.indigo);
         mTabs.setIndicatorColorResource(R.color.steel_blue);
 //        mTabs.setTextColor(getResources().getColor(android.R.color.white));
@@ -113,17 +116,18 @@ public class QuickReturnScrollViewActivity extends QuickReturnBaseActivity imple
 ////            }
 //        });
 
-        // For each of the sections in the app, add a tab to the action bar.
-        for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
-            // Create a tab with text corresponding to the page title defined by
-            // the adapter. Also specify this Activity object, which implements
-            // the TabListener interface, as the callback (listener) for when
-            // this tab is selected.
-            actionBar.addTab(
-                    actionBar.newTab()
-                            .setText(mSectionsPagerAdapter.getPageTitle(i))
-                            .setTabListener(this));
-        }
+//
+//        // For each of the sections in the app, add a tab to the action bar.
+//        for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
+//            // Create a tab with text corresponding to the page title defined by
+//            // the adapter. Also specify this Activity object, which implements
+//            // the TabListener interface, as the callback (listener) for when
+//            // this tab is selected.
+//            actionBar.addTab(
+//                    actionBar.newTab()
+//                            .setText(mSectionsPagerAdapter.getPageTitle(i))
+//                            .setTabListener(this));
+//        }
     }
     // endregion
 
@@ -204,7 +208,7 @@ public class QuickReturnScrollViewActivity extends QuickReturnBaseActivity imple
                 case 1:
                     return getString(R.string.footer);
                 case 2:
-                    return getString(R.string.header_footer);
+                    return getString(R.string.both);
             }
             return null;
         }
