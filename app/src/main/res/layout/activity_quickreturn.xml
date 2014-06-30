@@ -4,23 +4,71 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/pager"
+    <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:context=".QuickReturnActivity" />
+        android:layout_height="match_parent"
+        android:padding="5dp">
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/twitter_tv"
+                android:text="Twitter"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:background="@drawable/selector_bg_tv"
+                android:textColor="@android:color/white"
+                android:gravity="center"
+                android:layout_margin="5dp"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <com.astuetz.PagerSlidingTabStrip
-        android:id="@+id/tabs"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@drawable/background_tabs" />
+            <TextView
+                android:id="@+id/facebook_tv"
+                android:text="Facebook"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:background="@drawable/selector_bg_tv"
+                android:layout_margin="5dp"
+                android:textColor="@android:color/white"
+                android:gravity="center"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+        </TableRow>
 
-    <!--<android.support.v4.view.ViewPager-->
-    <!--android:id="@+id/pager"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--tools:context=".QuickReturnActivity" />-->
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/listview_tv"
+                android:text="ListView"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:textColor="@android:color/white"
+                android:layout_height="match_parent"
+                android:background="@drawable/selector_bg_tv"
+                android:gravity="center"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <TextView
+                android:id="@+id/scrollview_tv"
+                android:text="ScrollView"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:textColor="@android:color/white"
+                android:layout_height="match_parent"
+                android:background="@drawable/selector_bg_tv"
+                android:gravity="center"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+        </TableRow>
+    </TableLayout>
 
 </RelativeLayout>
 
