@@ -7,66 +7,81 @@
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="5dp">
+        android:padding="5dp"
+        android:stretchColumns="0">
         <TableRow
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:gravity="center">
-            <TextView
+            <com.etiennelawlor.quickreturn.views.CustomFontTextView
                 android:id="@+id/twitter_tv"
                 android:text="Twitter"
-                android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/selector_bg_tv"
                 android:textColor="@android:color/white"
                 android:gravity="center"
                 android:layout_margin="5dp"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
-
-            <TextView
-                android:id="@+id/facebook_tv"
-                android:text="Facebook"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:background="@drawable/selector_bg_tv"
-                android:layout_margin="5dp"
-                android:textColor="@android:color/white"
-                android:gravity="center"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                app:textFont="Roboto_Light"/>
         </TableRow>
 
         <TableRow
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:gravity="center">
 
-            <TextView
+            <com.etiennelawlor.quickreturn.views.CustomFontTextView
+                android:id="@+id/facebook_tv"
+                android:text="Facebook"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/selector_bg_tv"
+                android:layout_margin="5dp"
+                android:textColor="@android:color/white"
+                android:gravity="center"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                app:textFont="Roboto_Light"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <com.etiennelawlor.quickreturn.views.CustomFontTextView
                 android:id="@+id/listview_tv"
                 android:text="ListView"
-                android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:textColor="@android:color/white"
-                android:layout_height="match_parent"
                 android:background="@drawable/selector_bg_tv"
                 android:gravity="center"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                app:textFont="Roboto_Light"/>
+        </TableRow>
 
-            <TextView
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <com.etiennelawlor.quickreturn.views.CustomFontTextView
                 android:id="@+id/scrollview_tv"
                 android:text="ScrollView"
-                android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:textColor="@android:color/white"
-                android:layout_height="match_parent"
                 android:background="@drawable/selector_bg_tv"
                 android:gravity="center"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                app:textFont="Roboto_Light"/>
         </TableRow>
     </TableLayout>
 
