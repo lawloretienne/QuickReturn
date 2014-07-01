@@ -1,10 +1,6 @@
 package com.etiennelawlor.quickreturn.activities;
 
-import android.app.ActionBar;
 import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
@@ -15,24 +11,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
-import android.support.v13.app.FragmentStatePagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.android.vending.billing.IInAppBillingService;
-import com.astuetz.PagerSlidingTabStrip;
 import com.etiennelawlor.quickreturn.R;
-import com.etiennelawlor.quickreturn.fragments.QuickReturnFacebookFragment;
-import com.etiennelawlor.quickreturn.fragments.QuickReturnFooterListFragment;
-import com.etiennelawlor.quickreturn.fragments.QuickReturnFragment;
-import com.etiennelawlor.quickreturn.fragments.QuickReturnHeaderListFragment;
-import com.etiennelawlor.quickreturn.fragments.QuickReturnTwitterFragment;
-import com.etiennelawlor.quickreturn.interfaces.QuickReturnInterface;
 import com.etiennelawlor.quickreturn.utils.QuickReturnUtils;
 
 import org.json.JSONException;

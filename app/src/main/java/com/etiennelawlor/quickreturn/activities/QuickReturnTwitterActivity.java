@@ -1,48 +1,23 @@
 package com.etiennelawlor.quickreturn.activities;
 
 import android.app.ActionBar;
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.app.PendingIntent;
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentSender;
-import android.content.ServiceConnection;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.IBinder;
-import android.os.RemoteException;
+import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v13.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.text.TextUtils;
 import android.util.Log;
 import android.util.TypedValue;
-import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
-import com.android.vending.billing.IInAppBillingService;
 import com.astuetz.PagerSlidingTabStrip;
 import com.etiennelawlor.quickreturn.R;
-import com.etiennelawlor.quickreturn.fragments.QuickReturnFacebookFragment;
-import com.etiennelawlor.quickreturn.fragments.QuickReturnFooterListFragment;
-import com.etiennelawlor.quickreturn.fragments.QuickReturnFragment;
-import com.etiennelawlor.quickreturn.fragments.QuickReturnHeaderListFragment;
 import com.etiennelawlor.quickreturn.fragments.QuickReturnTwitterFragment;
 import com.etiennelawlor.quickreturn.interfaces.QuickReturnInterface;
 import com.etiennelawlor.quickreturn.utils.QuickReturnUtils;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-
-import de.keyboardsurfer.android.widget.crouton.Configuration;
-import de.keyboardsurfer.android.widget.crouton.Crouton;
-import de.keyboardsurfer.android.widget.crouton.Style;
 
 
 public class QuickReturnTwitterActivity extends QuickReturnBaseActivity implements ActionBar.TabListener, QuickReturnInterface {
@@ -51,6 +26,36 @@ public class QuickReturnTwitterActivity extends QuickReturnBaseActivity implemen
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private PagerSlidingTabStrip mTabs;
     private ViewPager mViewPager;
+    private LinearLayout mTabsLinearLayout;
+    // endregion
+
+    // region Listeners
+    private ViewPager.OnPageChangeListener mTabsOnPageChangeListener = new ViewPager.OnPageChangeListener() {
+        @Override
+        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            Log.d("QuickReturnScrollViewActivity", "onPageScrolled() : position - " + position);
+
+        }
+
+        @Override
+        public void onPageSelected(int position) {
+            Log.d("QuickReturnScrollViewActivity", "onPageSelected() : position - "+position);
+
+            for(int i=0; i < mTabsLinearLayout.getChildCount(); i++){
+                TextView tv = (TextView) mTabsLinearLayout.getChildAt(i);
+                if(i == position){
+                    tv.setTextColor(getResources().getColor(R.color.steel_blue));
+                } else {
+                    tv.setTextColor(getResources().getColor(android.R.color.darker_gray));
+                }
+            }
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int state) {
+
+        }
+    };
     // endregion
 
     // region Lifecycle Methods
@@ -59,74 +64,26 @@ public class QuickReturnTwitterActivity extends QuickReturnBaseActivity implemen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quick_return_twitter);
 
-        final ActionBar actionBar = getActionBar();
+        bindUIElements();
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        final int pageMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, getResources()
-                .getDisplayMetrics());
-        mViewPager.setPageMargin(pageMargin);
-
-        mTabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
         mTabs.setAllCaps(false);
         mTabs.setShouldExpand(true);
         mTabs.setTextSize(QuickReturnUtils.dp2px(this, 16));
-//        mTabs.setTabBackground(R.color.indigo);
+        mTabs.setTabBackground(R.drawable.selector_bg_tab);
         mTabs.setIndicatorColorResource(R.color.steel_blue);
-//        mTabs.setTextColor(getResources().getColor(android.R.color.white));
-
+        mTabs.setOnPageChangeListener(mTabsOnPageChangeListener);
         mTabs.setViewPager(mViewPager);
 
-        // When swiping between different sections, select the corresponding
-        // tab. We can also use ActionBar.Tab#select() to do this if we have
-        // a reference to the Tab.
-//        mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
-//            @Override
-//            public void onPageSelected(int position) {
-//                int navigationMode = actionBar.getNavigationMode();
-//                if(navigationMode == ActionBar.NAVIGATION_MODE_TABS)
-//                    actionBar.setSelectedNavigationItem(position);
-//            }
-//
-////            @Override
-////            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-////                int alphaCurrent = (int) (255 - (128*Math.abs(positionOffset)));
-////                int alphaNext = (int) (128 + (128*Math.abs(positionOffset)));
-////                if (positionOffset != 0) {
-////                    switch(position) {
-////                        case 0:
-////                            actionBar.getTabAt(0).setsetTheAlpha(alphaCurrent);
-////                            tab0.setTheAlpha(alphaCurrent);
-////                            tab1.setTheAlpha(alphaNext);
-////                            break;
-////                        case 1:
-////                            tab1.setTheAlpha(alphaCurrent);
-////                            tab2.setTheAlpha(alphaNext);
-////                            break;
-////                        case 2:
-////                            tab2.setTheAlpha(alphaCurrent);
-////                            tab3.setTheAlpha(alphaNext);
-////                            break;
-////                    }
-////                }
-////            }
-//        });
+        // Set first tab selected
+        mTabsLinearLayout = ((LinearLayout)mTabs.getChildAt(0));
+        TextView tv = (TextView) mTabsLinearLayout.getChildAt(0);
+        tv.setTextColor(getResources().getColor(R.color.steel_blue));
 
-//        // For each of the sections in the app, add a tab to the action bar.
-//        for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
-//            // Create a tab with text corresponding to the page title defined by
-//            // the adapter. Also specify this Activity object, which implements
-//            // the TabListener interface, as the callback (listener) for when
-//            // this tab is selected.
-//            actionBar.addTab(
-//                    actionBar.newTab()
-//                            .setText(mSectionsPagerAdapter.getPageTitle(i))
-//                            .setTabListener(this));
-//        }
     }
     // endregion
 
@@ -159,13 +116,20 @@ public class QuickReturnTwitterActivity extends QuickReturnBaseActivity implemen
     }
     // endregion
 
+    // region Helper Methods
+    private void bindUIElements(){
+        mViewPager = (ViewPager) findViewById(R.id.pager);
+        mTabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
+    }
+    // endregion
+
     // region Inner Classes
 
     /**
      * A {@link android.support.v13.app.FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
      */
-    public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
+    public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
