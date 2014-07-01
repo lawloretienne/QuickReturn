@@ -31,13 +31,13 @@ public class QuickReturnScrollViewActivity extends QuickReturnBaseActivity imple
     private ViewPager.OnPageChangeListener mTabsOnPageChangeListener = new ViewPager.OnPageChangeListener() {
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            Log.d("QuickReturnScrollViewActivity", "onPageScrolled() : position - "+position);
+//            Log.d("QuickReturnScrollViewActivity", "onPageScrolled() : position - "+position);
 
         }
 
         @Override
         public void onPageSelected(int position) {
-            Log.d("QuickReturnScrollViewActivity", "onPageSelected() : position - "+position);
+//            Log.d("QuickReturnScrollViewActivity", "onPageSelected() : position - "+position);
 
             for(int i=0; i < mTabsLinearLayout.getChildCount(); i++){
                 TextView tv = (TextView) mTabsLinearLayout.getChildAt(i);

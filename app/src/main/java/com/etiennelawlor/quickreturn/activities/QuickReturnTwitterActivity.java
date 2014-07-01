@@ -33,13 +33,13 @@ public class QuickReturnTwitterActivity extends QuickReturnBaseActivity implemen
     private ViewPager.OnPageChangeListener mTabsOnPageChangeListener = new ViewPager.OnPageChangeListener() {
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            Log.d("QuickReturnScrollViewActivity", "onPageScrolled() : position - " + position);
+//            Log.d("QuickReturnScrollViewActivity", "onPageScrolled() : position - " + position);
 
         }
 
         @Override
         public void onPageSelected(int position) {
-            Log.d("QuickReturnScrollViewActivity", "onPageSelected() : position - "+position);
+//            Log.d("QuickReturnScrollViewActivity", "onPageSelected() : position - "+position);
 
             for(int i=0; i < mTabsLinearLayout.getChildCount(); i++){
                 TextView tv = (TextView) mTabsLinearLayout.getChildAt(i);
@@ -76,6 +76,7 @@ public class QuickReturnTwitterActivity extends QuickReturnBaseActivity implemen
         mTabs.setTextSize(QuickReturnUtils.dp2px(this, 16));
         mTabs.setTabBackground(R.drawable.selector_bg_tab);
         mTabs.setIndicatorColorResource(R.color.steel_blue);
+        mTabs.setIndicatorHeight(QuickReturnUtils.dp2px(this, 5));
         mTabs.setOnPageChangeListener(mTabsOnPageChangeListener);
         mTabs.setViewPager(mViewPager);
 
