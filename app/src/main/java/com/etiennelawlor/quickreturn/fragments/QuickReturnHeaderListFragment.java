@@ -155,7 +155,7 @@ public class QuickReturnHeaderListFragment extends ListFragment {
 
         bindUIElements(view);
 
-        mValues = getResources().getStringArray(R.array.languages);
+        mValues = getResources().getStringArray(R.array.countries);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
                 R.layout.list_item, R.id.item_tv, mValues);

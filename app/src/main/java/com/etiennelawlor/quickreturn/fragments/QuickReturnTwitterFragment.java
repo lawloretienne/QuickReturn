@@ -1,7 +1,6 @@
 package com.etiennelawlor.quickreturn.fragments;
 
 import android.annotation.SuppressLint;
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.ListFragment;
 import android.os.Build;
@@ -14,7 +13,6 @@ import android.view.animation.TranslateAnimation;
 import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.etiennelawlor.quickreturn.R;
 import com.etiennelawlor.quickreturn.interfaces.QuickReturnInterface;
@@ -217,7 +215,7 @@ public class QuickReturnTwitterFragment extends ListFragment {
 
         bindUIElements(view);
 
-        mValues = getResources().getStringArray(R.array.languages);
+        mValues = getResources().getStringArray(R.array.countries);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
                 R.layout.list_item, R.id.item_tv, mValues);

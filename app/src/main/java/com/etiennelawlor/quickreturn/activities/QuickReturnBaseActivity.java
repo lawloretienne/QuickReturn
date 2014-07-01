@@ -92,6 +92,10 @@ public class QuickReturnBaseActivity extends Activity {
     protected void onDestroy() {
         super.onDestroy();
 
+        if (mService != null) {
+            unbindService(mServiceConn);
+        }
+
         Crouton.cancelAllCroutons();
     }
     // endregion

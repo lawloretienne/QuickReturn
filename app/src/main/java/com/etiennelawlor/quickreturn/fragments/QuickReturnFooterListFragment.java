@@ -8,16 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
 import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.etiennelawlor.quickreturn.R;
-import com.etiennelawlor.quickreturn.views.NotifyingListView;
 import com.etiennelawlor.quickreturn.views.QuickReturnListView;
 
 /**
@@ -152,7 +148,7 @@ public class QuickReturnFooterListFragment extends ListFragment {
 
         bindUIElements(view);
 
-        mValues = getResources().getStringArray(R.array.languages);
+        mValues = getResources().getStringArray(R.array.countries);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
                 R.layout.list_item, R.id.item_tv, mValues);
