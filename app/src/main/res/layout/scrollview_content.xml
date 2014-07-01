@@ -7,23 +7,23 @@
     android:background="@android:color/white"
     android:orientation="vertical">
 
-    <!--<com.etiennelawlor.quickreturn.views.CustomFontTextView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:padding="10dp"-->
-        <!--android:gravity="center"-->
-        <!--android:text="@string/lorem_ipsum"-->
-        <!--android:textColor="@android:color/black"-->
-        <!--android:textSize="18sp"-->
-        <!--app:textFont="Roboto_Light"/>-->
-
-    <TextView
+    <com.etiennelawlor.quickreturn.views.CustomFontTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:gravity="center"
         android:text="@string/lorem_ipsum"
         android:textColor="@android:color/black"
-        android:textSize="18sp"/>
+        android:textSize="18sp"
+        app:textFont="Roboto_Light"/>
+
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:padding="10dp"-->
+        <!--android:gravity="center"-->
+        <!--android:text="@string/lorem_ipsum"-->
+        <!--android:textColor="@android:color/black"-->
+        <!--android:textSize="18sp"/>-->
 
 </LinearLayout>
