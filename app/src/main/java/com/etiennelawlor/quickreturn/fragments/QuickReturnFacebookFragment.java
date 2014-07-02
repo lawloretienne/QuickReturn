@@ -76,31 +76,15 @@ public class QuickReturnFacebookFragment extends ListFragment {
                         mFooterState = STATE_RETURNING;
                     }
                     footerTranslationY = footerRawY;
-
-                    if (headerRawY <= mHeaderMinRawY) {
-                        mHeaderMinRawY = headerRawY;
-                    } else {
-                        mHeaderState = STATE_RETURNING;
-                    }
-                    headerTranslationY = headerRawY;
                     break;
-
                 case STATE_ONSCREEN:
                     if (footerRawY > mQuickReturnHeight) {
                         mFooterState = STATE_OFFSCREEN;
                         mFooterMinRawY = footerRawY;
                     }
                     footerTranslationY = footerRawY;
-
-                    if (headerRawY < -mQuickReturnHeight) {
-                        mHeaderState = STATE_OFFSCREEN;
-                        mHeaderMinRawY = headerRawY;
-                    }
-                    headerTranslationY = headerRawY;
                     break;
-
                 case STATE_RETURNING:
-
                     footerTranslationY = (footerRawY - mFooterMinRawY) + mQuickReturnHeight;
 
 //                    System.out.println(footerTranslationY);
@@ -119,7 +103,28 @@ public class QuickReturnFacebookFragment extends ListFragment {
                         mFooterMinRawY = footerRawY;
                     }
 
+                    break;
+            }
 
+            switch (mHeaderState) {
+                case STATE_OFFSCREEN:
+                    if (headerRawY <= mHeaderMinRawY) {
+                        mHeaderMinRawY = headerRawY;
+                    } else {
+                        mHeaderState = STATE_RETURNING;
+                    }
+                    headerTranslationY = headerRawY;
+                    break;
+
+                case STATE_ONSCREEN:
+                    if (headerRawY < -mQuickReturnHeight) {
+                        mHeaderState = STATE_OFFSCREEN;
+                        mHeaderMinRawY = headerRawY;
+                    }
+                    headerTranslationY = headerRawY;
+                    break;
+
+                case STATE_RETURNING:
                     headerTranslationY = (headerRawY - mHeaderMinRawY) - mQuickReturnHeight;
                     if (headerTranslationY > 0) {
                         headerTranslationY = 0;

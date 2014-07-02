@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.ListFragment;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,6 +56,8 @@ public class QuickReturnTwitterFragment extends ListFragment {
         public void onScroll(AbsListView view, int firstVisibleItem,
         int visibleItemCount, int totalItemCount) {
 
+            Log.d("QuickReturnTwitterFragment", "onScroll()");
+
             mScrollY = 0;
             int footerTranslationY = 0;
             int headerTranslationY = 0;
@@ -77,31 +80,15 @@ public class QuickReturnTwitterFragment extends ListFragment {
                         mFooterState = STATE_RETURNING;
                     }
                     footerTranslationY = footerRawY;
-
-                    if (headerRawY <= mHeaderMinRawY) {
-                        mHeaderMinRawY = headerRawY;
-                    } else {
-                        mHeaderState = STATE_RETURNING;
-                    }
-                    headerTranslationY = headerRawY;
                     break;
-
                 case STATE_ONSCREEN:
                     if (footerRawY > mQuickReturnHeight) {
                         mFooterState = STATE_OFFSCREEN;
                         mFooterMinRawY = footerRawY;
                     }
                     footerTranslationY = footerRawY;
-
-                    if (headerRawY < -mQuickReturnHeight) {
-                        mHeaderState = STATE_OFFSCREEN;
-                        mHeaderMinRawY = headerRawY;
-                    }
-                    headerTranslationY = headerRawY;
                     break;
-
                 case STATE_RETURNING:
-
                     footerTranslationY = (footerRawY - mFooterMinRawY) + mQuickReturnHeight;
 
 //                    System.out.println(footerTranslationY);
@@ -120,16 +107,45 @@ public class QuickReturnTwitterFragment extends ListFragment {
                         mFooterMinRawY = footerRawY;
                     }
 
+                    break;
+            }
 
+            switch (mHeaderState) {
+                case STATE_OFFSCREEN:
+                    if (headerRawY <= mHeaderMinRawY) {
+                        mHeaderMinRawY = headerRawY;
+                    } else {
+                        mHeaderState = STATE_RETURNING;
+                    }
+                    headerTranslationY = headerRawY;
+                    Log.d("QuickReturnTwitterFragment", "121 : onScroll() : headerTranslationY - "+headerTranslationY);
+
+                    break;
+
+                case STATE_ONSCREEN:
+                    if (headerRawY < -mQuickReturnHeight) {
+                        mHeaderState = STATE_OFFSCREEN;
+                        mHeaderMinRawY = headerRawY;
+                    }
+                    headerTranslationY = headerRawY;
+                    Log.d("QuickReturnTwitterFragment", "130 : onScroll() : headerTranslationY - "+headerTranslationY);
+
+                    break;
+
+                case STATE_RETURNING:
                     headerTranslationY = (headerRawY - mHeaderMinRawY) - mQuickReturnHeight;
                     if (headerTranslationY > 0) {
                         headerTranslationY = 0;
+                        Log.d("QuickReturnTwitterFragment", "139 : onScroll() : headerTranslationY - "+headerTranslationY);
+
                         mHeaderMinRawY = headerRawY - mQuickReturnHeight;
                     }
 
                     if (headerRawY > 0) {
                         mHeaderState = STATE_ONSCREEN;
                         headerTranslationY = headerRawY;
+                        Log.d("QuickReturnTwitterFragment", "147 : onScroll() : headerTranslationY - "+headerTranslationY);
+
                     }
 
                     if (headerTranslationY < -mQuickReturnHeight) {
@@ -155,6 +171,9 @@ public class QuickReturnTwitterFragment extends ListFragment {
 //                mCoordinator.getViewPager().startAnimation(mHeaderAnim);
             } else {
                 mQuickReturnFooterLinearLayout.setTranslationY(footerTranslationY);
+
+                Log.d("QuickReturnTwitterFragment", "175 : onScroll() : headerTranslationY - "+headerTranslationY);
+
                 mCoordinator.getTabs().setTranslationY(headerTranslationY);
 //                mCoordinator.getViewPager().setTranslationY(headerTranslationY);
 
@@ -170,9 +189,20 @@ public class QuickReturnTwitterFragment extends ListFragment {
     private ViewTreeObserver.OnGlobalLayoutListener mQuickReturnListViewOnGlobalLayoutListener = new ViewTreeObserver.OnGlobalLayoutListener() {
         @Override
         public void onGlobalLayout() {
-            mQuickReturnHeight = mQuickReturnFooterLinearLayout.getHeight();
+
+            if(mQuickReturnHeight == 0) {
+                Log.d("QuickReturnTwitterFragment", "onGlobalLayout() : mQuickReturnHeight - "+mQuickReturnHeight);
+                mQuickReturnHeight = mQuickReturnFooterLinearLayout.getHeight();
+            }
             mQuickReturnListView.computeScrollY();
-            mCachedVerticalScrollRange = mQuickReturnListView.getListHeight();
+//            Log.d(getClass().getSimpleName(), "onGlobalLayout() : mQuickReturnHeight - "+mQuickReturnHeight);
+
+
+            if(mCachedVerticalScrollRange == 0){
+                Log.d("QuickReturnTwitterFragment", "onGlobalLayout() : mCachedVerticalScrollRange - "+mCachedVerticalScrollRange);
+                mCachedVerticalScrollRange = mQuickReturnListView.getListHeight();
+            }
+
         }
     };
     //endregion

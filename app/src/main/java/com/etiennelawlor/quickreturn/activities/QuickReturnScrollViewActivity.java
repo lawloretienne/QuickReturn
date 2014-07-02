@@ -4,10 +4,10 @@ import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -41,10 +41,13 @@ public class QuickReturnScrollViewActivity extends QuickReturnBaseActivity imple
 
             for(int i=0; i < mTabsLinearLayout.getChildCount(); i++){
                 TextView tv = (TextView) mTabsLinearLayout.getChildAt(i);
+
                 if(i == position){
                     tv.setTextColor(getResources().getColor(R.color.steel_blue));
+                    tv.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Roboto-Bold.ttf"));
                 } else {
                     tv.setTextColor(getResources().getColor(android.R.color.darker_gray));
+                    tv.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Roboto-Light.ttf"));
                 }
             }
         }
@@ -80,8 +83,18 @@ public class QuickReturnScrollViewActivity extends QuickReturnBaseActivity imple
 
         // Set first tab selected
         mTabsLinearLayout = ((LinearLayout)mTabs.getChildAt(0));
-        TextView tv = (TextView) mTabsLinearLayout.getChildAt(0);
-        tv.setTextColor(getResources().getColor(R.color.steel_blue));
+
+        for(int i=0; i < mTabsLinearLayout.getChildCount(); i++){
+            TextView tv = (TextView) mTabsLinearLayout.getChildAt(i);
+
+            if(i == 0){
+                tv.setTextColor(getResources().getColor(R.color.steel_blue));
+                tv.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Roboto-Bold.ttf"));
+            } else {
+                tv.setTextColor(getResources().getColor(android.R.color.darker_gray));
+                tv.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Roboto-Light.ttf"));
+            }
+        }
     }
     // endregion
 
