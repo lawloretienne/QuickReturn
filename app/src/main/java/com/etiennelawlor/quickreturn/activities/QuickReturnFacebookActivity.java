@@ -7,6 +7,8 @@ import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -30,20 +32,45 @@ public class QuickReturnFacebookActivity extends QuickReturnBaseActivity impleme
     private ViewPager.OnPageChangeListener mTabsOnPageChangeListener = new ViewPager.OnPageChangeListener() {
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-//            Log.d("QuickReturnScrollViewActivity", "onPageScrolled() : position - " + position);
-
         }
 
         @Override
         public void onPageSelected(int position) {
-//            Log.d("QuickReturnScrollViewActivity", "onPageSelected() : position - "+position);
-
             for(int i=0; i < mTabsLinearLayout.getChildCount(); i++){
-                TextView tv = (TextView) mTabsLinearLayout.getChildAt(i);
-                if(i == position){
-                    tv.setTextColor(getResources().getColor(R.color.steel_blue));
-                } else {
-                    tv.setTextColor(getResources().getColor(android.R.color.darker_gray));
+                ImageButton ib = (ImageButton) mTabsLinearLayout.getChildAt(i);
+                switch (i){
+                    case 0:
+                        if(i == position)
+                            ib.setImageResource(R.drawable.ic_action_event_highlighted);
+                        else
+                            ib.setImageResource(R.drawable.ic_action_event);
+                        break;
+                    case 1:
+                        if(i == position)
+                            ib.setImageResource(R.drawable.ic_action_cc_bcc_highlighted);
+                        else
+                            ib.setImageResource(R.drawable.ic_action_cc_bcc);
+                        break;
+                    case 2:
+                        if(i == position)
+                            ib.setImageResource(R.drawable.ic_action_chat_highlighted);
+                        else
+                            ib.setImageResource(R.drawable.ic_action_chat);
+                        break;
+                    case 3:
+                        if(i == position)
+                            ib.setImageResource(R.drawable.ic_action_web_site_highlighted);
+                        else
+                            ib.setImageResource(R.drawable.ic_action_web_site);
+                        break;
+                    case 4:
+                        if(i == position)
+                            ib.setImageResource(R.drawable.ic_action_sort_by_size_highlighted);
+                        else
+                            ib.setImageResource(R.drawable.ic_action_sort_by_size);
+                        break;
+                    default:
+                        break;
                 }
             }
         }
@@ -76,13 +103,14 @@ public class QuickReturnFacebookActivity extends QuickReturnBaseActivity impleme
         mTabs.setIndicatorHeight(QuickReturnUtils.dp2px(this, 5));
         mTabs.setDividerColor(getResources().getColor(android.R.color.transparent));
 //        mTabs.setBackgroundColor(getResources().getColor(R.color.indigo));
-//        mTabs.setOnPageChangeListener(mTabsOnPageChangeListener);
+        mTabs.setOnPageChangeListener(mTabsOnPageChangeListener);
         mTabs.setViewPager(mViewPager);
 
         // Set first tab selected
-//        mTabsLinearLayout = ((LinearLayout)mTabs.getChildAt(0));
-//        TextView tv = (TextView) mTabsLinearLayout.getChildAt(0);
-//        tv.setTextColor(getResources().getColor(R.color.steel_blue));
+        mTabsLinearLayout = ((LinearLayout)mTabs.getChildAt(0));
+        ImageButton ib = (ImageButton) mTabsLinearLayout.getChildAt(0);
+        ib.setImageResource(R.drawable.ic_action_event_highlighted);
+
     }
     // endregion
 
@@ -157,36 +185,19 @@ public class QuickReturnFacebookActivity extends QuickReturnBaseActivity impleme
             return 5;
         }
 
-//        @Override
-//        public CharSequence getPageTitle(int position) {
-//            switch (position) {
-//                case 0:
-//                    return getString(R.string.facebook);
-//                case 1:
-//                    return getString(R.string.facebook);
-//                case 2:
-//                    return getString(R.string.facebook);
-//                case 3:
-//                    return getString(R.string.facebook);
-//                case 4:
-//                    return getString(R.string.facebook);
-//            }
-//            return null;
-//        }
-
         @Override
         public int getPageIconResId(int position) {
             switch (position) {
                 case 0:
-                    return R.drawable.ic_action_github;
+                    return R.drawable.ic_action_event;
                 case 1:
                     return R.drawable.ic_action_cc_bcc;
                 case 2:
-                    return android.R.drawable.sym_action_chat;
+                    return R.drawable.ic_action_chat;
                 case 3:
                     return R.drawable.ic_action_web_site;
                 case 4:
-                    return R.drawable.ic_action_github;
+                    return R.drawable.ic_action_sort_by_size;
             }
 
             return 0;
