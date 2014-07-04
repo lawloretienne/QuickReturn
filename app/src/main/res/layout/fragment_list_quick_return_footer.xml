@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.etiennelawlor.quickreturn.views.QuickReturnListView
+    <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@android:id/list"/>
@@ -19,17 +19,6 @@
         android:gravity="center"
         android:layout_alignParentBottom="true"
         app:textFont="Roboto_Bold"/>
-
-    <!--<TextView-->
-        <!--android:id="@+id/quick_return_tv"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="80dp"-->
-        <!--android:background="@color/transparent_black_ninty"-->
-        <!--android:textSize="22sp"-->
-        <!--android:text="@string/footer"-->
-        <!--android:textColor="@android:color/white"-->
-        <!--android:gravity="center"-->
-        <!--android:layout_alignParentBottom="true"/>-->
 
 </RelativeLayout>
 

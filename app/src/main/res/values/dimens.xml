@@ -3,8 +3,15 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
-
     <dimen name="sticky_height">120dp</dimen>
     <dimen name="top_height">150dp</dimen>
     <dimen name="page_margin">16dp</dimen>
+
+    <dimen name="header_height">96dp</dimen>
+    <dimen name="header_height2">128dp</dimen>
+    <dimen name="footer_height">80dp</dimen>
+
+
+    <!--<dimen name="header_height">96dp</dimen>-->
+
 </resources>

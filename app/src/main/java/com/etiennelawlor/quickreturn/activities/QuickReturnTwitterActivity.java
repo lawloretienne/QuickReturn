@@ -148,7 +148,6 @@ public class QuickReturnTwitterActivity extends QuickReturnBaseActivity implemen
 
         @Override
         public Fragment getItem(int position) {
-            Bundle bundle = new Bundle();
             switch (position) {
                 case 0:
                     return QuickReturnTwitterFragment.newInstance();

@@ -7,14 +7,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.view.animation.TranslateAnimation;
 import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.etiennelawlor.quickreturn.R;
-import com.etiennelawlor.quickreturn.views.QuickReturnListView;
 
 /**
  * Created by etiennelawlor on 6/23/14.
@@ -22,102 +21,53 @@ import com.etiennelawlor.quickreturn.views.QuickReturnListView;
 public class QuickReturnFooterListFragment extends ListFragment {
 
     // region Constants
-    private static final int STATE_ONSCREEN = 0;
-    private static final int STATE_OFFSCREEN = 1;
-    private static final int STATE_RETURNING = 2;
     // endregion
 
     // region Member Variables
-    private QuickReturnListView mQuickReturnListView;
+    private ListView mListView;
     private TextView mQuickReturnTextView;
-    private boolean mQuickReturnViewVisible = true;
     private String[] mValues;
-    private int mQuickReturnHeight;
-    private int mState = STATE_ONSCREEN;
-    private int mScrollY;
-    private int mMinRawY = 0;
+    private int mMinFooterTranslation;
+    private int mFooterHeight;
+    private View mPlaceHolderView;
+    private int mPrevScrollY = 0;
+    private int mDiffTotal = 0;
     private TranslateAnimation mAnim;
     // endregion
 
     //region Listeners
-    private AbsListView.OnScrollListener mQuickReturnListViewOnScrollListener = new AbsListView.OnScrollListener() {
+
+    private AbsListView.OnScrollListener mListViewOnScrollListener = new AbsListView.OnScrollListener() {
         @SuppressLint("NewApi")
         @Override
         public void onScroll(AbsListView view, int firstVisibleItem,
-        int visibleItemCount, int totalItemCount) {
+                             int visibleItemCount, int totalItemCount) {
 
-            mScrollY = 0;
-            int translationY = 0;
+            int scrollY = getScrollY();
+            int diff = mPrevScrollY - scrollY;
 
-            if (mQuickReturnListView.scrollYIsComputed()) {
-                mScrollY = mQuickReturnListView.getComputedScrollY();
-            }
-
-            int rawY = mScrollY;
-
-            switch (mState) {
-                case STATE_OFFSCREEN:
-                    if (rawY >= mMinRawY) {
-                        mMinRawY = rawY;
-                    } else {
-                        mState = STATE_RETURNING;
-                    }
-                    translationY = rawY;
-                    break;
-
-                case STATE_ONSCREEN:
-                    if (rawY > mQuickReturnHeight) {
-                        mState = STATE_OFFSCREEN;
-                        mMinRawY = rawY;
-                    }
-                    translationY = rawY;
-                    break;
-
-                case STATE_RETURNING:
-
-                    translationY = (rawY - mMinRawY) + mQuickReturnHeight;
-
-//                    System.out.println(translationY);
-                    if (translationY < 0) {
-                        translationY = 0;
-                        mMinRawY = rawY + mQuickReturnHeight;
-                    }
-
-                    if (rawY == 0) {
-                        mState = STATE_ONSCREEN;
-                        translationY = 0;
-                    }
-
-                    if (translationY > mQuickReturnHeight) {
-                        mState = STATE_OFFSCREEN;
-                        mMinRawY = rawY;
-                    }
-                    break;
+            if(diff <=0){ // scrolling down
+                mDiffTotal = Math.max(mDiffTotal + diff, -mMinFooterTranslation);
+            } else { // scrolling up
+                mDiffTotal = Math.min(Math.max(mDiffTotal + diff, -mMinFooterTranslation), 0);
             }
 
             /** this can be used if the build is below honeycomb **/
             if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.HONEYCOMB) {
-                mAnim = new TranslateAnimation(0, 0, translationY,
-                        translationY);
+                mAnim = new TranslateAnimation(0, 0, -mDiffTotal,
+                        -mDiffTotal);
                 mAnim.setFillAfter(true);
                 mAnim.setDuration(0);
                 mQuickReturnTextView.startAnimation(mAnim);
             } else {
-                mQuickReturnTextView.setTranslationY(translationY);
+                mQuickReturnTextView.setTranslationY(-mDiffTotal);
             }
 
+            mPrevScrollY = scrollY;
         }
 
         @Override
         public void onScrollStateChanged(AbsListView view, int scrollState) {
-        }
-    };
-
-    private ViewTreeObserver.OnGlobalLayoutListener mQuickReturnListViewOnGlobalLayoutListener = new ViewTreeObserver.OnGlobalLayoutListener() {
-        @Override
-        public void onGlobalLayout() {
-            mQuickReturnHeight = mQuickReturnTextView.getHeight();
-            mQuickReturnListView.computeScrollY();
         }
     };
     //endregion
@@ -136,6 +86,13 @@ public class QuickReturnFooterListFragment extends ListFragment {
 
     // region Lifecycle Methods
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mFooterHeight = getResources().getDimensionPixelSize(R.dimen.footer_height);
+        mMinFooterTranslation = mFooterHeight;
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_list_quick_return_footer, container, false);
@@ -153,19 +110,35 @@ public class QuickReturnFooterListFragment extends ListFragment {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
                 R.layout.list_item, R.id.item_tv, mValues);
 
-        mQuickReturnListView.setAdapter(adapter);
-
-        mQuickReturnListView.getViewTreeObserver().addOnGlobalLayoutListener(mQuickReturnListViewOnGlobalLayoutListener);
-
-        mQuickReturnListView.setOnScrollListener(mQuickReturnListViewOnScrollListener);
+        mListView.setAdapter(adapter);
+        mListView.setOnScrollListener(mListViewOnScrollListener);
     }
 
     // endregion
 
     // region Helper Methods
     private void bindUIElements(View view){
-        mQuickReturnListView = (QuickReturnListView) view.findViewById(android.R.id.list);
+        mListView = (ListView) view.findViewById(android.R.id.list);
         mQuickReturnTextView = (TextView) view.findViewById(R.id.quick_return_tv);
+    }
+
+    public int getScrollY() {
+        View c = mListView.getChildAt(0);
+        if (c == null) {
+            return 0;
+        }
+
+        int firstVisiblePosition = mListView.getFirstVisiblePosition();
+        int top = c.getTop();
+
+        int footerHeight = 0;
+        if (firstVisiblePosition >= 1) {
+            footerHeight = mQuickReturnTextView.getHeight();
+//            headerHeight = mPlaceHolderView.getHeight();
+        }
+
+        int scrollY = -top + firstVisiblePosition * c.getHeight() + footerHeight;
+        return scrollY;
     }
     // endregion
 }
