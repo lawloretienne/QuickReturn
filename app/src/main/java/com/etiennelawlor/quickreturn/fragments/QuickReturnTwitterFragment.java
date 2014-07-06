@@ -138,7 +138,7 @@ public class QuickReturnTwitterFragment extends ListFragment {
 
         bindUIElements(view);
 
-        mValues = getResources().getStringArray(R.array.countries2);
+        mValues = getResources().getStringArray(R.array.countries);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
                 R.layout.list_item, R.id.item_tv, mValues);
@@ -147,8 +147,8 @@ public class QuickReturnTwitterFragment extends ListFragment {
 
         mListView.setOnScrollListener(mListViewOnScrollListener);
 
-//        mPlaceHolderView = getActivity().getLayoutInflater().inflate(R.layout.view_header_placeholder, mListView, false);
-//        mListView.addHeaderView(mPlaceHolderView);
+        mPlaceHolderView = getActivity().getLayoutInflater().inflate(R.layout.view_header_placeholder, mListView, false);
+        mListView.addHeaderView(mPlaceHolderView);
     }
 
     // endregion

@@ -30,7 +30,6 @@ public class QuickReturnHeaderListFragment extends ListFragment {
     private String[] mValues;
     private int mMinHeaderTranslation;
     private int mHeaderHeight;
-    private View mPlaceHolderView;
     private int mPrevScrollY = 0;
     private int mDiffTotal = 0;
     private TranslateAnimation mAnim;

@@ -32,7 +32,6 @@ public class QuickReturnFacebookFragment extends ListFragment {
     private String[] mValues;
     private int mMinHeaderTranslation;
     private int mHeaderHeight;
-    private View mPlaceHolderView;
     private int mPrevScrollY = 0;
     private int mDiffTotal = 0;
     private TranslateAnimation mFooterAnim;
@@ -55,7 +54,6 @@ public class QuickReturnFacebookFragment extends ListFragment {
                 mDiffTotal = Math.min(Math.max(mDiffTotal+diff, mMinHeaderTranslation), 0);
             }
 
-            /** this can be used if the build is below honeycomb **/
             if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.HONEYCOMB) {
                 mFooterAnim = new TranslateAnimation(0, 0, -mDiffTotal, -mDiffTotal);
                 mFooterAnim.setFillAfter(true);
@@ -98,7 +96,7 @@ public class QuickReturnFacebookFragment extends ListFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mHeaderHeight = getResources().getDimensionPixelSize(R.dimen.header_height);
+        mHeaderHeight = getResources().getDimensionPixelSize(R.dimen.header_height3);
         mMinHeaderTranslation = -(mHeaderHeight*2) + QuickReturnUtils.getActionBarHeight(getActivity());
     }
 

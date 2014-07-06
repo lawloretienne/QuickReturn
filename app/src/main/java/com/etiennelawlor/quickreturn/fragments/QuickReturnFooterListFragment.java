@@ -30,7 +30,6 @@ public class QuickReturnFooterListFragment extends ListFragment {
     private String[] mValues;
     private int mMinFooterTranslation;
     private int mFooterHeight;
-    private View mPlaceHolderView;
     private int mPrevScrollY = 0;
     private int mDiffTotal = 0;
     private TranslateAnimation mAnim;
