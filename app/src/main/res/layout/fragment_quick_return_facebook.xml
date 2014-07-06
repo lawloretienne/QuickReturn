@@ -8,19 +8,7 @@
         android:layout_height="match_parent"
         android:id="@android:id/list"/>
 
-    <!--<com.etiennelawlor.quickreturn.views.CustomFontTextView-->
-        <!--android:id="@+id/quick_return_tv"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="80dp"-->
-        <!--android:background="@color/transparent_black_ninty"-->
-        <!--android:textSize="22sp"-->
-        <!--android:text="@string/footer"-->
-        <!--android:textColor="@android:color/white"-->
-        <!--android:gravity="center"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--app:textFont="Roboto_Bold"/>-->
-
-    <TextView
+    <com.etiennelawlor.quickreturn.views.CustomFontTextView
         android:id="@+id/quick_return_header_tv"
         android:layout_width="wrap_content"
         android:padding="10dp"
@@ -34,7 +22,8 @@
         android:textSize="14sp"
         android:text="@string/new_stories"
         android:textColor="@android:color/white"
-        android:gravity="center"/>
+        android:gravity="center"
+        app:textFont="Roboto_Bold"/>
 
     <LinearLayout
         android:id="@+id/quick_return_footer_ll"
@@ -46,14 +35,24 @@
         android:gravity="center"
         >
 
-        <TextView
+        <LinearLayout
             android:layout_height="match_parent"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:textSize="14sp"
-            android:text="@string/status"
-            android:gravity="center"
-            android:textColor="@android:color/white"/>
+            android:gravity="center">
+
+            <com.etiennelawlor.quickreturn.views.CustomFontTextView
+                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:textSize="14sp"
+                android:text="@string/status"
+                android:gravity="center"
+                android:drawablePadding="-1dp"
+                android:layout_marginRight="1dp"
+                android:drawableLeft="@drawable/ic_action_edit"
+                android:textColor="@android:color/white"
+                app:textFont="Roboto_Bold"/>
+        </LinearLayout>
 
         <View
             android:layout_width="1dp"
@@ -63,14 +62,22 @@
             android:layout_marginBottom="10dp"
             />
 
-        <TextView
+        <LinearLayout
             android:layout_height="match_parent"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:textSize="14sp"
-            android:text="@string/photo"
-            android:gravity="center"
-            android:textColor="@android:color/white"/>
+            android:gravity="center">
+
+            <com.etiennelawlor.quickreturn.views.CustomFontTextView
+                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:textSize="14sp"
+                android:text="@string/photo"
+                android:gravity="center"
+                android:drawableLeft="@drawable/ic_action_camera"
+                android:textColor="@android:color/white"
+                app:textFont="Roboto_Bold"/>
+        </LinearLayout>
 
         <View
             android:layout_width="1dp"
@@ -80,19 +87,26 @@
             android:layout_marginBottom="10dp"
             />
 
-        <TextView
+        <LinearLayout
             android:layout_height="match_parent"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:textSize="14sp"
-            android:text="@string/check_in"
-            android:gravity="center"
-            android:textColor="@android:color/white"/>
+            android:gravity="center">
+
+            <com.etiennelawlor.quickreturn.views.CustomFontTextView
+                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:textSize="14sp"
+                android:text="@string/check_in"
+                android:gravity="center"
+                android:drawablePadding="-5dp"
+                android:layout_marginRight="5dp"
+                android:drawableLeft="@drawable/ic_action_place"
+                android:textColor="@android:color/white"
+                app:textFont="Roboto_Bold"/>
+        </LinearLayout>
+
     </LinearLayout>
-
-
-
-
 
 </RelativeLayout>
 
