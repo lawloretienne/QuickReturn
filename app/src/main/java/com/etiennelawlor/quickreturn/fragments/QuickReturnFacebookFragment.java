@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.ListFragment;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +15,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.etiennelawlor.quickreturn.R;
+import com.etiennelawlor.quickreturn.utils.QuickReturnUtils;
 
 /**
  * Created by etiennelawlor on 6/23/14.
@@ -30,7 +30,6 @@ public class QuickReturnFacebookFragment extends ListFragment {
     private TextView mQuickReturnHeaderTextView;
     private LinearLayout mQuickReturnFooterLinearLayout;
     private String[] mValues;
-    private int mActionBarHeight;
     private int mMinHeaderTranslation;
     private int mHeaderHeight;
     private View mPlaceHolderView;
@@ -38,9 +37,6 @@ public class QuickReturnFacebookFragment extends ListFragment {
     private int mDiffTotal = 0;
     private TranslateAnimation mFooterAnim;
     private TranslateAnimation mHeaderAnim;
-
-    private TypedValue mTypedValue = new TypedValue();
-
     // endregion
 
     //region Listeners
@@ -50,7 +46,7 @@ public class QuickReturnFacebookFragment extends ListFragment {
         public void onScroll(AbsListView view, int firstVisibleItem,
                              int visibleItemCount, int totalItemCount) {
 
-            int scrollY = getScrollY();
+            int scrollY = QuickReturnUtils.getScrollY(mListView);
             int diff = mPrevScrollY - scrollY;
 
             if(diff <=0){ // scrolling down
@@ -103,7 +99,7 @@ public class QuickReturnFacebookFragment extends ListFragment {
         super.onCreate(savedInstanceState);
 
         mHeaderHeight = getResources().getDimensionPixelSize(R.dimen.header_height);
-        mMinHeaderTranslation = -(mHeaderHeight*2) + getActionBarHeight();
+        mMinHeaderTranslation = -(mHeaderHeight*2) + QuickReturnUtils.getActionBarHeight(getActivity());
     }
 
     @Override
@@ -136,35 +132,6 @@ public class QuickReturnFacebookFragment extends ListFragment {
         mListView = (ListView) view.findViewById(android.R.id.list);
         mQuickReturnFooterLinearLayout = (LinearLayout) view.findViewById(R.id.quick_return_footer_ll);
         mQuickReturnHeaderTextView = (TextView) view.findViewById(R.id.quick_return_header_tv);
-    }
-
-    public int getScrollY() {
-        View c = mListView.getChildAt(0);
-        if (c == null) {
-            return 0;
-        }
-
-        int firstVisiblePosition = mListView.getFirstVisiblePosition();
-        int top = c.getTop();
-
-        int headerHeight = 0;
-        if (firstVisiblePosition >= 1) {
-            headerHeight = mQuickReturnHeaderTextView.getHeight();
-//            headerHeight = mPlaceHolderView.getHeight();
-        }
-
-        int scrollY = -top + firstVisiblePosition * c.getHeight() + headerHeight;
-        return scrollY;
-    }
-
-    public int getActionBarHeight() {
-        if (mActionBarHeight != 0) {
-            return mActionBarHeight;
-        }
-
-        getActivity().getTheme().resolveAttribute(android.R.attr.actionBarSize, mTypedValue, true);
-        mActionBarHeight = TypedValue.complexToDimensionPixelSize(mTypedValue.data, getResources().getDisplayMetrics());
-        return mActionBarHeight;
     }
     // endregion
 }

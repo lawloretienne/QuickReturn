@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.ListFragment;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +14,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.etiennelawlor.quickreturn.R;
+import com.etiennelawlor.quickreturn.utils.QuickReturnUtils;
 
 /**
  * Created by etiennelawlor on 6/23/14.
@@ -28,15 +28,12 @@ public class QuickReturnHeaderListFragment extends ListFragment {
     private ListView mListView;
     private TextView mQuickReturnTextView;
     private String[] mValues;
-    private int mActionBarHeight;
     private int mMinHeaderTranslation;
     private int mHeaderHeight;
     private View mPlaceHolderView;
     private int mPrevScrollY = 0;
     private int mDiffTotal = 0;
     private TranslateAnimation mAnim;
-
-    private TypedValue mTypedValue = new TypedValue();
     // endregion
 
     //region Listeners
@@ -46,7 +43,7 @@ public class QuickReturnHeaderListFragment extends ListFragment {
         public void onScroll(AbsListView view, int firstVisibleItem,
                              int visibleItemCount, int totalItemCount) {
 
-            int scrollY = getScrollY();
+            int scrollY = QuickReturnUtils.getScrollY(mListView);
             int diff = mPrevScrollY - scrollY;
 
             if(diff <=0){ // scrolling down
@@ -93,7 +90,7 @@ public class QuickReturnHeaderListFragment extends ListFragment {
         super.onCreate(savedInstanceState);
 
         mHeaderHeight = getResources().getDimensionPixelSize(R.dimen.header_height2);
-        mMinHeaderTranslation = -(mHeaderHeight) + getActionBarHeight();
+        mMinHeaderTranslation = -(mHeaderHeight) + QuickReturnUtils.getActionBarHeight(getActivity());
     }
 
     @Override
@@ -125,35 +122,6 @@ public class QuickReturnHeaderListFragment extends ListFragment {
     private void bindUIElements(View view){
         mListView = (ListView) view.findViewById(android.R.id.list);
         mQuickReturnTextView = (TextView) view.findViewById(R.id.quick_return_tv);
-    }
-
-    public int getScrollY() {
-        View c = mListView.getChildAt(0);
-        if (c == null) {
-            return 0;
-        }
-
-        int firstVisiblePosition = mListView.getFirstVisiblePosition();
-        int top = c.getTop();
-
-        int headerHeight = 0;
-        if (firstVisiblePosition >= 1) {
-            headerHeight = mQuickReturnTextView.getHeight();
-//            headerHeight = mPlaceHolderView.getHeight();
-        }
-
-        int scrollY = -top + firstVisiblePosition * c.getHeight() + headerHeight;
-        return scrollY;
-    }
-
-    public int getActionBarHeight() {
-        if (mActionBarHeight != 0) {
-            return mActionBarHeight;
-        }
-
-        getActivity().getTheme().resolveAttribute(android.R.attr.actionBarSize, mTypedValue, true);
-        mActionBarHeight = TypedValue.complexToDimensionPixelSize(mTypedValue.data, getResources().getDisplayMetrics());
-        return mActionBarHeight;
     }
     // endregion
 }

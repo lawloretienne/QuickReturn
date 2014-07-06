@@ -14,6 +14,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.etiennelawlor.quickreturn.R;
+import com.etiennelawlor.quickreturn.utils.QuickReturnUtils;
 
 /**
  * Created by etiennelawlor on 6/23/14.
@@ -43,7 +44,7 @@ public class QuickReturnFooterListFragment extends ListFragment {
         public void onScroll(AbsListView view, int firstVisibleItem,
                              int visibleItemCount, int totalItemCount) {
 
-            int scrollY = getScrollY();
+            int scrollY = QuickReturnUtils.getScrollY(mListView);
             int diff = mPrevScrollY - scrollY;
 
             if(diff <=0){ // scrolling down
@@ -52,7 +53,6 @@ public class QuickReturnFooterListFragment extends ListFragment {
                 mDiffTotal = Math.min(Math.max(mDiffTotal + diff, -mMinFooterTranslation), 0);
             }
 
-            /** this can be used if the build is below honeycomb **/
             if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.HONEYCOMB) {
                 mAnim = new TranslateAnimation(0, 0, -mDiffTotal,
                         -mDiffTotal);
@@ -112,6 +112,68 @@ public class QuickReturnFooterListFragment extends ListFragment {
 
         mListView.setAdapter(adapter);
         mListView.setOnScrollListener(mListViewOnScrollListener);
+
+//        mListView.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                switch(event.getAction())
+//                {
+//                    case MotionEvent.ACTION_DOWN:
+//                        Log.d("QuickReturnFooterListFragment", "onTouch() : ACTION_DOWN");
+////                        v.setBackgroundColor(R.color.black);
+////                        return true;
+//                    case MotionEvent.ACTION_CANCEL:
+//                        Log.d("QuickReturnFooterListFragment", "onTouch() : ACTION_CANCEL");
+//
+//                    case MotionEvent.ACTION_OUTSIDE:
+//                        Log.d("QuickReturnFooterListFragment", "onTouch() : ACTION_OUTSIDE");
+//
+////                        v.setBackgroundDrawable(null);
+////                        return true;
+//                    case MotionEvent.ACTION_UP:
+//                        Log.d("QuickReturnFooterListFragment", "onTouch() : ACTION_UP : mDiffTotal - "+mDiffTotal);
+//                        Log.d("QuickReturnFooterListFragment", "onTouch() : mFooterHeight - "+mFooterHeight);
+//
+//
+//                        if(-mDiffTotal <= mFooterHeight/2){
+//                            Log.d("QuickReturnFooterListFragment", "onTouch() : slide up");
+////                            mQuickReturnTextView.startAnimation(-mDiffTotal);
+//
+////                            Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_footer_down);
+////                            mQuickReturnTextView.startAnimation(animation);
+//
+//
+////                            mQuickReturnTextView.setTranslationY(0);
+//
+////                            mAnim = new TranslateAnimation(0, 0, 0,
+////                                    0);
+////                            mAnim.setFillAfter(true);
+////                            mAnim.setDuration(2000);
+////                            mQuickReturnTextView.startAnimation(mAnim);
+//                        } else {
+////                            mQuickReturnTextView.setTranslationY(mFooterHeight);
+//
+//                            mAnim = new TranslateAnimation(0, 0, mFooterHeight,
+//                                    mFooterHeight);
+//                            mAnim.setFillAfter(true);
+//                            mAnim.setDuration(2000);
+//                            mQuickReturnTextView.startAnimation(mAnim);
+//
+//                            Log.d("QuickReturnFooterListFragment", "onTouch() : slide down");
+//
+//                        }
+//
+////                        v.setBackgroundDrawable(null);
+////                        Intent myIntent = new Intent(v.getContext(), SearchActivity.class);
+////                        startActivity(myIntent);
+//
+////                        return true;
+//                }
+//                return false;
+//            }
+//
+//
+//        });
     }
 
     // endregion
@@ -120,25 +182,6 @@ public class QuickReturnFooterListFragment extends ListFragment {
     private void bindUIElements(View view){
         mListView = (ListView) view.findViewById(android.R.id.list);
         mQuickReturnTextView = (TextView) view.findViewById(R.id.quick_return_tv);
-    }
-
-    public int getScrollY() {
-        View c = mListView.getChildAt(0);
-        if (c == null) {
-            return 0;
-        }
-
-        int firstVisiblePosition = mListView.getFirstVisiblePosition();
-        int top = c.getTop();
-
-        int footerHeight = 0;
-        if (firstVisiblePosition >= 1) {
-            footerHeight = mQuickReturnTextView.getHeight();
-//            headerHeight = mPlaceHolderView.getHeight();
-        }
-
-        int scrollY = -top + firstVisiblePosition * c.getHeight() + footerHeight;
-        return scrollY;
     }
     // endregion
 }
