@@ -13,19 +13,22 @@ import android.widget.TextView;
 import com.etiennelawlor.quickreturn.R;
 import com.etiennelawlor.quickreturn.views.NotifyingScrollView;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+
 /**
  * Created by etiennelawlor on 6/23/14.
  */
 public class QuickReturnFragment extends Fragment {
 
     // region Member Variables
-    private NotifyingScrollView mNotifyingScrollView;
     private QuickReturnType mQuickReturnType;
-
-    private TextView mQuickReturnHeaderTextView;
-    private TextView mQuickReturnFooterTextView;
     private boolean mQuickReturnHeaderViewVisible = false;
     private boolean mQuickReturnFooterViewVisible = false;
+
+    @InjectView(R.id.scroll_view) NotifyingScrollView mNotifyingScrollView;
+    @InjectView(R.id.quick_return_header_tv) TextView mQuickReturnHeaderTextView;
+    @InjectView(R.id.quick_return_footer_tv) TextView mQuickReturnFooterTextView;
     // endregion
 
     //region Listeners
@@ -135,15 +138,14 @@ public class QuickReturnFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_quick_return, container, false);
-        return rootView;
+        View view = inflater.inflate(R.layout.fragment_quick_return, container, false);
+        ButterKnife.inject(this, view);
+        return view;
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        bindUIElements(view);
 
         switch (mQuickReturnType){
             case HEADER:
@@ -164,13 +166,10 @@ public class QuickReturnFragment extends Fragment {
         mNotifyingScrollView.setOverScrollEnabled(false);
     }
 
-    // endregion
-
-    // region Helper Methods
-    private void bindUIElements(View view){
-        mNotifyingScrollView = (NotifyingScrollView) view.findViewById(R.id.scroll_view);
-        mQuickReturnHeaderTextView = (TextView) view.findViewById(R.id.quick_return_header_tv);
-        mQuickReturnFooterTextView = (TextView) view.findViewById(R.id.quick_return_footer_tv);
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.reset(this);
     }
     // endregion
 

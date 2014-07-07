@@ -17,14 +17,18 @@ import com.etiennelawlor.quickreturn.fragments.QuickReturnTwitterFragment;
 import com.etiennelawlor.quickreturn.interfaces.QuickReturnInterface;
 import com.etiennelawlor.quickreturn.utils.QuickReturnUtils;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+
 
 public class QuickReturnTwitterActivity extends QuickReturnBaseActivity implements ActionBar.TabListener, QuickReturnInterface {
 
     // region Member Variables
     private SectionsPagerAdapter mSectionsPagerAdapter;
-    private PagerSlidingTabStrip mTabs;
-    private ViewPager mViewPager;
     private LinearLayout mTabsLinearLayout;
+
+    @InjectView(R.id.tabs) PagerSlidingTabStrip mTabs;
+    @InjectView(R.id.pager) ViewPager mViewPager;
     // endregion
 
     // region Listeners
@@ -63,8 +67,7 @@ public class QuickReturnTwitterActivity extends QuickReturnBaseActivity implemen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quick_return_twitter);
-
-        bindUIElements();
+        ButterKnife.inject(this);
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
 
@@ -124,13 +127,6 @@ public class QuickReturnTwitterActivity extends QuickReturnBaseActivity implemen
     @Override
     public ViewPager getViewPager() {
         return mViewPager;
-    }
-    // endregion
-
-    // region Helper Methods
-    private void bindUIElements(){
-        mViewPager = (ViewPager) findViewById(R.id.pager);
-        mTabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
     }
     // endregion
 

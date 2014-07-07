@@ -8,8 +8,8 @@ android {
         applicationId "com.etiennelawlor.quickreturn"
         minSdkVersion 14
         targetSdkVersion 19
-        versionCode 9
-        versionName "0.0.9"
+        versionCode 10
+        versionName "0.0.10"
     }
     signingConfigs {
         release {
@@ -34,6 +34,7 @@ android {
     lintOptions {
         checkReleaseBuilds true
         abortOnError false
+        disable 'InvalidPackage'
     }
     android.aaptOptions.useAaptPngCruncher = true
 }
@@ -43,4 +44,5 @@ dependencies {
     compile 'com.android.support:support-v13:19.+'
     compile 'de.keyboardsurfer.android.widget:crouton:1.8.4'
     compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
+    compile 'com.jakewharton:butterknife:5.1.1'
 }

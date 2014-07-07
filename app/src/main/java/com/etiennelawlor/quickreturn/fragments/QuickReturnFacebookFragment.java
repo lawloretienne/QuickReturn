@@ -17,18 +17,15 @@ import android.widget.TextView;
 import com.etiennelawlor.quickreturn.R;
 import com.etiennelawlor.quickreturn.utils.QuickReturnUtils;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+
 /**
  * Created by etiennelawlor on 6/23/14.
  */
 public class QuickReturnFacebookFragment extends ListFragment {
 
-    // region Constants
-    // endregion
-
     // region Member Variables
-    private ListView mListView;
-    private TextView mQuickReturnHeaderTextView;
-    private LinearLayout mQuickReturnFooterLinearLayout;
     private String[] mValues;
     private int mMinHeaderTranslation;
     private int mHeaderHeight;
@@ -36,6 +33,10 @@ public class QuickReturnFacebookFragment extends ListFragment {
     private int mDiffTotal = 0;
     private TranslateAnimation mFooterAnim;
     private TranslateAnimation mHeaderAnim;
+
+    @InjectView(android.R.id.list) ListView mListView;
+    @InjectView(R.id.quick_return_footer_ll) LinearLayout mQuickReturnFooterLinearLayout;
+    @InjectView(R.id.quick_return_header_tv) TextView mQuickReturnHeaderTextView;
     // endregion
 
     //region Listeners
@@ -103,15 +104,14 @@ public class QuickReturnFacebookFragment extends ListFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_quick_return_facebook, container, false);
-        return rootView;
+        View view = inflater.inflate(R.layout.fragment_quick_return_facebook, container, false);
+        ButterKnife.inject(this, view);
+        return view;
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        bindUIElements(view);
 
         mValues = getResources().getStringArray(R.array.countries);
 
@@ -123,13 +123,10 @@ public class QuickReturnFacebookFragment extends ListFragment {
         mListView.setOnScrollListener(mListViewOnScrollListener);
     }
 
-    // endregion
-
-    // region Helper Methods
-    private void bindUIElements(View view){
-        mListView = (ListView) view.findViewById(android.R.id.list);
-        mQuickReturnFooterLinearLayout = (LinearLayout) view.findViewById(R.id.quick_return_footer_ll);
-        mQuickReturnHeaderTextView = (TextView) view.findViewById(R.id.quick_return_header_tv);
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.reset(this);
     }
     // endregion
 }

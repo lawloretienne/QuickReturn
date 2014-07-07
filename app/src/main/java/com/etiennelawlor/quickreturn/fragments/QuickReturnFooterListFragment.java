@@ -4,33 +4,27 @@ import android.annotation.SuppressLint;
 import android.app.ListFragment;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.etiennelawlor.quickreturn.R;
 import com.etiennelawlor.quickreturn.utils.QuickReturnUtils;
+
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 
 /**
  * Created by etiennelawlor on 6/23/14.
  */
 public class QuickReturnFooterListFragment extends ListFragment {
 
-    // region Constants
-    // endregion
-
     // region Member Variables
-    private ListView mListView;
-    private TextView mQuickReturnTextView;
     private String[] mValues;
     private int mMinFooterTranslation;
     private int mFooterHeight;
@@ -38,6 +32,9 @@ public class QuickReturnFooterListFragment extends ListFragment {
     private int mDiffTotal = 0;
     private TranslateAnimation mAnim;
     private boolean isActionUp = false;
+
+    @InjectView(android.R.id.list) ListView mListView;
+    @InjectView(R.id.quick_return_tv) TextView mQuickReturnTextView;
     // endregion
 
     //region Listeners
@@ -99,15 +96,14 @@ public class QuickReturnFooterListFragment extends ListFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_list_quick_return_footer, container, false);
-        return rootView;
+        View view = inflater.inflate(R.layout.fragment_list_quick_return_footer, container, false);
+        ButterKnife.inject(this, view);
+        return view;
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        bindUIElements(view);
 
         mValues = getResources().getStringArray(R.array.countries);
 
@@ -219,12 +215,11 @@ public class QuickReturnFooterListFragment extends ListFragment {
 //        });
     }
 
-    // endregion
-
-    // region Helper Methods
-    private void bindUIElements(View view){
-        mListView = (ListView) view.findViewById(android.R.id.list);
-        mQuickReturnTextView = (TextView) view.findViewById(R.id.quick_return_tv);
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.reset(this);
     }
     // endregion
+
 }

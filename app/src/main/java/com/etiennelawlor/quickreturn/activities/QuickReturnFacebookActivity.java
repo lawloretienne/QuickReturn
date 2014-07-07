@@ -7,10 +7,8 @@ import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.etiennelawlor.quickreturn.R;
@@ -18,17 +16,64 @@ import com.etiennelawlor.quickreturn.fragments.QuickReturnFacebookFragment;
 import com.etiennelawlor.quickreturn.interfaces.QuickReturnInterface;
 import com.etiennelawlor.quickreturn.utils.QuickReturnUtils;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+
 
 public class QuickReturnFacebookActivity extends QuickReturnBaseActivity implements ActionBar.TabListener, QuickReturnInterface {
 
     // region Member Variables
     private SectionsPagerAdapter mSectionsPagerAdapter;
-    private PagerSlidingTabStrip mTabs;
-    private ViewPager mViewPager;
     private LinearLayout mTabsLinearLayout;
+
+    @InjectView(R.id.tabs) PagerSlidingTabStrip mTabs;
+    @InjectView(R.id.pager) ViewPager mViewPager;
     // endregion
 
     // region Listeners
+//    @OnPageChange(R.id.tabs)
+//    public void onPageSelected(int position){
+//        for(int i=0; i < mTabsLinearLayout.getChildCount(); i++){
+//            ImageButton ib = (ImageButton) mTabsLinearLayout.getChildAt(i);
+//            switch (i){
+//                case 0:
+//                    if(i == position)
+//                        ib.setImageResource(R.drawable.ic_action_event_highlighted);
+//                    else
+//                        ib.setImageResource(R.drawable.ic_action_event);
+//                    break;
+//                case 1:
+//                    if(i == position)
+//                        ib.setImageResource(R.drawable.ic_action_cc_bcc_highlighted);
+//                    else
+//                        ib.setImageResource(R.drawable.ic_action_cc_bcc);
+//                    break;
+//                case 2:
+//                    if(i == position)
+//                        ib.setImageResource(R.drawable.ic_action_chat_highlighted);
+//                    else
+//                        ib.setImageResource(R.drawable.ic_action_chat);
+//                    break;
+//                case 3:
+//                    if(i == position)
+//                        ib.setImageResource(R.drawable.ic_action_web_site_highlighted);
+//                    else
+//                        ib.setImageResource(R.drawable.ic_action_web_site);
+//                    break;
+//                case 4:
+//                    if(i == position)
+//                        ib.setImageResource(R.drawable.ic_action_sort_by_size_highlighted);
+//                    else
+//                        ib.setImageResource(R.drawable.ic_action_sort_by_size);
+//                    break;
+//                default:
+//                    break;
+//            }
+//        }
+//
+//    }
+
+
     private ViewPager.OnPageChangeListener mTabsOnPageChangeListener = new ViewPager.OnPageChangeListener() {
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -87,8 +132,7 @@ public class QuickReturnFacebookActivity extends QuickReturnBaseActivity impleme
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quick_return_facebook);
-
-        bindUIElements();
+        ButterKnife.inject(this);
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
 
@@ -103,7 +147,9 @@ public class QuickReturnFacebookActivity extends QuickReturnBaseActivity impleme
         mTabs.setIndicatorHeight(QuickReturnUtils.dp2px(this, 5));
         mTabs.setDividerColor(getResources().getColor(android.R.color.transparent));
 //        mTabs.setBackgroundColor(getResources().getColor(R.color.indigo));
+
         mTabs.setOnPageChangeListener(mTabsOnPageChangeListener);
+
         mTabs.setViewPager(mViewPager);
 
         // Set first tab selected
@@ -140,13 +186,6 @@ public class QuickReturnFacebookActivity extends QuickReturnBaseActivity impleme
     @Override
     public ViewPager getViewPager() {
         return mViewPager;
-    }
-    // endregion
-
-    // region Helper Methods
-    private void bindUIElements(){
-        mViewPager = (ViewPager) findViewById(R.id.pager);
-        mTabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
     }
     // endregion
 

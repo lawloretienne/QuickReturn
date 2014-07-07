@@ -18,17 +18,16 @@ import com.etiennelawlor.quickreturn.R;
 import com.etiennelawlor.quickreturn.interfaces.QuickReturnInterface;
 import com.etiennelawlor.quickreturn.utils.QuickReturnUtils;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+
 /**
  * Created by etiennelawlor on 6/23/14.
  */
 public class QuickReturnTwitterFragment extends ListFragment {
 
-    // region Constants
-    // endregion
 
     // region Member Variables
-    private ListView mListView;
-    private LinearLayout mQuickReturnFooterLinearLayout;
     private String[] mValues;
     private QuickReturnInterface mCoordinator;
     private int mMinHeaderTranslation;
@@ -40,6 +39,9 @@ public class QuickReturnTwitterFragment extends ListFragment {
     private int mFooterDiffTotal = 0;
     private TranslateAnimation mFooterAnim;
     private TranslateAnimation mHeaderAnim;
+
+    @InjectView(android.R.id.list) ListView mListView;
+    @InjectView(R.id.quick_return_footer_ll) LinearLayout mQuickReturnFooterLinearLayout;
     // endregion
 
     //region Listeners
@@ -128,15 +130,14 @@ public class QuickReturnTwitterFragment extends ListFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_quick_return_twitter, container, false);
-        return rootView;
+        View view = inflater.inflate(R.layout.fragment_quick_return_twitter, container, false);
+        ButterKnife.inject(this, view);
+        return view;
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        bindUIElements(view);
 
         mValues = getResources().getStringArray(R.array.countries);
 
@@ -151,12 +152,10 @@ public class QuickReturnTwitterFragment extends ListFragment {
         mListView.addHeaderView(mPlaceHolderView);
     }
 
-    // endregion
-
-    // region Helper Methods
-    private void bindUIElements(View view){
-        mListView = (ListView) view.findViewById(android.R.id.list);
-        mQuickReturnFooterLinearLayout = (LinearLayout) view.findViewById(R.id.quick_return_footer_ll);
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.reset(this);
     }
     // endregion
 }

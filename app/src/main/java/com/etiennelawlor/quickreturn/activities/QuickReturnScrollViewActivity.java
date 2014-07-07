@@ -17,14 +17,18 @@ import com.etiennelawlor.quickreturn.fragments.QuickReturnFragment;
 import com.etiennelawlor.quickreturn.interfaces.QuickReturnInterface;
 import com.etiennelawlor.quickreturn.utils.QuickReturnUtils;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+
 
 public class QuickReturnScrollViewActivity extends QuickReturnBaseActivity implements ActionBar.TabListener, QuickReturnInterface {
 
     // region Member Variables
     private SectionsPagerAdapter mSectionsPagerAdapter;
-    private PagerSlidingTabStrip mTabs;
-    private ViewPager mViewPager;
     private LinearLayout mTabsLinearLayout;
+
+    @InjectView(R.id.tabs) PagerSlidingTabStrip mTabs;
+    @InjectView(R.id.pager) ViewPager mViewPager;
     // endregion
 
     // region Listeners
@@ -64,8 +68,7 @@ public class QuickReturnScrollViewActivity extends QuickReturnBaseActivity imple
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quick_return_scrollview);
-
-        bindUIElements();
+        ButterKnife.inject(this);
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
 
@@ -124,13 +127,6 @@ public class QuickReturnScrollViewActivity extends QuickReturnBaseActivity imple
     @Override
     public ViewPager getViewPager() {
         return mViewPager;
-    }
-    // endregion
-
-    // region Helper Methods
-    private void bindUIElements(){
-        mViewPager = (ViewPager) findViewById(R.id.pager);
-        mTabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
     }
     // endregion
 
