@@ -13,4 +13,4 @@ Download the app by clicking on the badge below.
   <img alt="Get it on Google Play" src="/images/en_generic_rgb_wo_60.png" />
 </a>
 
-<img src="/images/quick_return_demo.gif">
+<img src="https://raw.githubusercontent.com/lawloretienne/QuickReturn/master/images/quick_return_demo.gif">
