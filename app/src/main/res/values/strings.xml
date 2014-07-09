@@ -23,7 +23,35 @@
     <string name="beer_order_canceled">Your beer order did not go through</string>
     <string name="item_already_owned">Failure to purchase since item is already owned</string>
 
-    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, amet mucius perpetua eu nec, no eum accusam efficiantur, sumo molestiae qui ei. Vix ne doctus appetere, quis graeci salutatus cum ea. Deleniti ocurreret dignissim at pri, per at oblique sententiae delicatissimi. Et periculis similique vix, ut qui vitae minimum. Nulla debet eam te.\n\nVis virtute voluptatum no. Ne saperet oporteat vituperata his. Mei idque delectus deserunt id, vel in tale illud intellegebat. Mel putant molestie dissentiunt in.\n\nNam et liber definiebas, et unum quodsi maluisset nec. Te mea diam ludus mediocritatem, harum vulputate theophrastus eu nec. At summo aperiam nominati pro, in sit putent complectitur. Per dolore ridens denique id, quaeque signiferumque ut ius. At mel graeco everti definitiones, falli debet tincidunt quo ei. His eu saepe iisque utroque, natum sanctus electram mel an, sit id mollis deseruisse. Omnis accusam pro ex, molestie probatus pro id, no mea civibus efficiendi.\n\nCu sea accusam detracto constituto. Errem nullam conclusionemque nec et, ex dicta senserit voluptatibus ius. No atqui affert insolens mel. Assum graecis quo te, cum posse debet suscipit te. Mel ponderum definiebas consequuntur ne.\n\nUtinam ponderum per ad, at quo brute disputando. Recusabo omittantur reformidans no usu, copiosae posidonium nam te. Ei duo omittam conceptam. Nec at quas omnium ceteros, altera intellegat et nam. Vis ea wisi sensibus, ut eos magna facilisi splendide. Odio dictas percipitur pri ei, ea meliore inermis quo. Ut quo atomorum intellegat, dico salutandi mel cu.</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, amet mucius perpetua eu nec, no eum accusam efficiantur,
+        sumo molestiae qui ei. Vix ne doctus appetere, quis graeci salutatus cum ea. Deleniti ocurreret dignissim at
+        pri, per at oblique sententiae delicatissimi. Et periculis similique vix, ut qui vitae minimum. Nulla debet
+        eam te.\n\nVis virtute voluptatum no. Ne saperet oporteat vituperata his. Mei idque delectus deserunt id, vel
+        in tale illud intellegebat. Mel putant molestie dissentiunt in.\n\nNam et liber definiebas, et unum quodsi
+        maluisset nec. Te mea diam ludus mediocritatem, harum vulputate theophrastus eu nec. At summo aperiam nominati
+        pro, in sit putent complectitur. Per dolore ridens denique id, quaeque signiferumque ut ius. At mel graeco
+        everti definitiones, falli debet tincidunt quo ei. His eu saepe iisque utroque, natum sanctus electram mel an,
+        sit id mollis deseruisse. Omnis accusam pro ex, molestie probatus pro id, no mea civibus efficiendi.\n\nCu sea
+        accusam detracto constituto. Errem nullam conclusionemque nec et, ex dicta senserit voluptatibus ius. No atqui
+        affert insolens mel. Assum graecis quo te, cum posse debet suscipit te. Mel ponderum definiebas consequuntur
+        ne.\n\nUtinam ponderum per ad, at quo brute disputando. Recusabo omittantur reformidans no usu, copiosae
+        posidonium nam te. Ei duo omittam conceptam. Nec at quas omnium ceteros, altera intellegat et nam. Vis ea wisi
+        sensibus, ut eos magna facilisi splendide. Odio dictas percipitur pri ei, ea meliore inermis quo. Ut quo atomorum
+        intellegat, dico salutandi mel cu.\n\nLorem ipsum dolor sit amet, amet mucius perpetua eu nec, no eum accusam
+        efficiantur, sumo molestiae qui ei. Vix ne doctus appetere, quis graeci salutatus cum ea. Deleniti ocurreret
+        dignissim at pri, per at oblique sententiae delicatissimi. Et periculis similique vix, ut qui vitae minimum.
+        Nulla debet eam te.\n\nVis virtute voluptatum no. Ne saperet oporteat vituperata his. Mei idque delectus
+        deserunt id, vel in tale illud intellegebat. Mel putant molestie dissentiunt in.\n\nNam et liber definiebas, et
+        unum quodsi maluisset nec. Te mea diam ludus mediocritatem, harum vulputate theophrastus eu nec. At summo
+        aperiam nominati pro, in sit putent complectitur. Per dolore ridens denique id, quaeque signiferumque ut ius.
+        At mel graeco everti definitiones, falli debet tincidunt quo ei. His eu saepe iisque utroque, natum sanctus
+        electram mel an, sit id mollis deseruisse. Omnis accusam pro ex, molestie probatus pro id, no mea civibus
+        efficiendi.\n\nCu sea accusam detracto constituto. Errem nullam conclusionemque nec et, ex dicta senserit
+        voluptatibus ius. No atqui affert insolens mel. Assum graecis quo te, cum posse debet suscipit te. Mel ponderum
+        definiebas consequuntur ne.\n\nUtinam ponderum per ad, at quo brute disputando. Recusabo omittantur reformidans
+        no usu, copiosae posidonium nam te. Ei duo omittam conceptam. Nec at quas omnium ceteros, altera intellegat et
+        nam. Vis ea wisi sensibus, ut eos magna facilisi splendide. Odio dictas percipitur pri ei, ea meliore inermis
+        quo. Ut quo atomorum intellegat, dico salutandi mel cu.</string>
     <string name="quick_return_type">QUICK_RETURN_TYPE</string>
     <string name="new_stories">New Stories</string>
     <string name="status">Status</string>

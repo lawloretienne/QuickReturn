@@ -11,6 +11,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.etiennelawlor.quickreturn.R;
+import com.etiennelawlor.quickreturn.activities.QuickReturnScrollViewActivity;
 import com.etiennelawlor.quickreturn.views.NotifyingScrollView;
 
 import butterknife.ButterKnife;
@@ -22,7 +23,7 @@ import butterknife.InjectView;
 public class QuickReturnFragment extends Fragment {
 
     // region Member Variables
-    private QuickReturnType mQuickReturnType;
+    private QuickReturnScrollViewActivity.QuickReturnType mQuickReturnType;
     private boolean mQuickReturnHeaderViewVisible = false;
     private boolean mQuickReturnFooterViewVisible = false;
 
@@ -35,7 +36,7 @@ public class QuickReturnFragment extends Fragment {
 
     private NotifyingScrollView.OnScrollChangedListener mOnScrollChangedListener = new NotifyingScrollView.OnScrollChangedListener() {
         public void onScrollChanged(ScrollView who, int l, int t, int oldl, int oldt) {
-            if(t>=oldt){
+            if(t>=oldt){ // scrolling down
                 switch (mQuickReturnType){
                     case HEADER:
                         if(!mQuickReturnHeaderViewVisible){
@@ -71,7 +72,7 @@ public class QuickReturnFragment extends Fragment {
                 }
 
 
-            } else {
+            } else { // scrolling up
                 switch (mQuickReturnType){
                     case HEADER:
                         if(mQuickReturnHeaderViewVisible){
@@ -131,7 +132,7 @@ public class QuickReturnFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         if(getArguments() != null) {
-            mQuickReturnType = QuickReturnType.valueOf(getArguments().getString("QUICK_RETURN_TYPE"));
+            mQuickReturnType = QuickReturnScrollViewActivity.QuickReturnType.valueOf(getArguments().getString("QUICK_RETURN_TYPE"));
         }
     }
 
@@ -172,11 +173,5 @@ public class QuickReturnFragment extends Fragment {
         ButterKnife.reset(this);
     }
     // endregion
-
-    public enum QuickReturnType {
-        HEADER,
-        FOOTER,
-        BOTH
-    }
 }
 
