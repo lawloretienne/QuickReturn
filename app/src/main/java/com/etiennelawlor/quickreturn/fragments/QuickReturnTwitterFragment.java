@@ -139,17 +139,17 @@ public class QuickReturnTwitterFragment extends ListFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        mListView.setOnScrollListener(mListViewOnScrollListener);
+
+        mPlaceHolderView = getActivity().getLayoutInflater().inflate(R.layout.view_header_placeholder, mListView, false);
+        mListView.addHeaderView(mPlaceHolderView);
+
         mValues = getResources().getStringArray(R.array.countries);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
                 R.layout.list_item, R.id.item_tv, mValues);
 
         mListView.setAdapter(adapter);
-
-        mListView.setOnScrollListener(mListViewOnScrollListener);
-
-        mPlaceHolderView = getActivity().getLayoutInflater().inflate(R.layout.view_header_placeholder, mListView, false);
-        mListView.addHeaderView(mPlaceHolderView);
     }
 
     @Override
