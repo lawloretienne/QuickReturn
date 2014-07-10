@@ -1,20 +1,17 @@
 package com.etiennelawlor.quickreturn.fragments;
 
-import android.annotation.SuppressLint;
 import android.app.ListFragment;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.TranslateAnimation;
-import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.etiennelawlor.quickreturn.R;
-import com.etiennelawlor.quickreturn.utils.QuickReturnUtils;
+import com.etiennelawlor.quickreturn.enums.QuickReturnType;
+import com.etiennelawlor.quickreturn.listeners.QuickReturnListViewOnScrollListener;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -26,52 +23,11 @@ public class QuickReturnHeaderListFragment extends ListFragment {
 
     // region Member Variables
     private String[] mValues;
-    private int mMinHeaderTranslation;
-    private int mHeaderHeight;
-    private int mPrevScrollY = 0;
-    private int mDiffTotal = 0;
-    private TranslateAnimation mAnim;
     private boolean isActionUp = false;
 
     @InjectView(android.R.id.list) ListView mListView;
     @InjectView(R.id.quick_return_tv) TextView mQuickReturnTextView;
     // endregion
-
-    //region Listeners
-    private AbsListView.OnScrollListener mListViewOnScrollListener = new AbsListView.OnScrollListener() {
-        @SuppressLint("NewApi")
-        @Override
-        public void onScroll(AbsListView view, int firstVisibleItem,
-                             int visibleItemCount, int totalItemCount) {
-
-            int scrollY = QuickReturnUtils.getScrollY(mListView);
-            int diff = mPrevScrollY - scrollY;
-
-            if(diff <=0){ // scrolling down
-                mDiffTotal = Math.max(mDiffTotal+diff, mMinHeaderTranslation);
-            } else { // scrolling up
-                mDiffTotal = Math.min(Math.max(mDiffTotal+diff, mMinHeaderTranslation), 0);
-            }
-
-            /** this can be used if the build is below honeycomb **/
-            if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.HONEYCOMB) {
-                mAnim = new TranslateAnimation(0, 0, mDiffTotal,
-                        mDiffTotal);
-                mAnim.setFillAfter(true);
-                mAnim.setDuration(0);
-                mQuickReturnTextView.startAnimation(mAnim);
-            } else {
-                mQuickReturnTextView.setTranslationY(mDiffTotal);
-            }
-
-            mPrevScrollY = scrollY;
-        }
-
-        @Override
-        public void onScrollStateChanged(AbsListView view, int scrollState) {
-        }
-    };
-    //endregion
 
     // region Constructors
     public static QuickReturnHeaderListFragment newInstance() {
@@ -89,12 +45,6 @@ public class QuickReturnHeaderListFragment extends ListFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        mHeaderHeight = getResources().getDimensionPixelSize(R.dimen.header_height2);
-//        mMinHeaderTranslation = -(mHeaderHeight) + QuickReturnUtils.getActionBarHeight(getActivity());
-
-        mMinHeaderTranslation = -(mHeaderHeight);
-
     }
 
     @Override
@@ -116,7 +66,8 @@ public class QuickReturnHeaderListFragment extends ListFragment {
 
         mListView.setAdapter(adapter);
 
-        mListView.setOnScrollListener(mListViewOnScrollListener);
+        int headerHeight = getActivity().getResources().getDimensionPixelSize(R.dimen.header_height2);
+        mListView.setOnScrollListener(new QuickReturnListViewOnScrollListener(QuickReturnType.HEADER, mQuickReturnTextView, headerHeight));
 
 //        mListView.setOnTouchListener(new View.OnTouchListener() {
 //            @Override

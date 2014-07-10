@@ -6,6 +6,7 @@ import android.util.TypedValue;
 import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AbsListView;
 import android.widget.ListView;
 
 /**
@@ -37,6 +38,19 @@ public class QuickReturnUtils {
     }
 
     public static int getScrollY(ListView lv) {
+        View c = lv.getChildAt(0);
+        if (c == null) {
+            return 0;
+        }
+
+        int firstVisiblePosition = lv.getFirstVisiblePosition();
+        int top = c.getTop();
+
+        int scrollY = -top + firstVisiblePosition * c.getHeight();
+        return scrollY;
+    }
+
+    public static int getScrollY(AbsListView lv) {
         View c = lv.getChildAt(0);
         if (c == null) {
             return 0;
