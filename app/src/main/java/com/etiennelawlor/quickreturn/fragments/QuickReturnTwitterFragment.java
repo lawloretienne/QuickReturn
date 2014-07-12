@@ -1,21 +1,19 @@
 package com.etiennelawlor.quickreturn.fragments;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ListFragment;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.TranslateAnimation;
-import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.etiennelawlor.quickreturn.R;
+import com.etiennelawlor.quickreturn.enums.QuickReturnType;
 import com.etiennelawlor.quickreturn.interfaces.QuickReturnInterface;
+import com.etiennelawlor.quickreturn.listeners.QuickReturnListViewOnScrollListener;
 import com.etiennelawlor.quickreturn.utils.QuickReturnUtils;
 
 import butterknife.ButterKnife;
@@ -26,66 +24,16 @@ import butterknife.InjectView;
  */
 public class QuickReturnTwitterFragment extends ListFragment {
 
-
     // region Member Variables
     private String[] mValues;
     private QuickReturnInterface mCoordinator;
-    private int mMinHeaderTranslation;
-    private int mMinFooterTranslation;
-    private int mHeaderHeight;
     private View mPlaceHolderView;
-    private int mPrevScrollY = 0;
-    private int mHeaderDiffTotal = 0;
-    private int mFooterDiffTotal = 0;
-    private TranslateAnimation mFooterAnim;
-    private TranslateAnimation mHeaderAnim;
 
     @InjectView(android.R.id.list) ListView mListView;
     @InjectView(R.id.quick_return_footer_ll) LinearLayout mQuickReturnFooterLinearLayout;
     // endregion
 
     //region Listeners
-    private AbsListView.OnScrollListener mListViewOnScrollListener = new AbsListView.OnScrollListener() {
-        @SuppressLint("NewApi")
-        @Override
-        public void onScroll(AbsListView view, int firstVisibleItem,
-        int visibleItemCount, int totalItemCount) {
-
-            int scrollY = QuickReturnUtils.getScrollY(mListView);
-            int diff = mPrevScrollY - scrollY;
-
-            if(diff <=0){ // scrolling down
-                mHeaderDiffTotal = Math.max(mHeaderDiffTotal +diff, mMinHeaderTranslation);
-                mFooterDiffTotal = Math.max(mFooterDiffTotal +diff, mMinFooterTranslation);
-            } else { // scrolling up
-                mHeaderDiffTotal = Math.min(Math.max(mHeaderDiffTotal +diff, mMinHeaderTranslation), 0);
-                mFooterDiffTotal = Math.min(Math.max(mFooterDiffTotal +diff, mMinFooterTranslation), 0);
-            }
-
-            if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.HONEYCOMB) {
-                mHeaderAnim = new TranslateAnimation(0, 0, mHeaderDiffTotal,
-                        mHeaderDiffTotal);
-                mHeaderAnim.setFillAfter(true);
-                mHeaderAnim.setDuration(0);
-                mCoordinator.getTabs().startAnimation(mHeaderAnim);
-
-                mFooterAnim = new TranslateAnimation(0, 0, -mFooterDiffTotal, -mFooterDiffTotal);
-                mFooterAnim.setFillAfter(true);
-                mFooterAnim.setDuration(0);
-                mQuickReturnFooterLinearLayout.startAnimation(mFooterAnim);
-            } else {
-                mCoordinator.getTabs().setTranslationY(mHeaderDiffTotal);
-                mQuickReturnFooterLinearLayout.setTranslationY(-mFooterDiffTotal);
-            }
-
-            mPrevScrollY = scrollY;
-        }
-
-        @Override
-        public void onScrollStateChanged(AbsListView view, int scrollState) {
-        }
-    };
-
     //endregion
 
     // region Constructors
@@ -120,11 +68,6 @@ public class QuickReturnTwitterFragment extends ListFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        mHeaderHeight = getResources().getDimensionPixelSize(R.dimen.header_height);
-        int indicatorHeight =  QuickReturnUtils.dp2px(getActivity(), 5);
-        mMinHeaderTranslation = -mHeaderHeight + QuickReturnUtils.getActionBarHeight(getActivity()) + indicatorHeight;
-        mMinFooterTranslation = -mHeaderHeight + QuickReturnUtils.getActionBarHeight(getActivity());
     }
 
     @Override
@@ -139,7 +82,13 @@ public class QuickReturnTwitterFragment extends ListFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mListView.setOnScrollListener(mListViewOnScrollListener);
+        int headerHeight = getResources().getDimensionPixelSize(R.dimen.header_height);
+        int indicatorHeight =  QuickReturnUtils.dp2px(getActivity(), 5);
+        int headerTranslation = -headerHeight + QuickReturnUtils.getActionBarHeight(getActivity()) + indicatorHeight;
+        int footerTranslation = -headerHeight + QuickReturnUtils.getActionBarHeight(getActivity());
+
+        mListView.setOnScrollListener(new QuickReturnListViewOnScrollListener(QuickReturnType.BOTH,
+                mCoordinator.getTabs(), headerTranslation, mQuickReturnFooterLinearLayout, -footerTranslation));
 
         mPlaceHolderView = getActivity().getLayoutInflater().inflate(R.layout.view_header_placeholder, mListView, false);
         mListView.addHeaderView(mPlaceHolderView);

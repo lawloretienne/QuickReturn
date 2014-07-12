@@ -67,7 +67,7 @@ public class QuickReturnHeaderListFragment extends ListFragment {
         mListView.setAdapter(adapter);
 
         int headerHeight = getActivity().getResources().getDimensionPixelSize(R.dimen.header_height2);
-        mListView.setOnScrollListener(new QuickReturnListViewOnScrollListener(QuickReturnType.HEADER, mQuickReturnTextView, headerHeight));
+        mListView.setOnScrollListener(new QuickReturnListViewOnScrollListener(QuickReturnType.HEADER, mQuickReturnTextView, -headerHeight));
 
 //        mListView.setOnTouchListener(new View.OnTouchListener() {
 //            @Override
