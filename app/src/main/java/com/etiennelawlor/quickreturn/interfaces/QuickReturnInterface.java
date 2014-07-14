@@ -9,6 +9,5 @@ import com.astuetz.PagerSlidingTabStrip;
  */
 public interface QuickReturnInterface {
     public PagerSlidingTabStrip getTabs();
-    public ViewPager getViewPager();
 
 }

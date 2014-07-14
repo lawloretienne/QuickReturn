@@ -3,20 +3,19 @@ package com.etiennelawlor.quickreturn.listeners;
 import android.os.Build;
 import android.view.View;
 import android.view.animation.TranslateAnimation;
-import android.widget.AbsListView;
+import android.widget.ScrollView;
 
 import com.etiennelawlor.quickreturn.enums.QuickReturnType;
-import com.etiennelawlor.quickreturn.utils.QuickReturnUtils;
+import com.etiennelawlor.quickreturn.views.NotifyingScrollView;
 
 /**
- * Created by etiennelawlor on 7/10/14.
+ * Created by etiennelawlor on 7/11/14.
  */
-public class QuickReturnListViewOnScrollListener implements AbsListView.OnScrollListener {
+public class QuickReturnScrollViewOnScrollChangedListener implements  NotifyingScrollView.OnScrollChangedListener {
 
     // region Member Variables
     private int mMinFooterTranslation;
     private int mMinHeaderTranslation;
-    private int mPrevScrollY = 0;
     private int mHeaderDiffTotal = 0;
     private int mFooterDiffTotal = 0;
     private TranslateAnimation mFooterAnim;
@@ -27,7 +26,7 @@ public class QuickReturnListViewOnScrollListener implements AbsListView.OnScroll
     // endregion
 
     // region Constructors
-    public QuickReturnListViewOnScrollListener(QuickReturnType quickReturnType, View headerView, int headerTranslation, View footerView, int footerTranslation){
+    public QuickReturnScrollViewOnScrollChangedListener(QuickReturnType quickReturnType, View headerView, int headerTranslation, View footerView, int footerTranslation){
         mQuickReturnType = quickReturnType;
 
         switch (mQuickReturnType){
@@ -49,25 +48,21 @@ public class QuickReturnListViewOnScrollListener implements AbsListView.OnScroll
     }
     // endregion
 
-    @Override
-    public void onScrollStateChanged(AbsListView view, int scrollState) {
-
-    }
 
     @Override
-    public void onScroll(AbsListView listview, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-        int scrollY = QuickReturnUtils.getScrollY(listview);
-        int diff = mPrevScrollY - scrollY;
+    public void onScrollChanged(ScrollView who, int l, int t, int oldl, int oldt) {
+        int diff = oldt - t;
 
         switch (mQuickReturnType){
             case HEADER:
                 if(diff <=0){ // scrolling down
-                    mHeaderDiffTotal = Math.max(mHeaderDiffTotal + diff, mMinHeaderTranslation);
+                    mHeaderDiffTotal = Math.max(mHeaderDiffTotal+diff, mMinHeaderTranslation);
                 } else { // scrolling up
-                    mHeaderDiffTotal = Math.min(Math.max(mHeaderDiffTotal + diff, mMinHeaderTranslation), 0);
+                    mHeaderDiffTotal = Math.min(Math.max(mHeaderDiffTotal+diff, mMinHeaderTranslation), 0);
                 }
 
                 if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.HONEYCOMB) {
+
                     mHeaderAnim = new TranslateAnimation(0, 0, mHeaderDiffTotal,
                             mHeaderDiffTotal);
                     mHeaderAnim.setFillAfter(true);
@@ -96,14 +91,15 @@ public class QuickReturnListViewOnScrollListener implements AbsListView.OnScroll
                 break;
             case BOTH:
                 if(diff <=0){ // scrolling down
-                    mHeaderDiffTotal = Math.max(mHeaderDiffTotal + diff, mMinHeaderTranslation);
+                    mHeaderDiffTotal = Math.max(mHeaderDiffTotal+diff, mMinHeaderTranslation);
                     mFooterDiffTotal = Math.max(mFooterDiffTotal + diff, -mMinFooterTranslation);
                 } else { // scrolling up
-                    mHeaderDiffTotal = Math.min(Math.max(mHeaderDiffTotal + diff, mMinHeaderTranslation), 0);
+                    mHeaderDiffTotal = Math.min(Math.max(mHeaderDiffTotal+diff, mMinHeaderTranslation), 0);
                     mFooterDiffTotal = Math.min(Math.max(mFooterDiffTotal + diff, -mMinFooterTranslation), 0);
                 }
 
                 if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.HONEYCOMB) {
+
                     mHeaderAnim = new TranslateAnimation(0, 0, mHeaderDiffTotal,
                             mHeaderDiffTotal);
                     mHeaderAnim.setFillAfter(true);
@@ -118,11 +114,9 @@ public class QuickReturnListViewOnScrollListener implements AbsListView.OnScroll
                 } else {
                     mHeader.setTranslationY(mHeaderDiffTotal);
                     mFooter.setTranslationY(-mFooterDiffTotal);
+
                 }
-            default:
                 break;
         }
-
-        mPrevScrollY = scrollY;
     }
 }

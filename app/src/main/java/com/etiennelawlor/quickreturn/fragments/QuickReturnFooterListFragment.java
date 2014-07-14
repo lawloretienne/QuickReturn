@@ -67,7 +67,7 @@ public class QuickReturnFooterListFragment extends ListFragment {
         mListView.setAdapter(adapter);
 
         int footerHeight = getActivity().getResources().getDimensionPixelSize(R.dimen.footer_height);
-        mListView.setOnScrollListener(new QuickReturnListViewOnScrollListener(QuickReturnType.FOOTER, mQuickReturnTextView, footerHeight));
+        mListView.setOnScrollListener(new QuickReturnListViewOnScrollListener(QuickReturnType.FOOTER, null, 0, mQuickReturnTextView, footerHeight));
 
 //        mListView.setOnTouchListener(new View.OnTouchListener() {
 //            @Override
