@@ -18,6 +18,7 @@
             <enum name="Roboto_Regular" value="13" />
             <enum name="Roboto_Thin" value="14" />
             <enum name="Roboto_ThinItalic" value="15" />
+            <enum name="GothamNarrow_Light" value="16" />
         </attr>
     </declare-styleable>
 

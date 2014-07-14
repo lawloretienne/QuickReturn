@@ -183,10 +183,6 @@ public class QuickReturnFacebookActivity extends QuickReturnBaseActivity impleme
         return mTabs;
     }
 
-    @Override
-    public ViewPager getViewPager() {
-        return mViewPager;
-    }
     // endregion
 
     // region Inner Classes

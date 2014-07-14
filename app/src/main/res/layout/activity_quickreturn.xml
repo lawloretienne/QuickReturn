@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="5dp"
+    android:padding="4dp"
     android:orientation="vertical">
 
     <com.etiennelawlor.quickreturn.views.CustomFontTextView
@@ -12,10 +12,10 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@drawable/selector_bg_tv"
+        android:background="@drawable/selector_bg_twitter_tv"
         android:textColor="@android:color/white"
         android:gravity="center"
-        android:layout_margin="5dp"
+        android:layout_margin="4dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
         app:textFont="Roboto_Light"/>
 
@@ -25,38 +25,62 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@drawable/selector_bg_tv"
-        android:layout_margin="5dp"
+        android:background="@drawable/selector_bg_facebook_tv"
+        android:layout_margin="4dp"
         android:textColor="@android:color/white"
         android:gravity="center"
         android:textAppearance="?android:attr/textAppearanceLarge"
         app:textFont="Roboto_Light"/>
 
     <com.etiennelawlor.quickreturn.views.CustomFontTextView
-        android:id="@+id/listview_tv"
-        android:text="ListView"
+        android:id="@+id/google_plus_tv"
+        android:text="Google+"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_margin="5dp"
+        android:background="@drawable/selector_bg_google_plus_tv"
+        android:layout_margin="4dp"
         android:textColor="@android:color/white"
-        android:background="@drawable/selector_bg_tv"
         android:gravity="center"
         android:textAppearance="?android:attr/textAppearanceLarge"
         app:textFont="Roboto_Light"/>
 
-    <com.etiennelawlor.quickreturn.views.CustomFontTextView
-        android:id="@+id/scrollview_tv"
-        android:text="ScrollView"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_margin="5dp"
-        android:textColor="@android:color/white"
-        android:background="@drawable/selector_bg_tv"
-        android:gravity="center"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        app:textFont="Roboto_Light"/>
+        android:layout_margin="4dp"
+        android:orientation="horizontal">
+
+        <com.etiennelawlor.quickreturn.views.CustomFontTextView
+            android:id="@+id/listview_tv"
+            android:text="ListView"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginRight="4dp"
+            android:textColor="@android:color/white"
+            android:background="@drawable/selector_bg_tv"
+            android:gravity="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            app:textFont="Roboto_Light"/>
+
+        <com.etiennelawlor.quickreturn.views.CustomFontTextView
+            android:id="@+id/scrollview_tv"
+            android:text="ScrollView"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="4dp"
+            android:textColor="@android:color/white"
+            android:background="@drawable/selector_bg_tv"
+            android:gravity="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            app:textFont="Roboto_Light"/>
+
+    </LinearLayout>
+
+
 
 </LinearLayout>
 

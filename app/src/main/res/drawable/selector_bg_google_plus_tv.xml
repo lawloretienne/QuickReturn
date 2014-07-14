@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<selector
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:state_pressed="true"
+        android:drawable="@color/old_brick" /> <!-- pressed -->
+    <item
+        android:state_focused="true"
+        android:drawable="@color/old_brick" /> <!-- focused -->
+    <item
+        android:state_hovered="true"
+        android:drawable="@color/old_brick" /> <!-- hovered -->
+    <item
+        android:drawable="@color/fire_brick" /> <!-- default -->
+</selector>

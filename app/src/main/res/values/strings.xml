@@ -18,6 +18,12 @@
     <string name="header">Header</string>
     <string name="footer">Footer</string>
     <string name="both">Both</string>
+    <string name="header_one">Header 1</string>
+    <string name="header_two">Header 2</string>
+    <string name="footer_one">Footer 1</string>
+    <string name="footer_two">Footer 1</string>
+    <string name="both_one">Both 1</string>
+    <string name="both_two">Both 2</string>
     <string name="header_footer">Header &amp; Footer</string>
     <string name="result_canceled">Result Canceled</string>
     <string name="beer_order_canceled">Your beer order did not go through</string>

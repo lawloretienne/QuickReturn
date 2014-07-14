@@ -19,8 +19,13 @@ public class QuickReturnActivity extends QuickReturnBaseActivity {
     }
 
     @OnClick(R.id.facebook_tv)
-    public void onFacebookClicked(View v){
+     public void onFacebookClicked(View v){
         startActivity(new Intent(QuickReturnActivity.this, QuickReturnFacebookActivity.class));
+    }
+
+    @OnClick(R.id.google_plus_tv)
+    public void onGooglePlusClicked(View v){
+//        startActivity(new Intent(QuickReturnActivity.this, QuickReturnFacebookActivity.class));
     }
 
     @OnClick(R.id.listview_tv)

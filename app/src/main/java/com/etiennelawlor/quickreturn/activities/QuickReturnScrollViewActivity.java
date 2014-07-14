@@ -125,10 +125,6 @@ public class QuickReturnScrollViewActivity extends QuickReturnBaseActivity imple
         return mTabs;
     }
 
-    @Override
-    public ViewPager getViewPager() {
-        return mViewPager;
-    }
     // endregion
 
     // region Inner Classes
@@ -153,20 +149,20 @@ public class QuickReturnScrollViewActivity extends QuickReturnBaseActivity imple
                     return QuickReturnFragment.newInstance(bundle);
                 case 1:
                     bundle.putString(getString(R.string.quick_return_type),
-                            QuickReturnType.FOOTER.name());
-                    return QuickReturnFragment.newInstance(bundle);
+                            QuickReturnType.HEADER.name());
+                    return QuickReturn2Fragment.newInstance(bundle);
                 case 2:
                     bundle.putString(getString(R.string.quick_return_type),
-                            QuickReturnType.BOTH.name());
+                            QuickReturnType.FOOTER.name());
                     return QuickReturnFragment.newInstance(bundle);
                 case 3:
                     bundle.putString(getString(R.string.quick_return_type),
-                            QuickReturnType.HEADER.name());
+                            QuickReturnType.FOOTER.name());
                     return QuickReturn2Fragment.newInstance(bundle);
                 case 4:
                     bundle.putString(getString(R.string.quick_return_type),
-                            QuickReturnType.FOOTER.name());
-                    return QuickReturn2Fragment.newInstance(bundle);
+                            QuickReturnType.BOTH.name());
+                    return QuickReturnFragment.newInstance(bundle);
                 case 5:
                     bundle.putString(getString(R.string.quick_return_type),
                             QuickReturnType.BOTH.name());
@@ -187,17 +183,17 @@ public class QuickReturnScrollViewActivity extends QuickReturnBaseActivity imple
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return getString(R.string.header);
+                    return getString(R.string.header_one);
                 case 1:
-                    return getString(R.string.footer);
+                    return getString(R.string.header_two);
                 case 2:
-                    return getString(R.string.both);
+                    return getString(R.string.footer_one);
                 case 3:
-                    return getString(R.string.header);
+                    return getString(R.string.footer_two);
                 case 4:
-                    return getString(R.string.footer);
+                    return getString(R.string.both_one);
                 case 5:
-                    return getString(R.string.both);
+                    return getString(R.string.both_two);
             }
             return null;
         }

@@ -83,6 +83,8 @@ public class CustomFontTextView extends TextView {
                 return "Roboto-Thin.ttf";
             case 15 :
                 return "Roboto-ThinItalic.ttf";
+            case 16 :
+                return "GothamNarrow-Light.ttf";
 
             default:
                 return "";
