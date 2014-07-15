@@ -13,8 +13,9 @@ import android.widget.TextView;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.etiennelawlor.quickreturn.R;
-import com.etiennelawlor.quickreturn.fragments.QuickReturn2Fragment;
+import com.etiennelawlor.quickreturn.enums.QuickReturnType;
 import com.etiennelawlor.quickreturn.fragments.QuickReturnFragment;
+import com.etiennelawlor.quickreturn.fragments.SpeedyQuickReturnFragment;
 import com.etiennelawlor.quickreturn.interfaces.QuickReturnInterface;
 import com.etiennelawlor.quickreturn.utils.QuickReturnUtils;
 
@@ -150,7 +151,7 @@ public class QuickReturnScrollViewActivity extends QuickReturnBaseActivity imple
                 case 1:
                     bundle.putString(getString(R.string.quick_return_type),
                             QuickReturnType.HEADER.name());
-                    return QuickReturn2Fragment.newInstance(bundle);
+                    return SpeedyQuickReturnFragment.newInstance(bundle);
                 case 2:
                     bundle.putString(getString(R.string.quick_return_type),
                             QuickReturnType.FOOTER.name());
@@ -158,7 +159,7 @@ public class QuickReturnScrollViewActivity extends QuickReturnBaseActivity imple
                 case 3:
                     bundle.putString(getString(R.string.quick_return_type),
                             QuickReturnType.FOOTER.name());
-                    return QuickReturn2Fragment.newInstance(bundle);
+                    return SpeedyQuickReturnFragment.newInstance(bundle);
                 case 4:
                     bundle.putString(getString(R.string.quick_return_type),
                             QuickReturnType.BOTH.name());
@@ -166,11 +167,11 @@ public class QuickReturnScrollViewActivity extends QuickReturnBaseActivity imple
                 case 5:
                     bundle.putString(getString(R.string.quick_return_type),
                             QuickReturnType.BOTH.name());
-                    return QuickReturn2Fragment.newInstance(bundle);
+                    return SpeedyQuickReturnFragment.newInstance(bundle);
                 default:
                     bundle.putString(getString(R.string.quick_return_type),
                             QuickReturnType.HEADER.name());
-                    return QuickReturnFragment.newInstance(bundle);
+                    return SpeedyQuickReturnFragment.newInstance(bundle);
             }
         }
 
@@ -183,27 +184,22 @@ public class QuickReturnScrollViewActivity extends QuickReturnBaseActivity imple
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return getString(R.string.header_one);
+                    return "QRHeader";
                 case 1:
-                    return getString(R.string.header_two);
+                    return "SpeedyQRHeader";
                 case 2:
-                    return getString(R.string.footer_one);
+                    return "QRFooter";
                 case 3:
-                    return getString(R.string.footer_two);
+                    return "SpeedyQRFooter";
                 case 4:
-                    return getString(R.string.both_one);
+                    return "QRBoth";
                 case 5:
-                    return getString(R.string.both_two);
+                    return "SpeedyQRBoth";
+
             }
             return null;
         }
     }
 
     // endregion
-
-    public enum QuickReturnType {
-        HEADER,
-        FOOTER,
-        BOTH
-    }
 }

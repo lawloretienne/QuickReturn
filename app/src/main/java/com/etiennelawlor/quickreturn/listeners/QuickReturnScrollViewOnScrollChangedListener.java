@@ -11,7 +11,7 @@ import com.etiennelawlor.quickreturn.views.NotifyingScrollView;
 /**
  * Created by etiennelawlor on 7/11/14.
  */
-public class QuickReturnScrollViewOnScrollChangedListener implements  NotifyingScrollView.OnScrollChangedListener {
+public class QuickReturnScrollViewOnScrollChangedListener implements NotifyingScrollView.OnScrollChangedListener {
 
     // region Member Variables
     private int mMinFooterTranslation;
