@@ -8,8 +8,8 @@ android {
         applicationId "com.etiennelawlor.quickreturn"
         minSdkVersion 14
         targetSdkVersion 19
-        versionCode 11
-        versionName "0.0.11"
+        versionCode 12
+        versionName "0.0.12"
     }
     signingConfigs {
         release {
