@@ -68,6 +68,7 @@ public class SpeedyQuickReturnFragment extends Fragment {
 
         switch (mQuickReturnType){
             case HEADER:
+                mQuickReturnHeaderTextView.setVisibility(View.VISIBLE);
                 mNotifyingScrollView.setOnScrollChangedListener(new SpeedyQuickReturnScrollViewOnScrollChangedListener(getActivity(),
                         QuickReturnType.HEADER, mQuickReturnHeaderTextView, null));
                 break;
@@ -77,6 +78,7 @@ public class SpeedyQuickReturnFragment extends Fragment {
                         QuickReturnType.FOOTER, null, mQuickReturnFooterTextView));
                 break;
             case BOTH:
+                mQuickReturnHeaderTextView.setVisibility(View.VISIBLE);
                 mQuickReturnFooterTextView.setVisibility(View.VISIBLE);
                 mNotifyingScrollView.setOnScrollChangedListener(new SpeedyQuickReturnScrollViewOnScrollChangedListener(getActivity(),
                         QuickReturnType.BOTH, mQuickReturnHeaderTextView, mQuickReturnFooterTextView));

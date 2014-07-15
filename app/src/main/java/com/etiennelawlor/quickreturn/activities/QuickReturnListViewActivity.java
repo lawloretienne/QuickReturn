@@ -14,7 +14,9 @@ import android.widget.TextView;
 import com.astuetz.PagerSlidingTabStrip;
 import com.etiennelawlor.quickreturn.R;
 import com.etiennelawlor.quickreturn.fragments.QuickReturnFooterListFragment;
+import com.etiennelawlor.quickreturn.fragments.QuickReturnFooterListFragment2;
 import com.etiennelawlor.quickreturn.fragments.QuickReturnHeaderListFragment;
+import com.etiennelawlor.quickreturn.fragments.QuickReturnHeaderListFragment2;
 import com.etiennelawlor.quickreturn.interfaces.QuickReturnInterface;
 import com.etiennelawlor.quickreturn.utils.QuickReturnUtils;
 
@@ -144,7 +146,11 @@ public class QuickReturnListViewActivity extends QuickReturnBaseActivity impleme
                 case 0:
                     return QuickReturnHeaderListFragment.newInstance();
                 case 1:
+                    return QuickReturnHeaderListFragment2.newInstance();
+                case 2:
                     return QuickReturnFooterListFragment.newInstance();
+                case 3:
+                    return QuickReturnFooterListFragment2.newInstance();
                 default:
                     return QuickReturnHeaderListFragment.newInstance();
             }
@@ -152,16 +158,20 @@ public class QuickReturnListViewActivity extends QuickReturnBaseActivity impleme
 
         @Override
         public int getCount() {
-            return 2;
+            return 4;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return getString(R.string.header);
+                    return "QRHeader";
                 case 1:
-                    return getString(R.string.footer);
+                    return "SpeedyQRHeader";
+                case 2:
+                    return "QRFooter";
+                case 3:
+                    return "SpeedyQRFooter";
             }
             return null;
         }

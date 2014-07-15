@@ -4,31 +4,31 @@ import android.content.Context;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.ScrollView;
+import android.widget.AbsListView;
 
 import com.etiennelawlor.quickreturn.R;
 import com.etiennelawlor.quickreturn.enums.QuickReturnType;
-import com.etiennelawlor.quickreturn.views.NotifyingScrollView;
+import com.etiennelawlor.quickreturn.utils.QuickReturnUtils;
 
 /**
  * Created by etiennelawlor on 7/14/14.
  */
-public class SpeedyQuickReturnScrollViewOnScrollChangedListener implements NotifyingScrollView.OnScrollChangedListener {
+public class SpeedyQuickReturnListViewOnScrollListener implements AbsListView.OnScrollListener {
 
     // region Member Variables
-    private QuickReturnType mQuickReturnType;
     private View mHeader;
     private View mFooter;
+    private int mPrevScrollY = 0;
+    private QuickReturnType mQuickReturnType;
     private Context mContext;
     private Animation mSlideHeaderUpAnimation;
     private Animation mSlideHeaderDownAnimation;
     private Animation mSlideFooterUpAnimation;
     private Animation mSlideFooterDownAnimation;
-
     // endregion
 
     // region Constructors
-    public SpeedyQuickReturnScrollViewOnScrollChangedListener(Context context, QuickReturnType quickReturnType, View headerView, View footerView){
+    public SpeedyQuickReturnListViewOnScrollListener(Context context, QuickReturnType quickReturnType, View headerView, View footerView){
         mContext = context;
         mQuickReturnType = quickReturnType;
 
@@ -53,8 +53,16 @@ public class SpeedyQuickReturnScrollViewOnScrollChangedListener implements Notif
     // endregion
 
     @Override
-    public void onScrollChanged(ScrollView who, int l, int t, int oldl, int oldt) {
-        if(t<oldt){ // scrolling up
+    public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+    }
+
+    @Override
+    public void onScroll(AbsListView listview, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+        int scrollY = QuickReturnUtils.getScrollY(listview);
+        int diff = mPrevScrollY - scrollY;
+
+        if(diff>0){ // scrolling down
             switch (mQuickReturnType){
                 case HEADER:
                     if(mHeader.getVisibility() == View.GONE){
@@ -80,9 +88,7 @@ public class SpeedyQuickReturnScrollViewOnScrollChangedListener implements Notif
                     }
                     break;
             }
-
-
-        } else if (t>oldt){ // scrolling down
+        } else if(diff<0){ // scrolling up
             switch (mQuickReturnType){
                 case HEADER:
                     if(mHeader.getVisibility() == View.VISIBLE){
@@ -109,5 +115,7 @@ public class SpeedyQuickReturnScrollViewOnScrollChangedListener implements Notif
                     break;
             }
         }
+
+        mPrevScrollY = scrollY;
     }
 }
