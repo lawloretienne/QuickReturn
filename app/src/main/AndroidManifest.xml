@@ -27,6 +27,10 @@
             android:label="@string/facebook" >
         </activity>
         <activity
+            android:name=".activities.QuickReturnGooglePlusActivity"
+            android:label="@string/google_plus" >
+        </activity>
+        <activity
             android:name=".activities.QuickReturnListViewActivity"
             android:label="@string/list_view" >
         </activity>
@@ -34,9 +38,6 @@
             android:name=".activities.QuickReturnScrollViewActivity"
             android:label="@string/scroll_view" >
         </activity>
-
     </application>
-
-
 
 </manifest>

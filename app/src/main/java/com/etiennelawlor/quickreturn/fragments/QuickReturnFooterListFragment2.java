@@ -98,7 +98,7 @@ public class QuickReturnFooterListFragment2 extends ListFragment {
 //                                Log.d("QuickReturnFooterListFragment", "onTouch() : slide up");
 ////                            mQuickReturnTextView.startAnimation(-mDiffTotal);
 //
-////                            Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_footer_down);
+////                            Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.anticipate_slide_footer_down);
 ////                            mQuickReturnTextView.startAnimation(animation);
 //
 //

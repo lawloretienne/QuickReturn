@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/shape_rounded_rectangle"
+        android:background="@drawable/shape_rounded_rectangle_transparent_steel_blue"
         android:textSize="14sp"
         android:text="@string/new_stories"
         android:textColor="@android:color/white"

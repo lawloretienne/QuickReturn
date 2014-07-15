@@ -28,7 +28,6 @@
     <string name="result_canceled">Result Canceled</string>
     <string name="beer_order_canceled">Your beer order did not go through</string>
     <string name="item_already_owned">Failure to purchase since item is already owned</string>
-
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, amet mucius perpetua eu nec, no eum accusam efficiantur,
         sumo molestiae qui ei. Vix ne doctus appetere, quis graeci salutatus cum ea. Deleniti ocurreret dignissim at
         pri, per at oblique sententiae delicatissimi. Et periculis similique vix, ut qui vitae minimum. Nulla debet
@@ -77,19 +76,17 @@
     <string name="header_list">Header List</string>
     <string name="footer_list">Footer List</string>
     <string name="facebook">Facebook</string>
+    <string name="google_plus">Google+</string>
     <string name="twitter">Twitter</string>
     <string name="list_view">ListView</string>
     <string name="scroll_view">ScrollView</string>
-
     <string name="home">Home</string>
     <string name="discover">Discover</string>
     <string name="activity">Activity</string>
-
-
     <string name="buy_one_beer">buy_one_beer</string>
     <string name="buy_two_beers">buy_two_beers</string>
     <string name="buy_four_beers">buy_four_beers</string>
     <string name="whats_happening"> What\'s happening?</string>
-
+    <string name="title_activity_quick_return_google_plus">QuickReturnGooglePlusActivity</string>
 
 </resources>

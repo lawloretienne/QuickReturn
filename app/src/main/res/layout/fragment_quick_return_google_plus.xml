@@ -1,0 +1,44 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@android:id/list"/>
+
+    <com.etiennelawlor.quickreturn.views.CustomFontTextView
+        android:id="@+id/quick_return_footer_tv"
+        android:layout_width="wrap_content"
+        android:padding="14dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="29dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/shape_rounded_rectangle_transparent_black"
+        android:textSize="14sp"
+        android:text="New Posts! Touch to see them"
+        android:textColor="@android:color/white"
+        android:gravity="center"
+        app:textFont="Roboto_Bold"/>
+
+    <ImageView
+        android:id="@+id/quick_return_footer_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_menu_edit"
+        android:background="@drawable/shape_circle_white"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="20dp"
+        android:padding="18dp"
+        android:layout_alignParentRight="true"
+        />
+
+</RelativeLayout>
+

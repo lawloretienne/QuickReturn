@@ -32,10 +32,10 @@ public class SpeedyQuickReturnScrollViewOnScrollChangedListener implements Notif
         mContext = context;
         mQuickReturnType = quickReturnType;
 
-        mSlideHeaderUpAnimation = AnimationUtils.loadAnimation(mContext, R.anim.slide_header_up);
-        mSlideHeaderDownAnimation = AnimationUtils.loadAnimation(mContext, R.anim.slide_header_down);
-        mSlideFooterUpAnimation = AnimationUtils.loadAnimation(mContext, R.anim.slide_footer_up);
-        mSlideFooterDownAnimation = AnimationUtils.loadAnimation(mContext, R.anim.slide_footer_down);
+        mSlideHeaderUpAnimation = AnimationUtils.loadAnimation(mContext, R.anim.anticipate_slide_header_up);
+        mSlideHeaderDownAnimation = AnimationUtils.loadAnimation(mContext, R.anim.overshoot_slide_header_down);
+        mSlideFooterUpAnimation = AnimationUtils.loadAnimation(mContext, R.anim.overshoot_slide_footer_up);
+        mSlideFooterDownAnimation = AnimationUtils.loadAnimation(mContext, R.anim.anticipate_slide_footer_down);
 
         switch (mQuickReturnType){
             case HEADER:
