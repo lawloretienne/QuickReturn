@@ -29,7 +29,7 @@
         android:id="@+id/quick_return_footer_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@android:drawable/ic_menu_edit"
+        android:src="@drawable/ic_action_edit_red"
         android:background="@drawable/shape_circle_white"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="15dp"

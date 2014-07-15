@@ -1,6 +1,7 @@
 package com.etiennelawlor.quickreturn.listeners;
 
 import android.os.Build;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.TranslateAnimation;
 import android.widget.AbsListView;
@@ -51,6 +52,21 @@ public class QuickReturnListViewOnScrollListener implements AbsListView.OnScroll
 
     @Override
     public void onScrollStateChanged(AbsListView view, int scrollState) {
+        if(scrollState == SCROLL_STATE_IDLE){
+            Log.d(getClass().getSimpleName(), "onScrollStateChanged() : IDLE : mPrevScrollY - "+mPrevScrollY);
+
+            int midHeader = -mMinHeaderTranslation/2;
+            Log.d(getClass().getSimpleName(), "onScrollStateChanged() : IDLE : midHeader - "+midHeader);
+
+            if(mPrevScrollY < midHeader){
+                Log.d(getClass().getSimpleName(), "onScrollStateChanged() : slide header down");
+            } else if(mPrevScrollY<-mMinHeaderTranslation && mPrevScrollY >= midHeader){
+                Log.d(getClass().getSimpleName(), "onScrollStateChanged() : slide header up");
+            }
+            Log.d(getClass().getSimpleName(), "onScrollStateChanged() : IDLE : mMinHeaderTranslation - "+mMinHeaderTranslation);
+            Log.d(getClass().getSimpleName(), "onScrollStateChanged() : IDLE : mMinFooterTranslation - "+mMinFooterTranslation);
+
+        }
 
     }
 
