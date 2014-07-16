@@ -53,21 +53,49 @@ public class QuickReturnListViewOnScrollListener implements AbsListView.OnScroll
     @Override
     public void onScrollStateChanged(AbsListView view, int scrollState) {
         if(scrollState == SCROLL_STATE_IDLE){
-            Log.d(getClass().getSimpleName(), "onScrollStateChanged() : IDLE : mPrevScrollY - "+mPrevScrollY);
 
             int midHeader = -mMinHeaderTranslation/2;
-            Log.d(getClass().getSimpleName(), "onScrollStateChanged() : IDLE : midHeader - "+midHeader);
+            int midFooter = mMinFooterTranslation/2;
 
-            if(mPrevScrollY < midHeader){
-                Log.d(getClass().getSimpleName(), "onScrollStateChanged() : slide header down");
-            } else if(mPrevScrollY<-mMinHeaderTranslation && mPrevScrollY >= midHeader){
-                Log.d(getClass().getSimpleName(), "onScrollStateChanged() : slide header up");
+            switch (mQuickReturnType) {
+                case HEADER:
+                    if (-mHeaderDiffTotal > 0 && -mHeaderDiffTotal < midHeader) {
+                        mHeader.setTranslationY(0);
+                        mHeaderDiffTotal = 0;
+                    } else if (-mHeaderDiffTotal < -mMinHeaderTranslation && -mHeaderDiffTotal >= midHeader) {
+                        mHeader.setTranslationY(mMinHeaderTranslation);
+                        mHeaderDiffTotal = mMinHeaderTranslation;
+                    }
+                    break;
+                case FOOTER:
+                    if (-mFooterDiffTotal > 0 && -mFooterDiffTotal < midFooter) { // slide up
+                        mFooter.setTranslationY(0);
+                        mFooterDiffTotal = 0;
+                    } else if (-mFooterDiffTotal < mMinFooterTranslation && -mFooterDiffTotal >= midFooter) { // slide down
+                        mFooter.setTranslationY(mMinFooterTranslation);
+                        mFooterDiffTotal = -mMinFooterTranslation;
+                    }
+                    break;
+                case BOTH:
+                    if (-mHeaderDiffTotal > 0 && -mHeaderDiffTotal < midHeader) {
+                        mHeader.setTranslationY(0);
+                        mHeaderDiffTotal = 0;
+                    } else if (-mHeaderDiffTotal < -mMinHeaderTranslation && -mHeaderDiffTotal >= midHeader) {
+                        mHeader.setTranslationY(mMinHeaderTranslation);
+                        mHeaderDiffTotal = mMinHeaderTranslation;
+                    }
+
+                    if (-mFooterDiffTotal > 0 && -mFooterDiffTotal < midFooter) { // slide up
+                        mFooter.setTranslationY(0);
+                        mFooterDiffTotal = 0;
+                    } else if (-mFooterDiffTotal < mMinFooterTranslation && -mFooterDiffTotal >= midFooter) { // slide down
+                        mFooter.setTranslationY(mMinFooterTranslation);
+                        mFooterDiffTotal = -mMinFooterTranslation;
+                    }
+                    break;
             }
-            Log.d(getClass().getSimpleName(), "onScrollStateChanged() : IDLE : mMinHeaderTranslation - "+mMinHeaderTranslation);
-            Log.d(getClass().getSimpleName(), "onScrollStateChanged() : IDLE : mMinFooterTranslation - "+mMinFooterTranslation);
 
         }
-
     }
 
     @Override
@@ -75,68 +103,70 @@ public class QuickReturnListViewOnScrollListener implements AbsListView.OnScroll
         int scrollY = QuickReturnUtils.getScrollY(listview);
         int diff = mPrevScrollY - scrollY;
 
-        switch (mQuickReturnType){
-            case HEADER:
-                if(diff <=0){ // scrolling down
-                    mHeaderDiffTotal = Math.max(mHeaderDiffTotal + diff, mMinHeaderTranslation);
-                } else { // scrolling up
-                    mHeaderDiffTotal = Math.min(Math.max(mHeaderDiffTotal + diff, mMinHeaderTranslation), 0);
-                }
+        if(diff != 0){
+            switch (mQuickReturnType){
+                case HEADER:
+                    if(diff < 0){ // scrolling down
+                        mHeaderDiffTotal = Math.max(mHeaderDiffTotal + diff, mMinHeaderTranslation);
+                    } else { // scrolling up
+                        mHeaderDiffTotal = Math.min(Math.max(mHeaderDiffTotal + diff, mMinHeaderTranslation), 0);
+                    }
 
-                if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.HONEYCOMB) {
-                    mHeaderAnim = new TranslateAnimation(0, 0, mHeaderDiffTotal,
-                            mHeaderDiffTotal);
-                    mHeaderAnim.setFillAfter(true);
-                    mHeaderAnim.setDuration(0);
-                    mHeader.startAnimation(mHeaderAnim);
-                } else {
-                    mHeader.setTranslationY(mHeaderDiffTotal);
-                }
-                break;
-            case FOOTER:
-                if(diff <=0){ // scrolling down
-                    mFooterDiffTotal = Math.max(mFooterDiffTotal + diff, -mMinFooterTranslation);
-                } else { // scrolling up
-                    mFooterDiffTotal = Math.min(Math.max(mFooterDiffTotal + diff, -mMinFooterTranslation), 0);
-                }
+                    if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.HONEYCOMB) {
+                        mHeaderAnim = new TranslateAnimation(0, 0, mHeaderDiffTotal,
+                                mHeaderDiffTotal);
+                        mHeaderAnim.setFillAfter(true);
+                        mHeaderAnim.setDuration(0);
+                        mHeader.startAnimation(mHeaderAnim);
+                    } else {
+                        mHeader.setTranslationY(mHeaderDiffTotal);
+                    }
+                    break;
+                case FOOTER:
+                    if(diff < 0){ // scrolling down
+                        mFooterDiffTotal = Math.max(mFooterDiffTotal + diff, -mMinFooterTranslation);
+                    } else { // scrolling up
+                        mFooterDiffTotal = Math.min(Math.max(mFooterDiffTotal + diff, -mMinFooterTranslation), 0);
+                    }
 
-                if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.HONEYCOMB) {
-                    mFooterAnim = new TranslateAnimation(0, 0, -mFooterDiffTotal,
-                            -mFooterDiffTotal);
-                    mFooterAnim.setFillAfter(true);
-                    mFooterAnim.setDuration(0);
-                    mFooter.startAnimation(mFooterAnim);
-                } else {
-                    mFooter.setTranslationY(-mFooterDiffTotal);
-                }
-                break;
-            case BOTH:
-                if(diff <=0){ // scrolling down
-                    mHeaderDiffTotal = Math.max(mHeaderDiffTotal + diff, mMinHeaderTranslation);
-                    mFooterDiffTotal = Math.max(mFooterDiffTotal + diff, -mMinFooterTranslation);
-                } else { // scrolling up
-                    mHeaderDiffTotal = Math.min(Math.max(mHeaderDiffTotal + diff, mMinHeaderTranslation), 0);
-                    mFooterDiffTotal = Math.min(Math.max(mFooterDiffTotal + diff, -mMinFooterTranslation), 0);
-                }
+                    if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.HONEYCOMB) {
+                        mFooterAnim = new TranslateAnimation(0, 0, -mFooterDiffTotal,
+                                -mFooterDiffTotal);
+                        mFooterAnim.setFillAfter(true);
+                        mFooterAnim.setDuration(0);
+                        mFooter.startAnimation(mFooterAnim);
+                    } else {
+                        mFooter.setTranslationY(-mFooterDiffTotal);
+                    }
+                    break;
+                case BOTH:
+                    if(diff < 0){ // scrolling down
+                        mHeaderDiffTotal = Math.max(mHeaderDiffTotal + diff, mMinHeaderTranslation);
+                        mFooterDiffTotal = Math.max(mFooterDiffTotal + diff, -mMinFooterTranslation);
+                    } else { // scrolling up
+                        mHeaderDiffTotal = Math.min(Math.max(mHeaderDiffTotal + diff, mMinHeaderTranslation), 0);
+                        mFooterDiffTotal = Math.min(Math.max(mFooterDiffTotal + diff, -mMinFooterTranslation), 0);
+                    }
 
-                if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.HONEYCOMB) {
-                    mHeaderAnim = new TranslateAnimation(0, 0, mHeaderDiffTotal,
-                            mHeaderDiffTotal);
-                    mHeaderAnim.setFillAfter(true);
-                    mHeaderAnim.setDuration(0);
-                    mHeader.startAnimation(mHeaderAnim);
+                    if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.HONEYCOMB) {
+                        mHeaderAnim = new TranslateAnimation(0, 0, mHeaderDiffTotal,
+                                mHeaderDiffTotal);
+                        mHeaderAnim.setFillAfter(true);
+                        mHeaderAnim.setDuration(0);
+                        mHeader.startAnimation(mHeaderAnim);
 
-                    mFooterAnim = new TranslateAnimation(0, 0, -mFooterDiffTotal,
-                            -mFooterDiffTotal);
-                    mFooterAnim.setFillAfter(true);
-                    mFooterAnim.setDuration(0);
-                    mFooter.startAnimation(mFooterAnim);
-                } else {
-                    mHeader.setTranslationY(mHeaderDiffTotal);
-                    mFooter.setTranslationY(-mFooterDiffTotal);
-                }
-            default:
-                break;
+                        mFooterAnim = new TranslateAnimation(0, 0, -mFooterDiffTotal,
+                                -mFooterDiffTotal);
+                        mFooterAnim.setFillAfter(true);
+                        mFooterAnim.setDuration(0);
+                        mFooter.startAnimation(mFooterAnim);
+                    } else {
+                        mHeader.setTranslationY(mHeaderDiffTotal);
+                        mFooter.setTranslationY(-mFooterDiffTotal);
+                    }
+                default:
+                    break;
+            }
         }
 
         mPrevScrollY = scrollY;
