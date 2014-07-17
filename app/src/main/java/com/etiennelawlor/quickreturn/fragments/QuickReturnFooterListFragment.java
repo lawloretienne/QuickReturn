@@ -23,7 +23,6 @@ public class QuickReturnFooterListFragment extends ListFragment {
 
     // region Member Variables
     private String[] mValues;
-    private boolean isActionUp = false;
 
     @InjectView(android.R.id.list) ListView mListView;
     @InjectView(R.id.quick_return_tv) TextView mQuickReturnTextView;
@@ -68,107 +67,6 @@ public class QuickReturnFooterListFragment extends ListFragment {
 
         int footerHeight = getActivity().getResources().getDimensionPixelSize(R.dimen.footer_height);
         mListView.setOnScrollListener(new QuickReturnListViewOnScrollListener(QuickReturnType.FOOTER, null, 0, mQuickReturnTextView, footerHeight));
-
-//        mListView.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                switch(event.getAction())
-//                {
-//
-//                    case MotionEvent.ACTION_DOWN:
-//                        isActionUp = false;
-//                        Log.d("QuickReturnFooterListFragment", "onTouch() : ACTION_DOWN");
-////                        return true;
-//                    case MotionEvent.ACTION_CANCEL:
-////                        Log.d("QuickReturnFooterListFragment", "onTouch() : ACTION_CANCEL");
-//                    case MotionEvent.ACTION_OUTSIDE:
-////                        Log.d("QuickReturnFooterListFragment", "onTouch() : ACTION_OUTSIDE");
-////                        return true;
-//                    case MotionEvent.ACTION_UP:
-//                        if(isActionUp){
-//                            Log.d("QuickReturnFooterListFragment", "onTouch() : ACTION_UP : mDiffTotal - "+mDiffTotal);
-//                            Log.d("QuickReturnFooterListFragment", "onTouch() : mFooterHeight - "+mFooterHeight);
-//
-//
-//                            if(-mDiffTotal <= mFooterHeight/2){
-//                                Log.d("QuickReturnFooterListFragment", "onTouch() : slide up");
-////                            mQuickReturnTextView.startAnimation(-mDiffTotal);
-//
-////                            Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.anticipate_slide_footer_down);
-////                            mQuickReturnTextView.startAnimation(animation);
-//
-//
-////                            mQuickReturnTextView.setTranslationY(0);
-//
-//                                mAnim = new TranslateAnimation(0, 0, mDiffTotal,
-//                                        0);
-////                                mAnim.setFillAfter(true);
-//
-////                            mAnim.setFillAfter(true);
-//
-////                            mAnim.setFillBefore(true);
-//
-//                            mAnim.setAnimationListener(new Animation.AnimationListener() {
-//                                @Override
-//                                public void onAnimationStart(Animation animation) {
-//
-//                                }
-//
-//                                @Override
-//                                public void onAnimationEnd(Animation animation) {
-////                                    mAnim.setFillAfter(true);
-//
-////                                    ((RelativeLayout.LayoutParams)v4.getLayoutParams()).bottomMargin = mbar4.getHeight();
-////                                    v4.requestLayou();
-//
-////                                    mQuickReturnTextView.getLayoutParams().height = 200;
-////                                    mQuickReturnTextView.requestLayout();
-//
-//                                    RelativeLayout parent = (RelativeLayout) mQuickReturnTextView.getParent();
-////                                    mQuickReturnTextView.layout(0, parent.getHeight()-mQuickReturnTextView.getHeight(), mQuickReturnTextView.getWidth() , mQuickReturnTextView.getHeight());
-//
-////                                    mQuickReturnTextView.layout(0, parent.getHeight()-QuickReturnUtils.dp2px(getActivity(), 80), mQuickReturnTextView.getWidth() , QuickReturnUtils.dp2px(getActivity(), 80));
-//
-//                                    mQuickReturnTextView.layout(0, -parent.getHeight()+QuickReturnUtils.dp2px(getActivity(), 80), mQuickReturnTextView.getWidth() , QuickReturnUtils.dp2px(getActivity(), 80));
-//
-//                                }
-//
-//                                @Override
-//                                public void onAnimationRepeat(Animation animation) {
-//
-//                                }
-//                            });
-//                                mAnim.setDuration(100);
-//                                mQuickReturnTextView.startAnimation(mAnim);
-//                            } else {
-////                            mQuickReturnTextView.setTranslationY(mFooterHeight);
-//
-////                                mAnim = new TranslateAnimation(0, 0, mDiffTotal,
-////                                        -mFooterHeight);
-//////                            mAnim.setFillAfter(true);
-//////                            mAnim.setFillBefore(true);
-////                                mAnim.setDuration(100);
-////                                mQuickReturnTextView.startAnimation(mAnim);
-//
-//                                Log.d("QuickReturnFooterListFragment", "onTouch() : slide down");
-//
-//                            }
-//
-////                        v.setBackgroundDrawable(null);
-////                        Intent myIntent = new Intent(v.getContext(), SearchActivity.class);
-////                        startActivity(myIntent);
-//
-////                            return true;
-//                        }
-//
-//                        isActionUp = true;
-//
-//                }
-//                return false;
-//            }
-//
-//
-//        });
     }
 
     @Override

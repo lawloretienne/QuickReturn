@@ -21,28 +21,16 @@ public class QuickReturnListViewOnScrollListener implements AbsListView.OnScroll
     private View mHeader;
     private View mFooter;
     private QuickReturnType mQuickReturnType;
+    private boolean mCanSlideInIdleScrollState = false;
     // endregion
 
     // region Constructors
     public QuickReturnListViewOnScrollListener(QuickReturnType quickReturnType, View headerView, int headerTranslation, View footerView, int footerTranslation){
         mQuickReturnType = quickReturnType;
-
-        switch (mQuickReturnType){
-            case HEADER:
-                mHeader =  headerView;
-                mMinHeaderTranslation = headerTranslation;
-                break;
-            case FOOTER:
-                mFooter =  footerView;
-                mMinFooterTranslation = footerTranslation;
-            case BOTH:
-                mHeader =  headerView;
-                mMinHeaderTranslation = headerTranslation;
-                mFooter =  footerView;
-                mMinFooterTranslation = footerTranslation;
-            default:
-                break;
-        }
+        mHeader =  headerView;
+        mMinHeaderTranslation = headerTranslation;
+        mFooter =  footerView;
+        mMinFooterTranslation = footerTranslation;
     }
     // endregion
 
@@ -50,7 +38,7 @@ public class QuickReturnListViewOnScrollListener implements AbsListView.OnScroll
     public void onScrollStateChanged(AbsListView view, int scrollState) {
         Log.d(getClass().getSimpleName(), "onScrollStateChanged() : scrollState - "+scrollState);
 
-        if(scrollState == SCROLL_STATE_IDLE){
+        if(scrollState == SCROLL_STATE_IDLE && mCanSlideInIdleScrollState){
 
             int midHeader = -mMinHeaderTranslation/2;
             int midFooter = mMinFooterTranslation/2;
@@ -142,5 +130,9 @@ public class QuickReturnListViewOnScrollListener implements AbsListView.OnScroll
         }
 
         mPrevScrollY = scrollY;
+    }
+
+    public void setCanSlideInIdleScrollState(boolean canSlideInIdleScrollState){
+        mCanSlideInIdleScrollState = canSlideInIdleScrollState;
     }
 }

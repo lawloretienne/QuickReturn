@@ -6,5 +6,6 @@ package com.etiennelawlor.quickreturn.enums;
 public enum QuickReturnType {
     HEADER,
     FOOTER,
-    BOTH
+    BOTH,
+    CUSTOM
 }

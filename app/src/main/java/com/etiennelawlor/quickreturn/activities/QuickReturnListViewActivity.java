@@ -15,8 +15,10 @@ import com.astuetz.PagerSlidingTabStrip;
 import com.etiennelawlor.quickreturn.R;
 import com.etiennelawlor.quickreturn.fragments.QuickReturnFooterListFragment;
 import com.etiennelawlor.quickreturn.fragments.QuickReturnFooterListFragment2;
+import com.etiennelawlor.quickreturn.fragments.QuickReturnFooterListFragment3;
 import com.etiennelawlor.quickreturn.fragments.QuickReturnHeaderListFragment;
 import com.etiennelawlor.quickreturn.fragments.QuickReturnHeaderListFragment2;
+import com.etiennelawlor.quickreturn.fragments.QuickReturnHeaderListFragment3;
 import com.etiennelawlor.quickreturn.interfaces.QuickReturnInterface;
 import com.etiennelawlor.quickreturn.utils.QuickReturnUtils;
 
@@ -146,10 +148,14 @@ public class QuickReturnListViewActivity extends QuickReturnBaseActivity impleme
                 case 0:
                     return QuickReturnHeaderListFragment.newInstance();
                 case 1:
-                    return QuickReturnHeaderListFragment2.newInstance();
+                    return QuickReturnHeaderListFragment3.newInstance();
                 case 2:
-                    return QuickReturnFooterListFragment.newInstance();
+                    return QuickReturnHeaderListFragment2.newInstance();
                 case 3:
+                    return QuickReturnFooterListFragment.newInstance();
+                case 4:
+                    return QuickReturnFooterListFragment3.newInstance();
+                case 5:
                     return QuickReturnFooterListFragment2.newInstance();
                 default:
                     return QuickReturnHeaderListFragment.newInstance();
@@ -158,7 +164,7 @@ public class QuickReturnListViewActivity extends QuickReturnBaseActivity impleme
 
         @Override
         public int getCount() {
-            return 4;
+            return 6;
         }
 
         @Override
@@ -167,10 +173,14 @@ public class QuickReturnListViewActivity extends QuickReturnBaseActivity impleme
                 case 0:
                     return "QRHeader";
                 case 1:
-                    return "SpeedyQRHeader";
+                    return "QRHeader2";
                 case 2:
-                    return "QRFooter";
+                    return "SpeedyQRHeader";
                 case 3:
+                    return "QRFooter";
+                case 4:
+                    return "QRFooter2";
+                case 5:
                     return "SpeedyQRFooter";
             }
             return null;

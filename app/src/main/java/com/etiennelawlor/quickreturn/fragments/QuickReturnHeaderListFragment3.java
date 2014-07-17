@@ -12,7 +12,6 @@ import android.widget.TextView;
 import com.etiennelawlor.quickreturn.R;
 import com.etiennelawlor.quickreturn.enums.QuickReturnType;
 import com.etiennelawlor.quickreturn.listeners.QuickReturnListViewOnScrollListener;
-import com.etiennelawlor.quickreturn.listeners.SpeedyQuickReturnListViewOnScrollListener;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -20,7 +19,7 @@ import butterknife.InjectView;
 /**
  * Created by etiennelawlor on 6/23/14.
  */
-public class QuickReturnHeaderListFragment2 extends ListFragment {
+public class QuickReturnHeaderListFragment3 extends ListFragment {
 
     // region Member Variables
     private String[] mValues;
@@ -30,14 +29,14 @@ public class QuickReturnHeaderListFragment2 extends ListFragment {
     // endregion
 
     // region Constructors
-    public static QuickReturnHeaderListFragment2 newInstance() {
-        QuickReturnHeaderListFragment2 fragment = new QuickReturnHeaderListFragment2();
+    public static QuickReturnHeaderListFragment3 newInstance() {
+        QuickReturnHeaderListFragment3 fragment = new QuickReturnHeaderListFragment3();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
     }
 
-    public QuickReturnHeaderListFragment2() {
+    public QuickReturnHeaderListFragment3() {
     }
     // endregion
 
@@ -66,10 +65,11 @@ public class QuickReturnHeaderListFragment2 extends ListFragment {
 
         mListView.setAdapter(adapter);
 
-//        int headerHeight = getActivity().getResources().getDimensionPixelSize(R.dimen.header_height2);
-//        mListView.setOnScrollListener(new QuickReturnListViewOnScrollListener(QuickReturnType.HEADER, mQuickReturnTextView, -headerHeight, null, 0));
+        int headerHeight = getActivity().getResources().getDimensionPixelSize(R.dimen.header_height2);
 
-        mListView.setOnScrollListener(new SpeedyQuickReturnListViewOnScrollListener(getActivity(), QuickReturnType.HEADER, mQuickReturnTextView, null));
+        QuickReturnListViewOnScrollListener scrollListener = new QuickReturnListViewOnScrollListener(QuickReturnType.HEADER, mQuickReturnTextView, -headerHeight, null, 0);
+        scrollListener.setCanSlideInIdleScrollState(true);
+        mListView.setOnScrollListener(scrollListener);
     }
 
     @Override

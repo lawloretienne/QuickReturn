@@ -12,7 +12,6 @@ import android.widget.TextView;
 import com.etiennelawlor.quickreturn.R;
 import com.etiennelawlor.quickreturn.enums.QuickReturnType;
 import com.etiennelawlor.quickreturn.listeners.QuickReturnListViewOnScrollListener;
-import com.etiennelawlor.quickreturn.listeners.SpeedyQuickReturnListViewOnScrollListener;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -20,7 +19,7 @@ import butterknife.InjectView;
 /**
  * Created by etiennelawlor on 6/23/14.
  */
-public class QuickReturnHeaderListFragment2 extends ListFragment {
+public class QuickReturnFooterListFragment3 extends ListFragment {
 
     // region Member Variables
     private String[] mValues;
@@ -30,14 +29,14 @@ public class QuickReturnHeaderListFragment2 extends ListFragment {
     // endregion
 
     // region Constructors
-    public static QuickReturnHeaderListFragment2 newInstance() {
-        QuickReturnHeaderListFragment2 fragment = new QuickReturnHeaderListFragment2();
+    public static QuickReturnFooterListFragment3 newInstance() {
+        QuickReturnFooterListFragment3 fragment = new QuickReturnFooterListFragment3();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
     }
 
-    public QuickReturnHeaderListFragment2() {
+    public QuickReturnFooterListFragment3() {
     }
     // endregion
 
@@ -50,7 +49,7 @@ public class QuickReturnHeaderListFragment2 extends ListFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_list_quick_return_header, container, false);
+        View view = inflater.inflate(R.layout.fragment_list_quick_return_footer, container, false);
         ButterKnife.inject(this, view);
         return view;
     }
@@ -66,10 +65,11 @@ public class QuickReturnHeaderListFragment2 extends ListFragment {
 
         mListView.setAdapter(adapter);
 
-//        int headerHeight = getActivity().getResources().getDimensionPixelSize(R.dimen.header_height2);
-//        mListView.setOnScrollListener(new QuickReturnListViewOnScrollListener(QuickReturnType.HEADER, mQuickReturnTextView, -headerHeight, null, 0));
+        int footerHeight = getActivity().getResources().getDimensionPixelSize(R.dimen.footer_height);
 
-        mListView.setOnScrollListener(new SpeedyQuickReturnListViewOnScrollListener(getActivity(), QuickReturnType.HEADER, mQuickReturnTextView, null));
+        QuickReturnListViewOnScrollListener scrollListener = new QuickReturnListViewOnScrollListener(QuickReturnType.FOOTER, null, 0, mQuickReturnTextView, footerHeight);
+        scrollListener.setCanSlideInIdleScrollState(true);
+        mListView.setOnScrollListener(scrollListener);
     }
 
     @Override
@@ -77,6 +77,6 @@ public class QuickReturnHeaderListFragment2 extends ListFragment {
         super.onDestroyView();
         ButterKnife.reset(this);
     }
-
     // endregion
+
 }

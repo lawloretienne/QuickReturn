@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -17,6 +18,8 @@ import com.etiennelawlor.quickreturn.enums.QuickReturnType;
 import com.etiennelawlor.quickreturn.listeners.QuickReturnListViewOnScrollListener;
 import com.etiennelawlor.quickreturn.listeners.SpeedyQuickReturnListViewOnScrollListener;
 import com.etiennelawlor.quickreturn.utils.QuickReturnUtils;
+
+import java.util.ArrayList;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -81,7 +84,16 @@ public class QuickReturnGooglePlusFragment extends ListFragment {
 //        mListView.setOnScrollListener(new QuickReturnListViewOnScrollListener(QuickReturnType.BOTH,
 //                mQuickReturnHeaderTextView, headerTranslation, mQuickReturnFooterLinearLayout, -footerTranslation));
 
-        SpeedyQuickReturnListViewOnScrollListener scrollListener = new SpeedyQuickReturnListViewOnScrollListener(getActivity(),QuickReturnType.FOOTER, null, mQuickReturnFooterTextView);
+        ArrayList<View> headerViews = new ArrayList<View>();
+        headerViews.add(getActionBarView());
+
+        ArrayList<View> footerViews = new ArrayList<View>();
+        footerViews.add(mQuickReturnFooterTextView);
+        footerViews.add(mQuickReturnFooterImageView);
+
+        SpeedyQuickReturnListViewOnScrollListener scrollListener = new SpeedyQuickReturnListViewOnScrollListener(getActivity(), QuickReturnType.CUSTOM, null, footerViews);
+        scrollListener.setSlideHeaderUpAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.slide_header_up));
+        scrollListener.setSlideHeaderDownAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.slide_header_down));
         scrollListener.setSlideFooterUpAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.slide_footer_up));
         scrollListener.setSlideFooterDownAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.slide_footer_down));
 
@@ -92,6 +104,15 @@ public class QuickReturnGooglePlusFragment extends ListFragment {
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.reset(this);
+    }
+    // endregion
+
+    // region Helper Methods
+    public View getActionBarView() {
+        Window window = getActivity().getWindow();
+        View v = window.getDecorView();
+        int resId = getResources().getIdentifier("action_bar_container", "id", "android");
+        return v.findViewById(resId);
     }
     // endregion
 }

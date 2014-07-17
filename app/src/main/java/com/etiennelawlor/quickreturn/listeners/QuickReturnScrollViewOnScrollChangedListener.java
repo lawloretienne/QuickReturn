@@ -24,23 +24,10 @@ public class QuickReturnScrollViewOnScrollChangedListener implements NotifyingSc
     // region Constructors
     public QuickReturnScrollViewOnScrollChangedListener(QuickReturnType quickReturnType, View headerView, int headerTranslation, View footerView, int footerTranslation){
         mQuickReturnType = quickReturnType;
-
-        switch (mQuickReturnType){
-            case HEADER:
-                mHeader =  headerView;
-                mMinHeaderTranslation = headerTranslation;
-                break;
-            case FOOTER:
-                mFooter =  footerView;
-                mMinFooterTranslation = footerTranslation;
-            case BOTH:
-                mHeader =  headerView;
-                mMinHeaderTranslation = headerTranslation;
-                mFooter =  footerView;
-                mMinFooterTranslation = footerTranslation;
-            default:
-                break;
-        }
+        mHeader =  headerView;
+        mMinHeaderTranslation = headerTranslation;
+        mFooter =  footerView;
+        mMinFooterTranslation = footerTranslation;
     }
     // endregion
 

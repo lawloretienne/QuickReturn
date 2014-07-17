@@ -87,8 +87,10 @@ public class QuickReturnTwitterFragment extends ListFragment {
         int headerTranslation = -headerHeight + QuickReturnUtils.getActionBarHeight(getActivity()) + indicatorHeight;
         int footerTranslation = -headerHeight + QuickReturnUtils.getActionBarHeight(getActivity());
 
-        mListView.setOnScrollListener(new QuickReturnListViewOnScrollListener(QuickReturnType.BOTH,
-                mCoordinator.getTabs(), headerTranslation, mQuickReturnFooterLinearLayout, -footerTranslation));
+        QuickReturnListViewOnScrollListener scrollListener = new QuickReturnListViewOnScrollListener(QuickReturnType.BOTH,
+                mCoordinator.getTabs(), headerTranslation, mQuickReturnFooterLinearLayout, -footerTranslation);
+        scrollListener.setCanSlideInIdleScrollState(true);
+        mListView.setOnScrollListener(scrollListener);
 
         mPlaceHolderView = getActivity().getLayoutInflater().inflate(R.layout.view_header_placeholder, mListView, false);
         mListView.addHeaderView(mPlaceHolderView);

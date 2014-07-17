@@ -37,18 +37,8 @@ public class SpeedyQuickReturnScrollViewOnScrollChangedListener implements Notif
         mSlideFooterUpAnimation = AnimationUtils.loadAnimation(mContext, R.anim.overshoot_slide_footer_up);
         mSlideFooterDownAnimation = AnimationUtils.loadAnimation(mContext, R.anim.anticipate_slide_footer_down);
 
-        switch (mQuickReturnType){
-            case HEADER:
-                mHeader =  headerView;
-                break;
-            case FOOTER:
-                mFooter =  footerView;
-            case BOTH:
-                mHeader =  headerView;
-                mFooter =  footerView;
-            default:
-                break;
-        }
+        mHeader =  headerView;
+        mFooter =  footerView;
     }
     // endregion
 
