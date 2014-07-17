@@ -11,13 +11,15 @@
     <com.etiennelawlor.quickreturn.views.CustomFontTextView
         android:id="@+id/quick_return_header_tv"
         android:layout_width="wrap_content"
-        android:padding="10dp"
+        android:paddingRight="10dp"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_margin="10dp"
         android:layout_centerHorizontal="true"
         android:background="@drawable/shape_rounded_rectangle_transparent_steel_blue"
         android:textSize="14sp"
         android:text="@string/new_stories"
+        android:drawablePadding="-10dp"
+        android:drawableLeft="@drawable/ic_action_upload"
         android:textColor="@android:color/white"
         android:gravity="center"
         app:textFont="Roboto_Bold"/>
@@ -25,7 +27,7 @@
     <LinearLayout
         android:id="@+id/quick_return_footer_ll"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="50dp"
         android:background="@color/transparent_indigo_ninty"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"

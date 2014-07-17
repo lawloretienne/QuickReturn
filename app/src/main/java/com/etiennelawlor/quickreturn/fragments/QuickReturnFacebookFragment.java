@@ -71,9 +71,15 @@ public class QuickReturnFacebookFragment extends ListFragment {
 
         mListView.setAdapter(adapter);
 
-        int headerHeight = getResources().getDimensionPixelSize(R.dimen.header_height3);
-        int headerTranslation = -(headerHeight*2) + QuickReturnUtils.getActionBarHeight(getActivity());
-        int footerTranslation = -(headerHeight*2) + QuickReturnUtils.getActionBarHeight(getActivity());
+        int headerHeight = getResources().getDimensionPixelSize(R.dimen.facebook_header_height);
+        int footerHeight = getResources().getDimensionPixelSize(R.dimen.facebook_footer_height);
+
+//        int headerTranslation = -(headerHeight*2) + QuickReturnUtils.getActionBarHeight(getActivity());
+        int headerTranslation = -headerHeight;
+
+//        int footerTranslation = -(headerHeight*2) + QuickReturnUtils.getActionBarHeight(getActivity());
+        int footerTranslation = -footerHeight;
+
 
         QuickReturnListViewOnScrollListener scrollListener = new QuickReturnListViewOnScrollListener(QuickReturnType.BOTH,
                 mQuickReturnHeaderTextView, headerTranslation, mQuickReturnFooterLinearLayout, -footerTranslation);
