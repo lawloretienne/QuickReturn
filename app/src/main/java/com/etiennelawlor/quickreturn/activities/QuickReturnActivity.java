@@ -1,5 +1,6 @@
 package com.etiennelawlor.quickreturn.activities;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -45,6 +46,9 @@ public class QuickReturnActivity extends QuickReturnBaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quickreturn);
         ButterKnife.inject(this);
+
+        ActionBar actionBar = getActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(false);
     }
     // endregion
 

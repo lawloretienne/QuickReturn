@@ -20,23 +20,48 @@
         </activity>
         <activity
             android:name=".activities.QuickReturnTwitterActivity"
-            android:label="@string/twitter" >
+            android:label="@string/twitter"
+            android:parentActivityName=".activities.QuickReturnActivity">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.QuickReturnActivity" />
         </activity>
         <activity
             android:name=".activities.QuickReturnFacebookActivity"
-            android:label="@string/facebook" >
+            android:label="@string/facebook"
+            android:parentActivityName=".activities.QuickReturnActivity">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.QuickReturnActivity" />
         </activity>
         <activity
             android:name=".activities.QuickReturnGooglePlusActivity"
-            android:label="@string/google_plus" >
+            android:label="@string/google_plus"
+            android:parentActivityName=".activities.QuickReturnActivity">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.QuickReturnActivity" />
         </activity>
         <activity
             android:name=".activities.QuickReturnListViewActivity"
-            android:label="@string/list_view" >
+            android:label="@string/list_view"
+            android:parentActivityName=".activities.QuickReturnActivity">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.QuickReturnActivity" />
         </activity>
         <activity
             android:name=".activities.QuickReturnScrollViewActivity"
-            android:label="@string/scroll_view" >
+            android:label="@string/scroll_view"
+            android:parentActivityName=".activities.QuickReturnActivity">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.QuickReturnActivity" />
         </activity>
     </application>
 

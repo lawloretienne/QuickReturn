@@ -1,5 +1,6 @@
 package com.etiennelawlor.quickreturn.activities;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.ComponentName;
@@ -86,6 +87,9 @@ public class QuickReturnBaseActivity extends Activity {
 
         bindService(new Intent("com.android.vending.billing.InAppBillingService.BIND"),
                 mServiceConn, Context.BIND_AUTO_CREATE);
+
+        ActionBar actionBar = getActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
