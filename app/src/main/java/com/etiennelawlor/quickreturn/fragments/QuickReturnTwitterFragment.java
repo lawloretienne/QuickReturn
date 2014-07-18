@@ -11,9 +11,11 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.etiennelawlor.quickreturn.R;
+import com.etiennelawlor.quickreturn.adapters.TwitterAdapter;
 import com.etiennelawlor.quickreturn.enums.QuickReturnType;
 import com.etiennelawlor.quickreturn.interfaces.QuickReturnInterface;
 import com.etiennelawlor.quickreturn.listeners.QuickReturnListViewOnScrollListener;
+import com.etiennelawlor.quickreturn.models.Tweet;
 import com.etiennelawlor.quickreturn.utils.QuickReturnUtils;
 
 import butterknife.ButterKnife;
@@ -95,10 +97,27 @@ public class QuickReturnTwitterFragment extends ListFragment {
         mPlaceHolderView = getActivity().getLayoutInflater().inflate(R.layout.view_header_placeholder, mListView, false);
         mListView.addHeaderView(mPlaceHolderView);
 
-        mValues = getResources().getStringArray(R.array.countries);
+//        mValues = getResources().getStringArray(R.array.countries);
+//
+//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
+//                R.layout.list_item, R.id.item_tv, mValues);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-                R.layout.list_item, R.id.item_tv, mValues);
+        Tweet[] tweets = {
+            new Tweet("abeefdsafsafa"),
+            new Tweet("rwbregfdbs"),
+            new Tweet("vddafe"),
+            new Tweet("vrgresegr"),
+            new Tweet("vrhthtr"),
+            new Tweet("bthsths"),
+            new Tweet("muyhtss"),
+            new Tweet("zeeag"),
+            new Tweet("nytsgsgr"),
+            new Tweet("bytjd"),
+            new Tweet("arershsherzhbvrgr")
+
+        };
+
+        TwitterAdapter adapter = new TwitterAdapter(getActivity(), tweets);
 
         mListView.setAdapter(adapter);
     }
