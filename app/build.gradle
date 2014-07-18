@@ -45,5 +45,5 @@ dependencies {
     compile 'de.keyboardsurfer.android.widget:crouton:1.8.4'
     compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
     compile 'com.jakewharton:butterknife:5.1.1'
-    compile 'com.squareup.picasso:picasso:2.2.0'
+    compile 'com.squareup.picasso:picasso:2.3.+'
 }
