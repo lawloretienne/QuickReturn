@@ -65,45 +65,68 @@
         android:layout_alignLeft="@id/message_tv"
         android:src="@drawable/ic_action_reply"/>
 
-    <com.etiennelawlor.quickreturn.views.CustomFontTextView
-        android:id="@+id/retweet_tv"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="28dp"
-        android:scaleType="centerCrop"
-        android:layout_marginLeft="40dp"
-        android:text="43"
-        android:drawablePadding="-3dp"
-        android:gravity="center"
-        android:textColor="@android:color/darker_gray"
         android:layout_toRightOf="@id/reply_iv"
         android:layout_below="@id/message_tv"
-        android:drawableLeft="@drawable/ic_retweet"
-        app:textFont="Roboto_Light"
-        android:textSize="13sp"/>
+        android:orientation="horizontal">
 
-    <com.etiennelawlor.quickreturn.views.CustomFontTextView
-        android:id="@+id/star_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="28dp"
-        android:scaleType="centerCrop"
-        android:layout_marginLeft="40dp"
-        android:layout_toRightOf="@id/retweet_tv"
-        android:layout_below="@id/message_tv"
-        android:drawablePadding="-4dp"
-        android:text="15"
-        android:textColor="@android:color/darker_gray"
-        android:gravity="center"
-        android:drawableLeft="@drawable/ic_action_important"
-        app:textFont="Roboto_Light"
-        android:textSize="13sp"/>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
-    <ImageView
-        android:id="@+id/add_contact_iv"
-        android:layout_width="wrap_content"
-        android:layout_height="28dp"
-        android:scaleType="centerCrop"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/message_tv"
-        android:src="@drawable/ic_action_add_person"/>
+            <com.etiennelawlor.quickreturn.views.CustomFontTextView
+                android:id="@+id/retweet_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:text="43"
+                android:gravity="center"
+                android:drawablePadding="-3dp"
+                android:layout_alignParentRight="true"
+                android:textColor="@android:color/darker_gray"
+                android:drawableLeft="@drawable/ic_retweet"
+                app:textFont="Roboto_Light"
+                android:textSize="13sp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <com.etiennelawlor.quickreturn.views.CustomFontTextView
+                android:id="@+id/star_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:layout_alignParentRight="true"
+                android:drawablePadding="-4dp"
+                android:text="15"
+                android:textColor="@android:color/darker_gray"
+                android:gravity="center"
+                android:drawableLeft="@drawable/ic_action_important"
+                app:textFont="Roboto_Light"
+                android:textSize="13sp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/add_contact_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_action_add_person"/>
+        </RelativeLayout>
+
+    </LinearLayout>
 
 </RelativeLayout>
