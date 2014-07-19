@@ -18,6 +18,8 @@ import com.etiennelawlor.quickreturn.enums.QuickReturnType;
 import com.etiennelawlor.quickreturn.listeners.QuickReturnListViewOnScrollListener;
 import com.etiennelawlor.quickreturn.listeners.SpeedyQuickReturnListViewOnScrollListener;
 import com.etiennelawlor.quickreturn.utils.QuickReturnUtils;
+import com.nhaarman.listviewanimations.swinginadapters.AnimationAdapter;
+import com.nhaarman.listviewanimations.swinginadapters.prepared.SwingBottomInAnimationAdapter;
 
 import java.util.ArrayList;
 
@@ -73,9 +75,16 @@ public class QuickReturnGooglePlusFragment extends ListFragment {
         mValues = getResources().getStringArray(R.array.countries);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-                R.layout.list_item, R.id.item_tv, mValues);
+                R.layout.google_plus_list_item, R.id.item_tv, mValues);
 
-        mListView.setAdapter(adapter);
+        AnimationAdapter animAdapter = new SwingBottomInAnimationAdapter(adapter);
+        animAdapter.setAbsListView(getListView());
+
+        mListView.setAdapter(animAdapter);
+//        mListView.setAdapter(adapter);
+
+        mListView.addFooterView(new View(getActivity()), null, false);
+        mListView.addHeaderView(new View(getActivity()), null, false);
 
 //        int headerHeight = getResources().getDimensionPixelSize(R.dimen.header_height3);
 //        int headerTranslation = -(headerHeight*2) + QuickReturnUtils.getActionBarHeight(getActivity());

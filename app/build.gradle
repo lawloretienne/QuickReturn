@@ -46,4 +46,5 @@ dependencies {
     compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
     compile 'com.jakewharton:butterknife:5.1.1'
     compile 'com.squareup.picasso:picasso:2.3.+'
+    compile 'com.nhaarman.listviewanimations:library:2.6.0'
 }

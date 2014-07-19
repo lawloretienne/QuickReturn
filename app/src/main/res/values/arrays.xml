@@ -81,10 +81,9 @@
 
     <array name="display_names">
         <item>Megan Fox</item>
-        <item>Jennifer Lawrence</item>
-        <item>Scarlett Johansson</item>
         <item>Olivia Wilde</item>
         <item>Jessica Alba</item>
+        <item>Jennifer Lawrence</item>
         <item>Leighton Meester</item>
         <item>Hayden Panettiere</item>
         <item>Ashley Tisdale</item>
@@ -100,6 +99,7 @@
         <item>Gigi Hadid</item>
         <item>Michelle Keegan</item>
         <item>Katherine Webb</item>
+        <item>Scarlett Johansson</item>
         <item>Katharine McPhee</item>
         <item>Lucy Pinder</item>
         <item>Miranda Kerr</item>
@@ -107,10 +107,9 @@
 
     <array name="usernames">
         <item>\@meganfox</item>
-        <item>\@Jennifer_Lawrence</item>
-        <item>\@ScarlettJ</item>
         <item>\@oliviawilde</item>
         <item>\@jessicaalba</item>
+        <item>\@Jennifer_Lawrence</item>
         <item>\@itsmeleighton</item>
         <item>\@haydenpanettier</item>
         <item>\@ashleytisdale</item>
@@ -126,6 +125,7 @@
         <item>\@GiGiHadid</item>
         <item>\@michkeegan</item>
         <item>\@_KatherineWebb</item>
+        <item>\@ScarlettJ</item>
         <item>\@katharinemcphee</item>
         <item>\@LucyPinder</item>
         <item>\@MirandaKerr</item>
@@ -133,9 +133,9 @@
 
     <array name="avatar_urls">
         <item>http://thunderbird37.com/wp-content/uploads/2014/03/megan-fox-pictures.jpg</item>
-        <item>http://img4.wikia.nocookie.net/__cb20120224061953/xmenmovies/images/c/cf/Jennifer-Lawrence.jpg</item>
         <item>http://si.wsj.net/public/resources/images/BN-BY925_mag041_OZ_20140318165119.jpg</item>
         <item>http://itsybitsysteps.com/wp-content/uploads/2013/10/olivia-wilde.jpg</item>
+        <item>http://img4.wikia.nocookie.net/__cb20120224061953/xmenmovies/images/c/cf/Jennifer-Lawrence.jpg</item>
         <item>http://thunderbird37.com/wp-content/uploads/2014/03/Jessica-Alba-Picture1.jpg</item>
         <item>http://www.theclosetfeminist.ca/wp-content/uploads/2014/03/1156647-leighton-meester.jpg</item>
         <item>http://www.moonworlds.com/wp-content/uploads/2013/10/hayden-panettiere-23-wide.jpg</item>
@@ -152,6 +152,7 @@
         <item>http://www.disneydreaming.com/wp-content/uploads/2014/05/Gigi-Hadid-Reality-TV-Star.jpg</item>
         <item>http://i1.cdnds.net/13/25/300x450/showbiz-michelle-keegan.jpg</item>
         <item>http://www.rantsports.com/clubhouse/files/2014/03/10-instagram.jpg</item>
+        <item>https://lh4.googleusercontent.com/-Hq6MBIusJgg/UNu206_RaQI/AAAAAAAAAFQ/ZxBpAc57BXc/s150-c/photo.jpg</item>
         <item>http://img2.timeinc.net/people/i/2008/database/katherinemcphee/katmcphee300.jpg</item>
         <item>http://thefinereport.com/wp-content/uploads/2012/05/459090-lucy_pinder_nuts_magazine_18_03_2011_in_nuts_office_with_nutsmanreg_3_3063.jpg</item>
         <item>http://us.cdn281.fansshare.com/photos/sallyphillips/miranda-kerr-poses-at-the-miranda-1488547521.jpg</item>
@@ -159,10 +160,9 @@
 
     <array name="messages">
         <item>I\'m incredibly late to the party but I\'m here nonetheless, so what now?</item>
-        <item>Everybody was talking yesterday about Twitter and Instagram and Tumblr. It was really confusing me and overwhelming me. I literally started losing my breath. People were showing me these hilarious things and I was like, \'I want to have this.\' What\'s Pinterest? I don’t have it. I know by the time I get it, it\'ll be something else. I bought a CD case less than a year ago.</item>
-        <item>I don’t have a Facebook or a Twitter account, and I don’t know how I feel about this idea of, ‘Now, I’m eating dinner, and I want everyone to know that I\'m having dinner at this time,\' or \'I just mailed a letter and dropped off my kids.\' That, to me, is a very strange phenomenon. I can’t think of anything I\'d rather do less than have to continuously share details of my everyday life.</item>
         <item>Hello world!</item>
         <item>Twitterworld! I\'m officially here! On the George Lopez show rt now. Took a DNA test...watch show for results. Hint: Spain</item>
+        <item>Everybody was talking yesterday about Twitter and Instagram and Tumblr. It was really confusing me and overwhelming me. I literally started losing my breath. People were showing me these hilarious things and I was like, \'I want to have this.\' What\'s Pinterest? I don’t have it. I know by the time I get it, it\'ll be something else. I bought a CD case less than a year ago.</item>
         <item>New Album Coming Soon http://perezhilton.com/2009-04-23-leighton-meester-nabs-recording-contract</item>
         <item>What\'s up everyone! I\'ve finally joined the 21st century and created a twitter to keep you guys updated on what\'s goin on with me!</item>
         <item>Video of the Week - Z100 Interview: Each Tuesday we\'ll be featuring a new video. It will be anything from interv.. http://tinyurl.com/6mzrmx</item>
@@ -178,6 +178,7 @@
         <item>On the plane to Canada with @bellahadid. Alaska Airlines, free internet, amazing.</item>
         <item>hi everyone!im finally on twitter! will soon get the hang of it no doubt!</item>
         <item>Why have peanut butter when you have have Cookie butter??  #traderjoes http://instagr.am/p/QfJhy6oYIl/</item>
+        <item>I don’t have a Facebook or a Twitter account, and I don’t know how I feel about this idea of, ‘Now, I’m eating dinner, and I want everyone to know that I\'m having dinner at this time,\' or \'I just mailed a letter and dropped off my kids.\' That, to me, is a very strange phenomenon. I can’t think of anything I\'d rather do less than have to continuously share details of my everyday life.</item>
         <item>Hey, Everyone! This is my very first "tweet"...exciting! I want to tell you all to check out my "splash" contest at www.katharinemcphee.com!</item>
         <item>It\'s been so frustrating not being able to go topless when I\'m abroad, just in case someone\'s there with a camera.</item>
         <item>Just launched KORA Organics "Love Guaranteed" Pack and look forward to some feedback from the guys www.koraskincare.com</item>

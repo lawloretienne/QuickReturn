@@ -1,6 +1,8 @@
 package com.etiennelawlor.quickreturn.adapters;
 
 import android.content.Context;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,7 +67,7 @@ public class TwitterAdapter extends ArrayAdapter<Tweet> {
                 .resize(QuickReturnUtils.dp2px(getContext(), 50),
                         QuickReturnUtils.dp2px(getContext(), 50))
 //                    .placeholder(R.drawable.ic_facebook)
-                .error(R.drawable.ic_action_edit)
+                .error(android.R.drawable.stat_notify_error)
                 .into(holder.mUserImageView);
 
         return convertView;

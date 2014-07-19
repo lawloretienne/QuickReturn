@@ -6,7 +6,12 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@android:id/list"/>
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="@dimen/activity_horizontal_margin"
+        android:id="@android:id/list"
+        android:scrollbars="none"/>
 
     <com.etiennelawlor.quickreturn.views.CustomFontTextView
         android:id="@+id/quick_return_footer_tv"
