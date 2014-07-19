@@ -2,12 +2,16 @@ package com.etiennelawlor.quickreturn.utils;
 
 import android.content.Context;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AbsListView;
 import android.widget.ListView;
+
+import java.util.Dictionary;
+import java.util.Hashtable;
 
 /**
  * Created by etiennelawlor on 6/28/14.
@@ -16,6 +20,8 @@ public class QuickReturnUtils {
 
     private static TypedValue sTypedValue = new TypedValue();
     private static int sActionBarHeight;
+    private static Dictionary<Integer, Integer> sListViewItemHeights = new Hashtable<Integer, Integer>();
+
 
     public static int dp2px(Context context, int dp) {
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
@@ -57,9 +63,14 @@ public class QuickReturnUtils {
         }
 
         int firstVisiblePosition = lv.getFirstVisiblePosition();
-        int top = c.getTop();
+        int scrollY = -(c.getTop());
+        sListViewItemHeights.put(lv.getFirstVisiblePosition(), c.getHeight());
 
-        int scrollY = -top + firstVisiblePosition * c.getHeight();
+        for (int i = 0; i < firstVisiblePosition; ++i) {
+            if (sListViewItemHeights.get(i) != null) // (this is a sanity check)
+                scrollY += sListViewItemHeights.get(i); //add all heights of the views that are gone
+        }
+
         return scrollY;
     }
 
