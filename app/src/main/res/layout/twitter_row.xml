@@ -33,10 +33,12 @@
         android:textColor="@android:color/darker_gray"
         android:textSize="13sp"
         app:textFont="Roboto_Light"
-        android:text="\@MeganFox"/>
+        android:singleLine="true"
+        android:text="\@MeganFox"
+        android:layout_toLeftOf="@+id/timestamp_tv"/>
 
     <com.etiennelawlor.quickreturn.views.CustomFontTextView
-        android:id="@+id/timestamp_tv"
+        android:id="@id/timestamp_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
@@ -54,6 +56,7 @@
         android:layout_below="@id/display_name_tv"
         android:textSize="15sp"
         app:textFont="Roboto_Light"
+        android:autoLink="all"
         android:text="I'm basically vegan, but I eat chicken and cheese"/>
 
     <ImageView

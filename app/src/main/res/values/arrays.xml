@@ -1,6 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <array name="timestamps">
+        <item>7m</item>
+        <item>8m</item>
+        <item>22m</item>
+        <item>28m</item>
+        <item>31m</item>
+        <item>35m</item>
+        <item>1h</item>
+        <item>1h</item>
+        <item>2h</item>
+        <item>2h</item>
+        <item>2h</item>
+        <item>4h</item>
+        <item>6h</item>
+        <item>7h</item>
+        <item>7h</item>
+        <item>9h</item>
+        <item>2d</item>
+        <item>3d</item>
+        <item>3d</item>
+        <item>3d</item>
+        <item>4d</item>
+        <item>4d</item>
+        <item>5d</item>
+    </array>
+
+    <array name="retweets">
+        <item>2</item>
+        <item>21</item>
+        <item>5</item>
+        <item>14</item>
+        <item>102</item>
+        <item>53</item>
+        <item>62</item>
+        <item>14</item>
+        <item>41</item>
+        <item>38</item>
+        <item>17</item>
+        <item>51</item>
+        <item>96</item>
+        <item>6</item>
+        <item>29</item>
+        <item>55</item>
+        <item>26</item>
+        <item>71</item>
+        <item>30</item>
+        <item>4</item>
+        <item>84</item>
+        <item>28</item>
+        <item>5</item>
+    </array>
+
+    <array name="stars">
+        <item>102</item>
+        <item>2</item>
+        <item>29</item>
+        <item>38</item>
+        <item>55</item>
+        <item>62</item>
+        <item>26</item>
+        <item>21</item>
+        <item>4</item>
+        <item>28</item>
+        <item>5</item>
+        <item>14</item>
+        <item>53</item>
+        <item>14</item>
+        <item>41</item>
+        <item>17</item>
+        <item>51</item>
+        <item>96</item>
+        <item>6</item>
+        <item>71</item>
+        <item>30</item>
+        <item>84</item>
+        <item>33</item>
+    </array>
+
+    <array name="display_names">
+        <item>Megan Fox</item>
+        <item>Jennifer Lawrence</item>
+        <item>Scarlett Johansson</item>
+        <item>Olivia Wilde</item>
+        <item>Jessica Alba</item>
+        <item>Leighton Meester</item>
+        <item>Hayden Panettiere</item>
+        <item>Ashley Tisdale</item>
+        <item>Aida Yespica</item>
+        <item>Adriana Lima</item>
+        <item>Alessandra Ambrosio</item>
+        <item>Candice Swanepoel</item>
+        <item>Jessica Gomes</item>
+        <item>Genevieve Morton</item>
+        <item>Petra Nemcova</item>
+        <item>Lily Aldridge</item>
+        <item>Kate Upton</item>
+        <item>Gigi Hadid</item>
+        <item>Michelle Keegan</item>
+        <item>Katherine Webb</item>
+        <item>Katharine McPhee</item>
+        <item>Lucy Pinder</item>
+        <item>Miranda Kerr</item>
+    </array>
+
+    <array name="usernames">
+        <item>\@meganfox</item>
+        <item>\@Jennifer_Lawrence</item>
+        <item>\@ScarlettJ</item>
+        <item>\@oliviawilde</item>
+        <item>\@jessicaalba</item>
+        <item>\@itsmeleighton</item>
+        <item>\@haydenpanettier</item>
+        <item>\@ashleytisdale</item>
+        <item>\@AidaYespica</item>
+        <item>\@AdrianaLima</item>
+        <item>\@AngelAlessandra</item>
+        <item>\@angelcandice</item>
+        <item>\@iamjessicagomes</item>
+        <item>\@genevievemorton</item>
+        <item>\@pnemcova</item>
+        <item>\@LilyAldridge</item>
+        <item>\@KateUpton</item>
+        <item>\@GiGiHadid</item>
+        <item>\@michkeegan</item>
+        <item>\@_KatherineWebb</item>
+        <item>\@katharinemcphee</item>
+        <item>\@LucyPinder</item>
+        <item>\@MirandaKerr</item>
+    </array>
+
+    <array name="avatar_urls">
+        <item>http://thunderbird37.com/wp-content/uploads/2014/03/megan-fox-pictures.jpg</item>
+        <item>http://img4.wikia.nocookie.net/__cb20120224061953/xmenmovies/images/c/cf/Jennifer-Lawrence.jpg</item>
+        <item>http://si.wsj.net/public/resources/images/BN-BY925_mag041_OZ_20140318165119.jpg</item>
+        <item>http://itsybitsysteps.com/wp-content/uploads/2013/10/olivia-wilde.jpg</item>
+        <item>http://thunderbird37.com/wp-content/uploads/2014/03/Jessica-Alba-Picture1.jpg</item>
+        <item>http://www.theclosetfeminist.ca/wp-content/uploads/2014/03/1156647-leighton-meester.jpg</item>
+        <item>http://www.moonworlds.com/wp-content/uploads/2013/10/hayden-panettiere-23-wide.jpg</item>
+        <item>http://wallerz.net/wp-content/uploads/2014/06/2931_ashley_tisdale.jpg</item>
+        <item>http://www.lanostratv.it/gossip/wp-content/gallery/aida-yespica-sposa-a-sorpresa-leonardo-gonzales/aida-yespica-primo-piano.jpg</item>
+        <item>http://www.picturesnew.com/media/images/adriana-lima-wallpaper.jpg</item>
+        <item>http://www.imgth.com/images/2012/06/12/alessandra-ambrosio_zn8prvm3kyu.jpg</item>
+        <item>http://www.thefashioncentral.com/wp-content/uploads/2014/05/Candice-Swanepoel1.jpg</item>
+        <item>http://www3.pictures.zimbio.com/bg/Jessica+Gomes+JEHStjT_sgtm.jpg</item>
+        <item>http://www.gotceleb.com/wp-content/uploads/celebrities/genevieve-morton/miraclesuit-swimwear-photoshoot-2013/Genevieve-Morton:-Miraclesuit-Swimwear-2013--13.jpg</item>
+        <item>http://www.theplace2.ru/archive/petra_nemcova/img/petra-nemcova-1920x1200-27155.jpg</item>
+        <item>http://i.perezhilton.com/wp-content/uploads/2014/03/lily-aldridge.gif</item>
+        <item>http://i.huffpost.com/gen/1245823/thumbs/o-KATE-UPTON-facebook.jpg</item>
+        <item>http://www.disneydreaming.com/wp-content/uploads/2014/05/Gigi-Hadid-Reality-TV-Star.jpg</item>
+        <item>http://i1.cdnds.net/13/25/300x450/showbiz-michelle-keegan.jpg</item>
+        <item>http://www.rantsports.com/clubhouse/files/2014/03/10-instagram.jpg</item>
+        <item>http://img2.timeinc.net/people/i/2008/database/katherinemcphee/katmcphee300.jpg</item>
+        <item>http://thefinereport.com/wp-content/uploads/2012/05/459090-lucy_pinder_nuts_magazine_18_03_2011_in_nuts_office_with_nutsmanreg_3_3063.jpg</item>
+        <item>http://us.cdn281.fansshare.com/photos/sallyphillips/miranda-kerr-poses-at-the-miranda-1488547521.jpg</item>
+    </array>
+
+    <array name="messages">
+        <item>I\'m incredibly late to the party but I\'m here nonetheless, so what now?</item>
+        <item>Everybody was talking yesterday about Twitter and Instagram and Tumblr. It was really confusing me and overwhelming me. I literally started losing my breath. People were showing me these hilarious things and I was like, \'I want to have this.\' What\'s Pinterest? I don’t have it. I know by the time I get it, it\'ll be something else. I bought a CD case less than a year ago.</item>
+        <item>I don’t have a Facebook or a Twitter account, and I don’t know how I feel about this idea of, ‘Now, I’m eating dinner, and I want everyone to know that I\'m having dinner at this time,\' or \'I just mailed a letter and dropped off my kids.\' That, to me, is a very strange phenomenon. I can’t think of anything I\'d rather do less than have to continuously share details of my everyday life.</item>
+        <item>Hello world!</item>
+        <item>Twitterworld! I\'m officially here! On the George Lopez show rt now. Took a DNA test...watch show for results. Hint: Spain</item>
+        <item>New Album Coming Soon http://perezhilton.com/2009-04-23-leighton-meester-nabs-recording-contract</item>
+        <item>What\'s up everyone! I\'ve finally joined the 21st century and created a twitter to keep you guys updated on what\'s goin on with me!</item>
+        <item>Video of the Week - Z100 Interview: Each Tuesday we\'ll be featuring a new video. It will be anything from interv.. http://tinyurl.com/6mzrmx</item>
+        <item>We spent the night in joy, we had fun, then we lost sight of each other.</item>
+        <item>Hi everyone~I may start tweeting soon, but in the mean time please follow my wonderful agency\'s twitter, @MarilynAgencyNY, for news! &lt;3 AL</item>
+        <item>Miami!!!!! so nice and warm!!!</item>
+        <item>ok, so finally got this thing set up, just getting the hang of it... stay tuned.</item>
+        <item>Im in new york this week!</item>
+        <item>http://bit.ly/KmYsk</item>
+        <item>Petra Nemcova now has her own official facebook page.... http://fb.me/Q522ayjX</item>
+        <item>\@bubbies84 Thank you!! Miss my @VictoriasSecret family ♥</item>
+        <item>I am trying to figure out how to make the background a picture of my boobs</item>
+        <item>On the plane to Canada with @bellahadid. Alaska Airlines, free internet, amazing.</item>
+        <item>hi everyone!im finally on twitter! will soon get the hang of it no doubt!</item>
+        <item>Why have peanut butter when you have have Cookie butter??  #traderjoes http://instagr.am/p/QfJhy6oYIl/</item>
+        <item>Hey, Everyone! This is my very first "tweet"...exciting! I want to tell you all to check out my "splash" contest at www.katharinemcphee.com!</item>
+        <item>It\'s been so frustrating not being able to go topless when I\'m abroad, just in case someone\'s there with a camera.</item>
+        <item>Just launched KORA Organics "Love Guaranteed" Pack and look forward to some feedback from the guys www.koraskincare.com</item>
+    </array>
+
     <array name="countries">
         <item>United States of America</item>
         <item>Afghanistan</item>

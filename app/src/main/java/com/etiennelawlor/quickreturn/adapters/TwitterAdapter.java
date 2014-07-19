@@ -1,9 +1,6 @@
 package com.etiennelawlor.quickreturn.adapters;
 
 import android.content.Context;
-import android.net.Uri;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,11 +11,9 @@ import android.widget.TextView;
 import com.etiennelawlor.quickreturn.R;
 import com.etiennelawlor.quickreturn.models.Tweet;
 import com.etiennelawlor.quickreturn.utils.QuickReturnUtils;
-import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Request;
 
-import java.io.IOException;
+import java.util.ArrayList;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -30,12 +25,12 @@ public class TwitterAdapter extends ArrayAdapter<Tweet> {
 
     // region Member Variables
     private Context mContext;
-    private Tweet[] mTweets;
+    private ArrayList<Tweet> mTweets;
     private final LayoutInflater mInflater;
     // endregion
 
     // region Constructors
-    public TwitterAdapter(Context context, Tweet[] tweets){
+    public TwitterAdapter(Context context, ArrayList<Tweet> tweets){
         super(context, R.layout.twitter_row, tweets);
         mContext = context;
         mTweets = tweets;
@@ -56,29 +51,22 @@ public class TwitterAdapter extends ArrayAdapter<Tweet> {
         }
 
         Tweet tweet = getItem(position);
-//        holder.word.setText("Word: " + tweet.getWord());
-//        holder.length.setText("Length: " + tweet.getWord().length());
-//        holder.position.setText("Position: " + position);
 
-        String profileImageUrl = "http://thunderbird37.com/wp-content/uploads/2014/03/megan-fox-pictures.jpg";
-//        String profileImageUrl = "http://cdn02.cdn.justjared.com/wp-content/uploads/2008/09/fox-gq/megan-fox-gq-october-2008-10.jpg";
-//        String profileImageUrl = "http://www.officialpsds.com/images/thumbs/Wave-psd28864.png";
+        holder.mDisplayNameTextView.setText(tweet.getDisplayName());
+        holder.mUsernameTextView.setText(tweet.getUsername());
+        holder.mTimestampTextView.setText(tweet.getTimestamp());
+        holder.mRetweetTextView.setText(String.valueOf(tweet.getRetweetCount()));
+        holder.mStarTextView.setText(String.valueOf(tweet.getStarCount()));
+        holder.mMessageTextView.setText(tweet.getMessage());
 
-
-        if (!TextUtils.isEmpty(profileImageUrl)) {
-            Picasso.with(holder.mUserImageView.getContext())
-                    .load(profileImageUrl)
-                    .centerCrop()
-                    .resize(QuickReturnUtils.dp2px(getContext(), 50),
-                            QuickReturnUtils.dp2px(getContext(), 50))
+        Picasso.with(holder.mUserImageView.getContext())
+                .load(tweet.getAvatarUrl())
+                .centerCrop()
+                .resize(QuickReturnUtils.dp2px(getContext(), 50),
+                        QuickReturnUtils.dp2px(getContext(), 50))
 //                    .placeholder(R.drawable.ic_facebook)
-                    .error(R.drawable.ic_action_edit)
-                    .into(holder.mUserImageView);
-
-
-        } else {
-//            holder.mUserImageView.setImageResource(R.drawable.ic_facebook);
-        }
+                .error(R.drawable.ic_action_edit)
+                .into(holder.mUserImageView);
 
         return convertView;
     }
@@ -89,6 +77,8 @@ public class TwitterAdapter extends ArrayAdapter<Tweet> {
         @InjectView(R.id.username_tv) TextView mUsernameTextView;
         @InjectView(R.id.timestamp_tv) TextView mTimestampTextView;
         @InjectView(R.id.message_tv) TextView mMessageTextView;
+        @InjectView(R.id.retweet_tv) TextView mRetweetTextView;
+        @InjectView(R.id.star_tv) TextView mStarTextView;
 
         ViewHolder(View view) {
             ButterKnife.inject(this, view);

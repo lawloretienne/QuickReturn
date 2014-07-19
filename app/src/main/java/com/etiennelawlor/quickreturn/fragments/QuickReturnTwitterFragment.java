@@ -18,6 +18,8 @@ import com.etiennelawlor.quickreturn.listeners.QuickReturnListViewOnScrollListen
 import com.etiennelawlor.quickreturn.models.Tweet;
 import com.etiennelawlor.quickreturn.utils.QuickReturnUtils;
 
+import java.util.ArrayList;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
@@ -27,9 +29,15 @@ import butterknife.InjectView;
 public class QuickReturnTwitterFragment extends ListFragment {
 
     // region Member Variables
-    private String[] mValues;
     private QuickReturnInterface mCoordinator;
     private View mPlaceHolderView;
+    private String[] mAvatarUrls;
+    private String[] mDisplayNames;
+    private String[] mUsernames;
+    private String[] mTimestamps;
+    private String[] mMessages;
+    private int[] mStars;
+    private int[] mRetweets;
 
     @InjectView(android.R.id.list) ListView mListView;
     @InjectView(R.id.quick_return_footer_ll) LinearLayout mQuickReturnFooterLinearLayout;
@@ -70,6 +78,14 @@ public class QuickReturnTwitterFragment extends ListFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mAvatarUrls = getActivity().getResources().getStringArray(R.array.avatar_urls);
+        mDisplayNames = getActivity().getResources().getStringArray(R.array.display_names);
+        mUsernames = getActivity().getResources().getStringArray(R.array.usernames);
+        mStars = getActivity().getResources().getIntArray(R.array.stars);
+        mRetweets = getActivity().getResources().getIntArray(R.array.retweets);
+        mTimestamps = getActivity().getResources().getStringArray(R.array.timestamps);
+        mMessages = getActivity().getResources().getStringArray(R.array.messages);
     }
 
     @Override
@@ -97,25 +113,18 @@ public class QuickReturnTwitterFragment extends ListFragment {
         mPlaceHolderView = getActivity().getLayoutInflater().inflate(R.layout.view_header_placeholder, mListView, false);
         mListView.addHeaderView(mPlaceHolderView);
 
-//        mValues = getResources().getStringArray(R.array.countries);
-//
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-//                R.layout.list_item, R.id.item_tv, mValues);
-
-        Tweet[] tweets = {
-            new Tweet("abeefdsafsafa"),
-            new Tweet("rwbregfdbs"),
-            new Tweet("vddafe"),
-            new Tweet("vrgresegr"),
-            new Tweet("vrhthtr"),
-            new Tweet("bthsths"),
-            new Tweet("muyhtss"),
-            new Tweet("zeeag"),
-            new Tweet("nytsgsgr"),
-            new Tweet("bytjd"),
-            new Tweet("arershsherzhbvrgr")
-
-        };
+        ArrayList<Tweet> tweets = new ArrayList<Tweet>();
+        for(int i=0; i<23; i++){
+            Tweet tweet = new Tweet();
+            tweet.setAvatarUrl(mAvatarUrls[i]);
+            tweet.setDisplayName(mDisplayNames[i]);
+            tweet.setUsername(mUsernames[i]);
+            tweet.setTimestamp(mTimestamps[i]);
+            tweet.setStarCount(mStars[i]);
+            tweet.setRetweetCount(mRetweets[i]);
+            tweet.setMessage(mMessages[i]);
+            tweets.add(tweet);
+        }
 
         TwitterAdapter adapter = new TwitterAdapter(getActivity(), tweets);
 
