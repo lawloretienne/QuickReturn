@@ -74,8 +74,13 @@ public class GooglePlusAdapter extends ArrayAdapter<GooglePlusPost> {
         Picasso.with(holder.mPostImageView.getContext())
                 .load(post.getPostImageUrl())
 //                    .placeholder(R.drawable.ic_facebook)
+                .centerCrop()
+                .resize(QuickReturnUtils.dp2px(getContext(), 346),
+                        QuickReturnUtils.dp2px(getContext(), 320))
                 .error(android.R.drawable.stat_notify_error)
                 .into(holder.mPostImageView);
+
+
 
         Picasso.with(holder.mCommenterOneImageView.getContext())
                 .load(post.getCommenterOneAvatarUrl())
