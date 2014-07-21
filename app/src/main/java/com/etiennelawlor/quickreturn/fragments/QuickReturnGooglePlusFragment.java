@@ -7,21 +7,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.AnimationUtils;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.etiennelawlor.quickreturn.R;
+import com.etiennelawlor.quickreturn.adapters.GooglePlusAdapter;
 import com.etiennelawlor.quickreturn.enums.QuickReturnType;
-import com.etiennelawlor.quickreturn.listeners.QuickReturnListViewOnScrollListener;
 import com.etiennelawlor.quickreturn.listeners.SpeedyQuickReturnListViewOnScrollListener;
-import com.etiennelawlor.quickreturn.utils.QuickReturnUtils;
+import com.etiennelawlor.quickreturn.models.GooglePlusPost;
 import com.nhaarman.listviewanimations.swinginadapters.AnimationAdapter;
 import com.nhaarman.listviewanimations.swinginadapters.prepared.SwingBottomInAnimationAdapter;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -33,6 +32,11 @@ public class QuickReturnGooglePlusFragment extends ListFragment {
 
     // region Member Variables
     private String[] mValues;
+    private String[] mAvatarUrls;
+    private String[] mDisplayNames;
+    private String[] mTimestamps;
+    private String[] mMessages;
+    private String[] mPostImageUrls;
 
     @InjectView(android.R.id.list) ListView mListView;
     @InjectView(R.id.quick_return_footer_iv) ImageView mQuickReturnFooterImageView;
@@ -58,6 +62,11 @@ public class QuickReturnGooglePlusFragment extends ListFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mAvatarUrls = getActivity().getResources().getStringArray(R.array.avatar_urls);
+        mDisplayNames = getActivity().getResources().getStringArray(R.array.display_names);
+        mTimestamps = getActivity().getResources().getStringArray(R.array.google_plus_timestamps);
+        mMessages = getActivity().getResources().getStringArray(R.array.google_plus_messages);
+        mPostImageUrls = getActivity().getResources().getStringArray(R.array.google_plus_post_image_urls);
     }
 
     @Override
@@ -72,10 +81,31 @@ public class QuickReturnGooglePlusFragment extends ListFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mValues = getResources().getStringArray(R.array.countries);
+//        mValues = getResources().getStringArray(R.array.countries);
+//
+//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
+//                R.layout.google_plus_list_item, R.id.item_tv, mValues);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-                R.layout.google_plus_list_item, R.id.item_tv, mValues);
+        ArrayList<GooglePlusPost> posts = new ArrayList<GooglePlusPost>();
+        for(int i=0; i<23; i++){
+            GooglePlusPost post = new GooglePlusPost();
+            post.setAvatarUrl(mAvatarUrls[i]);
+            post.setDisplayName(mDisplayNames[i]);
+//            tweet.setUsername(mUsernames[i]);
+            post.setTimestamp(mTimestamps[i]);
+            post.setPostImageUrl(mPostImageUrls[i]);
+            post.setCommenterOneAvatarUrl(mAvatarUrls[(new Random().nextInt(mAvatarUrls.length))]);
+            post.setCommenterTwoAvatarUrl(mAvatarUrls[(new Random().nextInt(mAvatarUrls.length))]);
+            post.setCommenterThreeAvatarUrl(mAvatarUrls[(new Random().nextInt(mAvatarUrls.length))]);
+
+//            tweet.setStarCount(mStars[i]);
+//            tweet.setRetweetCount(mRetweets[i]);
+            post.setMessage(mMessages[i]);
+            posts.add(post);
+        }
+
+
+        GooglePlusAdapter adapter = new GooglePlusAdapter(getActivity(), posts);
 
         AnimationAdapter animAdapter = new SwingBottomInAnimationAdapter(adapter);
         animAdapter.setAbsListView(getListView());

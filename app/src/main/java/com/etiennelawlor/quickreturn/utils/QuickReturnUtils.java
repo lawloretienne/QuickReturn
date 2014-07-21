@@ -66,9 +66,17 @@ public class QuickReturnUtils {
         int scrollY = -(c.getTop());
 //        int scrollY = 0;
 
+
+
         sListViewItemHeights.put(lv.getFirstVisiblePosition(), c.getHeight());
 
-        Log.d("QuickReturnUtils", "getScrollY() : -(c.getTop()) - "+ -(c.getTop()));
+//        if(scrollY>0)
+//            Log.d("QuickReturnUtils", "getScrollY() : -(c.getTop()) - "+ -(c.getTop()));
+//        else
+//            Log.i("QuickReturnUtils", "getScrollY() : -(c.getTop()) - "+ -(c.getTop()));
+
+        if(scrollY<0)
+            scrollY = 0;
 
         for (int i = 0; i < firstVisiblePosition; ++i) {
 //            Log.d("QuickReturnUtils", "getScrollY() : i - "+i);

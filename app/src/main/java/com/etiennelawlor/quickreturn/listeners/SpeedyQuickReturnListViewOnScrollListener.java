@@ -1,6 +1,7 @@
 package com.etiennelawlor.quickreturn.listeners;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -69,6 +70,10 @@ public class SpeedyQuickReturnListViewOnScrollListener implements AbsListView.On
     public void onScroll(AbsListView listview, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
         int scrollY = QuickReturnUtils.getScrollY(listview);
         int diff = mPrevScrollY - scrollY;
+
+        Log.d(getClass().getSimpleName(), "onScroll() : scrollY - " + scrollY);
+        Log.d(getClass().getSimpleName(), "onScroll() : diff - " + diff);
+
 
         if(diff>0){ // scrolling up
             switch (mQuickReturnType){

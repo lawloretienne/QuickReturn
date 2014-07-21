@@ -39,6 +39,15 @@
     <color name="dark_slate_blue">#3c5896</color>
     <color name="san_juan">#304678</color>
 
+    <color name="whitesmoke">#f5f5f5</color>
+    <color name="gray1">#eaeaea</color>
+    <color name="gray2">#737373</color>
+    <color name="gray3">#6b6b6b</color>
+
+
+
+
+
     <color name="fire_brick">#b93221</color>
     <color name="old_brick">#94281A</color>
 
