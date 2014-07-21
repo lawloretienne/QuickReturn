@@ -12,7 +12,7 @@
         android:layout_height="50dp"
         android:scaleType="centerCrop"
         android:layout_marginRight="10dp"
-        android:background="@color/bulgarian_blue"/>
+        android:background="@color/gray1"/>
 
     <com.etiennelawlor.quickreturn.views.CustomFontTextView
         android:id="@+id/display_name_tv"
