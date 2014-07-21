@@ -140,6 +140,7 @@
             android:layout_marginLeft="3dp"
             android:background="@drawable/shape_rounded_rectangle"
             android:text="159"
+            android:drawablePadding="-3dp"
             android:drawableLeft="@drawable/ic_action_chat"
             android:textStyle="bold"
             android:textSize="14sp"
