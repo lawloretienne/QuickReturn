@@ -96,21 +96,20 @@
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
+            android:layout_height="30dp"
+            android:padding="5dp"
             android:layout_marginLeft="15dp"
-            android:layout_marginRight="2dp"
+            android:layout_marginRight="3dp"
             android:gravity="center"
-            android:src="@drawable/ic_action_reply"
+            android:src="@drawable/ic_action_share"
             android:background="@drawable/shape_rounded_rectangle"/>
 
         <com.etiennelawlor.quickreturn.views.RoundedImageView
             android:id="@+id/commenter_one_iv"
             android:layout_width="34dp"
             android:layout_height="34dp"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="2dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
             android:background="@drawable/shape_rounded_rectangle"
             app:corner_radius="2dp"/>
 
@@ -118,8 +117,8 @@
             android:id="@+id/commenter_two_iv"
             android:layout_width="34dp"
             android:layout_height="34dp"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="2dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
             android:background="@drawable/shape_rounded_rectangle"
             app:corner_radius="2dp"/>
 
@@ -127,18 +126,18 @@
             android:id="@+id/commenter_three_iv"
             android:layout_width="34dp"
             android:layout_height="34dp"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="2dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
             android:background="@drawable/shape_rounded_rectangle"
             app:corner_radius="2dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:gravity="center"
-            android:layout_marginLeft="2dp"
+            android:layout_marginLeft="3dp"
             android:background="@drawable/shape_rounded_rectangle"
             android:text="159"
             android:drawableLeft="@drawable/ic_action_chat"

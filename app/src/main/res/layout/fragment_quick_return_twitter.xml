@@ -40,14 +40,14 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_gravity="center_vertical"
-                android:src="@android:drawable/ic_menu_gallery"/>
+                android:src="@drawable/ic_action_gallery"/>
 
             <ImageView
                 android:layout_height="30dp"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_gravity="center_vertical"
-                android:src="@android:drawable/ic_menu_camera"/>
+                android:src="@drawable/ic_action_camera"/>
         </LinearLayout>
 
     </LinearLayout>
