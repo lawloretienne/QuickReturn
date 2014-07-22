@@ -11,6 +11,10 @@ public class GooglePlusPost {
     private String mCommenterOneAvatarUrl;
     private String mCommenterTwoAvatarUrl;
     private String mCommenterThreeAvatarUrl;
+    private String mCommenterOneDisplayName;
+    private String mCommenterTwoDisplayName;
+    private String mCommenterThreeDisplayName;
+    private String mComment;
     private String mDisplayName;
     private String mMessage;
     private String mTimestamp;
@@ -35,6 +39,14 @@ public class GooglePlusPost {
     public String getCommenterTwoAvatarUrl() { return mCommenterTwoAvatarUrl; }
 
     public String getCommenterThreeAvatarUrl() { return mCommenterThreeAvatarUrl; }
+
+    public String getCommenterOneDisplayName() { return mCommenterOneDisplayName; }
+
+    public String getCommenterTwoDisplayName() { return mCommenterTwoDisplayName; }
+
+    public String getCommenterThreeDisplayName() { return mCommenterThreeDisplayName; }
+
+    public String getComment() { return mComment; }
 
     public String getDisplayName(){
         return mDisplayName;
@@ -77,6 +89,20 @@ public class GooglePlusPost {
     public void setCommenterThreeAvatarUrl(String avatarUrl){
         mCommenterThreeAvatarUrl = avatarUrl;
     }
+
+    public void setCommenterOneDisplayName(String displayName){
+        mCommenterOneDisplayName = displayName;
+    }
+
+    public void setCommenterTwoDisplayName(String displayName){
+        mCommenterTwoDisplayName = displayName;
+    }
+
+    public void setCommenterThreeDisplayName(String displayName){
+        mCommenterThreeDisplayName = displayName;
+    }
+
+    public void setComment(String comment) { mComment = comment; }
 
     public void setDisplayName(String displayName){
         mDisplayName = displayName;

@@ -37,6 +37,7 @@ public class QuickReturnGooglePlusFragment extends ListFragment {
     private String[] mTimestamps;
     private String[] mMessages;
     private String[] mPostImageUrls;
+    private String[] mComments;
 
     @InjectView(android.R.id.list) ListView mListView;
     @InjectView(R.id.quick_return_footer_iv) ImageView mQuickReturnFooterImageView;
@@ -67,6 +68,7 @@ public class QuickReturnGooglePlusFragment extends ListFragment {
         mTimestamps = getActivity().getResources().getStringArray(R.array.google_plus_timestamps);
         mMessages = getActivity().getResources().getStringArray(R.array.google_plus_messages);
         mPostImageUrls = getActivity().getResources().getStringArray(R.array.google_plus_post_image_urls);
+        mComments = getActivity().getResources().getStringArray(R.array.google_plus_comments);
     }
 
     @Override
@@ -94,9 +96,22 @@ public class QuickReturnGooglePlusFragment extends ListFragment {
 //            tweet.setUsername(mUsernames[i]);
             post.setTimestamp(mTimestamps[i]);
             post.setPostImageUrl(mPostImageUrls[i]);
-            post.setCommenterOneAvatarUrl(mAvatarUrls[(new Random().nextInt(mAvatarUrls.length))]);
-            post.setCommenterTwoAvatarUrl(mAvatarUrls[(new Random().nextInt(mAvatarUrls.length))]);
-            post.setCommenterThreeAvatarUrl(mAvatarUrls[(new Random().nextInt(mAvatarUrls.length))]);
+            post.setComment(mComments[i]);
+
+            int randOne = new Random().nextInt(mAvatarUrls.length);
+            post.setCommenterOneDisplayName(mDisplayNames[randOne]);
+            post.setCommenterOneAvatarUrl(mAvatarUrls[randOne]);
+
+
+            int randTwo = new Random().nextInt(mAvatarUrls.length);
+            post.setCommenterTwoDisplayName(mDisplayNames[randTwo]);
+            post.setCommenterTwoAvatarUrl(mAvatarUrls[randTwo]);
+
+            int randThree = new Random().nextInt(mAvatarUrls.length);
+            post.setCommenterThreeDisplayName(mDisplayNames[randThree]);
+            post.setCommenterThreeAvatarUrl(mAvatarUrls[randThree]);
+
+
 
 //            tweet.setStarCount(mStars[i]);
 //            tweet.setRetweetCount(mRetweets[i]);

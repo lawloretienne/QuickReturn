@@ -4,10 +4,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:background="@drawable/card_bg">
+    android:background="@drawable/card_bg"
+    android:orientation="vertical">
 
-    <RelativeLayout android:id="@+id/header_rl"
+    <RelativeLayout
+        android:id="@+id/header_rl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
@@ -17,34 +18,34 @@
             android:id="@+id/user_iv"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:scaleType="centerCrop"
-            android:layout_marginRight="10dp"
             android:layout_centerVertical="true"
-            app:corner_radius="25dp"/>
+            android:layout_marginRight="10dp"
+            android:scaleType="centerCrop"
+            app:corner_radius="25dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/user_iv">
+            android:layout_toRightOf="@id/user_iv"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/display_name_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Megan Fox"
                 android:textSize="15sp"
-                android:textStyle="bold"
-                android:text="Megan Fox"/>
+                android:textStyle="bold" />
 
 
             <TextView
                 android:id="@+id/timestamp_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
+                android:text="Public - 5 days ago"
                 android:textColor="@color/gray3"
-                android:text="Public - 5 days ago"/>
+                android:textSize="12sp" />
         </LinearLayout>
 
 
@@ -55,14 +56,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:textSize="15sp"
-        android:text="It\'s been so frustrating not being able to go topless when I\'m abroad, just in case someone\'s there with a camera."/>
+        android:text="It\'s been so frustrating not being able to go topless when I\'m abroad, just in case someone\'s there with a camera."
+        android:textSize="15sp" />
 
     <!--<View-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="1dp"-->
-        <!--android:layout_marginTop="20dp"-->
-        <!--android:background="@android:color/darker_gray">-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="1dp"-->
+    <!--android:layout_marginTop="20dp"-->
+    <!--android:background="@android:color/darker_gray">-->
 
     <!--</View>-->
 
@@ -72,104 +73,126 @@
         android:layout_height="320dp"
         android:layout_marginLeft="2dp"
         android:layout_marginRight="2dp"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerCrop" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="62dp"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
         android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp">
+        android:layout_marginRight="16dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="30dp"
+            android:background="@drawable/shape_rounded_rectangle"
+            android:gravity="center"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
-            android:gravity="center"
-            android:background="@drawable/shape_rounded_rectangle"
             android:text="+23"
-            android:textStyle="bold"
+            android:textColor="@color/gray2"
             android:textSize="14sp"
-            android:textColor="@color/gray2"/>
+            android:textStyle="bold" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:padding="5dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginLeft="18dp"
+            android:layout_marginRight="23dp"
+            android:background="@drawable/shape_rounded_rectangle"
             android:gravity="center"
-            android:src="@drawable/ic_action_share"
-            android:background="@drawable/shape_rounded_rectangle"/>
+            android:padding="5dp"
+            android:src="@drawable/ic_action_share" />
 
-        <com.etiennelawlor.quickreturn.views.RoundedImageView
-            android:id="@+id/commenter_one_iv"
-            android:layout_width="34dp"
-            android:layout_height="34dp"
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
             android:layout_marginLeft="3dp"
-            android:layout_marginRight="3dp"
-            android:background="@drawable/shape_rounded_rectangle"
-            app:corner_radius="2dp"/>
+            android:layout_marginRight="3dp">
 
-        <com.etiennelawlor.quickreturn.views.RoundedImageView
-            android:id="@+id/commenter_two_iv"
-            android:layout_width="34dp"
-            android:layout_height="34dp"
-            android:layout_marginLeft="3dp"
-            android:layout_marginRight="3dp"
-            android:background="@drawable/shape_rounded_rectangle"
-            app:corner_radius="2dp"/>
+            <LinearLayout
+                android:id="@+id/commenter_avatars_ll"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:orientation="horizontal">
 
-        <com.etiennelawlor.quickreturn.views.RoundedImageView
-            android:id="@+id/commenter_three_iv"
-            android:layout_width="34dp"
-            android:layout_height="34dp"
-            android:layout_marginLeft="3dp"
-            android:layout_marginRight="3dp"
-            android:background="@drawable/shape_rounded_rectangle"
-            app:corner_radius="2dp"/>
+                <com.etiennelawlor.quickreturn.views.RoundedImageView
+                    android:id="@+id/commenter_one_iv"
+                    android:layout_width="32dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="3dp"
+                    android:background="@drawable/shape_rounded_rectangle"
+                    app:corner_radius="2dp" />
+
+                <com.etiennelawlor.quickreturn.views.RoundedImageView
+                    android:id="@+id/commenter_two_iv"
+                    android:layout_width="32dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:background="@drawable/shape_rounded_rectangle"
+                    app:corner_radius="2dp" />
+
+                <com.etiennelawlor.quickreturn.views.RoundedImageView
+                    android:id="@+id/commenter_three_iv"
+                    android:layout_width="32dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="3dp"
+                    android:background="@drawable/shape_rounded_rectangle"
+                    app:corner_radius="2dp" />
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/indicator_v"
+                android:layout_width="30dp"
+                android:layout_height="2dp"
+                android:layout_below="@id/commenter_avatars_ll"
+                android:layout_margin="1dp"
+                android:background="@color/bulgarian_blue" />
+
+        </RelativeLayout>
+
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:paddingRight="8dp"
-            android:gravity="center"
             android:layout_marginLeft="3dp"
             android:background="@drawable/shape_rounded_rectangle"
-            android:text="159"
-            android:drawablePadding="-3dp"
             android:drawableLeft="@drawable/ic_action_chat"
-            android:textStyle="bold"
-            android:textSize="14sp"
+            android:drawablePadding="-3dp"
+            android:gravity="center"
+            android:paddingRight="8dp"
+            android:text="159"
             android:textColor="@color/gray2"
-            />
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="62dp"
-        android:background="@drawable/shape_semi_rounded_rectangle"
         android:layout_marginBottom="5dp"
         android:layout_marginLeft="2dp"
         android:layout_marginRight="2dp"
+        android:background="@drawable/shape_semi_rounded_rectangle"
         android:gravity="center_vertical"
-        android:paddingRight="20dp"
-        android:paddingLeft="20dp">
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
 
         <TextView
             android:id="@+id/comment_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:text="Megan Fox"/>
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="Megan Fox That's a cute outfit."
+            android:textSize="15sp" />
 
     </RelativeLayout>
 
 
-
-
 </LinearLayout>
+
