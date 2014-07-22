@@ -52,7 +52,7 @@ public class QuickReturnFacebookActivity extends QuickReturnBaseActivity impleme
 //                    if(i == position)
 //                        ib.setImageResource(R.drawable.ic_action_chat_highlighted);
 //                    else
-//                        ib.setImageResource(R.drawable.ic_action_chat);
+//                        ib.setImageResource(R.drawable.ic_action_google_plus_comment);
 //                    break;
 //                case 3:
 //                    if(i == position)

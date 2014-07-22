@@ -160,7 +160,7 @@
             android:layout_height="30dp"
             android:layout_marginLeft="3dp"
             android:background="@drawable/shape_rounded_rectangle"
-            android:drawableLeft="@drawable/ic_action_chat"
+            android:drawableLeft="@drawable/ic_action_google_plus_comment"
             android:drawablePadding="-3dp"
             android:gravity="center"
             android:paddingRight="8dp"
