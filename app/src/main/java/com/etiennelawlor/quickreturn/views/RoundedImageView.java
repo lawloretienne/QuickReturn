@@ -14,8 +14,8 @@ import android.util.Log;
 import android.widget.ImageView;
 
 import com.etiennelawlor.quickreturn.R;
+import com.etiennelawlor.quickreturn.drawables.RoundedDrawable;
 
-import drawables.RoundedDrawable;
 
 @SuppressWarnings("UnusedDeclaration")
 public class RoundedImageView extends ImageView {

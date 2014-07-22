@@ -1,4 +1,4 @@
-package drawables;
+package com.etiennelawlor.quickreturn.drawables;
 
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
