@@ -5,7 +5,7 @@ Showcases QuickReturn view as a header, footer, and both header and footer.
 
 Support for ScrollView and ListView
 
-Now supports Twitter and Facebook QuickReturn
+Now supports Twitter, Facebook, and Google+ QuickReturn
 
 Download the app by clicking on the badge below.
 
