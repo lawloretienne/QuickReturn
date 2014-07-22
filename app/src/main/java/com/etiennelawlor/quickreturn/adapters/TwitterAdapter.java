@@ -59,7 +59,12 @@ public class TwitterAdapter extends ArrayAdapter<Tweet> {
         holder.mTimestampTextView.setText(tweet.getTimestamp());
         holder.mRetweetTextView.setText(String.valueOf(tweet.getRetweetCount()));
         holder.mStarTextView.setText(String.valueOf(tweet.getStarCount()));
-        holder.mMessageTextView.setText(tweet.getMessage());
+
+        String message = tweet.getMessage();
+        if(message.length()>160){
+            message = message.substring(0,159);
+        }
+        holder.mMessageTextView.setText(message);
 
         Picasso.with(holder.mUserImageView.getContext())
                 .load(tweet.getAvatarUrl())
