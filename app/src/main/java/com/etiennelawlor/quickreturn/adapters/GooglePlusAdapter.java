@@ -2,6 +2,7 @@ package com.etiennelawlor.quickreturn.adapters;
 
 import android.content.Context;
 import android.os.Handler;
+import android.support.v7.widget.CardView;
 import android.text.Html;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -9,11 +10,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.etiennelawlor.quickreturn.R;
 import com.etiennelawlor.quickreturn.models.GooglePlusPost;
 import com.etiennelawlor.quickreturn.utils.QuickReturnUtils;
@@ -39,6 +44,9 @@ public class GooglePlusAdapter extends ArrayAdapter<GooglePlusPost> {
     private Context mContext;
     private ArrayList<GooglePlusPost> mGooglePlusPosts;
     private final LayoutInflater mInflater;
+
+    private int lastPosition = -1;
+
 //    private int mIndicatorPosition = 0;
 //    private final Handler mHandler = new Handler();
     // endregion
@@ -165,6 +173,21 @@ public class GooglePlusAdapter extends ArrayAdapter<GooglePlusPost> {
 //
 //        mHandler.removeCallbacks(holder.mRunnable);
 //        mHandler.post(holder.mRunnable);
+
+
+
+
+        Animation animation = AnimationUtils.loadAnimation(getContext(), (position > lastPosition) ? R.anim.up_from_bottom : R.anim.down_from_top);
+        convertView.startAnimation(animation);
+
+
+//        if(position > lastPosition){
+//            YoYo.with(Techniques.SlideInUp)
+//                    .duration(700)
+//                    .playOn(convertView);
+//        }
+
+        lastPosition = position;
 
         return convertView;
     }

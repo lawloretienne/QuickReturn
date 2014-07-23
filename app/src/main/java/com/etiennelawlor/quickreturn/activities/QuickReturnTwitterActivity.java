@@ -49,7 +49,7 @@ public class QuickReturnTwitterActivity extends QuickReturnBaseActivity implemen
                     tv.setTextColor(getResources().getColor(R.color.steel_blue));
                     tv.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Roboto-Bold.ttf"));
                 } else {
-                    tv.setTextColor(getResources().getColor(android.R.color.darker_gray));
+                    tv.setTextColor(getResources().getColor(R.color.steel_blue));
                     tv.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Roboto-Light.ttf"));
                 }
             }
@@ -93,7 +93,7 @@ public class QuickReturnTwitterActivity extends QuickReturnBaseActivity implemen
                 tv.setTextColor(getResources().getColor(R.color.steel_blue));
                 tv.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Roboto-Bold.ttf"));
             } else {
-                tv.setTextColor(getResources().getColor(android.R.color.darker_gray));
+                tv.setTextColor(getResources().getColor(R.color.steel_blue));
                 tv.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Roboto-Light.ttf"));
             }
         }

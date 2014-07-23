@@ -71,8 +71,8 @@ public class SpeedyQuickReturnListViewOnScrollListener implements AbsListView.On
         int scrollY = QuickReturnUtils.getScrollY(listview);
         int diff = mPrevScrollY - scrollY;
 
-        Log.d(getClass().getSimpleName(), "onScroll() : scrollY - " + scrollY);
-        Log.d(getClass().getSimpleName(), "onScroll() : diff - " + diff);
+//        Log.d(getClass().getSimpleName(), "onScroll() : scrollY - " + scrollY);
+//        Log.d(getClass().getSimpleName(), "onScroll() : diff - " + diff);
 
 
         if(diff>0){ // scrolling up

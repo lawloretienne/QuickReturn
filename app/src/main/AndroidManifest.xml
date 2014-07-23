@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.etiennelawlor.quickreturn" >
+    package="com.etiennelawlor.quickreturn"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="com.android.vending.BILLING" />
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-sdk
+        tools:node="replace" />
 
     <application
         android:allowBackup="true"

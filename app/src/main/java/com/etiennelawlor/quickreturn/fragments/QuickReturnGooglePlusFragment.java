@@ -122,11 +122,11 @@ public class QuickReturnGooglePlusFragment extends ListFragment {
 
         GooglePlusAdapter adapter = new GooglePlusAdapter(getActivity(), posts);
 
-        AnimationAdapter animAdapter = new SwingBottomInAnimationAdapter(adapter);
-        animAdapter.setAbsListView(getListView());
+//        AnimationAdapter animAdapter = new SwingBottomInAnimationAdapter(adapter);
+//        animAdapter.setAbsListView(getListView());
+//        mListView.setAdapter(animAdapter);
 
-        mListView.setAdapter(animAdapter);
-//        mListView.setAdapter(adapter);
+        mListView.setAdapter(adapter);
 
         mListView.addFooterView(new View(getActivity()), null, false);
         mListView.addHeaderView(new View(getActivity()), null, false);
