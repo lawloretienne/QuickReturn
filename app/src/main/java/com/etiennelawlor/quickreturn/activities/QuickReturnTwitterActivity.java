@@ -45,7 +45,7 @@ public class QuickReturnTwitterActivity extends QuickReturnBaseActivity implemen
                 TextView tv = (TextView) mTabsLinearLayout.getChildAt(i);
                 if(i == position){
                     tv.setTextColor(getResources().getColor(R.color.steel_blue));
-                    tv.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Roboto-Bold.ttf"));
+                    tv.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Roboto-Medium.ttf"));
                 } else {
                     tv.setTextColor(getResources().getColor(R.color.steel_blue));
                     tv.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Roboto-Light.ttf"));
@@ -88,7 +88,7 @@ public class QuickReturnTwitterActivity extends QuickReturnBaseActivity implemen
 
             if(i == 0){
                 tv.setTextColor(getResources().getColor(R.color.steel_blue));
-                tv.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Roboto-Bold.ttf"));
+                tv.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Roboto-Medium.ttf"));
             } else {
                 tv.setTextColor(getResources().getColor(R.color.steel_blue));
                 tv.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Roboto-Light.ttf"));
