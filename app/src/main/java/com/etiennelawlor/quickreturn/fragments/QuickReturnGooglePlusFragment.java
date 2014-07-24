@@ -16,8 +16,6 @@ import com.etiennelawlor.quickreturn.adapters.GooglePlusAdapter;
 import com.etiennelawlor.quickreturn.enums.QuickReturnType;
 import com.etiennelawlor.quickreturn.listeners.SpeedyQuickReturnListViewOnScrollListener;
 import com.etiennelawlor.quickreturn.models.GooglePlusPost;
-import com.nhaarman.listviewanimations.swinginadapters.AnimationAdapter;
-import com.nhaarman.listviewanimations.swinginadapters.prepared.SwingBottomInAnimationAdapter;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -147,7 +145,7 @@ public class QuickReturnGooglePlusFragment extends ListFragment {
         mQuickReturnFooterImageView.setTag(R.id.scroll_threshold_key, 5);
         footerViews.add(mQuickReturnFooterImageView);
 
-        SpeedyQuickReturnListViewOnScrollListener scrollListener = new SpeedyQuickReturnListViewOnScrollListener(getActivity(), QuickReturnType.CUSTOM, null, footerViews);
+        SpeedyQuickReturnListViewOnScrollListener scrollListener = new SpeedyQuickReturnListViewOnScrollListener(getActivity(), QuickReturnType.GOOGLE_PLUS, null, footerViews);
         scrollListener.setSlideHeaderUpAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.slide_header_up));
         scrollListener.setSlideHeaderDownAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.slide_header_down));
         scrollListener.setSlideFooterUpAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.slide_footer_up));

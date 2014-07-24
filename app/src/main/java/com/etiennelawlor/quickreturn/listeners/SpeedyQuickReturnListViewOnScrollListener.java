@@ -1,7 +1,6 @@
 package com.etiennelawlor.quickreturn.listeners;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -100,7 +99,7 @@ public class SpeedyQuickReturnListViewOnScrollListener implements AbsListView.On
                         mFooter.startAnimation(mSlideFooterUpAnimation);
                     }
                     break;
-                case CUSTOM:
+                case GOOGLE_PLUS:
                     if(mHeaderViews!=null){
                         for(View view : mHeaderViews){
                             if(view.getVisibility() == View.GONE){
@@ -148,7 +147,7 @@ public class SpeedyQuickReturnListViewOnScrollListener implements AbsListView.On
                         mFooter.startAnimation(mSlideFooterDownAnimation);
                     }
                     break;
-                case CUSTOM:
+                case GOOGLE_PLUS:
                     if(mHeaderViews!=null){
                         for(View view : mHeaderViews){
                             if(view.getVisibility() == View.VISIBLE){

@@ -7,5 +7,6 @@ public enum QuickReturnType {
     HEADER,
     FOOTER,
     BOTH,
-    CUSTOM
+    GOOGLE_PLUS,
+    TWITTER
 }

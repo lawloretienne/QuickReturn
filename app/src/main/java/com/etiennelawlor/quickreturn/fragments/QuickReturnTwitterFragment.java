@@ -3,6 +3,7 @@ package com.etiennelawlor.quickreturn.fragments;
 import android.app.Activity;
 import android.app.ListFragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -99,12 +100,18 @@ public class QuickReturnTwitterFragment extends ListFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        int headerHeight = getResources().getDimensionPixelSize(R.dimen.header_height);
-        int indicatorHeight =  QuickReturnUtils.dp2px(getActivity(), 5);
-        int headerTranslation = -headerHeight + QuickReturnUtils.getActionBarHeight(getActivity()) + indicatorHeight;
-        int footerTranslation = -headerHeight + QuickReturnUtils.getActionBarHeight(getActivity());
+//        int headerHeight = getResources().getDimensionPixelSize(R.dimen.header_height);
+//        int indicatorHeight =  QuickReturnUtils.dp2px(getActivity(), 5);
+//        int headerTranslation = -headerHeight + QuickReturnUtils.getActionBarHeight(getActivity()) + indicatorHeight;
+//        int footerTranslation = -headerHeight + QuickReturnUtils.getActionBarHeight(getActivity());
 
-        QuickReturnListViewOnScrollListener scrollListener = new QuickReturnListViewOnScrollListener(QuickReturnType.BOTH,
+        int headerHeight = getResources().getDimensionPixelSize(R.dimen.twitter_header_height);
+        int footerHeight = getResources().getDimensionPixelSize(R.dimen.twitter_footer_height);
+        int indicatorHeight =  QuickReturnUtils.dp2px(getActivity(), 5);
+        int headerTranslation = -headerHeight + indicatorHeight;
+        int footerTranslation = -footerHeight + indicatorHeight;
+
+        QuickReturnListViewOnScrollListener scrollListener = new QuickReturnListViewOnScrollListener(QuickReturnType.TWITTER,
                 mCoordinator.getTabs(), headerTranslation, mQuickReturnFooterLinearLayout, -footerTranslation);
         scrollListener.setCanSlideInIdleScrollState(true);
         mListView.setOnScrollListener(scrollListener);

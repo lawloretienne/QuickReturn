@@ -8,6 +8,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -35,14 +36,11 @@ public class QuickReturnTwitterActivity extends QuickReturnBaseActivity implemen
     private ViewPager.OnPageChangeListener mTabsOnPageChangeListener = new ViewPager.OnPageChangeListener() {
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-//            Log.d("QuickReturnScrollViewActivity", "onPageScrolled() : position - " + position);
-
+            mTabs.setTranslationY(0);
         }
 
         @Override
         public void onPageSelected(int position) {
-//            Log.d("QuickReturnScrollViewActivity", "onPageSelected() : position - "+position);
-
             for(int i=0; i < mTabsLinearLayout.getChildCount(); i++){
                 TextView tv = (TextView) mTabsLinearLayout.getChildAt(i);
                 if(i == position){
@@ -57,7 +55,6 @@ public class QuickReturnTwitterActivity extends QuickReturnBaseActivity implemen
 
         @Override
         public void onPageScrollStateChanged(int state) {
-
         }
     };
     // endregion

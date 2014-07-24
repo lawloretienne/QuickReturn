@@ -79,6 +79,23 @@ public class QuickReturnListViewOnScrollListener implements AbsListView.OnScroll
                         mFooterDiffTotal = -mMinFooterTranslation;
                     }
                     break;
+                case TWITTER:
+                    if (-mHeaderDiffTotal > 0 && -mHeaderDiffTotal < midHeader) {
+                        mHeader.setTranslationY(0);
+                        mHeaderDiffTotal = 0;
+                    } else if (-mHeaderDiffTotal < -mMinHeaderTranslation && -mHeaderDiffTotal >= midHeader) {
+                        mHeader.setTranslationY(mMinHeaderTranslation);
+                        mHeaderDiffTotal = mMinHeaderTranslation;
+                    }
+
+                    if (-mFooterDiffTotal > 0 && -mFooterDiffTotal < midFooter) { // slide up
+                        mFooter.setTranslationY(0);
+                        mFooterDiffTotal = 0;
+                    } else if (-mFooterDiffTotal < mMinFooterTranslation && -mFooterDiffTotal >= midFooter) { // slide down
+                        mFooter.setTranslationY(mMinFooterTranslation);
+                        mFooterDiffTotal = -mMinFooterTranslation;
+                    }
+                    break;
             }
 
         }
@@ -91,7 +108,8 @@ public class QuickReturnListViewOnScrollListener implements AbsListView.OnScroll
 
 //        Log.d(getClass().getSimpleName(), "onScroll() : scrollY - "+scrollY);
 //        Log.d(getClass().getSimpleName(), "onScroll() : diff - "+diff);
-
+//        Log.d(getClass().getSimpleName(), "onScroll() : mMinHeaderTranslation - "+mMinHeaderTranslation);
+//        Log.d(getClass().getSimpleName(), "onScroll() : mMinFooterTranslation - "+mMinFooterTranslation);
 
         if(diff != 0){
             switch (mQuickReturnType){
@@ -117,6 +135,21 @@ public class QuickReturnListViewOnScrollListener implements AbsListView.OnScroll
                     if(diff < 0){ // scrolling down
                         mHeaderDiffTotal = Math.max(mHeaderDiffTotal + diff, mMinHeaderTranslation);
                         mFooterDiffTotal = Math.max(mFooterDiffTotal + diff, -mMinFooterTranslation);
+                    } else { // scrolling up
+                        mHeaderDiffTotal = Math.min(Math.max(mHeaderDiffTotal + diff, mMinHeaderTranslation), 0);
+                        mFooterDiffTotal = Math.min(Math.max(mFooterDiffTotal + diff, -mMinFooterTranslation), 0);
+                    }
+
+                    mHeader.setTranslationY(mHeaderDiffTotal);
+                    mFooter.setTranslationY(-mFooterDiffTotal);
+                    break;
+                case TWITTER:
+                    if(diff < 0){ // scrolling down
+                        if(scrollY > -mMinHeaderTranslation)
+                            mHeaderDiffTotal = Math.max(mHeaderDiffTotal + diff, mMinHeaderTranslation);
+
+                        if(scrollY > mMinFooterTranslation)
+                            mFooterDiffTotal = Math.max(mFooterDiffTotal + diff, -mMinFooterTranslation);
                     } else { // scrolling up
                         mHeaderDiffTotal = Math.min(Math.max(mHeaderDiffTotal + diff, mMinHeaderTranslation), 0);
                         mFooterDiffTotal = Math.min(Math.max(mFooterDiffTotal + diff, -mMinFooterTranslation), 0);
