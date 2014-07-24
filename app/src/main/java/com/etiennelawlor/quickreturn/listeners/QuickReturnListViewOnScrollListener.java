@@ -36,7 +36,7 @@ public class QuickReturnListViewOnScrollListener implements AbsListView.OnScroll
 
     @Override
     public void onScrollStateChanged(AbsListView view, int scrollState) {
-        Log.d(getClass().getSimpleName(), "onScrollStateChanged() : scrollState - "+scrollState);
+//        Log.d(getClass().getSimpleName(), "onScrollStateChanged() : scrollState - "+scrollState);
 
         if(scrollState == SCROLL_STATE_IDLE && mCanSlideInIdleScrollState){
 
@@ -89,8 +89,8 @@ public class QuickReturnListViewOnScrollListener implements AbsListView.OnScroll
         int scrollY = QuickReturnUtils.getScrollY(listview);
         int diff = mPrevScrollY - scrollY;
 
-        Log.d(getClass().getSimpleName(), "onScroll() : scrollY - "+scrollY);
-        Log.d(getClass().getSimpleName(), "onScroll() : diff - "+diff);
+//        Log.d(getClass().getSimpleName(), "onScroll() : scrollY - "+scrollY);
+//        Log.d(getClass().getSimpleName(), "onScroll() : diff - "+diff);
 
 
         if(diff != 0){

@@ -175,11 +175,13 @@ public class GooglePlusAdapter extends ArrayAdapter<GooglePlusPost> {
 //        mHandler.post(holder.mRunnable);
 
 
+//        Animation animation = AnimationUtils.loadAnimation(getContext(), (position > lastPosition) ? R.anim.up_from_bottom : R.anim.down_from_top);
+//        convertView.startAnimation(animation);
 
-
-        Animation animation = AnimationUtils.loadAnimation(getContext(), (position > lastPosition) ? R.anim.up_from_bottom : R.anim.down_from_top);
-        convertView.startAnimation(animation);
-
+        if(position > lastPosition){
+            Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.up_from_bottom);
+            convertView.startAnimation(animation);
+        }
 
 //        if(position > lastPosition){
 //            YoYo.with(Techniques.SlideInUp)
