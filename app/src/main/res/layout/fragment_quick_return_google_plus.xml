@@ -18,15 +18,15 @@
         android:layout_width="wrap_content"
         android:padding="14dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="29dp"
         android:layout_alignParentBottom="true"
         android:background="@drawable/shape_rounded_rectangle_transparent_black"
         android:textSize="14sp"
         android:text="New Posts! Touch to see them"
         android:textColor="@android:color/white"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="29dp"
         android:gravity="center"
         app:textFont="Roboto_Bold"/>
 
@@ -41,7 +41,7 @@
         android:layout_marginBottom="20dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="20dp"
-        android:padding="18dp"
+        android:padding="12dp"
         android:layout_alignParentRight="true"
         />
 

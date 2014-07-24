@@ -112,9 +112,12 @@ public class SpeedyQuickReturnListViewOnScrollListener implements AbsListView.On
 
                     if(mFooterViews!=null){
                         for(View view : mFooterViews){
-                            if(view.getVisibility() == View.GONE){
-                                view.setVisibility(View.VISIBLE);
-                                view.startAnimation(mSlideFooterUpAnimation);
+                            int scrollThreshold = (Integer) view.getTag(R.id.scroll_threshold_key);
+                            if(diff > scrollThreshold){
+                                if(view.getVisibility() == View.GONE){
+                                    view.setVisibility(View.VISIBLE);
+                                    view.startAnimation(mSlideFooterUpAnimation);
+                                }
                             }
                         }
                     }
@@ -157,9 +160,12 @@ public class SpeedyQuickReturnListViewOnScrollListener implements AbsListView.On
 
                     if(mFooterViews!=null){
                         for(View view : mFooterViews){
-                            if(view.getVisibility() == View.VISIBLE){
-                                view.setVisibility(View.GONE);
-                                view.startAnimation(mSlideFooterDownAnimation);
+                            int scrollThreshold = (Integer) view.getTag(R.id.scroll_threshold_key);
+                            if(diff < -scrollThreshold){
+                                if(view.getVisibility() == View.VISIBLE){
+                                    view.setVisibility(View.GONE);
+                                    view.startAnimation(mSlideFooterDownAnimation);
+                                }
                             }
                         }
                     }

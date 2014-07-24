@@ -142,7 +142,9 @@ public class QuickReturnGooglePlusFragment extends ListFragment {
         headerViews.add(getActionBarView());
 
         ArrayList<View> footerViews = new ArrayList<View>();
+        mQuickReturnFooterTextView.setTag(R.id.scroll_threshold_key, 15);
         footerViews.add(mQuickReturnFooterTextView);
+        mQuickReturnFooterImageView.setTag(R.id.scroll_threshold_key, 5);
         footerViews.add(mQuickReturnFooterImageView);
 
         SpeedyQuickReturnListViewOnScrollListener scrollListener = new SpeedyQuickReturnListViewOnScrollListener(getActivity(), QuickReturnType.CUSTOM, null, footerViews);
