@@ -288,6 +288,58 @@
         <item>U have the best presentation and the best choice of food #loveuashley   xxxx</item>
     </array>
 
+    <array name="google_plus_comment_counts">
+        <item>2</item>
+        <item>21</item>
+        <item>5</item>
+        <item>14</item>
+        <item>102</item>
+        <item>53</item>
+        <item>62</item>
+        <item>14</item>
+        <item>41</item>
+        <item>38</item>
+        <item>17</item>
+        <item>51</item>
+        <item>96</item>
+        <item>6</item>
+        <item>29</item>
+        <item>55</item>
+        <item>26</item>
+        <item>71</item>
+        <item>30</item>
+        <item>4</item>
+        <item>84</item>
+        <item>28</item>
+        <item>5</item>
+    </array>
+
+    <array name="google_plus_plus_one_counts">
+        <item>102</item>
+        <item>2</item>
+        <item>29</item>
+        <item>38</item>
+        <item>55</item>
+        <item>62</item>
+        <item>26</item>
+        <item>21</item>
+        <item>4</item>
+        <item>28</item>
+        <item>5</item>
+        <item>14</item>
+        <item>53</item>
+        <item>14</item>
+        <item>41</item>
+        <item>17</item>
+        <item>51</item>
+        <item>96</item>
+        <item>6</item>
+        <item>71</item>
+        <item>30</item>
+        <item>84</item>
+        <item>33</item>
+    </array>
+
     <array name="countries">
         <item>United States of America</item>
         <item>Afghanistan</item>

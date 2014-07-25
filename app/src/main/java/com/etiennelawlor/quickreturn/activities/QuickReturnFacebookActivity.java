@@ -110,9 +110,9 @@ public class QuickReturnFacebookActivity extends QuickReturnBaseActivity impleme
                         break;
                     case 4:
                         if(i == position)
-                            ib.setImageResource(R.drawable.ic_action_sort_by_size_highlighted);
+                            ib.setImageResource(R.drawable.ic_action_more_highlighted);
                         else
-                            ib.setImageResource(R.drawable.ic_action_sort_by_size);
+                            ib.setImageResource(R.drawable.ic_action_more);
                         break;
                     default:
                         break;
@@ -232,7 +232,7 @@ public class QuickReturnFacebookActivity extends QuickReturnBaseActivity impleme
                 case 3:
                     return R.drawable.ic_action_web_site;
                 case 4:
-                    return R.drawable.ic_action_sort_by_size;
+                    return R.drawable.ic_action_more;
             }
 
             return 0;

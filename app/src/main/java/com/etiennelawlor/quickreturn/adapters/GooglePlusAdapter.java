@@ -76,11 +76,9 @@ public class GooglePlusAdapter extends ArrayAdapter<GooglePlusPost> {
         GooglePlusPost post = getItem(position);
 
         holder.mDisplayNameTextView.setText(post.getDisplayName());
-//        holder.mUsernameTextView.setText(tweet.getUsername());
         holder.mTimestampTextView.setText(post.getTimestamp());
-//        holder.mStarTextView.setText(String.valueOf(tweet.getStarCount()));
-
-
+        holder.mAddCommentTextView.setText(String.valueOf(post.getCommentCount()));
+        holder.mPlusOneTextView.setText(getContext().getString(R.string.plus_one, post.getPlusOneCount()));
         holder.mMessageTextView.setText(post.getMessage());
 //        holder.mCommentTextView.setText(post.getCommenterOneDisplayName());
 
@@ -104,8 +102,6 @@ public class GooglePlusAdapter extends ArrayAdapter<GooglePlusPost> {
                         QuickReturnUtils.dp2px(getContext(), 320))
                 .error(android.R.drawable.stat_notify_error)
                 .into(holder.mPostImageView);
-
-
 
         Picasso.with(holder.mCommenterOneImageView.getContext())
                 .load(post.getCommenterOneAvatarUrl())
@@ -198,8 +194,9 @@ public class GooglePlusAdapter extends ArrayAdapter<GooglePlusPost> {
     static class ViewHolder {
         @InjectView(R.id.user_iv) ImageView mUserImageView;
         @InjectView(R.id.display_name_tv) TextView mDisplayNameTextView;
-//        @InjectView(R.id.username_tv) TextView mUsernameTextView;
         @InjectView(R.id.comment_tv) TextView mCommentTextView;
+        @InjectView(R.id.plus_one_tv) TextView mPlusOneTextView;
+        @InjectView(R.id.add_comment_tv) TextView mAddCommentTextView;
         @InjectView(R.id.timestamp_tv) TextView mTimestampTextView;
         @InjectView(R.id.message_tv) TextView mMessageTextView;
         @InjectView(R.id.post_iv) ImageView mPostImageView;
@@ -207,8 +204,6 @@ public class GooglePlusAdapter extends ArrayAdapter<GooglePlusPost> {
         @InjectView(R.id.commenter_two_iv) ImageView mCommenterTwoImageView;
         @InjectView(R.id.commenter_three_iv) ImageView mCommenterThreeImageView;
         @InjectView(R.id.indicator_v) View mIndicatorView;
-
-
 
 
 //        Runnable mRunnable;

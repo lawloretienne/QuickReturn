@@ -36,6 +36,8 @@ public class QuickReturnGooglePlusFragment extends ListFragment {
     private String[] mMessages;
     private String[] mPostImageUrls;
     private String[] mComments;
+    private int[] mCommentCounts;
+    private int[] mPlusOneCounts;
 
     @InjectView(android.R.id.list) ListView mListView;
     @InjectView(R.id.quick_return_footer_iv) ImageView mQuickReturnFooterImageView;
@@ -67,6 +69,9 @@ public class QuickReturnGooglePlusFragment extends ListFragment {
         mMessages = getActivity().getResources().getStringArray(R.array.google_plus_messages);
         mPostImageUrls = getActivity().getResources().getStringArray(R.array.google_plus_post_image_urls);
         mComments = getActivity().getResources().getStringArray(R.array.google_plus_comments);
+        mCommentCounts = getActivity().getResources().getIntArray(R.array.google_plus_comment_counts);
+        mPlusOneCounts = getActivity().getResources().getIntArray(R.array.google_plus_plus_one_counts);
+
     }
 
     @Override
@@ -93,6 +98,8 @@ public class QuickReturnGooglePlusFragment extends ListFragment {
             post.setDisplayName(mDisplayNames[i]);
 //            tweet.setUsername(mUsernames[i]);
             post.setTimestamp(mTimestamps[i]);
+            post.setCommentCount(mCommentCounts[i]);
+            post.setPlusOneCount(mPlusOneCounts[i]);
             post.setPostImageUrl(mPostImageUrls[i]);
             post.setComment(mComments[i]);
 

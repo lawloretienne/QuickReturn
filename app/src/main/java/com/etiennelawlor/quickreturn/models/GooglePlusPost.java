@@ -18,8 +18,8 @@ public class GooglePlusPost {
     private String mDisplayName;
     private String mMessage;
     private String mTimestamp;
-//    private int mRetweetCount;
-    private int mStarCount;
+    private int mCommentCount;
+    private int mPlusOneCount;
     // endregion
 
     // region Constructors
@@ -60,12 +60,12 @@ public class GooglePlusPost {
         return mTimestamp;
     }
 
-//    public int getRetweetCount(){
-//        return mRetweetCount;
-//    }
+    public int getCommentCount() {
+        return mCommentCount;
+    }
 
-    public int getStarCount(){
-        return mStarCount;
+    public int getPlusOneCount() {
+        return mPlusOneCount;
     }
     // endregion
 
@@ -116,12 +116,8 @@ public class GooglePlusPost {
         mTimestamp = timestamp;
     }
 
-//    public void setRetweetCount(int retweetCount){
-//        mRetweetCount = retweetCount;
-//    }
+    public void setCommentCount(int commentCount) { mCommentCount = commentCount; }
 
-    public void setStarCount(int starCount){
-        mStarCount = starCount;
-    }
+    public void setPlusOneCount(int plusOneCount) { mPlusOneCount = plusOneCount; }
     // endregion
 }
