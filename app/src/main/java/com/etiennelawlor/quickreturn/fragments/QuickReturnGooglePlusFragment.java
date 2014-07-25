@@ -131,10 +131,10 @@ public class QuickReturnGooglePlusFragment extends ListFragment {
 //        animAdapter.setAbsListView(getListView());
 //        mListView.setAdapter(animAdapter);
 
-        mListView.setAdapter(adapter);
-
         mListView.addFooterView(new View(getActivity()), null, false);
         mListView.addHeaderView(new View(getActivity()), null, false);
+
+        mListView.setAdapter(adapter);
 
 //        int headerHeight = getResources().getDimensionPixelSize(R.dimen.header_height3);
 //        int headerTranslation = -(headerHeight*2) + QuickReturnUtils.getActionBarHeight(getActivity());
