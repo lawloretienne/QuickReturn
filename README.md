@@ -1,11 +1,11 @@
 QuickReturn
 ===========
 
-Showcases QuickReturn view as a header, footer, and both header and footer.
+QuickReturn is a library which showcases the QuickReturn UI pattern.  It can be used for header views, footer views, or both header views and footer views.
 
 Support for ScrollView and ListView
 
-Now supports Twitter, Facebook, and Google+ QuickReturn
+Comes with examples of Twitter, Facebook, and Google+ QuickReturn views
 
 Download the app by clicking on the badge below.
 
@@ -14,3 +14,8 @@ Download the app by clicking on the badge below.
 </a>
 
 <img src="https://raw.githubusercontent.com/lawloretienne/QuickReturn/master/images/quick_return_demo.gif">
+
+Developed By
+============
+
+Etienne Lawlor www.interapptiv3.com lawloretienne@gmail.com
