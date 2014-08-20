@@ -4,31 +4,51 @@
     <!-- Drop Shadow Stack -->
     <item>
         <shape android:shape="oval">
-            <padding android:top="1dp" android:right="1dp" android:bottom="1dp" android:left="1dp" />
+            <padding
+                android:bottom="1dp"
+                android:left="1dp"
+                android:right="1dp"
+                android:top="1dp" />
             <solid android:color="#00000000" />
         </shape>
     </item>
     <item>
         <shape android:shape="oval">
-            <padding android:top="1dp" android:right="1dp" android:bottom="1dp" android:left="1dp" />
+            <padding
+                android:bottom="1dp"
+                android:left="1dp"
+                android:right="1dp"
+                android:top="1dp" />
             <solid android:color="#10000000" />
         </shape>
     </item>
     <item>
         <shape android:shape="oval">
-            <padding android:top="1dp" android:right="1dp" android:bottom="1dp" android:left="1dp" />
+            <padding
+                android:bottom="1dp"
+                android:left="1dp"
+                android:right="1dp"
+                android:top="1dp" />
             <solid android:color="#20000000" />
         </shape>
     </item>
     <item>
         <shape android:shape="oval">
-            <padding android:top="1dp" android:right="1dp" android:bottom="1dp" android:left="1dp" />
+            <padding
+                android:bottom="1dp"
+                android:left="1dp"
+                android:right="1dp"
+                android:top="1dp" />
             <solid android:color="#30000000" />
         </shape>
     </item>
     <item>
         <shape android:shape="oval">
-            <padding android:top="1dp" android:right="1dp" android:bottom="1dp" android:left="1dp" />
+            <padding
+                android:bottom="1dp"
+                android:left="1dp"
+                android:right="1dp"
+                android:top="1dp" />
             <solid android:color="#50000000" />
         </shape>
     </item>
@@ -36,12 +56,11 @@
     <!-- Background -->
     <item>
         <shape android:shape="oval">
-            <solid
-                android:color="@android:color/white"/>
+            <solid android:color="@android:color/white" />
 
             <size
                 android:width="25dp"
-                android:height="25dp"/>
+                android:height="25dp" />
 
         </shape>
     </item>

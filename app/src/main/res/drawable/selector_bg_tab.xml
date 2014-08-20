@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<selector
-    xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:state_pressed="true"
-        android:drawable="@color/indigo" /> <!-- pressed -->
-    <item
-        android:state_focused="true"
-        android:drawable="@color/indigo" /> <!-- focused -->
-    <item
-        android:state_hovered="true"
-        android:drawable="@color/indigo" /> <!-- hovered -->
-    <item
-        android:drawable="@android:color/transparent" /> <!-- default -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/indigo" android:state_pressed="true" />
+    <!-- pressed -->
+    <item android:drawable="@color/indigo" android:state_focused="true" />
+    <!-- focused -->
+    <item android:drawable="@color/indigo" android:state_hovered="true" />
+    <!-- hovered -->
+    <item android:drawable="@android:color/transparent" />
+    <!-- default -->
 </selector>

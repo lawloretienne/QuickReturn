@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- File created by the Android Action Bar Style Generator
+<?xml version="1.0" encoding="utf-8"?><!-- File created by the Android Action Bar Style Generator
 
      Copyright (C) 2011 The Android Open Source Project
      Copyright (C) 2012 readyState Software Ltd
@@ -18,10 +17,7 @@
 -->
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_pressed="true"
-        android:drawable="@drawable/btn_cab_done_pressed_steelblue" />
-    <item android:state_focused="true" android:state_enabled="true"
-        android:drawable="@drawable/btn_cab_done_focused_steelblue" />
-    <item android:state_enabled="true"
-        android:drawable="@drawable/btn_cab_done_default_steelblue" />
+    <item android:drawable="@drawable/btn_cab_done_pressed_steelblue" android:state_pressed="true" />
+    <item android:drawable="@drawable/btn_cab_done_focused_steelblue" android:state_enabled="true" android:state_focused="true" />
+    <item android:drawable="@drawable/btn_cab_done_default_steelblue" android:state_enabled="true" />
 </selector>
