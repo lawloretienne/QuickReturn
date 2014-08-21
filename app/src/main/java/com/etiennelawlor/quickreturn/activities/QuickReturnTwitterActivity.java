@@ -73,10 +73,14 @@ public class QuickReturnTwitterActivity extends QuickReturnBaseActivity implemen
 
         mTabs.setAllCaps(false);
         mTabs.setShouldExpand(true);
-        mTabs.setTextSize(QuickReturnUtils.dp2px(this, 16));
+        mTabs.setTextSize(QuickReturnUtils.dp2px(this, 18));
+//        mTabs.setUnderlineColor(getResources().getColor(R.color.gray5));
+        mTabs.setUnderlineHeight(QuickReturnUtils.dp2px(this, 1));
+
         mTabs.setTabBackground(R.drawable.selector_bg_tab);
+        mTabs.setDividerColor(getResources().getColor(android.R.color.transparent));
         mTabs.setIndicatorColorResource(R.color.steel_blue);
-        mTabs.setIndicatorHeight(QuickReturnUtils.dp2px(this, 5));
+        mTabs.setIndicatorHeight(QuickReturnUtils.dp2px(this, 4));
         mTabs.setOnPageChangeListener(mTabsOnPageChangeListener);
         mTabs.setViewPager(mViewPager);
 

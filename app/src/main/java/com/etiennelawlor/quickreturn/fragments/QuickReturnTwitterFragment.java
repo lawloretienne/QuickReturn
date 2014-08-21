@@ -107,7 +107,7 @@ public class QuickReturnTwitterFragment extends ListFragment {
 
         int headerHeight = getResources().getDimensionPixelSize(R.dimen.twitter_header_height);
         int footerHeight = getResources().getDimensionPixelSize(R.dimen.twitter_footer_height);
-        int indicatorHeight =  QuickReturnUtils.dp2px(getActivity(), 5);
+        int indicatorHeight =  QuickReturnUtils.dp2px(getActivity(), 4);
         int headerTranslation = -headerHeight + indicatorHeight;
         int footerTranslation = -footerHeight + indicatorHeight;
 
