@@ -26,7 +26,8 @@
         <activity
             android:name=".activities.QuickReturnTwitterActivity"
             android:label="@string/twitter"
-            android:parentActivityName=".activities.QuickReturnActivity">
+            android:parentActivityName=".activities.QuickReturnActivity"
+            android:theme="@style/Theme.Twitter">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -35,7 +36,8 @@
         <activity
             android:name=".activities.QuickReturnFacebookActivity"
             android:label="@string/facebook"
-            android:parentActivityName=".activities.QuickReturnActivity">
+            android:parentActivityName=".activities.QuickReturnActivity"
+            android:theme="@style/Theme.Facebook">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -44,7 +46,8 @@
         <activity
             android:name=".activities.QuickReturnGooglePlusActivity"
             android:label="@string/google_plus"
-            android:parentActivityName=".activities.QuickReturnActivity">
+            android:parentActivityName=".activities.QuickReturnActivity"
+            android:theme="@style/Theme.Google_plus">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

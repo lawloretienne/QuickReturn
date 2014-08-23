@@ -44,10 +44,10 @@ public class QuickReturnTwitterActivity extends QuickReturnBaseActivity implemen
             for(int i=0; i < mTabsLinearLayout.getChildCount(); i++){
                 TextView tv = (TextView) mTabsLinearLayout.getChildAt(i);
                 if(i == position){
-                    tv.setTextColor(getResources().getColor(R.color.steel_blue));
+                    tv.setTextColor(getResources().getColor(R.color.cornflower_blue));
                     tv.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Roboto-Medium.ttf"));
                 } else {
-                    tv.setTextColor(getResources().getColor(R.color.steel_blue));
+                    tv.setTextColor(getResources().getColor(R.color.cornflower_blue));
                     tv.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Roboto-Light.ttf"));
                 }
             }
@@ -79,7 +79,7 @@ public class QuickReturnTwitterActivity extends QuickReturnBaseActivity implemen
 
         mTabs.setTabBackground(R.drawable.selector_bg_tab);
         mTabs.setDividerColor(getResources().getColor(android.R.color.transparent));
-        mTabs.setIndicatorColorResource(R.color.steel_blue);
+        mTabs.setIndicatorColorResource(R.color.cornflower_blue);
         mTabs.setIndicatorHeight(QuickReturnUtils.dp2px(this, 4));
         mTabs.setOnPageChangeListener(mTabsOnPageChangeListener);
         mTabs.setViewPager(mViewPager);
@@ -91,10 +91,10 @@ public class QuickReturnTwitterActivity extends QuickReturnBaseActivity implemen
             TextView tv = (TextView) mTabsLinearLayout.getChildAt(i);
 
             if(i == 0){
-                tv.setTextColor(getResources().getColor(R.color.steel_blue));
+                tv.setTextColor(getResources().getColor(R.color.cornflower_blue));
                 tv.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Roboto-Medium.ttf"));
             } else {
-                tv.setTextColor(getResources().getColor(R.color.steel_blue));
+                tv.setTextColor(getResources().getColor(R.color.cornflower_blue));
                 tv.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Roboto-Light.ttf"));
             }
         }

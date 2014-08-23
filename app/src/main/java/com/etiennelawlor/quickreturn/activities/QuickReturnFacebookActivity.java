@@ -143,7 +143,7 @@ public class QuickReturnFacebookActivity extends QuickReturnBaseActivity impleme
         mTabs.setShouldExpand(true);
 //        mTabs.setTextSize(QuickReturnUtils.dp2px(this, 16));
 //        mTabs.setTabBackground(R.drawable.selector_bg_tab);
-        mTabs.setIndicatorColorResource(R.color.san_juan);
+        mTabs.setIndicatorColorResource(R.color.dark_slate_blue);
         mTabs.setIndicatorHeight(QuickReturnUtils.dp2px(this, 6));
         mTabs.setDividerColor(getResources().getColor(android.R.color.transparent));
         mTabs.setUnderlineHeight(QuickReturnUtils.dp2px(this, 0));
