@@ -86,27 +86,27 @@ public class QuickReturnFacebookActivity extends QuickReturnBaseActivity impleme
                 switch (i){
                     case 0:
                         if(i == position)
-                            ib.setImageResource(R.drawable.ic_action_event_highlighted);
+                            ib.setImageResource(R.drawable.ic_action_news_highlighted);
                         else
-                            ib.setImageResource(R.drawable.ic_action_event);
+                            ib.setImageResource(R.drawable.ic_action_news);
                         break;
                     case 1:
                         if(i == position)
-                            ib.setImageResource(R.drawable.ic_action_cc_bcc_highlighted);
+                            ib.setImageResource(R.drawable.ic_action_users_highlighted);
                         else
-                            ib.setImageResource(R.drawable.ic_action_cc_bcc);
+                            ib.setImageResource(R.drawable.ic_action_users);
                         break;
                     case 2:
                         if(i == position)
-                            ib.setImageResource(R.drawable.ic_action_chat_highlighted);
+                            ib.setImageResource(R.drawable.ic_action_messages_highlighted);
                         else
-                            ib.setImageResource(R.drawable.ic_action_chat);
+                            ib.setImageResource(R.drawable.ic_action_messages);
                         break;
                     case 3:
                         if(i == position)
-                            ib.setImageResource(R.drawable.ic_action_web_site_highlighted);
+                            ib.setImageResource(R.drawable.ic_action_notifications_highlighted);
                         else
-                            ib.setImageResource(R.drawable.ic_action_web_site);
+                            ib.setImageResource(R.drawable.ic_action_notifications);
                         break;
                     case 4:
                         if(i == position)
@@ -143,9 +143,10 @@ public class QuickReturnFacebookActivity extends QuickReturnBaseActivity impleme
         mTabs.setShouldExpand(true);
 //        mTabs.setTextSize(QuickReturnUtils.dp2px(this, 16));
 //        mTabs.setTabBackground(R.drawable.selector_bg_tab);
-        mTabs.setIndicatorColorResource(R.color.steel_blue);
-        mTabs.setIndicatorHeight(QuickReturnUtils.dp2px(this, 5));
+        mTabs.setIndicatorColorResource(R.color.san_juan);
+        mTabs.setIndicatorHeight(QuickReturnUtils.dp2px(this, 6));
         mTabs.setDividerColor(getResources().getColor(android.R.color.transparent));
+        mTabs.setUnderlineHeight(QuickReturnUtils.dp2px(this, 0));
 //        mTabs.setBackgroundColor(getResources().getColor(R.color.indigo));
 
         mTabs.setOnPageChangeListener(mTabsOnPageChangeListener);
@@ -155,7 +156,7 @@ public class QuickReturnFacebookActivity extends QuickReturnBaseActivity impleme
         // Set first tab selected
         mTabsLinearLayout = ((LinearLayout)mTabs.getChildAt(0));
         ImageButton ib = (ImageButton) mTabsLinearLayout.getChildAt(0);
-        ib.setImageResource(R.drawable.ic_action_event_highlighted);
+        ib.setImageResource(R.drawable.ic_action_news_highlighted);
 
     }
     // endregion
@@ -224,13 +225,13 @@ public class QuickReturnFacebookActivity extends QuickReturnBaseActivity impleme
         public int getPageIconResId(int position) {
             switch (position) {
                 case 0:
-                    return R.drawable.ic_action_event;
+                    return R.drawable.ic_action_news;
                 case 1:
-                    return R.drawable.ic_action_cc_bcc;
+                    return R.drawable.ic_action_users;
                 case 2:
-                    return R.drawable.ic_action_chat;
+                    return R.drawable.ic_action_messages;
                 case 3:
-                    return R.drawable.ic_action_web_site;
+                    return R.drawable.ic_action_notifications;
                 case 4:
                     return R.drawable.ic_action_more;
             }
