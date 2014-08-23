@@ -4,4 +4,14 @@
         <item quantity="one">Cheers!!! Thanks for the beer.</item>
         <item quantity="other">Cheers!!! Thanks for the beers.</item>
     </plurals>
+
+    <plurals name="likes">
+        <item quantity="one">1 like</item>
+        <item quantity="other">%d likes</item>
+    </plurals>
+
+    <plurals name="comments">
+        <item quantity="one">1 comment</item>
+        <item quantity="other">%d comments</item>
+    </plurals>
 </resources>

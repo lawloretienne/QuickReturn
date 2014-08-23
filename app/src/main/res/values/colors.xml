@@ -45,6 +45,11 @@
     <color name="gray3">#6b6b6b</color>
     <color name="gray4">#c3c3c3</color>
     <color name="gray5">#d3d3d3</color>
+    <color name="gray6">#d3d6db</color>
+    <color name="gray7">#a3a3a3</color>
+    <color name="gray8">#fafafa</color>
+    <color name="gray9">#f5f5f5</color>
+
 
     <color name="fire_brick">#b93221</color>
     <color name="old_brick">#94281A</color>

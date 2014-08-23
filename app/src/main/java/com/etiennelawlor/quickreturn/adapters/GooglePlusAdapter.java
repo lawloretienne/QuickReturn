@@ -53,7 +53,7 @@ public class GooglePlusAdapter extends ArrayAdapter<GooglePlusPost> {
 
     // region Constructors
     public GooglePlusAdapter(Context context, ArrayList<GooglePlusPost> googlePlusPosts){
-        super(context, R.layout.twitter_row, googlePlusPosts);
+        super(context, 0, googlePlusPosts);
         mContext = context;
         mGooglePlusPosts = googlePlusPosts;
 

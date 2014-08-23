@@ -11,9 +11,16 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.etiennelawlor.quickreturn.R;
+import com.etiennelawlor.quickreturn.adapters.FacebookAdapter;
+import com.etiennelawlor.quickreturn.adapters.GooglePlusAdapter;
 import com.etiennelawlor.quickreturn.enums.QuickReturnType;
 import com.etiennelawlor.quickreturn.listeners.QuickReturnListViewOnScrollListener;
+import com.etiennelawlor.quickreturn.models.FacebookPost;
+import com.etiennelawlor.quickreturn.models.GooglePlusPost;
 import com.etiennelawlor.quickreturn.utils.QuickReturnUtils;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -24,7 +31,13 @@ import butterknife.InjectView;
 public class QuickReturnFacebookFragment extends ListFragment {
 
     // region Member Variables
-    private String[] mValues;
+    private String[] mAvatarUrls;
+    private String[] mDisplayNames;
+    private String[] mTimestamps;
+    private String[] mMessages;
+    private String[] mPostImageUrls;
+    private int[] mCommentCounts;
+    private int[] mLikeCounts;
 
     @InjectView(android.R.id.list) ListView mListView;
     @InjectView(R.id.quick_return_footer_ll) LinearLayout mQuickReturnFooterLinearLayout;
@@ -50,6 +63,14 @@ public class QuickReturnFacebookFragment extends ListFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mAvatarUrls = getActivity().getResources().getStringArray(R.array.avatar_urls);
+        mDisplayNames = getActivity().getResources().getStringArray(R.array.display_names);
+        mTimestamps = getActivity().getResources().getStringArray(R.array.facebook_timestamps);
+        mMessages = getActivity().getResources().getStringArray(R.array.facebook_messages);
+        mPostImageUrls = getActivity().getResources().getStringArray(R.array.facebook_post_image_urls);
+        mCommentCounts = getActivity().getResources().getIntArray(R.array.facebook_comment_counts);
+        mLikeCounts = getActivity().getResources().getIntArray(R.array.facebook_like_counts);
     }
 
     @Override
@@ -64,10 +85,24 @@ public class QuickReturnFacebookFragment extends ListFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mValues = getResources().getStringArray(R.array.countries);
+        ArrayList<FacebookPost> posts = new ArrayList<FacebookPost>();
+        for(int i=0; i<23; i++){
+            FacebookPost post = new FacebookPost();
+            post.setAvatarUrl(mAvatarUrls[i]);
+            post.setDisplayName(mDisplayNames[i]);
+            post.setTimestamp(mTimestamps[i]);
+            post.setCommentCount(mCommentCounts[i]);
+            post.setLikeCount(mLikeCounts[i]);
+            post.setPostImageUrl(mPostImageUrls[i]);
+            post.setMessage(mMessages[i]);
+            posts.add(post);
+        }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-                R.layout.list_item, R.id.item_tv, mValues);
+
+        FacebookAdapter adapter = new FacebookAdapter(getActivity(), posts);
+
+        mListView.addFooterView(new View(getActivity()), null, false);
+        mListView.addHeaderView(new View(getActivity()), null, false);
 
         mListView.setAdapter(adapter);
 

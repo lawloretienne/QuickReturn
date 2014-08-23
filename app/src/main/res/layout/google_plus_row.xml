@@ -173,7 +173,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="62dp"
-            android:background="@drawable/shape_semi_rounded_rectangle"
+            android:background="@drawable/shape_whitesmoke_semi_rounded_rectangle"
             android:gravity="center_vertical"
             android:paddingLeft="20dp"
             android:paddingRight="20dp">

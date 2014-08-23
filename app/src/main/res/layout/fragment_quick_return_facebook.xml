@@ -1,11 +1,17 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/gray6">
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginLeft="11dp"
+        android:layout_marginRight="11dp"
+        android:scrollbars="none"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="11dp"
         android:id="@android:id/list"/>
 
     <com.etiennelawlor.quickreturn.views.CustomFontTextView
