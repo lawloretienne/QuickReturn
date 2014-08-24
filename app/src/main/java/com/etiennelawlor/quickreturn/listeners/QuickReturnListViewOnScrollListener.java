@@ -1,6 +1,6 @@
 package com.etiennelawlor.quickreturn.listeners;
 
-import android.util.Log;
+import android.animation.ObjectAnimator;
 import android.view.View;
 import android.widget.AbsListView;
 
@@ -46,53 +46,65 @@ public class QuickReturnListViewOnScrollListener implements AbsListView.OnScroll
             switch (mQuickReturnType) {
                 case HEADER:
                     if (-mHeaderDiffTotal > 0 && -mHeaderDiffTotal < midHeader) {
-                        mHeader.setTranslationY(0);
+                        ObjectAnimator anim = ObjectAnimator.ofFloat(mHeader, "translationY", mHeader.getTranslationY(), 0);
+                        anim.start();
                         mHeaderDiffTotal = 0;
                     } else if (-mHeaderDiffTotal < -mMinHeaderTranslation && -mHeaderDiffTotal >= midHeader) {
-                        mHeader.setTranslationY(mMinHeaderTranslation);
+                        ObjectAnimator anim = ObjectAnimator.ofFloat(mHeader, "translationY", mHeader.getTranslationY(), mMinHeaderTranslation);
+                        anim.start();
                         mHeaderDiffTotal = mMinHeaderTranslation;
                     }
                     break;
                 case FOOTER:
                     if (-mFooterDiffTotal > 0 && -mFooterDiffTotal < midFooter) { // slide up
-                        mFooter.setTranslationY(0);
+                        ObjectAnimator anim = ObjectAnimator.ofFloat(mFooter, "translationY", mFooter.getTranslationY(), 0);
+                        anim.start();
                         mFooterDiffTotal = 0;
                     } else if (-mFooterDiffTotal < mMinFooterTranslation && -mFooterDiffTotal >= midFooter) { // slide down
-                        mFooter.setTranslationY(mMinFooterTranslation);
+                        ObjectAnimator anim = ObjectAnimator.ofFloat(mFooter, "translationY", mFooter.getTranslationY(), mMinFooterTranslation);
+                        anim.start();
                         mFooterDiffTotal = -mMinFooterTranslation;
                     }
                     break;
                 case BOTH:
                     if (-mHeaderDiffTotal > 0 && -mHeaderDiffTotal < midHeader) {
-                        mHeader.setTranslationY(0);
+                        ObjectAnimator anim = ObjectAnimator.ofFloat(mHeader, "translationY", mHeader.getTranslationY(), 0);
+                        anim.start();
                         mHeaderDiffTotal = 0;
                     } else if (-mHeaderDiffTotal < -mMinHeaderTranslation && -mHeaderDiffTotal >= midHeader) {
-                        mHeader.setTranslationY(mMinHeaderTranslation);
+                        ObjectAnimator anim = ObjectAnimator.ofFloat(mHeader, "translationY", mHeader.getTranslationY(), mMinHeaderTranslation);
+                        anim.start();
                         mHeaderDiffTotal = mMinHeaderTranslation;
                     }
 
                     if (-mFooterDiffTotal > 0 && -mFooterDiffTotal < midFooter) { // slide up
-                        mFooter.setTranslationY(0);
+                        ObjectAnimator anim = ObjectAnimator.ofFloat(mFooter, "translationY", mFooter.getTranslationY(), 0);
+                        anim.start();
                         mFooterDiffTotal = 0;
                     } else if (-mFooterDiffTotal < mMinFooterTranslation && -mFooterDiffTotal >= midFooter) { // slide down
-                        mFooter.setTranslationY(mMinFooterTranslation);
+                        ObjectAnimator anim = ObjectAnimator.ofFloat(mFooter, "translationY", mFooter.getTranslationY(), mMinFooterTranslation);
+                        anim.start();
                         mFooterDiffTotal = -mMinFooterTranslation;
                     }
                     break;
                 case TWITTER:
                     if (-mHeaderDiffTotal > 0 && -mHeaderDiffTotal < midHeader) {
-                        mHeader.setTranslationY(0);
+                        ObjectAnimator anim = ObjectAnimator.ofFloat(mHeader, "translationY", mHeader.getTranslationY(), 0);
+                        anim.start();
                         mHeaderDiffTotal = 0;
                     } else if (-mHeaderDiffTotal < -mMinHeaderTranslation && -mHeaderDiffTotal >= midHeader) {
-                        mHeader.setTranslationY(mMinHeaderTranslation);
+                        ObjectAnimator anim = ObjectAnimator.ofFloat(mHeader, "translationY", mHeader.getTranslationY(), mMinHeaderTranslation);
+                        anim.start();
                         mHeaderDiffTotal = mMinHeaderTranslation;
                     }
 
                     if (-mFooterDiffTotal > 0 && -mFooterDiffTotal < midFooter) { // slide up
-                        mFooter.setTranslationY(0);
+                        ObjectAnimator anim = ObjectAnimator.ofFloat(mFooter, "translationY", mFooter.getTranslationY(), 0);
+                        anim.start();
                         mFooterDiffTotal = 0;
                     } else if (-mFooterDiffTotal < mMinFooterTranslation && -mFooterDiffTotal >= midFooter) { // slide down
-                        mFooter.setTranslationY(mMinFooterTranslation);
+                        ObjectAnimator anim = ObjectAnimator.ofFloat(mFooter, "translationY", mFooter.getTranslationY(), mMinFooterTranslation);
+                        anim.start();
                         mFooterDiffTotal = -mMinFooterTranslation;
                     }
                     break;
