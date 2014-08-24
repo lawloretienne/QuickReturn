@@ -47,10 +47,12 @@ public class QuickReturnListViewOnScrollListener implements AbsListView.OnScroll
                 case HEADER:
                     if (-mHeaderDiffTotal > 0 && -mHeaderDiffTotal < midHeader) {
                         ObjectAnimator anim = ObjectAnimator.ofFloat(mHeader, "translationY", mHeader.getTranslationY(), 0);
+                        anim.setDuration(100);
                         anim.start();
                         mHeaderDiffTotal = 0;
                     } else if (-mHeaderDiffTotal < -mMinHeaderTranslation && -mHeaderDiffTotal >= midHeader) {
                         ObjectAnimator anim = ObjectAnimator.ofFloat(mHeader, "translationY", mHeader.getTranslationY(), mMinHeaderTranslation);
+                        anim.setDuration(100);
                         anim.start();
                         mHeaderDiffTotal = mMinHeaderTranslation;
                     }
@@ -58,10 +60,12 @@ public class QuickReturnListViewOnScrollListener implements AbsListView.OnScroll
                 case FOOTER:
                     if (-mFooterDiffTotal > 0 && -mFooterDiffTotal < midFooter) { // slide up
                         ObjectAnimator anim = ObjectAnimator.ofFloat(mFooter, "translationY", mFooter.getTranslationY(), 0);
+                        anim.setDuration(100);
                         anim.start();
                         mFooterDiffTotal = 0;
                     } else if (-mFooterDiffTotal < mMinFooterTranslation && -mFooterDiffTotal >= midFooter) { // slide down
                         ObjectAnimator anim = ObjectAnimator.ofFloat(mFooter, "translationY", mFooter.getTranslationY(), mMinFooterTranslation);
+                        anim.setDuration(100);
                         anim.start();
                         mFooterDiffTotal = -mMinFooterTranslation;
                     }
@@ -69,20 +73,24 @@ public class QuickReturnListViewOnScrollListener implements AbsListView.OnScroll
                 case BOTH:
                     if (-mHeaderDiffTotal > 0 && -mHeaderDiffTotal < midHeader) {
                         ObjectAnimator anim = ObjectAnimator.ofFloat(mHeader, "translationY", mHeader.getTranslationY(), 0);
+                        anim.setDuration(100);
                         anim.start();
                         mHeaderDiffTotal = 0;
                     } else if (-mHeaderDiffTotal < -mMinHeaderTranslation && -mHeaderDiffTotal >= midHeader) {
                         ObjectAnimator anim = ObjectAnimator.ofFloat(mHeader, "translationY", mHeader.getTranslationY(), mMinHeaderTranslation);
+                        anim.setDuration(100);
                         anim.start();
                         mHeaderDiffTotal = mMinHeaderTranslation;
                     }
 
                     if (-mFooterDiffTotal > 0 && -mFooterDiffTotal < midFooter) { // slide up
                         ObjectAnimator anim = ObjectAnimator.ofFloat(mFooter, "translationY", mFooter.getTranslationY(), 0);
+                        anim.setDuration(100);
                         anim.start();
                         mFooterDiffTotal = 0;
                     } else if (-mFooterDiffTotal < mMinFooterTranslation && -mFooterDiffTotal >= midFooter) { // slide down
                         ObjectAnimator anim = ObjectAnimator.ofFloat(mFooter, "translationY", mFooter.getTranslationY(), mMinFooterTranslation);
+                        anim.setDuration(100);
                         anim.start();
                         mFooterDiffTotal = -mMinFooterTranslation;
                     }
@@ -90,20 +98,24 @@ public class QuickReturnListViewOnScrollListener implements AbsListView.OnScroll
                 case TWITTER:
                     if (-mHeaderDiffTotal > 0 && -mHeaderDiffTotal < midHeader) {
                         ObjectAnimator anim = ObjectAnimator.ofFloat(mHeader, "translationY", mHeader.getTranslationY(), 0);
+                        anim.setDuration(100);
                         anim.start();
                         mHeaderDiffTotal = 0;
                     } else if (-mHeaderDiffTotal < -mMinHeaderTranslation && -mHeaderDiffTotal >= midHeader) {
                         ObjectAnimator anim = ObjectAnimator.ofFloat(mHeader, "translationY", mHeader.getTranslationY(), mMinHeaderTranslation);
+                        anim.setDuration(100);
                         anim.start();
                         mHeaderDiffTotal = mMinHeaderTranslation;
                     }
 
                     if (-mFooterDiffTotal > 0 && -mFooterDiffTotal < midFooter) { // slide up
                         ObjectAnimator anim = ObjectAnimator.ofFloat(mFooter, "translationY", mFooter.getTranslationY(), 0);
+                        anim.setDuration(100);
                         anim.start();
                         mFooterDiffTotal = 0;
                     } else if (-mFooterDiffTotal < mMinFooterTranslation && -mFooterDiffTotal >= midFooter) { // slide down
                         ObjectAnimator anim = ObjectAnimator.ofFloat(mFooter, "translationY", mFooter.getTranslationY(), mMinFooterTranslation);
+                        anim.setDuration(100);
                         anim.start();
                         mFooterDiffTotal = -mMinFooterTranslation;
                     }
