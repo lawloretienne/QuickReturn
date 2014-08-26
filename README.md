@@ -116,9 +116,11 @@ Download the app by clicking on the badge below.
 Developed By
 ============
 
-Etienne Lawlor 
-  Email - lawloretienne@gmail.com
-  Website - www.interapptiv3.com 
+* Etienne Lawlor 
+ 
+&nbsp;&nbsp;&nbsp;**Email** - lawloretienne@gmail.com
+
+&nbsp;&nbsp;&nbsp;**Website** - www.interapptiv3.com 
 
 Liscence
 ========
