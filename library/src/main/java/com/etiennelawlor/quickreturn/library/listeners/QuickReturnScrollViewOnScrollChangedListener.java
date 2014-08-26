@@ -1,10 +1,10 @@
-package com.etiennelawlor.quickreturn.listeners;
+package com.etiennelawlor.quickreturn.library.listeners;
 
 import android.view.View;
 import android.widget.ScrollView;
 
-import com.etiennelawlor.quickreturn.enums.QuickReturnType;
-import com.etiennelawlor.quickreturn.views.NotifyingScrollView;
+import com.etiennelawlor.quickreturn.library.enums.QuickReturnType;
+import com.etiennelawlor.quickreturn.library.views.NotifyingScrollView;
 
 /**
  * Created by etiennelawlor on 7/11/14.

@@ -12,11 +12,11 @@ import android.widget.ListView;
 
 import com.etiennelawlor.quickreturn.R;
 import com.etiennelawlor.quickreturn.adapters.TwitterAdapter;
-import com.etiennelawlor.quickreturn.enums.QuickReturnType;
+import com.etiennelawlor.quickreturn.library.enums.QuickReturnType;
 import com.etiennelawlor.quickreturn.interfaces.QuickReturnInterface;
-import com.etiennelawlor.quickreturn.listeners.QuickReturnListViewOnScrollListener;
+import com.etiennelawlor.quickreturn.library.listeners.QuickReturnListViewOnScrollListener;
 import com.etiennelawlor.quickreturn.models.Tweet;
-import com.etiennelawlor.quickreturn.utils.QuickReturnUtils;
+import com.etiennelawlor.quickreturn.library.utils.QuickReturnUtils;
 
 import java.util.ArrayList;
 

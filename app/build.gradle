@@ -2,14 +2,13 @@ apply plugin: 'android'
 
 android {
     compileSdkVersion 19
-    buildToolsVersion "19.1.0"
-
+    buildToolsVersion '19.1.0'
     defaultConfig {
-        applicationId "com.etiennelawlor.quickreturn"
+        applicationId 'com.etiennelawlor.quickreturn'
         minSdkVersion 14
         targetSdkVersion 19
         versionCode 18
-        versionName "0.0.18"
+        versionName '0.0.18'
     }
     signingConfigs {
         release {
@@ -37,6 +36,8 @@ android {
         disable 'InvalidPackage'
     }
     android.aaptOptions.useAaptPngCruncher = true
+    productFlavors {
+    }
 }
 
 dependencies {
@@ -52,8 +53,8 @@ dependencies {
     compile 'com.android.support:cardview-v7:+'
     compile 'com.android.support:recyclerview-v7:+'
     compile 'com.android.support:palette-v7:+'
-
     compile('de.keyboardsurfer.android.widget:crouton:1.8.4@aar') {
         exclude group: 'com.google.android', module: 'support-v4'
     }
+    compile project(':library')
 }

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.etiennelawlor.quickreturn.views.NotifyingScrollView
+    <com.etiennelawlor.quickreturn.library.views.NotifyingScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="48dp"
@@ -11,7 +11,7 @@
 
         <include layout="@layout/scrollview_content"/>
 
-    </com.etiennelawlor.quickreturn.views.NotifyingScrollView>
+    </com.etiennelawlor.quickreturn.library.views.NotifyingScrollView>
 
     <com.etiennelawlor.quickreturn.views.CustomFontTextView
         android:id="@+id/quick_return_header_tv"

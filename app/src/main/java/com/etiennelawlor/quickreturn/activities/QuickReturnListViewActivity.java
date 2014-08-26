@@ -20,7 +20,7 @@ import com.etiennelawlor.quickreturn.fragments.QuickReturnHeaderListFragment;
 import com.etiennelawlor.quickreturn.fragments.QuickReturnHeaderListFragment2;
 import com.etiennelawlor.quickreturn.fragments.QuickReturnHeaderListFragment3;
 import com.etiennelawlor.quickreturn.interfaces.QuickReturnInterface;
-import com.etiennelawlor.quickreturn.utils.QuickReturnUtils;
+import com.etiennelawlor.quickreturn.library.utils.QuickReturnUtils;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;

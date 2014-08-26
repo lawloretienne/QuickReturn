@@ -20,7 +20,7 @@ import android.view.MenuItem;
 
 import com.android.vending.billing.IInAppBillingService;
 import com.etiennelawlor.quickreturn.R;
-import com.etiennelawlor.quickreturn.utils.QuickReturnUtils;
+import com.etiennelawlor.quickreturn.library.utils.QuickReturnUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;

@@ -1,4 +1,4 @@
-package com.etiennelawlor.quickreturn.enums;
+package com.etiennelawlor.quickreturn.library.enums;
 
 /**
  * Created by etiennelawlor on 7/10/14.

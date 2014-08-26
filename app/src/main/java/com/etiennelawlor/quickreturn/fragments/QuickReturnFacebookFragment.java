@@ -5,22 +5,17 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.etiennelawlor.quickreturn.R;
 import com.etiennelawlor.quickreturn.adapters.FacebookAdapter;
-import com.etiennelawlor.quickreturn.adapters.GooglePlusAdapter;
-import com.etiennelawlor.quickreturn.enums.QuickReturnType;
-import com.etiennelawlor.quickreturn.listeners.QuickReturnListViewOnScrollListener;
+import com.etiennelawlor.quickreturn.library.enums.QuickReturnType;
+import com.etiennelawlor.quickreturn.library.listeners.QuickReturnListViewOnScrollListener;
 import com.etiennelawlor.quickreturn.models.FacebookPost;
-import com.etiennelawlor.quickreturn.models.GooglePlusPost;
-import com.etiennelawlor.quickreturn.utils.QuickReturnUtils;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;

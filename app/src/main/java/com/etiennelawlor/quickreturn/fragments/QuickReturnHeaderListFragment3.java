@@ -10,8 +10,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.etiennelawlor.quickreturn.R;
-import com.etiennelawlor.quickreturn.enums.QuickReturnType;
-import com.etiennelawlor.quickreturn.listeners.QuickReturnListViewOnScrollListener;
+import com.etiennelawlor.quickreturn.library.enums.QuickReturnType;
+import com.etiennelawlor.quickreturn.library.listeners.QuickReturnListViewOnScrollListener;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -65,9 +65,12 @@ public class QuickReturnHeaderListFragment3 extends ListFragment {
 
         mListView.setAdapter(adapter);
 
+        // Set up the QuickReturn scroll listener
         int headerHeight = getActivity().getResources().getDimensionPixelSize(R.dimen.header_height2);
-
-        QuickReturnListViewOnScrollListener scrollListener = new QuickReturnListViewOnScrollListener(QuickReturnType.HEADER, mQuickReturnTextView, -headerHeight, null, 0);
+        QuickReturnListViewOnScrollListener scrollListener = new QuickReturnListViewOnScrollListener(QuickReturnType.HEADER,
+                mQuickReturnTextView, -headerHeight, null, 0);
+        // Setting to true will slide the header and/or footer into view or slide out of view based
+        // on what is visible in the idle scroll state
         scrollListener.setCanSlideInIdleScrollState(true);
         mListView.setOnScrollListener(scrollListener);
     }
@@ -77,6 +80,5 @@ public class QuickReturnHeaderListFragment3 extends ListFragment {
         super.onDestroyView();
         ButterKnife.reset(this);
     }
-
     // endregion
 }

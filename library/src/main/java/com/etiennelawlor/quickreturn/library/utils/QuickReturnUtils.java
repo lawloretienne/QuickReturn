@@ -1,8 +1,7 @@
-package com.etiennelawlor.quickreturn.utils;
+package com.etiennelawlor.quickreturn.library.utils;
 
 import android.content.Context;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Display;
 import android.view.View;

@@ -8,9 +8,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.etiennelawlor.quickreturn.R;
-import com.etiennelawlor.quickreturn.enums.QuickReturnType;
-import com.etiennelawlor.quickreturn.listeners.SpeedyQuickReturnScrollViewOnScrollChangedListener;
-import com.etiennelawlor.quickreturn.views.NotifyingScrollView;
+import com.etiennelawlor.quickreturn.library.enums.QuickReturnType;
+import com.etiennelawlor.quickreturn.library.listeners.SpeedyQuickReturnScrollViewOnScrollChangedListener;
+import com.etiennelawlor.quickreturn.library.views.NotifyingScrollView;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;

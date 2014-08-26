@@ -1,9 +1,8 @@
-package com.etiennelawlor.quickreturn.views;
+package com.etiennelawlor.quickreturn.library.views;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.ListView;
-import android.widget.ScrollView;
 
 
 /**

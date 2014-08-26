@@ -1,11 +1,11 @@
-package com.etiennelawlor.quickreturn.listeners;
+package com.etiennelawlor.quickreturn.library.listeners;
 
 import android.animation.ObjectAnimator;
 import android.view.View;
 import android.widget.AbsListView;
 
-import com.etiennelawlor.quickreturn.enums.QuickReturnType;
-import com.etiennelawlor.quickreturn.utils.QuickReturnUtils;
+import com.etiennelawlor.quickreturn.library.enums.QuickReturnType;
+import com.etiennelawlor.quickreturn.library.utils.QuickReturnUtils;
 
 /**
  * Created by etiennelawlor on 7/10/14.

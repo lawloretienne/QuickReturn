@@ -13,11 +13,11 @@ import android.widget.TextView;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.etiennelawlor.quickreturn.R;
-import com.etiennelawlor.quickreturn.enums.QuickReturnType;
+import com.etiennelawlor.quickreturn.library.enums.QuickReturnType;
 import com.etiennelawlor.quickreturn.fragments.QuickReturnFragment;
 import com.etiennelawlor.quickreturn.fragments.SpeedyQuickReturnFragment;
 import com.etiennelawlor.quickreturn.interfaces.QuickReturnInterface;
-import com.etiennelawlor.quickreturn.utils.QuickReturnUtils;
+import com.etiennelawlor.quickreturn.library.utils.QuickReturnUtils;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;

@@ -21,7 +21,7 @@ import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.etiennelawlor.quickreturn.R;
 import com.etiennelawlor.quickreturn.models.GooglePlusPost;
-import com.etiennelawlor.quickreturn.utils.QuickReturnUtils;
+import com.etiennelawlor.quickreturn.library.utils.QuickReturnUtils;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
