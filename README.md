@@ -13,7 +13,7 @@ Sample Usage
 The example below shows how to set up a QuickReturn view as a header in a ListView
 
 ###### QuickReturnHeaderListFragment3.java
-```
+```java
 public class QuickReturnHeaderListFragment3 extends ListFragment {
 
     // region Member Variables
@@ -80,7 +80,7 @@ public class QuickReturnHeaderListFragment3 extends ListFragment {
 ```
 
 ###### fragment_list_quick_return_header.xml
-```
+```xml
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
