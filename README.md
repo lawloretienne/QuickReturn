@@ -122,7 +122,7 @@ Developed By
 
 &nbsp;&nbsp;&nbsp;**Website** - www.interapptiv3.com 
 
-Liscence
+License
 ========
 
 ```
