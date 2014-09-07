@@ -122,6 +122,13 @@ Developed By
 
 &nbsp;&nbsp;&nbsp;**Website** - www.interapptiv3.com 
 
+Projects/Apps using QuickReturn
+===============================
+
+- <a href="https://play.google.com/store/apps/details?id=com.tradehero.th">TradeHero</a>
+
+Feel free to contact me to add yours to this list.
+
 License
 ========
 
