@@ -129,6 +129,10 @@ Projects/Apps using QuickReturn
 
 Feel free to contact me to add yours to this list.
 
+Todo
+====
+Convert library into an Android archive (.aar)
+
 License
 ========
 
