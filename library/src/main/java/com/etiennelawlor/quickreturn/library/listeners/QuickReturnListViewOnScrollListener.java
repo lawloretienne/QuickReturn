@@ -7,6 +7,9 @@ import android.widget.AbsListView;
 import com.etiennelawlor.quickreturn.library.enums.QuickReturnType;
 import com.etiennelawlor.quickreturn.library.utils.QuickReturnUtils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by etiennelawlor on 7/10/14.
  */
@@ -22,6 +25,8 @@ public class QuickReturnListViewOnScrollListener implements AbsListView.OnScroll
     private View mFooter;
     private QuickReturnType mQuickReturnType;
     private boolean mCanSlideInIdleScrollState = false;
+
+    private List<AbsListView.OnScrollListener> mExtraOnScrollListenerList = new ArrayList<AbsListView.OnScrollListener>();
     // endregion
 
     // region Constructors
@@ -37,7 +42,10 @@ public class QuickReturnListViewOnScrollListener implements AbsListView.OnScroll
     @Override
     public void onScrollStateChanged(AbsListView view, int scrollState) {
 //        Log.d(getClass().getSimpleName(), "onScrollStateChanged() : scrollState - "+scrollState);
-
+        // apply another list' s on scroll listener
+        for (AbsListView.OnScrollListener listener : mExtraOnScrollListenerList) {
+          listener.onScrollStateChanged(view, scrollState);
+        }
         if(scrollState == SCROLL_STATE_IDLE && mCanSlideInIdleScrollState){
 
             int midHeader = -mMinHeaderTranslation/2;
@@ -127,6 +135,10 @@ public class QuickReturnListViewOnScrollListener implements AbsListView.OnScroll
 
     @Override
     public void onScroll(AbsListView listview, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+        // apply extra on scroll listener
+        for (AbsListView.OnScrollListener listener : mExtraOnScrollListenerList) {
+          listener.onScroll(listview, firstVisibleItem, visibleItemCount, totalItemCount);
+        }
         int scrollY = QuickReturnUtils.getScrollY(listview);
         int diff = mPrevScrollY - scrollY;
 
@@ -191,5 +203,9 @@ public class QuickReturnListViewOnScrollListener implements AbsListView.OnScroll
 
     public void setCanSlideInIdleScrollState(boolean canSlideInIdleScrollState){
         mCanSlideInIdleScrollState = canSlideInIdleScrollState;
+    }
+
+    public void registerExtraOnScrollListener(AbsListView.OnScrollListener listener) {
+        mExtraOnScrollListenerList.add(listener);
     }
 }

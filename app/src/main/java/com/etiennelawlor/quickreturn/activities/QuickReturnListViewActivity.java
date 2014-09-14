@@ -19,6 +19,7 @@ import com.etiennelawlor.quickreturn.fragments.QuickReturnFooterListFragment3;
 import com.etiennelawlor.quickreturn.fragments.QuickReturnHeaderListFragment;
 import com.etiennelawlor.quickreturn.fragments.QuickReturnHeaderListFragment2;
 import com.etiennelawlor.quickreturn.fragments.QuickReturnHeaderListFragment3;
+import com.etiennelawlor.quickreturn.fragments.QuickReturnWithExtraOnScrollListenerFragment;
 import com.etiennelawlor.quickreturn.interfaces.QuickReturnInterface;
 import com.etiennelawlor.quickreturn.library.utils.QuickReturnUtils;
 
@@ -157,6 +158,8 @@ public class QuickReturnListViewActivity extends QuickReturnBaseActivity impleme
                     return QuickReturnFooterListFragment3.newInstance();
                 case 5:
                     return QuickReturnFooterListFragment2.newInstance();
+                case 6:
+                    return QuickReturnWithExtraOnScrollListenerFragment.newInstance();
                 default:
                     return QuickReturnHeaderListFragment.newInstance();
             }
@@ -164,7 +167,7 @@ public class QuickReturnListViewActivity extends QuickReturnBaseActivity impleme
 
         @Override
         public int getCount() {
-            return 6;
+            return 7;
         }
 
         @Override
@@ -182,6 +185,8 @@ public class QuickReturnListViewActivity extends QuickReturnBaseActivity impleme
                     return "QRFooter2";
                 case 5:
                     return "SpeedyQRFooter";
+                case 6:
+                    return "WithExtraOnScrollListener";
             }
             return null;
         }
