@@ -12,6 +12,7 @@ import com.etiennelawlor.quickreturn.library.enums.QuickReturnType;
 import com.etiennelawlor.quickreturn.library.utils.QuickReturnUtils;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by etiennelawlor on 7/14/14.
@@ -30,6 +31,7 @@ public class SpeedyQuickReturnListViewOnScrollListener implements AbsListView.On
     private Animation mSlideHeaderDownAnimation;
     private Animation mSlideFooterUpAnimation;
     private Animation mSlideFooterDownAnimation;
+    private List<AbsListView.OnScrollListener> mExtraOnScrollListeners = new ArrayList<AbsListView.OnScrollListener>();
     // endregion
 
     // region Constructors
@@ -63,11 +65,18 @@ public class SpeedyQuickReturnListViewOnScrollListener implements AbsListView.On
 
     @Override
     public void onScrollStateChanged(AbsListView view, int scrollState) {
-
+      // apply extra listener first
+      for (AbsListView.OnScrollListener listener : mExtraOnScrollListeners) {
+          listener.onScrollStateChanged(view, scrollState);
+      }
     }
 
     @Override
     public void onScroll(AbsListView listview, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+        // apply extra listener first
+        for (AbsListView.OnScrollListener listener : mExtraOnScrollListeners) {
+            listener.onScroll(listview, firstVisibleItem, visibleItemCount, totalItemCount);
+        }
         int scrollY = QuickReturnUtils.getScrollY(listview);
         int diff = mPrevScrollY - scrollY;
 
@@ -176,6 +185,9 @@ public class SpeedyQuickReturnListViewOnScrollListener implements AbsListView.On
         mPrevScrollY = scrollY;
     }
 
+    public void registerExtraOnScrollListener(AbsListView.OnScrollListener listener) {
+        mExtraOnScrollListeners.add(listener);
+    }
 
     public void setSlideHeaderUpAnimation(Animation animation){
         mSlideHeaderUpAnimation = animation;

@@ -24,6 +24,8 @@ public class QuickReturnHeaderListFragment3 extends ListFragment {
     // region Member Variables
     private String[] mValues;
 
+    protected QuickReturnListViewOnScrollListener mQuickReturnListViewOnScrollListener; // for demo usage
+
     @InjectView(android.R.id.list) ListView mListView;
     @InjectView(R.id.quick_return_tv) TextView mQuickReturnTextView;
     // endregion
@@ -67,12 +69,12 @@ public class QuickReturnHeaderListFragment3 extends ListFragment {
 
         // Set up the QuickReturn scroll listener
         int headerHeight = getActivity().getResources().getDimensionPixelSize(R.dimen.header_height2);
-        QuickReturnListViewOnScrollListener scrollListener = new QuickReturnListViewOnScrollListener(QuickReturnType.HEADER,
+        mQuickReturnListViewOnScrollListener = new QuickReturnListViewOnScrollListener(QuickReturnType.HEADER,
                 mQuickReturnTextView, -headerHeight, null, 0);
         // Setting to true will slide the header and/or footer into view or slide out of view based
         // on what is visible in the idle scroll state
-        scrollListener.setCanSlideInIdleScrollState(true);
-        mListView.setOnScrollListener(scrollListener);
+        mQuickReturnListViewOnScrollListener.setCanSlideInIdleScrollState(true);
+        mListView.setOnScrollListener(mQuickReturnListViewOnScrollListener);
     }
 
     @Override
