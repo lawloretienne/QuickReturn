@@ -1,27 +1,20 @@
 package com.etiennelawlor.quickreturn.adapters;
 
 import android.content.Context;
-import android.os.Handler;
-import android.support.v7.widget.CardView;
 import android.text.Html;
-import android.text.SpannableStringBuilder;
 import android.text.Spanned;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.animation.TranslateAnimation;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.daimajia.androidanimations.library.Techniques;
-import com.daimajia.androidanimations.library.YoYo;
 import com.etiennelawlor.quickreturn.R;
-import com.etiennelawlor.quickreturn.models.GooglePlusPost;
 import com.etiennelawlor.quickreturn.library.utils.QuickReturnUtils;
+import com.etiennelawlor.quickreturn.models.GooglePlusPost;
 import com.makeramen.RoundedTransformationBuilder;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;

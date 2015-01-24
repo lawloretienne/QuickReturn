@@ -30,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="Twitter"
+            android:text="@string/twitter"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@android:color/white"
             app:textFont="Roboto_Bold" />
@@ -54,7 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="Facebook"
+            android:text="@string/facebook"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@android:color/white"
             app:textFont="Roboto_Bold" />
@@ -77,7 +77,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="Google+"
+            android:text="@string/google_plus"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@android:color/white"
             app:textFont="Roboto_Bold" />
@@ -100,7 +100,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="ListView"
+            android:text="@string/listview"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@android:color/white"
             app:textFont="Roboto_Bold" />
@@ -124,7 +124,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="ScrollView"
+            android:text="@string/scrollview"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@android:color/white"
             app:textFont="Roboto_Bold" />

@@ -2,7 +2,6 @@ package com.etiennelawlor.quickreturn.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 import com.etiennelawlor.quickreturn.R;
 
@@ -14,27 +13,27 @@ public class QuickReturnActivity extends QuickReturnBaseActivity {
 
     // region Listeners
     @OnClick(R.id.twitter_cv)
-    public void onTwitterClicked(View v){
+    public void onTwitterClicked(){
         startActivity(new Intent(QuickReturnActivity.this, QuickReturnTwitterActivity.class));
     }
 
     @OnClick(R.id.facebook_cv)
-     public void onFacebookClicked(View v){
+    public void onFacebookClicked(){
         startActivity(new Intent(QuickReturnActivity.this, QuickReturnFacebookActivity.class));
     }
 
     @OnClick(R.id.google_plus_cv)
-    public void onGooglePlusClicked(View v){
+    public void onGooglePlusClicked(){
         startActivity(new Intent(QuickReturnActivity.this, QuickReturnGooglePlusActivity.class));
     }
 
     @OnClick(R.id.listview_cv)
-    public void onListViewClicked(View v){
+    public void onListViewClicked(){
         startActivity(new Intent(QuickReturnActivity.this, QuickReturnListViewActivity.class));
     }
 
     @OnClick(R.id.scrollview_cv)
-    public void onScrollViewClicked(View v){
+    public void onScrollViewClicked(){
         startActivity(new Intent(QuickReturnActivity.this, QuickReturnScrollViewActivity.class));
     }
     // endregion

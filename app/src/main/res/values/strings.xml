@@ -89,5 +89,14 @@
     <string name="whats_happening"> What\'s happening?</string>
     <string name="title_activity_quick_return_google_plus">QuickReturnGooglePlusActivity</string>
     <string name="plus_one">+%d</string>
+    <string name="buy_me_a_beer">Buy me a beer</string>
+    <string name="buy_me_two_beers">Buy me two beers</string>
+    <string name="buy_me_four_beers">Buy me four beers</string>
+    <string name="new_posts">New Posts! Touch to see them</string>
+    <string name="listview">ListView</string>
+    <string name="scrollview">ScrollView</string>
+    <string name="like">Like</string>
+    <string name="comment">Comment</string>
+    <string name="share">Share</string>
 
 </resources>

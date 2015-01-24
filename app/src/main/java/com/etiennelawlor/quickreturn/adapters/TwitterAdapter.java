@@ -1,8 +1,6 @@
 package com.etiennelawlor.quickreturn.adapters;
 
 import android.content.Context;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.etiennelawlor.quickreturn.R;
-import com.etiennelawlor.quickreturn.models.Tweet;
 import com.etiennelawlor.quickreturn.library.utils.QuickReturnUtils;
+import com.etiennelawlor.quickreturn.models.Tweet;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

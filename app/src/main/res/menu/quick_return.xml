@@ -13,11 +13,11 @@
         app:showAsAction="always">
         <menu>
             <item android:id="@+id/buy_one_beer"
-                android:title="Buy me a beer"/>
+                android:title="@string/buy_me_a_beer"/>
             <item android:id="@+id/buy_two_beers"
-                android:title="Buy me two beers" />
+                android:title="@string/buy_me_two_beers" />
             <item android:id="@+id/buy_four_beers"
-                android:title="Buy me four beers" />
+                android:title="@string/buy_me_four_beers" />
         </menu>
     </item>
 

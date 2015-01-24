@@ -39,9 +39,12 @@ public class QuickReturnGooglePlusFragment extends ListFragment {
     private int[] mCommentCounts;
     private int[] mPlusOneCounts;
 
-    @InjectView(android.R.id.list) ListView mListView;
-    @InjectView(R.id.quick_return_footer_iv) ImageView mQuickReturnFooterImageView;
-    @InjectView(R.id.quick_return_footer_tv) TextView mQuickReturnFooterTextView;
+    @InjectView(android.R.id.list)
+    private ListView mListView;
+    @InjectView(R.id.quick_return_footer_iv)
+    private ImageView mQuickReturnFooterImageView;
+    @InjectView(R.id.quick_return_footer_tv)
+    private TextView mQuickReturnFooterTextView;
     // endregion
 
     //region Listeners
@@ -91,7 +94,7 @@ public class QuickReturnGooglePlusFragment extends ListFragment {
 //        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
 //                R.layout.google_plus_list_item, R.id.item_tv, mValues);
 
-        ArrayList<GooglePlusPost> posts = new ArrayList<GooglePlusPost>();
+        ArrayList<GooglePlusPost> posts = new ArrayList<>();
         for(int i=0; i<23; i++){
             GooglePlusPost post = new GooglePlusPost();
             post.setAvatarUrl(mAvatarUrls[i]);
@@ -143,10 +146,10 @@ public class QuickReturnGooglePlusFragment extends ListFragment {
 //        mListView.setOnScrollListener(new QuickReturnListViewOnScrollListener(QuickReturnType.BOTH,
 //                mQuickReturnHeaderTextView, headerTranslation, mQuickReturnFooterLinearLayout, -footerTranslation));
 
-        ArrayList<View> headerViews = new ArrayList<View>();
+        ArrayList<View> headerViews = new ArrayList<>();
         headerViews.add(getActionBarView());
 
-        ArrayList<View> footerViews = new ArrayList<View>();
+        ArrayList<View> footerViews = new ArrayList<>();
         mQuickReturnFooterTextView.setTag(R.id.scroll_threshold_key, 2);
         footerViews.add(mQuickReturnFooterTextView);
         mQuickReturnFooterImageView.setTag(R.id.scroll_threshold_key, 4);
@@ -169,7 +172,7 @@ public class QuickReturnGooglePlusFragment extends ListFragment {
     // endregion
 
     // region Helper Methods
-    public View getActionBarView() {
+    private View getActionBarView() {
         Window window = getActivity().getWindow();
         View v = window.getDecorView();
         int resId = getResources().getIdentifier("action_bar_container", "id", "android");

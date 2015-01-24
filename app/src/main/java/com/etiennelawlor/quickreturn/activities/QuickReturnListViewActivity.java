@@ -33,8 +33,10 @@ public class QuickReturnListViewActivity extends QuickReturnBaseActivity impleme
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private LinearLayout mTabsLinearLayout;
 
-    @InjectView(R.id.tabs) PagerSlidingTabStrip mTabs;
-    @InjectView(R.id.pager) ViewPager mViewPager;
+    @InjectView(R.id.tabs)
+    private PagerSlidingTabStrip mTabs;
+    @InjectView(R.id.pager)
+    private ViewPager mViewPager;
     // endregion
 
     // region Listeners

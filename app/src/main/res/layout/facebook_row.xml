@@ -35,6 +35,7 @@
                     android:layout_height="34dp"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="9dp"
+                    android:contentDescription=""
                     android:scaleType="centerCrop" />
 
                 <LinearLayout
@@ -48,7 +49,6 @@
                         android:id="@+id/display_name_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Megan Fox"
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
@@ -57,7 +57,6 @@
                         android:id="@+id/timestamp_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Tue at 8:54 PM"
                         android:textColor="@color/gray15"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -73,13 +72,13 @@
                 android:layout_marginRight="12dp"
                 android:layout_marginTop="14dp"
                 android:layout_marginBottom="18dp"
-                android:text="It\'s been so frustrating not being able to go topless when I\'m abroad, just in case someone\'s there with a camera."
                 android:textSize="14sp" />
 
             <ImageView
                 android:id="@+id/post_iv"
                 android:layout_width="match_parent"
                 android:layout_height="320dp"
+                android:contentDescription=""
                 android:scaleType="centerCrop" />
 
             <RelativeLayout
@@ -94,7 +93,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="47 likes"
                     android:textColor="@color/gray15"
                     android:textSize="12sp"
                     android:textStyle="bold" />
@@ -106,7 +104,6 @@
                     android:layout_toRightOf="@id/like_count_tv"
                     android:gravity="center"
                     android:layout_marginLeft="8dp"
-                    android:text="10 comments"
                     android:textColor="@color/gray15"
                     android:textSize="12sp"
                     android:textStyle="bold" />
@@ -135,7 +132,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="Like"
+                        android:text="@string/like"
                         android:textColor="@color/gray15"
                         android:textSize="12sp"
                         android:textStyle="bold"/>
@@ -150,7 +147,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="Comment"
+                        android:text="@string/comment"
                         android:textColor="@color/gray15"
                         android:textSize="12sp"
                         android:textStyle="bold"/>
@@ -165,7 +162,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="Share"
+                        android:text="@string/share"
                         android:textColor="@color/gray15"
                         android:textSize="12sp"
                         android:textStyle="bold"/>

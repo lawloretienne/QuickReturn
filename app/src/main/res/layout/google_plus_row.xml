@@ -30,7 +30,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp">
 
-                <com.etiennelawlor.quickreturn.views.RoundedImageView
+                <com.makeramen.RoundedImageView
                     android:id="@+id/user_iv"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
@@ -52,7 +52,6 @@
                         android:id="@+id/display_name_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Megan Fox"
                         android:textSize="15sp"
                         android:textStyle="bold" />
 
@@ -61,7 +60,6 @@
                         android:id="@+id/timestamp_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Public - 5 days ago"
                         android:textColor="@color/gray15"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -74,7 +72,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:text="It\'s been so frustrating not being able to go topless when I\'m abroad, just in case someone\'s there with a camera."
                 android:textSize="15sp" />
 
             <ImageView
@@ -82,6 +79,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="320dp"
                 android:scaleType="centerCrop"
+                android:contentDescription=""
                 android:background="@color/gray9"/>
 
             <RelativeLayout
@@ -99,7 +97,6 @@
                     android:gravity="center"
                     android:paddingLeft="12dp"
                     android:paddingRight="12dp"
-                    android:text="+3"
                     android:textColor="@color/gray15"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -112,6 +109,7 @@
                     android:background="@drawable/shape_rounded_rectangle"
                     android:gravity="center"
                     android:padding="4dp"
+                    android:contentDescription=""
                     android:src="@drawable/ic_action_share" />
 
                 <TextView
@@ -126,7 +124,6 @@
                     android:gravity="center"
                     android:paddingRight="12dp"
                     android:paddingLeft="4dp"
-                    android:text="2"
                     android:textColor="@color/gray15"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -143,7 +140,7 @@
                         android:layout_height="32dp"
                         android:orientation="horizontal">
 
-                        <com.etiennelawlor.quickreturn.views.RoundedImageView
+                        <com.makeramen.RoundedImageView
                             android:id="@+id/commenter_one_iv"
                             android:layout_width="32dp"
                             android:layout_height="match_parent"
@@ -151,7 +148,7 @@
                             android:background="@drawable/shape_rounded_rectangle"
                             app:corner_radius="2dp" />
 
-                        <com.etiennelawlor.quickreturn.views.RoundedImageView
+                        <com.makeramen.RoundedImageView
                             android:id="@+id/commenter_two_iv"
                             android:layout_width="32dp"
                             android:layout_height="match_parent"
@@ -160,7 +157,7 @@
                             android:background="@drawable/shape_rounded_rectangle"
                             app:corner_radius="2dp" />
 
-                        <com.etiennelawlor.quickreturn.views.RoundedImageView
+                        <com.makeramen.RoundedImageView
                             android:id="@+id/commenter_three_iv"
                             android:layout_width="32dp"
                             android:layout_height="match_parent"
@@ -196,7 +193,6 @@
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:maxLines="2"
-                    android:text="Megan Fox That's a cute outfit."
                     android:textSize="15sp" />
 
             </RelativeLayout>

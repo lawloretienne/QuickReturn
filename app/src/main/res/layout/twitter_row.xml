@@ -12,6 +12,7 @@
         android:layout_height="50dp"
         android:scaleType="centerCrop"
         android:layout_marginRight="10dp"
+        android:contentDescription=""
         android:background="@color/gray1"/>
 
     <com.etiennelawlor.quickreturn.views.CustomFontTextView
@@ -21,8 +22,7 @@
         android:layout_toRightOf="@id/user_iv"
         android:layout_marginRight="5dp"
         android:textSize="15sp"
-        app:textFont="Roboto_Medium"
-        android:text="Megan Fox"/>
+        app:textFont="Roboto_Medium"/>
 
     <com.etiennelawlor.quickreturn.views.CustomFontTextView
         android:id="@+id/username_tv"
@@ -34,7 +34,6 @@
         android:textSize="13sp"
         app:textFont="Roboto_Light"
         android:singleLine="true"
-        android:text="\@MeganFox"
         android:layout_toLeftOf="@+id/timestamp_tv"/>
 
     <com.etiennelawlor.quickreturn.views.CustomFontTextView
@@ -45,8 +44,7 @@
         android:textSize="13sp"
         android:layout_alignBaseline="@id/display_name_tv"
         android:textColor="@android:color/darker_gray"
-        app:textFont="Roboto_Light"
-        android:text="7m"/>
+        app:textFont="Roboto_Light"/>
 
     <com.etiennelawlor.quickreturn.views.CustomFontTextView
         android:id="@+id/message_tv"
@@ -56,8 +54,7 @@
         android:layout_below="@id/display_name_tv"
         android:textSize="15sp"
         app:textFont="Roboto_Light"
-        android:autoLink="all"
-        android:text="I'm basically vegan, but I eat chicken and cheese"/>
+        android:autoLink="all"/>
 
     <ImageView
         android:id="@+id/reply_iv"
@@ -66,6 +63,7 @@
         android:scaleType="centerCrop"
         android:layout_below="@id/message_tv"
         android:layout_alignLeft="@id/message_tv"
+        android:contentDescription=""
         android:src="@drawable/ic_action_reply"/>
 
     <LinearLayout
@@ -73,7 +71,8 @@
         android:layout_height="28dp"
         android:layout_toRightOf="@id/reply_iv"
         android:layout_below="@id/message_tv"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:baselineAligned="false">
 
         <RelativeLayout
             android:layout_width="0dp"
@@ -85,7 +84,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:text="43"
                 android:gravity="center"
                 android:drawablePadding="-3dp"
                 android:layout_alignParentRight="true"
@@ -107,7 +105,6 @@
                 android:scaleType="centerCrop"
                 android:layout_alignParentRight="true"
                 android:drawablePadding="-4dp"
-                android:text="15"
                 android:textColor="@android:color/darker_gray"
                 android:gravity="center"
                 android:drawableLeft="@drawable/ic_action_important"
@@ -127,6 +124,7 @@
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
                 android:layout_alignParentRight="true"
+                android:contentDescription=""
                 android:src="@drawable/ic_action_add_person"/>
         </RelativeLayout>
 

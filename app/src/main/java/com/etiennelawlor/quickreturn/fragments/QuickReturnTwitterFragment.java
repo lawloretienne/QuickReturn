@@ -3,7 +3,6 @@ package com.etiennelawlor.quickreturn.fragments;
 import android.app.Activity;
 import android.app.ListFragment;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,11 +11,11 @@ import android.widget.ListView;
 
 import com.etiennelawlor.quickreturn.R;
 import com.etiennelawlor.quickreturn.adapters.TwitterAdapter;
-import com.etiennelawlor.quickreturn.library.enums.QuickReturnType;
 import com.etiennelawlor.quickreturn.interfaces.QuickReturnInterface;
+import com.etiennelawlor.quickreturn.library.enums.QuickReturnType;
 import com.etiennelawlor.quickreturn.library.listeners.QuickReturnListViewOnScrollListener;
-import com.etiennelawlor.quickreturn.models.Tweet;
 import com.etiennelawlor.quickreturn.library.utils.QuickReturnUtils;
+import com.etiennelawlor.quickreturn.models.Tweet;
 
 import java.util.ArrayList;
 
@@ -39,8 +38,10 @@ public class QuickReturnTwitterFragment extends ListFragment {
     private int[] mStars;
     private int[] mRetweets;
 
-    @InjectView(android.R.id.list) ListView mListView;
-    @InjectView(R.id.quick_return_footer_ll) LinearLayout mQuickReturnFooterLinearLayout;
+    @InjectView(android.R.id.list)
+    private ListView mListView;
+    @InjectView(R.id.quick_return_footer_ll)
+    private LinearLayout mQuickReturnFooterLinearLayout;
     // endregion
 
     //region Listeners
@@ -119,7 +120,7 @@ public class QuickReturnTwitterFragment extends ListFragment {
         mPlaceHolderView = getActivity().getLayoutInflater().inflate(R.layout.view_header_placeholder, mListView, false);
         mListView.addHeaderView(mPlaceHolderView);
 
-        ArrayList<Tweet> tweets = new ArrayList<Tweet>();
+        ArrayList<Tweet> tweets = new ArrayList<>();
         for(int i=0; i<23; i++){
             Tweet tweet = new Tweet();
             tweet.setAvatarUrl(mAvatarUrls[i]);

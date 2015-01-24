@@ -23,9 +23,12 @@ public class QuickReturnFragment extends Fragment {
     // region Member Variables
     private QuickReturnType mQuickReturnType;
 
-    @InjectView(R.id.scroll_view) NotifyingScrollView mNotifyingScrollView;
-    @InjectView(R.id.quick_return_header_tv) TextView mQuickReturnHeaderTextView;
-    @InjectView(R.id.quick_return_footer_tv) TextView mQuickReturnFooterTextView;
+    @InjectView(R.id.scroll_view)
+    private NotifyingScrollView mNotifyingScrollView;
+    @InjectView(R.id.quick_return_header_tv)
+    private TextView mQuickReturnHeaderTextView;
+    @InjectView(R.id.quick_return_footer_tv)
+    private TextView mQuickReturnFooterTextView;
     // endregion
 
     //region Listeners
@@ -69,8 +72,7 @@ public class QuickReturnFragment extends Fragment {
         int headerHeight = getResources().getDimensionPixelSize(R.dimen.header_height2);
         int headerTranslation = -(headerHeight);
 
-        int footerHeight = getResources().getDimensionPixelSize(R.dimen.footer_height);
-        int footerTranslation = footerHeight;
+        int footerTranslation = getResources().getDimensionPixelSize(R.dimen.footer_height);
 
         switch (mQuickReturnType){
             case HEADER:

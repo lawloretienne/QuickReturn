@@ -24,8 +24,10 @@ public class QuickReturnFooterListFragment3 extends ListFragment {
     // region Member Variables
     private String[] mValues;
 
-    @InjectView(android.R.id.list) ListView mListView;
-    @InjectView(R.id.quick_return_tv) TextView mQuickReturnTextView;
+    @InjectView(android.R.id.list)
+    private ListView mListView;
+    @InjectView(R.id.quick_return_tv)
+    private TextView mQuickReturnTextView;
     // endregion
 
     // region Constructors
@@ -42,11 +44,6 @@ public class QuickReturnFooterListFragment3 extends ListFragment {
 
     // region Lifecycle Methods
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list_quick_return_footer, container, false);
@@ -60,7 +57,7 @@ public class QuickReturnFooterListFragment3 extends ListFragment {
 
         mValues = getResources().getStringArray(R.array.countries);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(),
                 R.layout.list_item, R.id.item_tv, mValues);
 
         mListView.setAdapter(adapter);

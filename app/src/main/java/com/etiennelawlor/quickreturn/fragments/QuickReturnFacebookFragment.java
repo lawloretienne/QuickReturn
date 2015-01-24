@@ -34,9 +34,12 @@ public class QuickReturnFacebookFragment extends ListFragment {
     private int[] mCommentCounts;
     private int[] mLikeCounts;
 
-    @InjectView(android.R.id.list) ListView mListView;
-    @InjectView(R.id.quick_return_footer_ll) LinearLayout mQuickReturnFooterLinearLayout;
-    @InjectView(R.id.quick_return_header_tv) TextView mQuickReturnHeaderTextView;
+    @InjectView(android.R.id.list) 
+    private ListView mListView;
+    @InjectView(R.id.quick_return_footer_ll) 
+    private LinearLayout mQuickReturnFooterLinearLayout;
+    @InjectView(R.id.quick_return_header_tv) 
+    private TextView mQuickReturnHeaderTextView;
     // endregion
 
     //region Listeners
@@ -80,7 +83,7 @@ public class QuickReturnFacebookFragment extends ListFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ArrayList<FacebookPost> posts = new ArrayList<FacebookPost>();
+        ArrayList<FacebookPost> posts = new ArrayList<>();
         for(int i=0; i<23; i++){
             FacebookPost post = new FacebookPost();
             post.setAvatarUrl(mAvatarUrls[i]);

@@ -118,7 +118,7 @@ public class QuickReturnBaseActivity extends ActionBarActivity {
 
                             String purchaseData = data.getStringExtra(RESPONSE_INAPP_PURCHASE_DATA);
 
-                            JSONObject object = null;
+                            JSONObject object;
                             try {
                                 object = new JSONObject(purchaseData);
 
@@ -188,7 +188,7 @@ public class QuickReturnBaseActivity extends ActionBarActivity {
                 case RESULT_CANCELED:
                     Log.d(getClass().getSimpleName(), "onActivityResult() : RESULT_CANCELED");
 
-                    responseCode = data.getIntExtra(RESPONSE_CODE, -5);
+//                    responseCode = data.getIntExtra(RESPONSE_CODE, -5);
 
                     showCrouton(android.R.color.holo_red_light, R.string.beer_order_canceled);
 
@@ -234,7 +234,7 @@ public class QuickReturnBaseActivity extends ActionBarActivity {
     }
 
     // region Helper Methods
-    public void openWebPage(String url) {
+    private void openWebPage(String url) {
         Uri webpage = Uri.parse(url);
         Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
         if (intent.resolveActivity(getPackageManager()) != null) {
@@ -242,7 +242,7 @@ public class QuickReturnBaseActivity extends ActionBarActivity {
         }
     }
 
-    public void donate(String productSku) {
+    private void donate(String productSku) {
         try {
 
 //            getAllSkus();
@@ -266,7 +266,7 @@ public class QuickReturnBaseActivity extends ActionBarActivity {
             switch (responseCode){
                 case BILLING_RESPONSE_RESULT_OK:
                     startIntentSenderForResult(pendingIntent.getIntentSender(), BUY_REQUEST_CODE, new Intent(),
-                            Integer.valueOf(0), Integer.valueOf(0), Integer.valueOf(0));
+                            0, 0, 0);
                     break;
                 case BILLING_RESPONSE_RESULT_USER_CANCELED:
                     Log.d(getClass().getSimpleName(), "donate() : User pressed back or canceled a dialog");
@@ -318,7 +318,7 @@ public class QuickReturnBaseActivity extends ActionBarActivity {
     }
 
     private void getAllSkus(){
-        ArrayList<String> skuList = new ArrayList<String> ();
+        ArrayList<String> skuList = new ArrayList<> ();
         skuList.add("buy_one_beer");
         skuList.add("buy_two_beers");
         skuList.add("buy_four_beers");
@@ -335,7 +335,7 @@ public class QuickReturnBaseActivity extends ActionBarActivity {
                         = skuDetails.getStringArrayList(RESPONSE_GET_SKU_DETAILS_LIST);
 
                 for (String thisResponse : responseList) {
-                    JSONObject object = null;
+                    JSONObject object;
                     try {
                         object = new JSONObject(thisResponse);
                         String sku = object.getString("productId");

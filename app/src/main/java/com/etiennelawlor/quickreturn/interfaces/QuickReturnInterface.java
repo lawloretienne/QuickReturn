@@ -1,7 +1,5 @@
 package com.etiennelawlor.quickreturn.interfaces;
 
-import android.support.v4.view.ViewPager;
-
 import com.astuetz.PagerSlidingTabStrip;
 
 /**
