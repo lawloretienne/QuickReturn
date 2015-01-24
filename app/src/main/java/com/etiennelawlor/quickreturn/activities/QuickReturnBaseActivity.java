@@ -253,47 +253,50 @@ public class QuickReturnBaseActivity extends ActionBarActivity {
 
             String developerPayload = "bGoa+V7g/yqDXvKRqq+JTFn4uQZbPiQJo4pf9RzK";
 
-            Bundle bundle = mService.getBuyIntent(3, getPackageName(),
-                    productSku, ITEM_TYPE_INAPP, developerPayload);
+            if(mService != null){
+                Bundle bundle = mService.getBuyIntent(3, getPackageName(),
+                        productSku, ITEM_TYPE_INAPP, developerPayload);
 
-            // Test Item
+                // Test Item
 //            Bundle bundle = mService.getBuyIntent(3, getPackageName(),
 //                    "android.test.purchased", ITEM_TYPE_INAPP, developerPayload);
 
-            PendingIntent pendingIntent = bundle.getParcelable(RESPONSE_BUY_INTENT);
-            int responseCode = bundle.getInt(RESPONSE_CODE);
+                PendingIntent pendingIntent = bundle.getParcelable(RESPONSE_BUY_INTENT);
+                int responseCode = bundle.getInt(RESPONSE_CODE);
 
-            switch (responseCode){
-                case BILLING_RESPONSE_RESULT_OK:
-                    startIntentSenderForResult(pendingIntent.getIntentSender(), BUY_REQUEST_CODE, new Intent(),
-                            0, 0, 0);
-                    break;
-                case BILLING_RESPONSE_RESULT_USER_CANCELED:
-                    Log.d(getClass().getSimpleName(), "donate() : User pressed back or canceled a dialog");
-                    break;
-                case BILLING_RESPONSE_RESULT_BILLING_UNAVAILABLE:
-                    Log.d(getClass().getSimpleName(), "donate() : Billing API version is not supported for the type requested");
-                    break;
-                case BILLING_RESPONSE_RESULT_ITEM_UNAVAILABLE:
-                    Log.d(getClass().getSimpleName(), "donate() : Requested product is not available for purchase");
-                    break;
-                case BILLING_RESPONSE_RESULT_DEVELOPER_ERROR:
-                    Log.d(getClass().getSimpleName(), "donate() : Invalid arguments provided to the API. This error can also " +
-                            "indicate that the application was not correctly signed or properly set up for In-app Billing in " +
-                            "Google Play, or does not have the necessary permissions in its manifest");
-                    break;
-                case BILLING_RESPONSE_RESULT_ERROR:
-                    Log.d(getClass().getSimpleName(), "donate() : Fatal error during the API action");
-                    break;
-                case BILLING_RESPONSE_RESULT_ITEM_ALREADY_OWNED:
-                    Log.d(getClass().getSimpleName(), "donate() : Failure to purchase since item is already owned");
-                    showCrouton(android.R.color.holo_red_light, R.string.item_already_owned);
-                    break;
-                case BILLING_RESPONSE_RESULT_ITEM_NOT_OWNED:
-                    Log.d(getClass().getSimpleName(), "donate() : Failure to consume since item is not owned");
-                    break;
-                default:
-                    break;
+                switch (responseCode){
+                    case BILLING_RESPONSE_RESULT_OK:
+                        startIntentSenderForResult(pendingIntent.getIntentSender(), BUY_REQUEST_CODE, new Intent(),
+                                0, 0, 0);
+                        break;
+                    case BILLING_RESPONSE_RESULT_USER_CANCELED:
+                        Log.d(getClass().getSimpleName(), "donate() : User pressed back or canceled a dialog");
+                        break;
+                    case BILLING_RESPONSE_RESULT_BILLING_UNAVAILABLE:
+                        Log.d(getClass().getSimpleName(), "donate() : Billing API version is not supported for the type requested");
+                        break;
+                    case BILLING_RESPONSE_RESULT_ITEM_UNAVAILABLE:
+                        Log.d(getClass().getSimpleName(), "donate() : Requested product is not available for purchase");
+                        break;
+                    case BILLING_RESPONSE_RESULT_DEVELOPER_ERROR:
+                        Log.d(getClass().getSimpleName(), "donate() : Invalid arguments provided to the API. This error can also " +
+                                "indicate that the application was not correctly signed or properly set up for In-app Billing in " +
+                                "Google Play, or does not have the necessary permissions in its manifest");
+                        break;
+                    case BILLING_RESPONSE_RESULT_ERROR:
+                        Log.d(getClass().getSimpleName(), "donate() : Fatal error during the API action");
+                        break;
+                    case BILLING_RESPONSE_RESULT_ITEM_ALREADY_OWNED:
+                        Log.d(getClass().getSimpleName(), "donate() : Failure to purchase since item is already owned");
+                        showCrouton(android.R.color.holo_red_light, R.string.item_already_owned);
+                        break;
+                    case BILLING_RESPONSE_RESULT_ITEM_NOT_OWNED:
+                        Log.d(getClass().getSimpleName(), "donate() : Failure to consume since item is not owned");
+                        break;
+                    default:
+                        break;
+                }
+
             }
 
         } catch (RemoteException e) {

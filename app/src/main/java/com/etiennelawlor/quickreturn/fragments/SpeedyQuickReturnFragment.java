@@ -24,11 +24,11 @@ public class SpeedyQuickReturnFragment extends Fragment {
     private QuickReturnType mQuickReturnType;
 
     @InjectView(R.id.scroll_view)
-    private NotifyingScrollView mNotifyingScrollView;
+    NotifyingScrollView mNotifyingScrollView;
     @InjectView(R.id.quick_return_header_tv)
-    private TextView mQuickReturnHeaderTextView;
+    TextView mQuickReturnHeaderTextView;
     @InjectView(R.id.quick_return_footer_tv)
-    private TextView mQuickReturnFooterTextView;
+    TextView mQuickReturnFooterTextView;
     // endregion
 
     //region Listeners

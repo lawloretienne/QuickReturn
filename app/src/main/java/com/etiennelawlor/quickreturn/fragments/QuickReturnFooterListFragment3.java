@@ -25,9 +25,9 @@ public class QuickReturnFooterListFragment3 extends ListFragment {
     private String[] mValues;
 
     @InjectView(android.R.id.list)
-    private ListView mListView;
+    ListView mListView;
     @InjectView(R.id.quick_return_tv)
-    private TextView mQuickReturnTextView;
+    TextView mQuickReturnTextView;
     // endregion
 
     // region Constructors

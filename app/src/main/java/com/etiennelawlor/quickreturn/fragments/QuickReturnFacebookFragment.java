@@ -35,11 +35,11 @@ public class QuickReturnFacebookFragment extends ListFragment {
     private int[] mLikeCounts;
 
     @InjectView(android.R.id.list) 
-    private ListView mListView;
+    ListView mListView;
     @InjectView(R.id.quick_return_footer_ll) 
-    private LinearLayout mQuickReturnFooterLinearLayout;
+    LinearLayout mQuickReturnFooterLinearLayout;
     @InjectView(R.id.quick_return_header_tv) 
-    private TextView mQuickReturnHeaderTextView;
+    TextView mQuickReturnHeaderTextView;
     // endregion
 
     //region Listeners

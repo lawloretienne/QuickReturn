@@ -40,11 +40,11 @@ public class QuickReturnGooglePlusFragment extends ListFragment {
     private int[] mPlusOneCounts;
 
     @InjectView(android.R.id.list)
-    private ListView mListView;
+    ListView mListView;
     @InjectView(R.id.quick_return_footer_iv)
-    private ImageView mQuickReturnFooterImageView;
+    ImageView mQuickReturnFooterImageView;
     @InjectView(R.id.quick_return_footer_tv)
-    private TextView mQuickReturnFooterTextView;
+    TextView mQuickReturnFooterTextView;
     // endregion
 
     //region Listeners

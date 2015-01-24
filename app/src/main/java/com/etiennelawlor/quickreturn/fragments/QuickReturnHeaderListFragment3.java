@@ -27,9 +27,9 @@ public class QuickReturnHeaderListFragment3 extends ListFragment {
     protected QuickReturnListViewOnScrollListener mQuickReturnListViewOnScrollListener; // for demo usage
 
     @InjectView(android.R.id.list)
-    private ListView mListView;
+    ListView mListView;
     @InjectView(R.id.quick_return_tv)
-    private TextView mQuickReturnTextView;
+    TextView mQuickReturnTextView;
     // endregion
 
     // region Constructors

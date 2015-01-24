@@ -34,9 +34,9 @@ public class QuickReturnListViewActivity extends QuickReturnBaseActivity impleme
     private LinearLayout mTabsLinearLayout;
 
     @InjectView(R.id.tabs)
-    private PagerSlidingTabStrip mTabs;
+    PagerSlidingTabStrip mTabs;
     @InjectView(R.id.pager)
-    private ViewPager mViewPager;
+    ViewPager mViewPager;
     // endregion
 
     // region Listeners

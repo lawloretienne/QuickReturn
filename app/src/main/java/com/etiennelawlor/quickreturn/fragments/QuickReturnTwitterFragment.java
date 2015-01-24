@@ -39,9 +39,9 @@ public class QuickReturnTwitterFragment extends ListFragment {
     private int[] mRetweets;
 
     @InjectView(android.R.id.list)
-    private ListView mListView;
+    ListView mListView;
     @InjectView(R.id.quick_return_footer_ll)
-    private LinearLayout mQuickReturnFooterLinearLayout;
+    LinearLayout mQuickReturnFooterLinearLayout;
     // endregion
 
     //region Listeners

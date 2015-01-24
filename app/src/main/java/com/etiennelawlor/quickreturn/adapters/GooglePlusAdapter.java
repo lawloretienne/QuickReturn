@@ -40,6 +40,8 @@ public class GooglePlusAdapter extends ArrayAdapter<GooglePlusPost> {
     private ArrayList<GooglePlusPost> mGooglePlusPosts;
     private final LayoutInflater mInflater;
     private Transformation mTransformation;
+    private Transformation mTransformation2;
+
 
     private int lastPosition = -1;
 
@@ -58,6 +60,11 @@ public class GooglePlusAdapter extends ArrayAdapter<GooglePlusPost> {
         mTransformation = new RoundedTransformationBuilder()
 //                .borderColor(getContext().getResources().getColor(R.color.white))
                 .cornerRadius(QuickReturnUtils.dp2px(getContext(), 50))
+                .build();
+
+        mTransformation2 = new RoundedTransformationBuilder()
+//                .borderColor(getContext().getResources().getColor(R.color.white))
+                .cornerRadius(QuickReturnUtils.dp2px(getContext(), 2))
                 .build();
     }
     // endregion
@@ -108,6 +115,7 @@ public class GooglePlusAdapter extends ArrayAdapter<GooglePlusPost> {
 
         Picasso.with(holder.mCommenterOneImageView.getContext())
                 .load(post.getCommenterOneAvatarUrl())
+                .transform(mTransformation2)
                 .centerCrop()
                 .resize(QuickReturnUtils.dp2px(getContext(), 34),
                         QuickReturnUtils.dp2px(getContext(), 34))
@@ -117,6 +125,7 @@ public class GooglePlusAdapter extends ArrayAdapter<GooglePlusPost> {
 
         Picasso.with(holder.mCommenterTwoImageView.getContext())
                 .load(post.getCommenterTwoAvatarUrl())
+                .transform(mTransformation2)
                 .centerCrop()
                 .resize(QuickReturnUtils.dp2px(getContext(), 34),
                         QuickReturnUtils.dp2px(getContext(), 34))
@@ -126,6 +135,7 @@ public class GooglePlusAdapter extends ArrayAdapter<GooglePlusPost> {
 
         Picasso.with(holder.mCommenterThreeImageView.getContext())
                 .load(post.getCommenterThreeAvatarUrl())
+                .transform(mTransformation2)
                 .centerCrop()
                 .resize(QuickReturnUtils.dp2px(getContext(), 34),
                         QuickReturnUtils.dp2px(getContext(), 34))
