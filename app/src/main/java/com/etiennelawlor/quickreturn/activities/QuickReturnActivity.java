@@ -1,6 +1,5 @@
 package com.etiennelawlor.quickreturn.activities;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -14,27 +13,27 @@ import butterknife.OnClick;
 public class QuickReturnActivity extends QuickReturnBaseActivity {
 
     // region Listeners
-    @OnClick(R.id.twitter_tv)
+    @OnClick(R.id.twitter_cv)
     public void onTwitterClicked(View v){
         startActivity(new Intent(QuickReturnActivity.this, QuickReturnTwitterActivity.class));
     }
 
-    @OnClick(R.id.facebook_tv)
+    @OnClick(R.id.facebook_cv)
      public void onFacebookClicked(View v){
         startActivity(new Intent(QuickReturnActivity.this, QuickReturnFacebookActivity.class));
     }
 
-    @OnClick(R.id.google_plus_tv)
+    @OnClick(R.id.google_plus_cv)
     public void onGooglePlusClicked(View v){
         startActivity(new Intent(QuickReturnActivity.this, QuickReturnGooglePlusActivity.class));
     }
 
-    @OnClick(R.id.listview_tv)
+    @OnClick(R.id.listview_cv)
     public void onListViewClicked(View v){
         startActivity(new Intent(QuickReturnActivity.this, QuickReturnListViewActivity.class));
     }
 
-    @OnClick(R.id.scrollview_tv)
+    @OnClick(R.id.scrollview_cv)
     public void onScrollViewClicked(View v){
         startActivity(new Intent(QuickReturnActivity.this, QuickReturnScrollViewActivity.class));
     }
@@ -44,12 +43,9 @@ public class QuickReturnActivity extends QuickReturnBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quickreturn);
+        setContentView(R.layout.activity_quick_return);
         ButterKnife.inject(this);
-
-        ActionBar actionBar = getActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(false);
     }
     // endregion
-
+    
 }

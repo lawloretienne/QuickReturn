@@ -8,7 +8,6 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -44,10 +43,10 @@ public class QuickReturnTwitterActivity extends QuickReturnBaseActivity implemen
             for(int i=0; i < mTabsLinearLayout.getChildCount(); i++){
                 TextView tv = (TextView) mTabsLinearLayout.getChildAt(i);
                 if(i == position){
-                    tv.setTextColor(getResources().getColor(R.color.cornflower_blue));
+                    tv.setTextColor(getResources().getColor(R.color.twitter_primary));
                     tv.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Roboto-Medium.ttf"));
                 } else {
-                    tv.setTextColor(getResources().getColor(R.color.cornflower_blue));
+                    tv.setTextColor(getResources().getColor(R.color.twitter_primary));
                     tv.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Roboto-Light.ttf"));
                 }
             }
@@ -74,12 +73,12 @@ public class QuickReturnTwitterActivity extends QuickReturnBaseActivity implemen
         mTabs.setAllCaps(false);
         mTabs.setShouldExpand(true);
         mTabs.setTextSize(QuickReturnUtils.dp2px(this, 18));
-//        mTabs.setUnderlineColor(getResources().getColor(R.color.gray5));
+        mTabs.setUnderlineColor(getResources().getColor(R.color.gray8));
         mTabs.setUnderlineHeight(QuickReturnUtils.dp2px(this, 1));
-
-        mTabs.setTabBackground(R.drawable.selector_bg_tab);
+//        mTabs.setUnderlineHeight(1);
+//        mTabs.setTabBackground(R.drawable.selector_bg_tab);
         mTabs.setDividerColor(getResources().getColor(android.R.color.transparent));
-        mTabs.setIndicatorColorResource(R.color.cornflower_blue);
+        mTabs.setIndicatorColorResource(R.color.twitter_tab_underline);
         mTabs.setIndicatorHeight(QuickReturnUtils.dp2px(this, 4));
         mTabs.setOnPageChangeListener(mTabsOnPageChangeListener);
         mTabs.setViewPager(mViewPager);
@@ -91,10 +90,10 @@ public class QuickReturnTwitterActivity extends QuickReturnBaseActivity implemen
             TextView tv = (TextView) mTabsLinearLayout.getChildAt(i);
 
             if(i == 0){
-                tv.setTextColor(getResources().getColor(R.color.cornflower_blue));
+                tv.setTextColor(getResources().getColor(R.color.twitter_primary));
                 tv.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Roboto-Medium.ttf"));
             } else {
-                tv.setTextColor(getResources().getColor(R.color.cornflower_blue));
+                tv.setTextColor(getResources().getColor(R.color.twitter_primary));
                 tv.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Roboto-Light.ttf"));
             }
         }

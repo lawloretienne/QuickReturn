@@ -1,4 +1,5 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".QuickReturnActivity" >
     <!--<item android:id="@+id/action_settings"-->
@@ -9,7 +10,7 @@
     <item android:id="@+id/action_donate"
         android:title="@string/action_donate"
         android:icon="@drawable/ic_action_donate"
-        android:showAsAction="always">
+        app:showAsAction="always">
         <menu>
             <item android:id="@+id/buy_one_beer"
                 android:title="Buy me a beer"/>
@@ -23,6 +24,6 @@
     <item android:id="@+id/action_github"
         android:title="@string/action_github"
         android:icon="@drawable/ic_action_github"
-        android:showAsAction="always" />
+        app:showAsAction="always" />
 
 </menu>

@@ -5,20 +5,21 @@
             <enum name="Roboto_Black" value="0" />
             <enum name="Roboto_BlackItalic" value="1" />
             <enum name="Roboto_Bold" value="2" />
-            <enum name="Roboto_BoldCondensed" value="3" />
-            <enum name="Roboto_BoldCondensedItalic" value="4" />
-            <enum name="Roboto_BoldItalic" value="5" />
-            <enum name="Roboto_Condensed" value="6" />
-            <enum name="Roboto_CondensedItalic" value="7" />
-            <enum name="Roboto_Italic" value="8" />
-            <enum name="Roboto_Light" value="9" />
-            <enum name="Roboto_LightItalic" value="0" />
-            <enum name="Roboto_Medium" value="11" />
-            <enum name="Roboto_MediumItalic" value="12" />
-            <enum name="Roboto_Regular" value="13" />
-            <enum name="Roboto_Thin" value="14" />
-            <enum name="Roboto_ThinItalic" value="15" />
-            <enum name="GothamNarrow_Light" value="16" />
+            <enum name="Roboto_BoldItalic" value="3" />
+            <enum name="Roboto_Italic" value="4" />
+            <enum name="Roboto_Light" value="5" />
+            <enum name="Roboto_LightItalic" value="6" />
+            <enum name="Roboto_Medium" value="7" />
+            <enum name="Roboto_MediumItalic" value="8" />
+            <enum name="Roboto_Regular" value="9" />
+            <enum name="Roboto_Thin" value="10" />
+            <enum name="Roboto_ThinItalic" value="11" />
+            <enum name="RobotoCondensed_Bold" value="12" />
+            <enum name="RobotoCondensed_BoldItalic" value="13" />
+            <enum name="RobotoCondensed_Italic" value="14" />
+            <enum name="RobotoCondensed_Light" value="15" />
+            <enum name="RobotoCondensed_LightItalic" value="16" />
+            <enum name="RobotoCondensed_Regular" value="17" />
         </attr>
     </declare-styleable>
 

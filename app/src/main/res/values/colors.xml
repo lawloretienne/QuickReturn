@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    
     <!-- Transparent colors -->
     <color name="transparent_white_five">#0Dffffff</color>
     <color name="transparent_white_ten">#1Affffff</color>
@@ -22,51 +23,62 @@
     <color name="transparent_black_ninty">#E6000000</color>
     <color name="transparent_black_ninty_five">#F2000000</color>
 
-    <color name="top_item">#a6c</color>
-    <color name="steel_blue">#4688f1</color>
-    <color name="electric_ultramarine">#3F7AD9</color>
-    <color name="indigo">#386DC1</color>
-
-    <color name="transparent_steel_blue_eighty">#CC4688f1</color>
-    <color name="transparent_steel_blue_ninty">#E64688f1</color>
-
-    <color name="transparent_indigo_eighty">#CC386DC1</color>
-    <color name="transparent_indigo_ninty">#E6386DC1</color>
-
+    <color name="transparent_gray24_fifty">#80ededed</color>
+    <color name="whitesmoke">#f5f5f5</color>
     <color name="cornflower_blue">#598deb</color>
     <color name="bulgarian_blue">#4771BC</color>
 
+    <!-- App Theme -->
+    <color name="quick_return_primary">#4688f1</color>
+    <!--<color name="control_highlight">#1f8755</color>-->
+    <color name="quick_return_primary_dark">#386DC1</color>
+    <color name="quick_return_accent">@color/green_500</color>
+
+    <!-- Twitter Theme -->
+    <color name="twitter_primary">#55acee</color>
+    <!--<color name="control_highlight">#1f8755</color>-->
+    <color name="twitter_primary_dark">#1c6399</color>
+    <color name="twitter_accent">#1c6399</color>
+    <color name="twitter_tab_underline">#bbddf5</color>
+
+    <!-- Facebook Theme -->
+    <color name="facebook_primary">#3b5988</color>
+    <!--<color name="control_highlight">#1f8755</color>-->
+    <color name="facebook_primary_dark">#293E5F</color>
+    <color name="facebook_accent">@color/green_500</color>
+    <color name="facebook_bg">#dcdee3</color>
     <color name="dark_slate_blue">#3c5896</color>
     <color name="transparent_dark_slate_blue_ninty">#E63c5896</color>
-    <color name="san_juan">#304678</color>
-    <color name="transparent_san_juan_ninty">#E6304678</color>
 
-    <color name="whitesmoke">#f5f5f5</color>
-    <color name="gray1">#eaeaea</color>
-    <color name="gray2">#737373</color>
-    <color name="gray3">#6b6b6b</color>
-    <color name="gray4">#c3c3c3</color>
-    <color name="gray5">#d3d3d3</color>
-    <color name="gray6">#d3d6db</color>
-    <color name="gray7">#a3a3a3</color>
-    <color name="gray8">#fafafa</color>
-    <color name="gray9">#f5f5f5</color>
+    <!-- Google Plus Theme -->
+    <color name="google_plus_primary">#db4437</color>
+    <!--<color name="control_highlight">#1f8755</color>-->
+    <color name="google_plus_primary_dark">#c53929</color>
+    <color name="google_plus_accent">@color/green_500</color>
+    <color name="google_plus_bg">#e5e5e5</color>
 
-
-    <color name="fire_brick">#b93221</color>
-    <color name="old_brick">#94281A</color>
-
-
-
-
-
-
-
-
-
-
-
-
+    <!-- Grays -->
+    <color name="gray1">#f1f2f1</color>
+    <color name="gray2">#F2F2F2</color>
+    <color name="gray3">#ededed</color>
+    <color name="gray4">#ebeceb</color>
+    <color name="gray5">#EAEAEA</color>
+    <color name="gray6">#e4e4e4</color>
+    <color name="gray7">#d5d5d5</color>
+    <color name="gray8">#D2D2D2</color> //
+    <color name="gray9">#cecece</color>
+    <color name="gray10">#C2C2C2</color>
+    <color name="gray11">#C9C9C9</color> //
+    <color name="gray12">#c8c8c8</color> //
+    <color name="gray13">#BEBEBE</color>
+    <color name="gray14">#BDBDBD</color>
+    <color name="gray15">#A4A4A4</color>
+    <color name="gray16">#818181</color>
+    <color name="gray17">#7A7A7A</color> //
+    <color name="gray18">#767676</color> //
+    <color name="gray19">#666666</color> //
+    <color name="gray20">#656565</color> //
+    <color name="gray21">#464646</color> //
 
 
 </resources>

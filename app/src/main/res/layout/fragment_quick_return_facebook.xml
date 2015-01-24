@@ -2,16 +2,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray6">
+    android:background="@color/gray5">
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="11dp"
-        android:layout_marginRight="11dp"
         android:scrollbars="none"
         android:divider="@android:color/transparent"
-        android:dividerHeight="11dp"
         android:id="@android:id/list"/>
 
     <com.etiennelawlor.quickreturn.views.CustomFontTextView
@@ -24,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/shape_rounded_rectangle_cornflower_blue"
+        android:background="@drawable/shape_rounded_rectangle_facebook_primary"
         android:textSize="12sp"
         android:text="@string/new_stories"
         android:drawablePadding="5dp"

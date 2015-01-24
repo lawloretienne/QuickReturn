@@ -1,12 +1,13 @@
 apply plugin: 'android'
 
 android {
-    compileSdkVersion 19
-    buildToolsVersion '19.1.0'
+    compileSdkVersion 21
+    buildToolsVersion '21.1.1'
+    
     defaultConfig {
         applicationId 'com.etiennelawlor.quickreturn'
         minSdkVersion 14
-        targetSdkVersion 19
+        targetSdkVersion 21
         versionCode 19
         versionName '0.0.19'
     }
@@ -21,12 +22,12 @@ android {
     buildTypes {
         release {
             signingConfig signingConfigs.release
-            runProguard false
+            minifyEnabled false
             debuggable false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
-            runProguard false
+            minifyEnabled false
             debuggable true
         }
     }
@@ -35,7 +36,6 @@ android {
         abortOnError false
         disable 'InvalidPackage'
     }
-    android.aaptOptions.useAaptPngCruncher = true
     productFlavors {
     }
 }
@@ -44,15 +44,18 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:support-v13:+'
     compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
-    compile 'com.jakewharton:butterknife:5.1.1'
-    compile 'com.squareup.picasso:picasso:2.3.+'
+    compile 'com.jakewharton:butterknife:6.0.0'
+    compile 'com.squareup.picasso:picasso:2.4.0'
+    compile 'com.google.guava:guava:16.0.+'
+    compile 'com.makeramen:roundedimageview:1.5.0'
     compile 'com.nhaarman.listviewanimations:library:2.6.0'
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.daimajia.easing:library:1.0.0@aar'
     compile 'com.daimajia.androidanimations:library:1.0.6@aar'
-    compile 'com.android.support:cardview-v7:+'
+    compile 'com.android.support:cardview-v7:21.0.3'
     compile 'com.android.support:recyclerview-v7:+'
     compile 'com.android.support:palette-v7:+'
+    compile 'com.android.support:appcompat-v7:21.0.3'
     compile('de.keyboardsurfer.android.widget:crouton:1.8.4@aar') {
         exclude group: 'com.google.android', module: 'support-v4'
     }

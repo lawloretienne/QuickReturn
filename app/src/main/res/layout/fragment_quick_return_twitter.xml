@@ -33,6 +33,9 @@
                 android:layout_weight="6"
                 android:textSize="16sp"
                 android:layout_margin="5dp"
+                android:singleLine="true"
+                android:textColor="@color/gray20"
+                android:textColorHint="@color/gray18"
                 android:hint="@string/whats_happening"/>
 
             <ImageView

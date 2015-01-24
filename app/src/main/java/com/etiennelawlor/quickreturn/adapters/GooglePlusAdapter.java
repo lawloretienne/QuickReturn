@@ -22,7 +22,9 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.etiennelawlor.quickreturn.R;
 import com.etiennelawlor.quickreturn.models.GooglePlusPost;
 import com.etiennelawlor.quickreturn.library.utils.QuickReturnUtils;
+import com.makeramen.RoundedTransformationBuilder;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Transformation;
 
 import java.util.ArrayList;
 
@@ -44,6 +46,7 @@ public class GooglePlusAdapter extends ArrayAdapter<GooglePlusPost> {
     private Context mContext;
     private ArrayList<GooglePlusPost> mGooglePlusPosts;
     private final LayoutInflater mInflater;
+    private Transformation mTransformation;
 
     private int lastPosition = -1;
 
@@ -58,6 +61,11 @@ public class GooglePlusAdapter extends ArrayAdapter<GooglePlusPost> {
         mGooglePlusPosts = googlePlusPosts;
 
         mInflater = LayoutInflater.from(mContext);
+
+        mTransformation = new RoundedTransformationBuilder()
+//                .borderColor(getContext().getResources().getColor(R.color.white))
+                .cornerRadius(QuickReturnUtils.dp2px(getContext(), 50))
+                .build();
     }
     // endregion
 
@@ -85,8 +93,10 @@ public class GooglePlusAdapter extends ArrayAdapter<GooglePlusPost> {
         Spanned styledText = Html.fromHtml("<b>"+post.getCommenterOneDisplayName()+"</b> "+post.getComment());
         holder.mCommentTextView.setText(styledText);
 //
+
         Picasso.with(holder.mUserImageView.getContext())
                 .load(post.getAvatarUrl())
+                .transform(mTransformation)
                 .centerCrop()
                 .resize(QuickReturnUtils.dp2px(getContext(), 50),
                         QuickReturnUtils.dp2px(getContext(), 50))

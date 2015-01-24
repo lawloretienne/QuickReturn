@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:enterFadeDuration="150"
+    android:exitFadeDuration="150">
+    
+    <item android:state_pressed="true"
+          android:drawable="@drawable/card_highlighted" /> <!-- pressed -->
+    <item android:state_focused="true"
+          android:drawable="@drawable/card_highlighted" /> <!-- focused -->
+    <item android:state_hovered="true"
+          android:drawable="@drawable/card_highlighted" /> <!-- hovered -->
+    <item android:drawable="@drawable/card_default" /> <!-- default -->
+</selector>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/quick_return_primary</item>
+        <item name="colorPrimaryDark">@color/quick_return_primary_dark</item>
+        <item name="colorAccent">@color/quick_return_accent</item>
+        <item name="actionBarStyle">@style/ActionBar.Dark</item>
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:textColorPrimary">@color/gray14</item>
+        <item name="android:textColorSecondary">@color/gray14</item>
+        <item name="android:dialogTheme">@style/DialogTheme</item>
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+    </style>
+
+    <style name="TwitterTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/twitter_primary</item>
+        <item name="colorPrimaryDark">@color/twitter_primary_dark</item>
+        <item name="colorAccent">@color/twitter_accent</item>
+        <item name="actionBarStyle">@style/ActionBar.Dark</item>
+        <item name="android:windowBackground">@android:color/white</item>
+        <!--<item name="android:textColorPrimary">@color/gray18</item>-->
+        <!--<item name="android:textColorSecondary">@color/gray18</item>-->
+        <item name="android:dialogTheme">@style/DialogTheme</item>
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+    </style>
+
+    <style name="FacebookTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/facebook_primary</item>
+        <item name="colorPrimaryDark">@color/facebook_primary_dark</item>
+        <item name="colorAccent">@color/facebook_accent</item>
+        <item name="actionBarStyle">@style/ActionBar.Dark</item>
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:textColorPrimary">@color/gray14</item>
+        <item name="android:textColorSecondary">@color/gray14</item>
+        <item name="android:dialogTheme">@style/DialogTheme</item>
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+    </style>
+
+    <style name="GooglePlusTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/google_plus_primary</item>
+        <item name="colorPrimaryDark">@color/google_plus_primary_dark</item>
+        <item name="colorAccent">@color/google_plus_accent</item>
+        <item name="actionBarStyle">@style/ActionBar.Dark</item>
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:textColorPrimary">@color/gray14</item>
+        <item name="android:textColorSecondary">@color/gray14</item>
+        <item name="android:dialogTheme">@style/DialogTheme</item>
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+    </style>
+    
+</resources>

@@ -13,10 +13,10 @@ import android.widget.TextView;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.etiennelawlor.quickreturn.R;
-import com.etiennelawlor.quickreturn.library.enums.QuickReturnType;
 import com.etiennelawlor.quickreturn.fragments.QuickReturnFragment;
 import com.etiennelawlor.quickreturn.fragments.SpeedyQuickReturnFragment;
 import com.etiennelawlor.quickreturn.interfaces.QuickReturnInterface;
+import com.etiennelawlor.quickreturn.library.enums.QuickReturnType;
 import com.etiennelawlor.quickreturn.library.utils.QuickReturnUtils;
 
 import butterknife.ButterKnife;
@@ -49,7 +49,7 @@ public class QuickReturnScrollViewActivity extends QuickReturnBaseActivity imple
                 TextView tv = (TextView) mTabsLinearLayout.getChildAt(i);
 
                 if(i == position){
-                    tv.setTextColor(getResources().getColor(R.color.steel_blue));
+                    tv.setTextColor(getResources().getColor(R.color.quick_return_primary));
                     tv.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Roboto-Bold.ttf"));
                 } else {
                     tv.setTextColor(getResources().getColor(android.R.color.darker_gray));
@@ -80,8 +80,11 @@ public class QuickReturnScrollViewActivity extends QuickReturnBaseActivity imple
         mTabs.setAllCaps(false);
         mTabs.setShouldExpand(true);
         mTabs.setTextSize(QuickReturnUtils.dp2px(this, 16));
-        mTabs.setTabBackground(R.drawable.selector_bg_tab);
-        mTabs.setIndicatorColorResource(R.color.steel_blue);
+        mTabs.setUnderlineColor(getResources().getColor(R.color.gray8));
+        mTabs.setUnderlineHeight(QuickReturnUtils.dp2px(this, 1));
+//        mTabs.setTabBackground(R.drawable.selector_bg_tab);
+        mTabs.setIndicatorColorResource(R.color.quick_return_primary);
+        mTabs.setIndicatorHeight(QuickReturnUtils.dp2px(this, 4));
         mTabs.setTextColor(getResources().getColor(android.R.color.darker_gray));
         mTabs.setOnPageChangeListener(mTabsOnPageChangeListener);
         mTabs.setViewPager(mViewPager);
@@ -93,7 +96,7 @@ public class QuickReturnScrollViewActivity extends QuickReturnBaseActivity imple
             TextView tv = (TextView) mTabsLinearLayout.getChildAt(i);
 
             if(i == 0){
-                tv.setTextColor(getResources().getColor(R.color.steel_blue));
+                tv.setTextColor(getResources().getColor(R.color.quick_return_primary));
                 tv.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Roboto-Bold.ttf"));
             } else {
                 tv.setTextColor(getResources().getColor(android.R.color.darker_gray));
