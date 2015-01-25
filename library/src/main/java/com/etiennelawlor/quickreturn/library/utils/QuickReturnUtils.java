@@ -1,6 +1,8 @@
 package com.etiennelawlor.quickreturn.library.utils;
 
 import android.content.Context;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.Display;
@@ -20,7 +22,7 @@ public class QuickReturnUtils {
     private static TypedValue sTypedValue = new TypedValue();
     private static int sActionBarHeight;
     private static Dictionary<Integer, Integer> sListViewItemHeights = new Hashtable<Integer, Integer>();
-
+    private static Dictionary<Integer, Integer> sRecyclerViewItemHeights = new Hashtable<Integer, Integer>();
 
     public static int dp2px(Context context, int dp) {
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
@@ -91,6 +93,30 @@ public class QuickReturnUtils {
 
         return scrollY;
     }
+
+    public static int getScrollY(RecyclerView rv) {
+        View c = rv.getChildAt(0);
+        if (c == null) {
+            return 0;
+        }
+
+        LinearLayoutManager layoutManager = (LinearLayoutManager)rv.getLayoutManager();
+        int firstVisiblePosition = layoutManager.findFirstVisibleItemPosition();
+        int scrollY = -(c.getTop());
+
+        sRecyclerViewItemHeights.put(layoutManager.findFirstVisibleItemPosition(), c.getHeight());
+
+        if(scrollY<0)
+            scrollY = 0;
+
+        for (int i = 0; i < firstVisiblePosition; ++i) {
+            if (sRecyclerViewItemHeights.get(i) != null) // (this is a sanity check)
+                scrollY += sRecyclerViewItemHeights.get(i); //add all heights of the views that are gone
+        }
+
+        return scrollY;
+    }
+
 
     public static int getActionBarHeight(Context context) {
         if (sActionBarHeight != 0) {

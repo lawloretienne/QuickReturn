@@ -1,19 +1,21 @@
 package com.etiennelawlor.quickreturn.fragments;
 
 import android.app.Activity;
-import android.app.ListFragment;
+import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 
 import com.etiennelawlor.quickreturn.R;
 import com.etiennelawlor.quickreturn.adapters.TwitterAdapter;
 import com.etiennelawlor.quickreturn.interfaces.QuickReturnInterface;
+import com.etiennelawlor.quickreturn.itemdecorations.DividerItemDecoration;
 import com.etiennelawlor.quickreturn.library.enums.QuickReturnType;
-import com.etiennelawlor.quickreturn.library.listeners.QuickReturnListViewOnScrollListener;
+import com.etiennelawlor.quickreturn.library.listeners.QuickReturnRecyclerViewOnScrollListener;
 import com.etiennelawlor.quickreturn.library.utils.QuickReturnUtils;
 import com.etiennelawlor.quickreturn.models.Tweet;
 
@@ -25,11 +27,10 @@ import butterknife.InjectView;
 /**
  * Created by etiennelawlor on 6/23/14.
  */
-public class QuickReturnTwitterFragment extends ListFragment {
+public class QuickReturnTwitterFragment extends Fragment {
 
     // region Member Variables
     private QuickReturnInterface mCoordinator;
-    private View mPlaceHolderView;
     private String[] mAvatarUrls;
     private String[] mDisplayNames;
     private String[] mUsernames;
@@ -38,8 +39,8 @@ public class QuickReturnTwitterFragment extends ListFragment {
     private int[] mStars;
     private int[] mRetweets;
 
-    @InjectView(android.R.id.list)
-    ListView mListView;
+    @InjectView(R.id.rv)
+    RecyclerView mRecyclerView;
     @InjectView(R.id.quick_return_footer_ll)
     LinearLayout mQuickReturnFooterLinearLayout;
     // endregion
@@ -101,25 +102,6 @@ public class QuickReturnTwitterFragment extends ListFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-//        int headerHeight = getResources().getDimensionPixelSize(R.dimen.header_height);
-//        int indicatorHeight =  QuickReturnUtils.dp2px(getActivity(), 5);
-//        int headerTranslation = -headerHeight + QuickReturnUtils.getActionBarHeight(getActivity()) + indicatorHeight;
-//        int footerTranslation = -headerHeight + QuickReturnUtils.getActionBarHeight(getActivity());
-
-        int headerHeight = getResources().getDimensionPixelSize(R.dimen.twitter_header_height);
-        int footerHeight = getResources().getDimensionPixelSize(R.dimen.twitter_footer_height);
-        int indicatorHeight =  QuickReturnUtils.dp2px(getActivity(), 4);
-        int headerTranslation = -headerHeight + indicatorHeight;
-        int footerTranslation = -footerHeight + indicatorHeight;
-
-        QuickReturnListViewOnScrollListener scrollListener = new QuickReturnListViewOnScrollListener(QuickReturnType.TWITTER,
-                mCoordinator.getTabs(), headerTranslation, mQuickReturnFooterLinearLayout, -footerTranslation);
-        scrollListener.setCanSlideInIdleScrollState(true);
-        mListView.setOnScrollListener(scrollListener);
-
-        mPlaceHolderView = getActivity().getLayoutInflater().inflate(R.layout.view_header_placeholder, mListView, false);
-        mListView.addHeaderView(mPlaceHolderView);
-
         ArrayList<Tweet> tweets = new ArrayList<>();
         for(int i=0; i<23; i++){
             Tweet tweet = new Tweet();
@@ -134,8 +116,23 @@ public class QuickReturnTwitterFragment extends ListFragment {
         }
 
         TwitterAdapter adapter = new TwitterAdapter(getActivity(), tweets);
+        
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), null));
 
-        mListView.setAdapter(adapter);
+        mRecyclerView.setAdapter(adapter);
+
+        int headerHeight = getResources().getDimensionPixelSize(R.dimen.twitter_header_height);
+        int footerHeight = getResources().getDimensionPixelSize(R.dimen.twitter_footer_height);
+        int indicatorHeight =  QuickReturnUtils.dp2px(getActivity(), 4);
+        int headerTranslation = -headerHeight + indicatorHeight;
+        int footerTranslation = -footerHeight + indicatorHeight;
+
+        QuickReturnRecyclerViewOnScrollListener scrollListener = new QuickReturnRecyclerViewOnScrollListener(QuickReturnType.TWITTER,
+                mCoordinator.getTabs(), headerTranslation, mQuickReturnFooterLinearLayout, -footerTranslation);
+        scrollListener.setCanSlideInIdleScrollState(true);
+        mRecyclerView.setOnScrollListener(scrollListener);
     }
 
     @Override

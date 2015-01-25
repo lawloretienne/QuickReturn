@@ -1,20 +1,23 @@
 package com.etiennelawlor.quickreturn.fragments;
 
-import android.app.ListFragment;
+import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.etiennelawlor.quickreturn.R;
 import com.etiennelawlor.quickreturn.adapters.GooglePlusAdapter;
+import com.etiennelawlor.quickreturn.itemdecorations.SpacesItemDecoration;
 import com.etiennelawlor.quickreturn.library.enums.QuickReturnType;
-import com.etiennelawlor.quickreturn.library.listeners.SpeedyQuickReturnListViewOnScrollListener;
+import com.etiennelawlor.quickreturn.library.listeners.SpeedyQuickReturnRecyclerViewOnScrollListener;
+import com.etiennelawlor.quickreturn.library.utils.QuickReturnUtils;
 import com.etiennelawlor.quickreturn.models.GooglePlusPost;
 
 import java.util.ArrayList;
@@ -26,10 +29,9 @@ import butterknife.InjectView;
 /**
  * Created by etiennelawlor on 6/23/14.
  */
-public class QuickReturnGooglePlusFragment extends ListFragment {
+public class QuickReturnGooglePlusFragment extends Fragment {
 
     // region Member Variables
-    private String[] mValues;
     private String[] mAvatarUrls;
     private String[] mDisplayNames;
     private String[] mTimestamps;
@@ -39,8 +41,8 @@ public class QuickReturnGooglePlusFragment extends ListFragment {
     private int[] mCommentCounts;
     private int[] mPlusOneCounts;
 
-    @InjectView(android.R.id.list)
-    ListView mListView;
+    @InjectView(R.id.rv)
+    RecyclerView mRecyclerView;
     @InjectView(R.id.quick_return_footer_iv)
     ImageView mQuickReturnFooterImageView;
     @InjectView(R.id.quick_return_footer_tv)
@@ -74,7 +76,6 @@ public class QuickReturnGooglePlusFragment extends ListFragment {
         mComments = getActivity().getResources().getStringArray(R.array.google_plus_comments);
         mCommentCounts = getActivity().getResources().getIntArray(R.array.google_plus_comment_counts);
         mPlusOneCounts = getActivity().getResources().getIntArray(R.array.google_plus_plus_one_counts);
-
     }
 
     @Override
@@ -88,11 +89,6 @@ public class QuickReturnGooglePlusFragment extends ListFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-//        mValues = getResources().getStringArray(R.array.countries);
-//
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-//                R.layout.google_plus_list_item, R.id.item_tv, mValues);
 
         ArrayList<GooglePlusPost> posts = new ArrayList<>();
         for(int i=0; i<23; i++){
@@ -119,32 +115,23 @@ public class QuickReturnGooglePlusFragment extends ListFragment {
             post.setCommenterThreeDisplayName(mDisplayNames[randThree]);
             post.setCommenterThreeAvatarUrl(mAvatarUrls[randThree]);
 
-
-
 //            tweet.setStarCount(mStars[i]);
 //            tweet.setRetweetCount(mRetweets[i]);
             post.setMessage(mMessages[i]);
             posts.add(post);
         }
 
-
         GooglePlusAdapter adapter = new GooglePlusAdapter(getActivity(), posts);
 
-//        AnimationAdapter animAdapter = new SwingBottomInAnimationAdapter(adapter);
-//        animAdapter.setAbsListView(getListView());
-//        mListView.setAdapter(animAdapter);
+        // use this setting to improve performance if you know that changes
+        // in content do not change the layout size of the RecyclerView
+        mRecyclerView.setHasFixedSize(true);
 
-        mListView.addFooterView(new View(getActivity()), null, false);
-        mListView.addHeaderView(new View(getActivity()), null, false);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        mRecyclerView.setLayoutManager(layoutManager);
 
-        mListView.setAdapter(adapter);
-
-//        int headerHeight = getResources().getDimensionPixelSize(R.dimen.header_height3);
-//        int headerTranslation = -(headerHeight*2) + QuickReturnUtils.getActionBarHeight(getActivity());
-//        int footerTranslation = -(headerHeight*2) + QuickReturnUtils.getActionBarHeight(getActivity());
-
-//        mListView.setOnScrollListener(new QuickReturnListViewOnScrollListener(QuickReturnType.BOTH,
-//                mQuickReturnHeaderTextView, headerTranslation, mQuickReturnFooterLinearLayout, -footerTranslation));
+        mRecyclerView.setAdapter(adapter);
+        mRecyclerView.addItemDecoration(new SpacesItemDecoration(QuickReturnUtils.dp2px(getActivity(), 8)));
 
         ArrayList<View> headerViews = new ArrayList<>();
         headerViews.add(getActionBarView());
@@ -155,13 +142,13 @@ public class QuickReturnGooglePlusFragment extends ListFragment {
         mQuickReturnFooterImageView.setTag(R.id.scroll_threshold_key, 4);
         footerViews.add(mQuickReturnFooterImageView);
 
-        SpeedyQuickReturnListViewOnScrollListener scrollListener = new SpeedyQuickReturnListViewOnScrollListener(getActivity(), QuickReturnType.GOOGLE_PLUS, null, footerViews);
+        SpeedyQuickReturnRecyclerViewOnScrollListener scrollListener = new SpeedyQuickReturnRecyclerViewOnScrollListener(getActivity(), QuickReturnType.GOOGLE_PLUS, null, footerViews);
         scrollListener.setSlideHeaderUpAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.slide_header_up));
         scrollListener.setSlideHeaderDownAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.slide_header_down));
         scrollListener.setSlideFooterUpAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.slide_footer_up));
         scrollListener.setSlideFooterDownAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.slide_footer_down));
 
-        mListView.setOnScrollListener(scrollListener);
+        mRecyclerView.setOnScrollListener(scrollListener);
     }
 
     @Override

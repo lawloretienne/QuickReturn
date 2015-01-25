@@ -1,10 +1,10 @@
 package com.etiennelawlor.quickreturn.adapters;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,8 +21,13 @@ import butterknife.InjectView;
 /**
  * Created by etiennelawlor on 7/17/14.
  */
-public class TwitterAdapter extends ArrayAdapter<Tweet> {
+public class TwitterAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
+    // region Constants
+    private static final int TYPE_HEADER = 0;
+    private static final int TYPE_ITEM = 1;
+    // endregion
+    
     // region Member Variables
     private Context mContext;
     private ArrayList<Tweet> mTweets;
@@ -31,7 +36,6 @@ public class TwitterAdapter extends ArrayAdapter<Tweet> {
 
     // region Constructors
     public TwitterAdapter(Context context, ArrayList<Tweet> tweets){
-        super(context, R.layout.twitter_row, tweets);
         mContext = context;
         mTweets = tweets;
 
@@ -40,43 +44,79 @@ public class TwitterAdapter extends ArrayAdapter<Tweet> {
     // endregion
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder;
-        if (convertView == null) {
-            convertView = mInflater.inflate(R.layout.twitter_row, parent, false);
-            holder = new ViewHolder(convertView);
-            convertView.setTag(holder);
-        } else {
-            holder = (ViewHolder) convertView.getTag();
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        if (viewType == TYPE_ITEM) {
+            View v = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.twitter_row, parent, false);
+            return new ItemViewHolder(v);
+        } else if (viewType == TYPE_HEADER) {
+            View v = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.view_header_placeholder, parent, false);
+            return new HeaderViewHolder(v);
         }
 
-        Tweet tweet = getItem(position);
-
-        holder.mDisplayNameTextView.setText(tweet.getDisplayName());
-        holder.mUsernameTextView.setText(tweet.getUsername());
-        holder.mTimestampTextView.setText(tweet.getTimestamp());
-        holder.mRetweetTextView.setText(String.valueOf(tweet.getRetweetCount()));
-        holder.mStarTextView.setText(String.valueOf(tweet.getStarCount()));
-
-        String message = tweet.getMessage();
-        if(message.length()>160){
-            message = message.substring(0,159);
-        }
-        holder.mMessageTextView.setText(message);
-
-        Picasso.with(holder.mUserImageView.getContext())
-                .load(tweet.getAvatarUrl())
-                .centerCrop()
-                .resize(QuickReturnUtils.dp2px(getContext(), 50),
-                        QuickReturnUtils.dp2px(getContext(), 50))
-//                    .placeholder(R.drawable.ic_facebook)
-                .error(android.R.drawable.stat_notify_error)
-                .into(holder.mUserImageView);
-
-        return convertView;
+        throw new RuntimeException("there is no type that matches the type " + viewType + " + make sure your using types correctly");
     }
 
-    static class ViewHolder {
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        if (holder instanceof ItemViewHolder) {
+
+            ItemViewHolder itemViewHolder = (ItemViewHolder)holder;
+
+            Tweet tweet = getItem(position);
+
+            if(tweet != null){
+                itemViewHolder.mDisplayNameTextView.setText(tweet.getDisplayName());
+                itemViewHolder.mUsernameTextView.setText(tweet.getUsername());
+                itemViewHolder.mTimestampTextView.setText(tweet.getTimestamp());
+                itemViewHolder.mRetweetTextView.setText(String.valueOf(tweet.getRetweetCount()));
+                itemViewHolder.mStarTextView.setText(String.valueOf(tweet.getStarCount()));
+
+                String message = tweet.getMessage();
+                if(message.length()>160){
+                    message = message.substring(0,159);
+                }
+                itemViewHolder.mMessageTextView.setText(message);
+
+                Picasso.with(itemViewHolder.mUserImageView.getContext())
+                        .load(tweet.getAvatarUrl())
+                        .centerCrop()
+                        .resize(QuickReturnUtils.dp2px(mContext, 50),
+                                QuickReturnUtils.dp2px(mContext, 50))
+//                    .placeholder(R.drawable.ic_facebook)
+                        .error(android.R.drawable.stat_notify_error)
+                        .into(itemViewHolder.mUserImageView);
+            }
+        } else if (holder instanceof HeaderViewHolder) {
+            
+        }
+        
+        
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if (isPositionHeader(position))
+            return TYPE_HEADER;
+
+        return TYPE_ITEM;
+    }
+
+    private boolean isPositionHeader(int position) {
+        return position == 0;
+    }
+
+    private Tweet getItem(int position) {
+        return mTweets.get(position-1);
+    }
+    
+    @Override
+    public int getItemCount() {
+        return mTweets.size()+1;
+    }
+    
+    static class ItemViewHolder extends RecyclerView.ViewHolder {
         @InjectView(R.id.user_iv) ImageView mUserImageView;
         @InjectView(R.id.display_name_tv) TextView mDisplayNameTextView;
         @InjectView(R.id.username_tv) TextView mUsernameTextView;
@@ -85,8 +125,16 @@ public class TwitterAdapter extends ArrayAdapter<Tweet> {
         @InjectView(R.id.retweet_tv) TextView mRetweetTextView;
         @InjectView(R.id.star_tv) TextView mStarTextView;
 
-        ViewHolder(View view) {
+        ItemViewHolder(View view) {
+            super(view);
             ButterKnife.inject(this, view);
+        }
+    }
+
+    static class HeaderViewHolder extends RecyclerView.ViewHolder {
+        
+        public HeaderViewHolder(View itemView) {
+            super(itemView);
         }
     }
 }

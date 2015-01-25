@@ -1,18 +1,21 @@
 package com.etiennelawlor.quickreturn.fragments;
 
-import android.app.ListFragment;
+import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.etiennelawlor.quickreturn.R;
 import com.etiennelawlor.quickreturn.adapters.FacebookAdapter;
+import com.etiennelawlor.quickreturn.itemdecorations.SpacesItemDecoration;
 import com.etiennelawlor.quickreturn.library.enums.QuickReturnType;
-import com.etiennelawlor.quickreturn.library.listeners.QuickReturnListViewOnScrollListener;
+import com.etiennelawlor.quickreturn.library.listeners.QuickReturnRecyclerViewOnScrollListener;
+import com.etiennelawlor.quickreturn.library.utils.QuickReturnUtils;
 import com.etiennelawlor.quickreturn.models.FacebookPost;
 
 import java.util.ArrayList;
@@ -23,7 +26,7 @@ import butterknife.InjectView;
 /**
  * Created by etiennelawlor on 6/23/14.
  */
-public class QuickReturnFacebookFragment extends ListFragment {
+public class QuickReturnFacebookFragment extends Fragment {
 
     // region Member Variables
     private String[] mAvatarUrls;
@@ -34,11 +37,11 @@ public class QuickReturnFacebookFragment extends ListFragment {
     private int[] mCommentCounts;
     private int[] mLikeCounts;
 
-    @InjectView(android.R.id.list) 
-    ListView mListView;
-    @InjectView(R.id.quick_return_footer_ll) 
+    @InjectView(R.id.rv)
+    RecyclerView mRecyclerView;
+    @InjectView(R.id.quick_return_footer_ll)
     LinearLayout mQuickReturnFooterLinearLayout;
-    @InjectView(R.id.quick_return_header_tv) 
+    @InjectView(R.id.quick_return_header_tv)
     TextView mQuickReturnHeaderTextView;
     // endregion
 
@@ -96,28 +99,28 @@ public class QuickReturnFacebookFragment extends ListFragment {
             posts.add(post);
         }
 
-
         FacebookAdapter adapter = new FacebookAdapter(getActivity(), posts);
 
-        mListView.addFooterView(new View(getActivity()), null, false);
-        mListView.addHeaderView(new View(getActivity()), null, false);
+        // use this setting to improve performance if you know that changes
+        // in content do not change the layout size of the RecyclerView
+        mRecyclerView.setHasFixedSize(true);
 
-        mListView.setAdapter(adapter);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        mRecyclerView.setLayoutManager(layoutManager);
+
+        mRecyclerView.setAdapter(adapter);
+        mRecyclerView.addItemDecoration(new SpacesItemDecoration(QuickReturnUtils.dp2px(getActivity(), 8)));
 
         int headerHeight = getResources().getDimensionPixelSize(R.dimen.facebook_header_height);
         int footerHeight = getResources().getDimensionPixelSize(R.dimen.facebook_footer_height);
 
-//        int headerTranslation = -(headerHeight*2) + QuickReturnUtils.getActionBarHeight(getActivity());
         int headerTranslation = -headerHeight;
-
-//        int footerTranslation = -(headerHeight*2) + QuickReturnUtils.getActionBarHeight(getActivity());
         int footerTranslation = -footerHeight;
 
-
-        QuickReturnListViewOnScrollListener scrollListener = new QuickReturnListViewOnScrollListener(QuickReturnType.BOTH,
+        QuickReturnRecyclerViewOnScrollListener scrollListener = new QuickReturnRecyclerViewOnScrollListener(QuickReturnType.BOTH,
                 mQuickReturnHeaderTextView, headerTranslation, mQuickReturnFooterLinearLayout, -footerTranslation);
         scrollListener.setCanSlideInIdleScrollState(true);
-        mListView.setOnScrollListener(scrollListener);
+        mRecyclerView.setOnScrollListener(scrollListener);
     }
 
     @Override

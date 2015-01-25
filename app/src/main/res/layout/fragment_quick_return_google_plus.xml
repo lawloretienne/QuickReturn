@@ -4,12 +4,11 @@
     android:layout_height="match_parent"
     android:background="@color/google_plus_bg">
 
-    <ListView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:divider="@android:color/transparent"
-        android:id="@android:id/list"
-        android:scrollbars="none"/>
+        android:scrollbars="none" />
 
     <com.etiennelawlor.quickreturn.views.CustomFontTextView
         android:id="@+id/quick_return_footer_tv"
@@ -26,7 +25,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="29dp"
         android:gravity="center"
-        app:textFont="Roboto_Bold"/>
+        app:textFont="Roboto_Regular"/>
 
     <ImageView
         android:id="@+id/quick_return_footer_iv"

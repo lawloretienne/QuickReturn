@@ -1,179 +1,173 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+
+<android.support.v7.widget.CardView 
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/CardViewStyle"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    >
+    android:clickable="true"
+    app:contentPadding="-2dp">
 
-    <android.support.v7.widget.CardView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        style="@style/CardViewStyle"
+    <!--app:cardUseCompatPadding="true"-->
+    <!--app:cardPreventCornerOverlap="true"-->
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        app:contentPadding="-2dp">
+        android:orientation="vertical">
 
-        <!--app:cardUseCompatPadding="true"-->
-        <!--app:cardPreventCornerOverlap="true"-->
-
-        <LinearLayout
+        <RelativeLayout
+            android:id="@+id/header_rl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <RelativeLayout
-                android:id="@+id/header_rl"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
-                android:layout_marginTop="12dp">
-
-                <ImageView
-                    android:id="@+id/user_iv"
-                    android:layout_width="34dp"
-                    android:layout_height="34dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="9dp"
-                    android:contentDescription=""
-                    android:scaleType="centerCrop" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@id/user_iv"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/display_name_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-
-
-                    <TextView
-                        android:id="@+id/timestamp_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/gray15"
-                        android:textSize="12sp" />
-                </LinearLayout>
-
-
-            </RelativeLayout>
-
-            <TextView
-                android:id="@+id/message_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
-                android:layout_marginTop="14dp"
-                android:layout_marginBottom="18dp"
-                android:textSize="14sp" />
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="12dp">
 
             <ImageView
-                android:id="@+id/post_iv"
-                android:layout_width="match_parent"
-                android:layout_height="320dp"
+                android:id="@+id/user_iv"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="9dp"
                 android:contentDescription=""
                 android:scaleType="centerCrop" />
 
-            <RelativeLayout
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/user_iv"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/display_name_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/timestamp_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/gray15"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/message_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="18dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="14dp"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/post_iv"
+            android:layout_width="match_parent"
+            android:layout_height="320dp"
+            android:background="@color/gray9"
+            android:contentDescription=""
+            android:scaleType="centerCrop" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/like_count_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/gray15"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/comment_count_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_toRightOf="@id/like_count_tv"
+                android:gravity="center"
+                android:textColor="@color/gray15"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="34dp"
+            android:background="@drawable/shape_gray1_semi_rounded_rectangle"
+            android:orientation="vertical">
+
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
-                android:gravity="center_vertical">
-
-                <TextView
-                    android:id="@+id/like_count_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:textColor="@color/gray15"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/comment_count_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/like_count_tv"
-                    android:gravity="center"
-                    android:layout_marginLeft="8dp"
-                    android:textColor="@color/gray15"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-
-
-            </RelativeLayout>
+                android:layout_height="1px"
+                android:background="?android:attr/dividerHorizontal" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="34dp"
-                android:orientation="vertical"
-                android:background="@drawable/shape_gray1_semi_rounded_rectangle">
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/like"
+                    android:textColor="@color/gray15"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
 
                 <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1px"
-                    android:background="?android:attr/dividerHorizontal"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="1px"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:background="?android:attr/dividerVertical" />
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="@string/like"
-                        android:textColor="@color/gray15"
-                        android:textSize="12sp"
-                        android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/comment"
+                    android:textColor="@color/gray15"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
 
-                    <View
-                        android:layout_width="1px"
-                        android:layout_height="match_parent"
-                        android:background="?android:attr/dividerVertical"/>
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="match_parent"
+                    android:background="?android:attr/dividerVertical" />
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="@string/comment"
-                        android:textColor="@color/gray15"
-                        android:textSize="12sp"
-                        android:textStyle="bold"/>
-
-                    <View
-                        android:layout_width="1px"
-                        android:layout_height="match_parent"
-                        android:background="?android:attr/dividerVertical"/>
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="@string/share"
-                        android:textColor="@color/gray15"
-                        android:textSize="12sp"
-                        android:textStyle="bold"/>
-
-                </LinearLayout>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/share"
+                    android:textColor="@color/gray15"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
         </LinearLayout>
 
-    </android.support.v7.widget.CardView >
+    </LinearLayout>
 
-</LinearLayout>
+</android.support.v7.widget.CardView>
+
 
