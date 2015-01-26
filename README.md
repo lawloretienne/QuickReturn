@@ -3,7 +3,7 @@ QuickReturn
 
 QuickReturn is a library which showcases the QuickReturn UI pattern.  It can be used for header views, footer views, or both header views and footer views.
 
-Support for ScrollView and ListView
+Support for RecyclerView, ListView, and ScrollView
 
 Comes with examples of Twitter, Facebook, and Google+ QuickReturn views
 
@@ -105,11 +105,9 @@ public class QuickReturnHeaderListFragment3 extends ListFragment {
 </RelativeLayout>
 ```
 
-Download the app by clicking on the badge below.
+Download Link
 
-<a href="https://play.google.com/store/apps/details?id=com.etiennelawlor.quickreturn">
-  <img alt="Get it on Google Play" src="/images/en_generic_rgb_wo_60.png" />
-</a>
+https://www.dropbox.com/s/2vf3pzqme9r2gu1/app-release.apk?dl=0
 
 <img src="https://raw.githubusercontent.com/lawloretienne/QuickReturn/master/images/quick_return_demo.gif">
 
