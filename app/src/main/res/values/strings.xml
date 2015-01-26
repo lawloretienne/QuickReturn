@@ -93,6 +93,7 @@
     <string name="buy_me_two_beers">Buy me two beers</string>
     <string name="buy_me_four_beers">Buy me four beers</string>
     <string name="new_posts">New Posts! Touch to see them</string>
+    <string name="recyclerview">RecyclerView</string>
     <string name="listview">ListView</string>
     <string name="scrollview">ScrollView</string>
     <string name="like">Like</string>

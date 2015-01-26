@@ -27,6 +27,11 @@ public class QuickReturnActivity extends QuickReturnBaseActivity {
         startActivity(new Intent(QuickReturnActivity.this, QuickReturnGooglePlusActivity.class));
     }
 
+    @OnClick(R.id.recyclerview_cv)
+    public void onRecyclerViewClicked(){
+        startActivity(new Intent(QuickReturnActivity.this, QuickReturnRecyclerViewActivity.class));
+    }
+    
     @OnClick(R.id.listview_cv)
     public void onListViewClicked(){
         startActivity(new Intent(QuickReturnActivity.this, QuickReturnListViewActivity.class));

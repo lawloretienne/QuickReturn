@@ -55,6 +55,15 @@
                 android:value=".activities.QuickReturnActivity" />
         </activity>
         <activity
+            android:name=".activities.QuickReturnRecyclerViewActivity"
+            android:label="@string/recyclerview"
+            android:parentActivityName=".activities.QuickReturnActivity">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.QuickReturnActivity" />
+        </activity>
+        <activity
             android:name=".activities.QuickReturnListViewActivity"
             android:label="@string/list_view"
             android:parentActivityName=".activities.QuickReturnActivity">
