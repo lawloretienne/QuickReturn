@@ -7,6 +7,8 @@ Support for RecyclerView, ListView, and ScrollView
 
 Comes with examples of Twitter, Facebook, and Google+ QuickReturn views
 
+<img src="https://raw.githubusercontent.com/lawloretienne/QuickReturn/master/images/web_hi_res_512.png">
+
 Sample Usage
 ============
 
