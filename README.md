@@ -9,6 +9,16 @@ Comes with examples of Twitter, Facebook, and Google+ QuickReturn views
 
 <img src="https://raw.githubusercontent.com/lawloretienne/QuickReturn/master/images/web_hi_res_512.png">
 
+Screenshots
+===========
+
+<img src="https://raw.githubusercontent.com/lawloretienne/QuickReturn/master/images/google_plus.png">
+
+<img src="https://raw.githubusercontent.com/lawloretienne/QuickReturn/master/images/facebook.png">
+
+<img src="https://raw.githubusercontent.com/lawloretienne/QuickReturn/master/images/twitter.png">
+
+
 Sample Usage
 ============
 
@@ -111,7 +121,8 @@ Download Link
 
 https://www.dropbox.com/s/2vf3pzqme9r2gu1/app-release.apk?dl=0
 
-<img src="https://raw.githubusercontent.com/lawloretienne/QuickReturn/master/images/quick_return_demo.gif">
+[![Quick Return Demo](http://img.youtube.com/vi/SxcvZ1qIyZ4/0.jpg)](https://www.youtube.com/watch?v=SxcvZ1qIyZ4)
+
 
 Developed By
 ============
