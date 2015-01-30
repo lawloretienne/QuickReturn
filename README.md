@@ -1,11 +1,11 @@
 QuickReturn
 ===========
 
-QuickReturn is a library which showcases the QuickReturn UI pattern.  It can be used for header views, footer views, or both header views and footer views.
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-lawloretienne%2FQuickReturn-blue.svg?style=flat)](https://android-arsenal.com/details/3/698)
 
-Support for RecyclerView, ListView, and ScrollView
+QuickReturn is a library which showcases the QuickReturn UI pattern.  The QuickReturn UI pattern reveals or hides a header or footer as content is scrolled up or down.  This library has support for RecyclerView, ListView, and ScrollView.
 
-Comes with examples of Twitter, Facebook, and Google+ QuickReturn views
+The sample has examples of the QuickReturn UI pattern as seen in Google+, Facebook, and Twitter.
 
 <img src="https://raw.githubusercontent.com/lawloretienne/QuickReturn/master/images/web_hi_res_512.png">
 
