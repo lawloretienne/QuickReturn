@@ -9,16 +9,6 @@ The sample has examples of the QuickReturn UI pattern as seen in Google+, Facebo
 
 <img src="https://raw.githubusercontent.com/lawloretienne/QuickReturn/master/images/web_hi_res_512.png">
 
-Screenshots
-===========
-
-<img src="https://raw.githubusercontent.com/lawloretienne/QuickReturn/master/images/google_plus.png">
-
-<img src="https://raw.githubusercontent.com/lawloretienne/QuickReturn/master/images/facebook.png">
-
-<img src="https://raw.githubusercontent.com/lawloretienne/QuickReturn/master/images/twitter.png">
-
-
 Sample Usage
 ============
 
