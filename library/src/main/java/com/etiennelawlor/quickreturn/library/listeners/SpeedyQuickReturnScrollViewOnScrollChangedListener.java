@@ -7,7 +7,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ScrollView;
 
 import com.etiennelawlor.quickreturn.library.R;
-import com.etiennelawlor.quickreturn.library.enums.QuickReturnType;
+import com.etiennelawlor.quickreturn.library.enums.QuickReturnViewType;
 import com.etiennelawlor.quickreturn.library.views.NotifyingScrollView;
 
 
@@ -17,7 +17,7 @@ import com.etiennelawlor.quickreturn.library.views.NotifyingScrollView;
 public class SpeedyQuickReturnScrollViewOnScrollChangedListener implements NotifyingScrollView.OnScrollChangedListener {
 
     // region Member Variables
-    private QuickReturnType mQuickReturnType;
+    private QuickReturnViewType mQuickReturnViewType;
     private View mHeader;
     private View mFooter;
     private Context mContext;
@@ -29,9 +29,9 @@ public class SpeedyQuickReturnScrollViewOnScrollChangedListener implements Notif
     // endregion
 
     // region Constructors
-    public SpeedyQuickReturnScrollViewOnScrollChangedListener(Context context, QuickReturnType quickReturnType, View headerView, View footerView){
+    public SpeedyQuickReturnScrollViewOnScrollChangedListener(Context context, QuickReturnViewType quickReturnViewType, View headerView, View footerView){
         mContext = context;
-        mQuickReturnType = quickReturnType;
+        mQuickReturnViewType = quickReturnViewType;
 
         mSlideHeaderUpAnimation = AnimationUtils.loadAnimation(mContext, R.anim.anticipate_slide_header_up);
         mSlideHeaderDownAnimation = AnimationUtils.loadAnimation(mContext, R.anim.overshoot_slide_header_down);
@@ -46,7 +46,7 @@ public class SpeedyQuickReturnScrollViewOnScrollChangedListener implements Notif
     @Override
     public void onScrollChanged(ScrollView who, int l, int t, int oldl, int oldt) {
         if(t<oldt){ // scrolling up
-            switch (mQuickReturnType){
+            switch (mQuickReturnViewType){
                 case HEADER:
                     if(mHeader.getVisibility() == View.GONE){
                         mHeader.setVisibility(View.VISIBLE);
@@ -74,7 +74,7 @@ public class SpeedyQuickReturnScrollViewOnScrollChangedListener implements Notif
 
 
         } else if (t>oldt){ // scrolling down
-            switch (mQuickReturnType){
+            switch (mQuickReturnViewType){
                 case HEADER:
                     if(mHeader.getVisibility() == View.VISIBLE){
                         mHeader.setVisibility(View.GONE);

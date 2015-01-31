@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.etiennelawlor.quickreturn.R;
-import com.etiennelawlor.quickreturn.library.enums.QuickReturnType;
+import com.etiennelawlor.quickreturn.library.enums.QuickReturnViewType;
 import com.etiennelawlor.quickreturn.library.listeners.SpeedyQuickReturnScrollViewOnScrollChangedListener;
 import com.etiennelawlor.quickreturn.library.views.NotifyingScrollView;
 
@@ -21,7 +21,7 @@ import butterknife.InjectView;
 public class SpeedyQuickReturnFragment extends Fragment {
 
     // region Member Variables
-    private QuickReturnType mQuickReturnType;
+    private QuickReturnViewType mQuickReturnViewType;
 
     @InjectView(R.id.scroll_view)
     NotifyingScrollView mNotifyingScrollView;
@@ -53,7 +53,7 @@ public class SpeedyQuickReturnFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         if(getArguments() != null) {
-            mQuickReturnType = QuickReturnType.valueOf(getArguments().getString("QUICK_RETURN_TYPE"));
+            mQuickReturnViewType = QuickReturnViewType.valueOf(getArguments().getString("quick_return_view_type"));
         }
     }
 
@@ -69,22 +69,22 @@ public class SpeedyQuickReturnFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        switch (mQuickReturnType){
+        switch (mQuickReturnViewType){
             case HEADER:
                 mQuickReturnHeaderTextView.setVisibility(View.VISIBLE);
                 mNotifyingScrollView.setOnScrollChangedListener(new SpeedyQuickReturnScrollViewOnScrollChangedListener(getActivity(),
-                        QuickReturnType.HEADER, mQuickReturnHeaderTextView, null));
+                        QuickReturnViewType.HEADER, mQuickReturnHeaderTextView, null));
                 break;
             case FOOTER:
                 mQuickReturnFooterTextView.setVisibility(View.VISIBLE);
                 mNotifyingScrollView.setOnScrollChangedListener(new SpeedyQuickReturnScrollViewOnScrollChangedListener(getActivity(),
-                        QuickReturnType.FOOTER, null, mQuickReturnFooterTextView));
+                        QuickReturnViewType.FOOTER, null, mQuickReturnFooterTextView));
                 break;
             case BOTH:
                 mQuickReturnHeaderTextView.setVisibility(View.VISIBLE);
                 mQuickReturnFooterTextView.setVisibility(View.VISIBLE);
                 mNotifyingScrollView.setOnScrollChangedListener(new SpeedyQuickReturnScrollViewOnScrollChangedListener(getActivity(),
-                        QuickReturnType.BOTH, mQuickReturnHeaderTextView, mQuickReturnFooterTextView));
+                        QuickReturnViewType.BOTH, mQuickReturnHeaderTextView, mQuickReturnFooterTextView));
                 break;
         }
 

@@ -3,7 +3,7 @@ package com.etiennelawlor.quickreturn.library.listeners;
 import android.view.View;
 import android.widget.ScrollView;
 
-import com.etiennelawlor.quickreturn.library.enums.QuickReturnType;
+import com.etiennelawlor.quickreturn.library.enums.QuickReturnViewType;
 import com.etiennelawlor.quickreturn.library.views.NotifyingScrollView;
 
 /**
@@ -18,12 +18,12 @@ public class QuickReturnScrollViewOnScrollChangedListener implements NotifyingSc
     private int mFooterDiffTotal = 0;
     private View mHeader;
     private View mFooter;
-    private QuickReturnType mQuickReturnType;
+    private QuickReturnViewType mQuickReturnViewType;
     // endregion
 
     // region Constructors
-    public QuickReturnScrollViewOnScrollChangedListener(QuickReturnType quickReturnType, View headerView, int headerTranslation, View footerView, int footerTranslation){
-        mQuickReturnType = quickReturnType;
+    public QuickReturnScrollViewOnScrollChangedListener(QuickReturnViewType quickReturnViewType, View headerView, int headerTranslation, View footerView, int footerTranslation){
+        mQuickReturnViewType = quickReturnViewType;
         mHeader =  headerView;
         mMinHeaderTranslation = headerTranslation;
         mFooter =  footerView;
@@ -36,7 +36,7 @@ public class QuickReturnScrollViewOnScrollChangedListener implements NotifyingSc
     public void onScrollChanged(ScrollView who, int l, int t, int oldl, int oldt) {
         int diff = oldt - t;
 
-        switch (mQuickReturnType){
+        switch (mQuickReturnViewType){
             case HEADER:
                 if(diff <=0){ // scrolling down
                     mHeaderDiffTotal = Math.max(mHeaderDiffTotal+diff, mMinHeaderTranslation);

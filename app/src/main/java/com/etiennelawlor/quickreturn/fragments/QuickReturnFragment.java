@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.etiennelawlor.quickreturn.R;
-import com.etiennelawlor.quickreturn.library.enums.QuickReturnType;
+import com.etiennelawlor.quickreturn.library.enums.QuickReturnViewType;
 import com.etiennelawlor.quickreturn.library.listeners.QuickReturnScrollViewOnScrollChangedListener;
 import com.etiennelawlor.quickreturn.library.views.NotifyingScrollView;
 
@@ -21,7 +21,7 @@ import butterknife.InjectView;
 public class QuickReturnFragment extends Fragment {
 
     // region Member Variables
-    private QuickReturnType mQuickReturnType;
+    private QuickReturnViewType mQuickReturnViewType;
 
     @InjectView(R.id.scroll_view)
     NotifyingScrollView mNotifyingScrollView;
@@ -53,7 +53,7 @@ public class QuickReturnFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         if(getArguments() != null) {
-            mQuickReturnType = QuickReturnType.valueOf(getArguments().getString("QUICK_RETURN_TYPE"));
+            mQuickReturnViewType = QuickReturnViewType.valueOf(getArguments().getString("quick_return_view_type"));
         }
     }
 
@@ -74,21 +74,21 @@ public class QuickReturnFragment extends Fragment {
 
         int footerTranslation = getResources().getDimensionPixelSize(R.dimen.footer_height);
 
-        switch (mQuickReturnType){
+        switch (mQuickReturnViewType){
             case HEADER:
                 mQuickReturnHeaderTextView.setVisibility(View.VISIBLE);
-                mNotifyingScrollView.setOnScrollChangedListener(new QuickReturnScrollViewOnScrollChangedListener(QuickReturnType.HEADER,
+                mNotifyingScrollView.setOnScrollChangedListener(new QuickReturnScrollViewOnScrollChangedListener(QuickReturnViewType.HEADER,
                         mQuickReturnHeaderTextView, headerTranslation, null, 0));
                 break;
             case FOOTER:
                 mQuickReturnFooterTextView.setVisibility(View.VISIBLE);
-                mNotifyingScrollView.setOnScrollChangedListener(new QuickReturnScrollViewOnScrollChangedListener(QuickReturnType.FOOTER,
+                mNotifyingScrollView.setOnScrollChangedListener(new QuickReturnScrollViewOnScrollChangedListener(QuickReturnViewType.FOOTER,
                         null, 0, mQuickReturnFooterTextView, footerTranslation));
                 break;
             case BOTH:
                 mQuickReturnHeaderTextView.setVisibility(View.VISIBLE);
                 mQuickReturnFooterTextView.setVisibility(View.VISIBLE);
-                mNotifyingScrollView.setOnScrollChangedListener(new QuickReturnScrollViewOnScrollChangedListener(QuickReturnType.BOTH,
+                mNotifyingScrollView.setOnScrollChangedListener(new QuickReturnScrollViewOnScrollChangedListener(QuickReturnViewType.BOTH,
                         mQuickReturnHeaderTextView, headerTranslation, mQuickReturnFooterTextView, footerTranslation));
                 break;
         }

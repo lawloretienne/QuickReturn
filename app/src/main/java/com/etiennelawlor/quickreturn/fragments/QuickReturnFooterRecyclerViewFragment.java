@@ -1,23 +1,21 @@
 package com.etiennelawlor.quickreturn.fragments;
 
 import android.app.Fragment;
-import android.app.ListFragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.etiennelawlor.quickreturn.R;
 import com.etiennelawlor.quickreturn.adapters.CountriesAdapter;
 import com.etiennelawlor.quickreturn.itemdecorations.DividerItemDecoration;
-import com.etiennelawlor.quickreturn.library.enums.QuickReturnType;
-import com.etiennelawlor.quickreturn.library.listeners.QuickReturnListViewOnScrollListener;
+import com.etiennelawlor.quickreturn.library.enums.QuickReturnAnimationType;
+import com.etiennelawlor.quickreturn.library.enums.QuickReturnViewType;
 import com.etiennelawlor.quickreturn.library.listeners.QuickReturnRecyclerViewOnScrollListener;
+import com.etiennelawlor.quickreturn.library.listeners.SpeedyQuickReturnRecyclerViewOnScrollListener;
 
 import java.util.Arrays;
 
@@ -31,6 +29,7 @@ public class QuickReturnFooterRecyclerViewFragment extends Fragment {
 
     // region Member Variables
     private String[] mValues;
+    private QuickReturnAnimationType mQuickReturnAnimationType;
 
     @InjectView(R.id.rv)
     RecyclerView mRecyclerView;
@@ -39,6 +38,13 @@ public class QuickReturnFooterRecyclerViewFragment extends Fragment {
     // endregion
 
     // region Constructors
+    public static QuickReturnFooterRecyclerViewFragment newInstance(Bundle extras) {
+        QuickReturnFooterRecyclerViewFragment fragment = new QuickReturnFooterRecyclerViewFragment();
+        fragment.setRetainInstance(true);
+        fragment.setArguments(extras);
+        return fragment;
+    }
+    
     public static QuickReturnFooterRecyclerViewFragment newInstance() {
         QuickReturnFooterRecyclerViewFragment fragment = new QuickReturnFooterRecyclerViewFragment();
         Bundle args = new Bundle();
@@ -52,9 +58,18 @@ public class QuickReturnFooterRecyclerViewFragment extends Fragment {
 
     // region Lifecycle Methods
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        if(getArguments() != null) {
+            mQuickReturnAnimationType = QuickReturnAnimationType.valueOf(getArguments().getString("quick_return_animation_type"));
+        }
+    }
+    
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_recycler_view_quick_return_footer, container, false);
+        View view = inflater.inflate(R.layout.fragment_recyclerview_quick_return_footer, container, false);
         ButterKnife.inject(this, view);
         return view;
     }
@@ -74,8 +89,29 @@ public class QuickReturnFooterRecyclerViewFragment extends Fragment {
         mRecyclerView.setAdapter(countriesAdapter);
 
         int footerHeight = getActivity().getResources().getDimensionPixelSize(R.dimen.footer_height);
-        QuickReturnRecyclerViewOnScrollListener scrollListener = new QuickReturnRecyclerViewOnScrollListener(QuickReturnType.FOOTER, null, 0, mQuickReturnTextView, footerHeight);
-        mRecyclerView.setOnScrollListener(scrollListener);
+
+        QuickReturnRecyclerViewOnScrollListener scrollListener;
+        SpeedyQuickReturnRecyclerViewOnScrollListener scrollListener2;
+
+        switch (mQuickReturnAnimationType){
+            case TRANSLATION_SIMPLE:
+                scrollListener = new QuickReturnRecyclerViewOnScrollListener(QuickReturnViewType.FOOTER, null, 0, mQuickReturnTextView, footerHeight);
+                mRecyclerView.setOnScrollListener(scrollListener);
+                break;
+            case TRANSLATION_SNAP:
+                scrollListener = new QuickReturnRecyclerViewOnScrollListener(QuickReturnViewType.FOOTER, null, 0, mQuickReturnTextView, footerHeight);
+                scrollListener.setCanSlideInIdleScrollState(true);
+                mRecyclerView.setOnScrollListener(scrollListener);
+                break;
+            case TRANSLATION_ANTICIPATE_OVERSHOOT:
+                scrollListener2 = new SpeedyQuickReturnRecyclerViewOnScrollListener(getActivity(), QuickReturnViewType.FOOTER, null, mQuickReturnTextView);
+                mRecyclerView.setOnScrollListener(scrollListener2);
+                break;
+            default:
+                scrollListener = new QuickReturnRecyclerViewOnScrollListener(QuickReturnViewType.FOOTER, null, 0, mQuickReturnTextView, footerHeight);
+                mRecyclerView.setOnScrollListener(scrollListener);
+                break;
+        }
     }
 
     @Override

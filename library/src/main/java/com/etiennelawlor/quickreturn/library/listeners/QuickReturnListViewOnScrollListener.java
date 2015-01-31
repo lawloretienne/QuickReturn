@@ -4,7 +4,7 @@ import android.animation.ObjectAnimator;
 import android.view.View;
 import android.widget.AbsListView;
 
-import com.etiennelawlor.quickreturn.library.enums.QuickReturnType;
+import com.etiennelawlor.quickreturn.library.enums.QuickReturnViewType;
 import com.etiennelawlor.quickreturn.library.utils.QuickReturnUtils;
 
 import java.util.ArrayList;
@@ -23,15 +23,15 @@ public class QuickReturnListViewOnScrollListener implements AbsListView.OnScroll
     private int mFooterDiffTotal = 0;
     private View mHeader;
     private View mFooter;
-    private QuickReturnType mQuickReturnType;
+    private QuickReturnViewType mQuickReturnViewType;
     private boolean mCanSlideInIdleScrollState = false;
 
     private List<AbsListView.OnScrollListener> mExtraOnScrollListenerList = new ArrayList<AbsListView.OnScrollListener>();
     // endregion
 
     // region Constructors
-    public QuickReturnListViewOnScrollListener(QuickReturnType quickReturnType, View headerView, int headerTranslation, View footerView, int footerTranslation){
-        mQuickReturnType = quickReturnType;
+    public QuickReturnListViewOnScrollListener(QuickReturnViewType quickReturnViewType, View headerView, int headerTranslation, View footerView, int footerTranslation){
+        mQuickReturnViewType = quickReturnViewType;
         mHeader =  headerView;
         mMinHeaderTranslation = headerTranslation;
         mFooter =  footerView;
@@ -51,7 +51,7 @@ public class QuickReturnListViewOnScrollListener implements AbsListView.OnScroll
             int midHeader = -mMinHeaderTranslation/2;
             int midFooter = mMinFooterTranslation/2;
 
-            switch (mQuickReturnType) {
+            switch (mQuickReturnViewType) {
                 case HEADER:
                     if (-mHeaderDiffTotal > 0 && -mHeaderDiffTotal < midHeader) {
                         ObjectAnimator anim = ObjectAnimator.ofFloat(mHeader, "translationY", mHeader.getTranslationY(), 0);
@@ -148,7 +148,7 @@ public class QuickReturnListViewOnScrollListener implements AbsListView.OnScroll
 //        Log.d(getClass().getSimpleName(), "onScroll() : mMinFooterTranslation - "+mMinFooterTranslation);
 
         if(diff != 0){
-            switch (mQuickReturnType){
+            switch (mQuickReturnViewType){
                 case HEADER:
                     if(diff < 0){ // scrolling down
                         mHeaderDiffTotal = Math.max(mHeaderDiffTotal + diff, mMinHeaderTranslation);

@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.etiennelawlor.quickreturn.R;
 import com.etiennelawlor.quickreturn.adapters.FacebookAdapter;
 import com.etiennelawlor.quickreturn.itemdecorations.SpacesItemDecoration;
-import com.etiennelawlor.quickreturn.library.enums.QuickReturnType;
+import com.etiennelawlor.quickreturn.library.enums.QuickReturnViewType;
 import com.etiennelawlor.quickreturn.library.listeners.QuickReturnRecyclerViewOnScrollListener;
 import com.etiennelawlor.quickreturn.library.utils.QuickReturnUtils;
 import com.etiennelawlor.quickreturn.models.FacebookPost;
@@ -117,7 +117,7 @@ public class QuickReturnFacebookFragment extends Fragment {
         int headerTranslation = -headerHeight;
         int footerTranslation = -footerHeight;
 
-        QuickReturnRecyclerViewOnScrollListener scrollListener = new QuickReturnRecyclerViewOnScrollListener(QuickReturnType.BOTH,
+        QuickReturnRecyclerViewOnScrollListener scrollListener = new QuickReturnRecyclerViewOnScrollListener(QuickReturnViewType.BOTH,
                 mQuickReturnHeaderTextView, headerTranslation, mQuickReturnFooterLinearLayout, -footerTranslation);
         scrollListener.setCanSlideInIdleScrollState(true);
         mRecyclerView.setOnScrollListener(scrollListener);

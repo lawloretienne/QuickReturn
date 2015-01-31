@@ -8,7 +8,7 @@ import android.widget.AbsListView;
 
 
 import com.etiennelawlor.quickreturn.library.R;
-import com.etiennelawlor.quickreturn.library.enums.QuickReturnType;
+import com.etiennelawlor.quickreturn.library.enums.QuickReturnViewType;
 import com.etiennelawlor.quickreturn.library.utils.QuickReturnUtils;
 
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ public class SpeedyQuickReturnListViewOnScrollListener implements AbsListView.On
     private ArrayList<View> mHeaderViews;
     private ArrayList<View> mFooterViews;
     private int mPrevScrollY = 0;
-    private QuickReturnType mQuickReturnType;
+    private QuickReturnViewType mQuickReturnViewType;
     private Context mContext;
     private Animation mSlideHeaderUpAnimation;
     private Animation mSlideHeaderDownAnimation;
@@ -35,9 +35,9 @@ public class SpeedyQuickReturnListViewOnScrollListener implements AbsListView.On
     // endregion
 
     // region Constructors
-    public SpeedyQuickReturnListViewOnScrollListener(Context context, QuickReturnType quickReturnType, View headerView, View footerView){
+    public SpeedyQuickReturnListViewOnScrollListener(Context context, QuickReturnViewType quickReturnViewType, View headerView, View footerView){
         mContext = context;
-        mQuickReturnType = quickReturnType;
+        mQuickReturnViewType = quickReturnViewType;
 
         mSlideHeaderUpAnimation = AnimationUtils.loadAnimation(mContext, R.anim.anticipate_slide_header_up);
         mSlideHeaderDownAnimation = AnimationUtils.loadAnimation(mContext, R.anim.overshoot_slide_header_down);
@@ -49,9 +49,9 @@ public class SpeedyQuickReturnListViewOnScrollListener implements AbsListView.On
         mFooter =  footerView;
     }
 
-    public SpeedyQuickReturnListViewOnScrollListener(Context context, QuickReturnType quickReturnType, ArrayList<View> headerViews, ArrayList<View> footerViews) {
+    public SpeedyQuickReturnListViewOnScrollListener(Context context, QuickReturnViewType quickReturnViewType, ArrayList<View> headerViews, ArrayList<View> footerViews) {
         mContext = context;
-        mQuickReturnType = quickReturnType;
+        mQuickReturnViewType = quickReturnViewType;
 
         mHeaderViews = headerViews;
         mFooterViews = footerViews;
@@ -85,7 +85,7 @@ public class SpeedyQuickReturnListViewOnScrollListener implements AbsListView.On
 
 
         if(diff>0){ // scrolling up
-            switch (mQuickReturnType){
+            switch (mQuickReturnViewType){
                 case HEADER:
                     if(mHeader.getVisibility() == View.GONE){
                         mHeader.setVisibility(View.VISIBLE);
@@ -133,7 +133,7 @@ public class SpeedyQuickReturnListViewOnScrollListener implements AbsListView.On
                     break;
             }
         } else if(diff<0){ // scrolling down
-            switch (mQuickReturnType){
+            switch (mQuickReturnViewType){
                 case HEADER:
                     if(mHeader.getVisibility() == View.VISIBLE){
                         mHeader.setVisibility(View.GONE);

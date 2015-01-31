@@ -13,14 +13,11 @@ import android.widget.TextView;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.etiennelawlor.quickreturn.R;
-import com.etiennelawlor.quickreturn.fragments.QuickReturnFooterListFragment;
-import com.etiennelawlor.quickreturn.fragments.QuickReturnFooterListFragment2;
-import com.etiennelawlor.quickreturn.fragments.QuickReturnFooterListFragment3;
-import com.etiennelawlor.quickreturn.fragments.QuickReturnHeaderListFragment;
-import com.etiennelawlor.quickreturn.fragments.QuickReturnHeaderListFragment2;
-import com.etiennelawlor.quickreturn.fragments.QuickReturnHeaderListFragment3;
+import com.etiennelawlor.quickreturn.fragments.QuickReturnFooterListViewFragment;
+import com.etiennelawlor.quickreturn.fragments.QuickReturnHeaderListViewFragment;
 import com.etiennelawlor.quickreturn.fragments.QuickReturnWithExtraOnScrollListenerFragment;
 import com.etiennelawlor.quickreturn.interfaces.QuickReturnInterface;
+import com.etiennelawlor.quickreturn.library.enums.QuickReturnAnimationType;
 import com.etiennelawlor.quickreturn.library.utils.QuickReturnUtils;
 
 import butterknife.ButterKnife;
@@ -150,23 +147,40 @@ public class QuickReturnListViewActivity extends QuickReturnBaseActivity impleme
 
         @Override
         public Fragment getItem(int position) {
+            Bundle bundle = new Bundle();
             switch (position) {
                 case 0:
-                    return QuickReturnHeaderListFragment.newInstance();
+                    bundle.putString("quick_return_animation_type",
+                            QuickReturnAnimationType.TRANSLATION_SIMPLE.name());
+                    return QuickReturnHeaderListViewFragment.newInstance(bundle);
                 case 1:
-                    return QuickReturnHeaderListFragment3.newInstance();
+                    bundle.putString("quick_return_animation_type",
+                            QuickReturnAnimationType.TRANSLATION_SNAP.name());
+                    return QuickReturnHeaderListViewFragment.newInstance(bundle);
                 case 2:
-                    return QuickReturnHeaderListFragment2.newInstance();
+                    bundle.putString("quick_return_animation_type",
+                            QuickReturnAnimationType.TRANSLATION_ANTICIPATE_OVERSHOOT.name());
+                    return QuickReturnHeaderListViewFragment.newInstance(bundle);
                 case 3:
-                    return QuickReturnFooterListFragment.newInstance();
+                    bundle.putString("quick_return_animation_type",
+                            QuickReturnAnimationType.TRANSLATION_SIMPLE.name());
+                    return QuickReturnFooterListViewFragment.newInstance(bundle);
                 case 4:
-                    return QuickReturnFooterListFragment3.newInstance();
+                    bundle.putString("quick_return_animation_type",
+                            QuickReturnAnimationType.TRANSLATION_SNAP.name());
+                    return QuickReturnFooterListViewFragment.newInstance(bundle);
                 case 5:
-                    return QuickReturnFooterListFragment2.newInstance();
+                    bundle.putString("quick_return_animation_type",
+                            QuickReturnAnimationType.TRANSLATION_ANTICIPATE_OVERSHOOT.name());
+                    return QuickReturnFooterListViewFragment.newInstance(bundle);
                 case 6:
-                    return QuickReturnWithExtraOnScrollListenerFragment.newInstance();
+                    bundle.putString("quick_return_animation_type",
+                            QuickReturnAnimationType.TRANSLATION_SNAP.name());
+                    return QuickReturnWithExtraOnScrollListenerFragment.newInstance(bundle);
                 default:
-                    return QuickReturnHeaderListFragment.newInstance();
+                    bundle.putString("quick_return_animation_type",
+                            QuickReturnAnimationType.TRANSLATION_SIMPLE.name());
+                    return QuickReturnHeaderListViewFragment.newInstance(bundle);
             }
         }
 
@@ -179,17 +193,17 @@ public class QuickReturnListViewActivity extends QuickReturnBaseActivity impleme
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "QRHeader";
+                    return "QRHeaderSimple";
                 case 1:
-                    return "QRHeader2";
+                    return "QRHeaderSnap";
                 case 2:
-                    return "SpeedyQRHeader";
+                    return "QRHeaderAnticipateOvershoot";
                 case 3:
-                    return "QRFooter";
+                    return "QRFooterSimple";
                 case 4:
-                    return "QRFooter2";
+                    return "QRFooterSnap";
                 case 5:
-                    return "SpeedyQRFooter";
+                    return "QRFooterAnticipateOvershoot";
                 case 6:
                     return "WithExtraOnScrollListener";
             }

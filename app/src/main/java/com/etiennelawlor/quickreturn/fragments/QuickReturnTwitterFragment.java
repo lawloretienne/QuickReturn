@@ -14,7 +14,7 @@ import com.etiennelawlor.quickreturn.R;
 import com.etiennelawlor.quickreturn.adapters.TwitterAdapter;
 import com.etiennelawlor.quickreturn.interfaces.QuickReturnInterface;
 import com.etiennelawlor.quickreturn.itemdecorations.DividerItemDecoration;
-import com.etiennelawlor.quickreturn.library.enums.QuickReturnType;
+import com.etiennelawlor.quickreturn.library.enums.QuickReturnViewType;
 import com.etiennelawlor.quickreturn.library.listeners.QuickReturnRecyclerViewOnScrollListener;
 import com.etiennelawlor.quickreturn.library.utils.QuickReturnUtils;
 import com.etiennelawlor.quickreturn.models.Tweet;
@@ -129,7 +129,7 @@ public class QuickReturnTwitterFragment extends Fragment {
         int headerTranslation = -headerHeight + indicatorHeight;
         int footerTranslation = -footerHeight + indicatorHeight;
 
-        QuickReturnRecyclerViewOnScrollListener scrollListener = new QuickReturnRecyclerViewOnScrollListener(QuickReturnType.TWITTER,
+        QuickReturnRecyclerViewOnScrollListener scrollListener = new QuickReturnRecyclerViewOnScrollListener(QuickReturnViewType.TWITTER,
                 mCoordinator.getTabs(), headerTranslation, mQuickReturnFooterLinearLayout, -footerTranslation);
         scrollListener.setCanSlideInIdleScrollState(true);
         mRecyclerView.setOnScrollListener(scrollListener);
