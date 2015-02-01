@@ -111,20 +111,63 @@ public class QuickReturnFooterRecyclerViewFragment extends Fragment {
 
         switch (mQuickReturnAnimationType){
             case TRANSLATION_SIMPLE:
-                scrollListener = new QuickReturnRecyclerViewOnScrollListener(QuickReturnViewType.FOOTER, null, 0, mQuickReturnTextView, footerHeight);
+                if(mLayoutManagerType.equals("grid")){
+                    scrollListener = new QuickReturnRecyclerViewOnScrollListener.Builder(QuickReturnViewType.FOOTER)
+                            .footer(mQuickReturnTextView)
+                            .minFooterTranslation(footerHeight)
+                            .columnCount(2)
+                            .build();
+                } else {
+                    scrollListener = new QuickReturnRecyclerViewOnScrollListener.Builder(QuickReturnViewType.FOOTER)
+                            .footer(mQuickReturnTextView)
+                            .minFooterTranslation(footerHeight)
+                            .build();
+                }
                 mRecyclerView.setOnScrollListener(scrollListener);
                 break;
             case TRANSLATION_SNAP:
-                scrollListener = new QuickReturnRecyclerViewOnScrollListener(QuickReturnViewType.FOOTER, null, 0, mQuickReturnTextView, footerHeight);
-                scrollListener.setCanSlideInIdleScrollState(true);
+                if(mLayoutManagerType.equals("grid")){
+                    scrollListener = new QuickReturnRecyclerViewOnScrollListener.Builder(QuickReturnViewType.FOOTER)
+                            .footer(mQuickReturnTextView)
+                            .minFooterTranslation(footerHeight)
+                            .columnCount(2)
+                            .isSnappable(true)
+                            .build();
+                } else {
+                    scrollListener = new QuickReturnRecyclerViewOnScrollListener.Builder(QuickReturnViewType.FOOTER)
+                            .footer(mQuickReturnTextView)
+                            .minFooterTranslation(footerHeight)
+                            .isSnappable(true)
+                            .build();
+                }
                 mRecyclerView.setOnScrollListener(scrollListener);
                 break;
             case TRANSLATION_ANTICIPATE_OVERSHOOT:
-                scrollListener2 = new SpeedyQuickReturnRecyclerViewOnScrollListener(getActivity(), QuickReturnViewType.FOOTER, null, mQuickReturnTextView);
+                if(mLayoutManagerType.equals("grid")){
+                    scrollListener2 = new SpeedyQuickReturnRecyclerViewOnScrollListener.Builder(getActivity(), QuickReturnViewType.FOOTER)
+                            .footer(mQuickReturnTextView)
+                            .columnCount(2)
+                            .build();
+                } else {
+                    scrollListener2 = new SpeedyQuickReturnRecyclerViewOnScrollListener.Builder(getActivity(), QuickReturnViewType.FOOTER)
+                            .footer(mQuickReturnTextView)
+                            .build();
+                }
                 mRecyclerView.setOnScrollListener(scrollListener2);
                 break;
             default:
-                scrollListener = new QuickReturnRecyclerViewOnScrollListener(QuickReturnViewType.FOOTER, null, 0, mQuickReturnTextView, footerHeight);
+                if(mLayoutManagerType.equals("grid")){
+                    scrollListener = new QuickReturnRecyclerViewOnScrollListener.Builder(QuickReturnViewType.FOOTER)
+                            .footer(mQuickReturnTextView)
+                            .minFooterTranslation(footerHeight)
+                            .columnCount(2)
+                            .build();
+                } else {
+                    scrollListener = new QuickReturnRecyclerViewOnScrollListener.Builder(QuickReturnViewType.FOOTER)
+                            .footer(mQuickReturnTextView)
+                            .minFooterTranslation(footerHeight)
+                            .build();
+                }
                 mRecyclerView.setOnScrollListener(scrollListener);
                 break;
         }

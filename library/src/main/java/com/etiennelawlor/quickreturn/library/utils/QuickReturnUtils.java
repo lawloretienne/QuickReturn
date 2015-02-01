@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Display;
 import android.view.View;
@@ -94,7 +95,7 @@ public class QuickReturnUtils {
         return scrollY;
     }
 
-    public static int getScrollY(RecyclerView rv) {
+    public static int getScrollY(RecyclerView rv, int columnCount) {
         View c = rv.getChildAt(0);
         if (c == null) {
             return 0;
@@ -102,9 +103,18 @@ public class QuickReturnUtils {
 
         LinearLayoutManager layoutManager = (LinearLayoutManager)rv.getLayoutManager();
         int firstVisiblePosition = layoutManager.findFirstVisibleItemPosition();
+
+//        Log.d("", "getScrollY() : firstVisiblePosition - " + firstVisiblePosition);
+
         int scrollY = -(c.getTop());
 
-        sRecyclerViewItemHeights.put(layoutManager.findFirstVisibleItemPosition(), c.getHeight());
+//        Log.d("", "getScrollY() : scrollY - " + scrollY);
+
+        if(columnCount > 1){
+            sRecyclerViewItemHeights.put(firstVisiblePosition, c.getHeight() + QuickReturnUtils.dp2px(rv.getContext(), 8)/columnCount);
+        } else {
+            sRecyclerViewItemHeights.put(firstVisiblePosition, c.getHeight());
+        }
 
         if(scrollY<0)
             scrollY = 0;

@@ -117,9 +117,13 @@ public class QuickReturnFacebookFragment extends Fragment {
         int headerTranslation = -headerHeight;
         int footerTranslation = -footerHeight;
 
-        QuickReturnRecyclerViewOnScrollListener scrollListener = new QuickReturnRecyclerViewOnScrollListener(QuickReturnViewType.BOTH,
-                mQuickReturnHeaderTextView, headerTranslation, mQuickReturnFooterLinearLayout, -footerTranslation);
-        scrollListener.setCanSlideInIdleScrollState(true);
+        QuickReturnRecyclerViewOnScrollListener scrollListener = new QuickReturnRecyclerViewOnScrollListener.Builder(QuickReturnViewType.BOTH)
+                .header(mQuickReturnHeaderTextView)
+                .minHeaderTranslation(headerTranslation)
+                .footer(mQuickReturnFooterLinearLayout)
+                .minFooterTranslation(-footerTranslation)
+                .isSnappable(true)
+                .build();
         mRecyclerView.setOnScrollListener(scrollListener);
     }
 

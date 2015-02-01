@@ -19,46 +19,33 @@ import java.util.List;
 public class SpeedyQuickReturnRecyclerViewOnScrollListener extends RecyclerView.OnScrollListener {
 
     // region Member Variables
-    private View mHeader;
-    private View mFooter;
-    private ArrayList<View> mHeaderViews;
-    private ArrayList<View> mFooterViews;
+    private final QuickReturnViewType mQuickReturnViewType;
+    private final View mHeader;
+    private final View mFooter;
+    private final ArrayList<View> mHeaderViews;
+    private final ArrayList<View> mFooterViews;
+    private final Animation mSlideHeaderUpAnimation;
+    private final Animation mSlideHeaderDownAnimation;
+    private final Animation mSlideFooterUpAnimation;
+    private final Animation mSlideFooterDownAnimation;
+    private final int mColumnCount;
+
     private int mPrevScrollY = 0;
-    private QuickReturnViewType mQuickReturnViewType;
-    private Context mContext;
-    private Animation mSlideHeaderUpAnimation;
-    private Animation mSlideHeaderDownAnimation;
-    private Animation mSlideFooterUpAnimation;
-    private Animation mSlideFooterDownAnimation;
     private List<RecyclerView.OnScrollListener> mExtraOnScrollListeners = new ArrayList<>();
     // endregion
 
     // region Constructors
-    public SpeedyQuickReturnRecyclerViewOnScrollListener(Context context, QuickReturnViewType quickReturnViewType, View headerView, View footerView){
-        mContext = context;
-        mQuickReturnViewType = quickReturnViewType;
-
-        mSlideHeaderUpAnimation = AnimationUtils.loadAnimation(mContext, R.anim.anticipate_slide_header_up);
-        mSlideHeaderDownAnimation = AnimationUtils.loadAnimation(mContext, R.anim.overshoot_slide_header_down);
-        mSlideFooterUpAnimation = AnimationUtils.loadAnimation(mContext, R.anim.overshoot_slide_footer_up);
-        mSlideFooterDownAnimation = AnimationUtils.loadAnimation(mContext, R.anim.anticipate_slide_footer_down);
-
-
-        mHeader =  headerView;
-        mFooter =  footerView;
-    }
-
-    public SpeedyQuickReturnRecyclerViewOnScrollListener(Context context, QuickReturnViewType quickReturnViewType, ArrayList<View> headerViews, ArrayList<View> footerViews) {
-        mContext = context;
-        mQuickReturnViewType = quickReturnViewType;
-
-        mHeaderViews = headerViews;
-        mFooterViews = footerViews;
-
-        mSlideHeaderUpAnimation = AnimationUtils.loadAnimation(mContext, R.anim.anticipate_slide_header_up);
-        mSlideHeaderDownAnimation = AnimationUtils.loadAnimation(mContext, R.anim.overshoot_slide_header_down);
-        mSlideFooterUpAnimation = AnimationUtils.loadAnimation(mContext, R.anim.overshoot_slide_footer_up);
-        mSlideFooterDownAnimation = AnimationUtils.loadAnimation(mContext, R.anim.anticipate_slide_footer_down);
+    private SpeedyQuickReturnRecyclerViewOnScrollListener(Builder builder) {
+        mQuickReturnViewType = builder.mQuickReturnViewType;
+        mHeader = builder.mHeader;
+        mFooter = builder.mFooter;
+        mHeaderViews = builder.mHeaderViews;
+        mFooterViews = builder.mFooterViews;
+        mSlideHeaderUpAnimation = builder.mSlideHeaderUpAnimation;
+        mSlideHeaderDownAnimation = builder.mSlideHeaderDownAnimation;
+        mSlideFooterUpAnimation = builder.mSlideFooterUpAnimation;
+        mSlideFooterDownAnimation = builder.mSlideFooterDownAnimation;
+        mColumnCount = builder.mColumnCount;
     }
     // endregion
 
@@ -79,7 +66,7 @@ public class SpeedyQuickReturnRecyclerViewOnScrollListener extends RecyclerView.
             listener.onScrolled(recyclerView, dx, dy);
         }
 
-        int scrollY = QuickReturnUtils.getScrollY(recyclerView);
+        int scrollY = QuickReturnUtils.getScrollY(recyclerView, mColumnCount);
         int diff = mPrevScrollY - scrollY;
 
         if(diff>0){ // scrolling up
@@ -183,23 +170,87 @@ public class SpeedyQuickReturnRecyclerViewOnScrollListener extends RecyclerView.
         mPrevScrollY = scrollY;
     }
 
+    // region Helper Methods
     public void registerExtraOnScrollListener(RecyclerView.OnScrollListener listener) {
         mExtraOnScrollListeners.add(listener);
     }
+    // endregion
 
-    public void setSlideHeaderUpAnimation(Animation animation){
-        mSlideHeaderUpAnimation = animation;
+    // region Inner Classes
+
+    public static class Builder {
+        // Required parameters
+        private final QuickReturnViewType mQuickReturnViewType;
+
+        // Optional parameters - initialized to default values
+        private View mHeader = null;
+        private View mFooter = null;
+        private ArrayList<View> mHeaderViews = null;
+        private ArrayList<View> mFooterViews = null;
+        private Animation mSlideHeaderUpAnimation = null;
+        private Animation mSlideHeaderDownAnimation = null;
+        private Animation mSlideFooterUpAnimation = null;
+        private Animation mSlideFooterDownAnimation = null;
+        private int mColumnCount = 1;
+
+        public Builder(Context context, QuickReturnViewType quickReturnViewType) {
+            mSlideHeaderUpAnimation = AnimationUtils.loadAnimation(context, R.anim.anticipate_slide_header_up);
+            mSlideHeaderDownAnimation = AnimationUtils.loadAnimation(context, R.anim.overshoot_slide_header_down);
+            mSlideFooterUpAnimation = AnimationUtils.loadAnimation(context, R.anim.overshoot_slide_footer_up);
+            mSlideFooterDownAnimation= AnimationUtils.loadAnimation(context, R.anim.anticipate_slide_footer_down);
+
+            mQuickReturnViewType = quickReturnViewType;
+        }
+
+        public Builder header(View header){
+            mHeader = header;
+            return this;
+        }
+
+        public Builder footer(View footer){
+            mFooter = footer;
+            return this;
+        }
+
+        public Builder headerViews(ArrayList<View> headerViews){
+            mHeaderViews = headerViews;
+            return this;
+        }
+
+        public Builder footerViews(ArrayList<View> footerViews){
+            mFooterViews = footerViews;
+            return this;
+        }
+
+        public Builder slideHeaderUpAnimation(Animation slideHeaderUpAnimation){
+            mSlideHeaderUpAnimation = slideHeaderUpAnimation;
+            return this;
+        }
+
+        public Builder slideHeaderDownAnimation(Animation slideHeaderDownAnimation){
+            mSlideHeaderDownAnimation = slideHeaderDownAnimation;
+            return this;
+        }
+
+        public Builder slideFooterUpAnimation(Animation slideFooterUpAnimation){
+            mSlideFooterUpAnimation = slideFooterUpAnimation;
+            return this;
+        }
+
+        public Builder slideFooterDownAnimation(Animation slideFooterDownAnimation){
+            mSlideFooterDownAnimation = slideFooterDownAnimation;
+            return this;
+        }
+
+        public Builder columnCount(int columnCount){
+            mColumnCount = columnCount;
+            return this;
+        }
+
+        public SpeedyQuickReturnRecyclerViewOnScrollListener build() {
+            return new SpeedyQuickReturnRecyclerViewOnScrollListener(this);
+        }
     }
 
-    public void setSlideHeaderDownAnimation(Animation animation){
-        mSlideHeaderDownAnimation = animation;
-    }
-
-    public void setSlideFooterUpAnimation(Animation animation){
-        mSlideFooterUpAnimation = animation;
-    }
-
-    public void setSlideFooterDownAnimation(Animation animation){
-        mSlideFooterDownAnimation = animation;
-    }
+    // endregion
 }

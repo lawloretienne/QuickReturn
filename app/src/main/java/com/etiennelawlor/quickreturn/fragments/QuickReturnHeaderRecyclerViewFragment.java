@@ -110,25 +110,67 @@ public class QuickReturnHeaderRecyclerViewFragment extends Fragment {
                 
         switch (mQuickReturnAnimationType){
             case TRANSLATION_SIMPLE:
-                scrollListener = new QuickReturnRecyclerViewOnScrollListener(QuickReturnViewType.HEADER, mQuickReturnTextView, -headerHeight, null, 0);
+                if(mLayoutManagerType.equals("grid")){
+                    scrollListener = new QuickReturnRecyclerViewOnScrollListener.Builder(QuickReturnViewType.HEADER)
+                                    .header(mQuickReturnTextView)
+                                    .minHeaderTranslation(-headerHeight)
+                                    .columnCount(2)
+                                    .build();
+                    
+                } else {
+                    scrollListener = new QuickReturnRecyclerViewOnScrollListener.Builder(QuickReturnViewType.HEADER)
+                            .header(mQuickReturnTextView)
+                            .minHeaderTranslation(-headerHeight)
+                            .build();
+                }
                 mRecyclerView.setOnScrollListener(scrollListener);
                 break;
             case TRANSLATION_SNAP:
-                scrollListener = new QuickReturnRecyclerViewOnScrollListener(QuickReturnViewType.HEADER,
-                        mQuickReturnTextView, -headerHeight, null, 0);
-                scrollListener.setCanSlideInIdleScrollState(true);
+                if(mLayoutManagerType.equals("grid")){
+                    scrollListener = new QuickReturnRecyclerViewOnScrollListener.Builder(QuickReturnViewType.HEADER)
+                            .header(mQuickReturnTextView)
+                            .minHeaderTranslation(-headerHeight)
+                            .columnCount(2)
+                            .isSnappable(true)
+                            .build();
+                } else {
+                    scrollListener = new QuickReturnRecyclerViewOnScrollListener.Builder(QuickReturnViewType.HEADER)
+                            .header(mQuickReturnTextView)
+                            .minHeaderTranslation(-headerHeight)
+                            .isSnappable(true)
+                            .build();
+                }
                 mRecyclerView.setOnScrollListener(scrollListener);
                 break;
             case TRANSLATION_ANTICIPATE_OVERSHOOT:
-                scrollListener2 = new SpeedyQuickReturnRecyclerViewOnScrollListener(getActivity(), QuickReturnViewType.HEADER, mQuickReturnTextView, null);
+                if(mLayoutManagerType.equals("grid")){
+                    scrollListener2 = new SpeedyQuickReturnRecyclerViewOnScrollListener.Builder(getActivity(), QuickReturnViewType.HEADER)
+                            .header(mQuickReturnTextView)
+                            .columnCount(2)
+                            .build();
+                } else {
+                    scrollListener2 = new SpeedyQuickReturnRecyclerViewOnScrollListener.Builder(getActivity(), QuickReturnViewType.HEADER)
+                            .header(mQuickReturnTextView)
+                            .build();
+                }
                 mRecyclerView.setOnScrollListener(scrollListener2);
                 break;
             default:
-                scrollListener = new QuickReturnRecyclerViewOnScrollListener(QuickReturnViewType.HEADER, mQuickReturnTextView, -headerHeight, null, 0);
+                if(mLayoutManagerType.equals("grid")){
+                    scrollListener = new QuickReturnRecyclerViewOnScrollListener.Builder(QuickReturnViewType.HEADER)
+                            .header(mQuickReturnTextView)
+                            .minHeaderTranslation(-headerHeight)
+                            .columnCount(2)
+                            .build();
+                } else {
+                    scrollListener = new QuickReturnRecyclerViewOnScrollListener.Builder(QuickReturnViewType.HEADER)
+                            .header(mQuickReturnTextView)
+                            .minHeaderTranslation(-headerHeight)
+                            .build();
+                }
                 mRecyclerView.setOnScrollListener(scrollListener);
                 break;
         }
-        
 
     }
 

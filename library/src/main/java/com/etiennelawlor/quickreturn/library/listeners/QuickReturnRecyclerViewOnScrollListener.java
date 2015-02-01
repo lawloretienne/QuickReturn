@@ -2,6 +2,7 @@ package com.etiennelawlor.quickreturn.library.listeners;
 
 import android.animation.ObjectAnimator;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import com.etiennelawlor.quickreturn.library.enums.QuickReturnViewType;
@@ -16,28 +17,32 @@ import java.util.List;
 public class QuickReturnRecyclerViewOnScrollListener extends RecyclerView.OnScrollListener {
 
     // region Member Variables
-    private int mMinFooterTranslation;
-    private int mMinHeaderTranslation;
+    private final QuickReturnViewType mQuickReturnViewType;
+    private final View mHeader;
+    private final int mMinHeaderTranslation;
+    private final View mFooter;
+    private final int mMinFooterTranslation;
+    private final int mColumnCount;
+    private final boolean mIsSnappable; // Can Quick Return view snap into place?
+
     private int mPrevScrollY = 0;
     private int mHeaderDiffTotal = 0;
     private int mFooterDiffTotal = 0;
-    private View mHeader;
-    private View mFooter;
-    private QuickReturnViewType mQuickReturnViewType;
-    private boolean mCanSlideInIdleScrollState = false;
-
     private List<RecyclerView.OnScrollListener> mExtraOnScrollListenerList = new ArrayList<>();
     // endregion
 
     // region Constructors
-    public QuickReturnRecyclerViewOnScrollListener(QuickReturnViewType quickReturnViewType, View headerView, int headerTranslation, View footerView, int footerTranslation){
-        mQuickReturnViewType = quickReturnViewType;
-        mHeader =  headerView;
-        mMinHeaderTranslation = headerTranslation;
-        mFooter =  footerView;
-        mMinFooterTranslation = footerTranslation;
+    private QuickReturnRecyclerViewOnScrollListener(Builder builder) {
+        mQuickReturnViewType = builder.mQuickReturnViewType;
+        mHeader = builder.mHeader;
+        mMinHeaderTranslation = builder.mMinHeaderTranslation;
+        mFooter = builder.mFooter;
+        mMinFooterTranslation = builder.mMinFooterTranslation;
+        mColumnCount = builder.mColumnCount;
+        mIsSnappable = builder.mIsSnappable;
     }
     // endregion
+
 
     @Override
     public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
@@ -48,7 +53,7 @@ public class QuickReturnRecyclerViewOnScrollListener extends RecyclerView.OnScro
           listener.onScrollStateChanged(recyclerView, newState);
         }
         
-        if (newState == RecyclerView.SCROLL_STATE_IDLE && mCanSlideInIdleScrollState) {
+        if (newState == RecyclerView.SCROLL_STATE_IDLE && mIsSnappable) {
 
             int midHeader = -mMinHeaderTranslation/2;
             int midFooter = mMinFooterTranslation/2;
@@ -144,8 +149,10 @@ public class QuickReturnRecyclerViewOnScrollListener extends RecyclerView.OnScro
           listener.onScrolled(recyclerView, dx, dy);
         }
 
-        int scrollY = QuickReturnUtils.getScrollY(recyclerView);
+        int scrollY = QuickReturnUtils.getScrollY(recyclerView, mColumnCount);
+//        Log.d("", "onScrolled() : scrollY - "+scrollY);
         int diff = mPrevScrollY - scrollY;
+//        Log.d("", "onScrolled() : diff - "+diff);
 
         if(diff != 0){
             switch (mQuickReturnViewType){
@@ -201,11 +208,64 @@ public class QuickReturnRecyclerViewOnScrollListener extends RecyclerView.OnScro
         mPrevScrollY = scrollY;
     }
 
-    public void setCanSlideInIdleScrollState(boolean canSlideInIdleScrollState){
-        mCanSlideInIdleScrollState = canSlideInIdleScrollState;
-    }
-
+    // region Helper Methods
     public void registerExtraOnScrollListener(RecyclerView.OnScrollListener listener) {
         mExtraOnScrollListenerList.add(listener);
     }
+    // endregion
+    
+    // region Inner Classes
+    
+    public static class Builder {
+        // Required parameters
+        private final QuickReturnViewType mQuickReturnViewType;
+
+        // Optional parameters - initialized to default values
+        private View mHeader = null;
+        private int mMinHeaderTranslation = 0;
+        private View mFooter = null;
+        private int mMinFooterTranslation = 0;
+        private int mColumnCount = 1;
+        private boolean mIsSnappable = false;
+
+        public Builder(QuickReturnViewType quickReturnViewType) {
+            mQuickReturnViewType = quickReturnViewType;
+        }
+
+        public Builder header(View header){
+            mHeader = header;
+            return this;
+        }
+
+        public Builder minHeaderTranslation(int minHeaderTranslation){
+            mMinHeaderTranslation = minHeaderTranslation;
+            return this;
+        }
+
+        public Builder footer(View footer){
+            mFooter = footer;
+            return this;
+        }
+
+        public Builder minFooterTranslation(int minFooterTranslation){
+            mMinFooterTranslation = minFooterTranslation;
+            return this;
+        }
+
+        public Builder columnCount(int columnCount){
+            mColumnCount = columnCount;
+            return this;
+        }
+
+        public Builder isSnappable(boolean isSnappable){
+            mIsSnappable = isSnappable;
+            return this;
+        }
+
+        public QuickReturnRecyclerViewOnScrollListener build() {
+            return new QuickReturnRecyclerViewOnScrollListener(this);
+        }
+    }
+
+    // endregion
 }

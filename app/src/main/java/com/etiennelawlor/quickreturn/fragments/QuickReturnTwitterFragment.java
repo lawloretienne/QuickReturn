@@ -129,9 +129,15 @@ public class QuickReturnTwitterFragment extends Fragment {
         int headerTranslation = -headerHeight + indicatorHeight;
         int footerTranslation = -footerHeight + indicatorHeight;
 
-        QuickReturnRecyclerViewOnScrollListener scrollListener = new QuickReturnRecyclerViewOnScrollListener(QuickReturnViewType.TWITTER,
-                mCoordinator.getTabs(), headerTranslation, mQuickReturnFooterLinearLayout, -footerTranslation);
-        scrollListener.setCanSlideInIdleScrollState(true);
+        QuickReturnRecyclerViewOnScrollListener scrollListener = 
+                new QuickReturnRecyclerViewOnScrollListener.Builder(QuickReturnViewType.TWITTER)
+                .header(mCoordinator.getTabs())
+                .minHeaderTranslation(headerTranslation)
+                .footer(mQuickReturnFooterLinearLayout)
+                .minFooterTranslation(-footerTranslation)
+                .isSnappable(true)
+                .build();
+        
         mRecyclerView.setOnScrollListener(scrollListener);
     }
 
