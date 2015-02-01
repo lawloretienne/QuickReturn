@@ -29,7 +29,6 @@ public class QuickReturnHeaderListViewFragment extends ListFragment {
 
     protected QuickReturnListViewOnScrollListener mScrollListener;
 
-
     @InjectView(android.R.id.list)
     ListView mListView;
     @InjectView(R.id.quick_return_tv)
@@ -90,20 +89,31 @@ public class QuickReturnHeaderListViewFragment extends ListFragment {
 
         switch (mQuickReturnAnimationType){
             case TRANSLATION_SIMPLE:
-                mScrollListener = new QuickReturnListViewOnScrollListener(QuickReturnViewType.HEADER, mQuickReturnTextView, -headerHeight, null, 0);
+                mScrollListener = new QuickReturnListViewOnScrollListener.Builder(QuickReturnViewType.HEADER)
+                        .header(mQuickReturnTextView)
+                        .minHeaderTranslation(-headerHeight)
+                        .build();
                 mListView.setOnScrollListener(mScrollListener);
                 break;
             case TRANSLATION_SNAP:
-                mScrollListener = new QuickReturnListViewOnScrollListener(QuickReturnViewType.HEADER, mQuickReturnTextView, -headerHeight, null, 0);
-                mScrollListener.setCanSlideInIdleScrollState(true);
+                mScrollListener = new QuickReturnListViewOnScrollListener.Builder(QuickReturnViewType.HEADER)
+                        .header(mQuickReturnTextView)
+                        .minHeaderTranslation(-headerHeight)
+                        .isSnappable(true)
+                        .build();
                 mListView.setOnScrollListener(mScrollListener);
                 break;
             case TRANSLATION_ANTICIPATE_OVERSHOOT:
-                scrollListener2 = new SpeedyQuickReturnListViewOnScrollListener(getActivity(), QuickReturnViewType.HEADER, mQuickReturnTextView, null);
+                scrollListener2 = new SpeedyQuickReturnListViewOnScrollListener.Builder(getActivity(), QuickReturnViewType.HEADER)
+                        .header(mQuickReturnTextView)
+                        .build();
                 mListView.setOnScrollListener(scrollListener2);
                 break;
             default:
-                mScrollListener = new QuickReturnListViewOnScrollListener(QuickReturnViewType.HEADER, mQuickReturnTextView, -headerHeight, null, 0);
+                mScrollListener = new QuickReturnListViewOnScrollListener.Builder(QuickReturnViewType.HEADER)
+                        .header(mQuickReturnTextView)
+                        .minHeaderTranslation(-headerHeight)
+                        .build();
                 mListView.setOnScrollListener(mScrollListener);
                 break;
         }

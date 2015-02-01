@@ -16,26 +16,27 @@ import java.util.List;
 public class QuickReturnListViewOnScrollListener implements AbsListView.OnScrollListener {
 
     // region Member Variables
-    private int mMinFooterTranslation;
-    private int mMinHeaderTranslation;
+    private final QuickReturnViewType mQuickReturnViewType;
+    private final View mHeader;
+    private final int mMinHeaderTranslation;
+    private final View mFooter;
+    private final int mMinFooterTranslation;
+    private final boolean mIsSnappable; // Can Quick Return view snap into place?
+
     private int mPrevScrollY = 0;
     private int mHeaderDiffTotal = 0;
-    private int mFooterDiffTotal = 0;
-    private View mHeader;
-    private View mFooter;
-    private QuickReturnViewType mQuickReturnViewType;
-    private boolean mCanSlideInIdleScrollState = false;
-
+    private int mFooterDiffTotal = 0;    
     private List<AbsListView.OnScrollListener> mExtraOnScrollListenerList = new ArrayList<AbsListView.OnScrollListener>();
     // endregion
 
     // region Constructors
-    public QuickReturnListViewOnScrollListener(QuickReturnViewType quickReturnViewType, View headerView, int headerTranslation, View footerView, int footerTranslation){
-        mQuickReturnViewType = quickReturnViewType;
-        mHeader =  headerView;
-        mMinHeaderTranslation = headerTranslation;
-        mFooter =  footerView;
-        mMinFooterTranslation = footerTranslation;
+    private QuickReturnListViewOnScrollListener(Builder builder) {
+        mQuickReturnViewType = builder.mQuickReturnViewType;
+        mHeader = builder.mHeader;
+        mMinHeaderTranslation = builder.mMinHeaderTranslation;
+        mFooter = builder.mFooter;
+        mMinFooterTranslation = builder.mMinFooterTranslation;
+        mIsSnappable = builder.mIsSnappable;
     }
     // endregion
 
@@ -46,7 +47,7 @@ public class QuickReturnListViewOnScrollListener implements AbsListView.OnScroll
         for (AbsListView.OnScrollListener listener : mExtraOnScrollListenerList) {
           listener.onScrollStateChanged(view, scrollState);
         }
-        if(scrollState == SCROLL_STATE_IDLE && mCanSlideInIdleScrollState){
+        if(scrollState == SCROLL_STATE_IDLE && mIsSnappable){
 
             int midHeader = -mMinHeaderTranslation/2;
             int midFooter = mMinFooterTranslation/2;
@@ -201,11 +202,58 @@ public class QuickReturnListViewOnScrollListener implements AbsListView.OnScroll
         mPrevScrollY = scrollY;
     }
 
-    public void setCanSlideInIdleScrollState(boolean canSlideInIdleScrollState){
-        mCanSlideInIdleScrollState = canSlideInIdleScrollState;
-    }
-
+    // region Helper Methods
     public void registerExtraOnScrollListener(AbsListView.OnScrollListener listener) {
         mExtraOnScrollListenerList.add(listener);
     }
+    // endregion
+
+    // region Inner Classes
+
+    public static class Builder {
+        // Required parameters
+        private final QuickReturnViewType mQuickReturnViewType;
+
+        // Optional parameters - initialized to default values
+        private View mHeader = null;
+        private int mMinHeaderTranslation = 0;
+        private View mFooter = null;
+        private int mMinFooterTranslation = 0;
+        private boolean mIsSnappable = false;
+
+        public Builder(QuickReturnViewType quickReturnViewType) {
+            mQuickReturnViewType = quickReturnViewType;
+        }
+
+        public Builder header(View header){
+            mHeader = header;
+            return this;
+        }
+
+        public Builder minHeaderTranslation(int minHeaderTranslation){
+            mMinHeaderTranslation = minHeaderTranslation;
+            return this;
+        }
+
+        public Builder footer(View footer){
+            mFooter = footer;
+            return this;
+        }
+
+        public Builder minFooterTranslation(int minFooterTranslation){
+            mMinFooterTranslation = minFooterTranslation;
+            return this;
+        }
+
+        public Builder isSnappable(boolean isSnappable){
+            mIsSnappable = isSnappable;
+            return this;
+        }
+
+        public QuickReturnListViewOnScrollListener build() {
+            return new QuickReturnListViewOnScrollListener(this);
+        }
+    }
+
+    // endregion
 }

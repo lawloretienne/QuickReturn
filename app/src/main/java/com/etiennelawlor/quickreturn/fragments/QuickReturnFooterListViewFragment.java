@@ -88,20 +88,31 @@ public class QuickReturnFooterListViewFragment extends ListFragment {
 
         switch (mQuickReturnAnimationType){
             case TRANSLATION_SIMPLE:
-                scrollListener = new QuickReturnListViewOnScrollListener(QuickReturnViewType.FOOTER, null, 0, mQuickReturnTextView, footerHeight);
+                scrollListener = new QuickReturnListViewOnScrollListener.Builder(QuickReturnViewType.FOOTER)
+                        .footer(mQuickReturnTextView)
+                        .minFooterTranslation(footerHeight)                   
+                        .build();
                 mListView.setOnScrollListener(scrollListener);
                 break;
             case TRANSLATION_SNAP:
-                scrollListener = new QuickReturnListViewOnScrollListener(QuickReturnViewType.FOOTER, null, 0, mQuickReturnTextView, footerHeight);
-                scrollListener.setCanSlideInIdleScrollState(true);
+                scrollListener = new QuickReturnListViewOnScrollListener.Builder(QuickReturnViewType.FOOTER)                        
+                        .footer(mQuickReturnTextView)
+                        .minFooterTranslation(footerHeight)
+                        .isSnappable(true)
+                        .build();
                 mListView.setOnScrollListener(scrollListener);
                 break;
             case TRANSLATION_ANTICIPATE_OVERSHOOT:
-                scrollListener2 = new SpeedyQuickReturnListViewOnScrollListener(getActivity(), QuickReturnViewType.FOOTER, null, mQuickReturnTextView);
+                scrollListener2 = new SpeedyQuickReturnListViewOnScrollListener.Builder(getActivity(), QuickReturnViewType.FOOTER)
+                        .footer(mQuickReturnTextView)
+                        .build();
                 mListView.setOnScrollListener(scrollListener2);
                 break;
             default:
-                scrollListener = new QuickReturnListViewOnScrollListener(QuickReturnViewType.FOOTER, null, 0, mQuickReturnTextView, footerHeight);
+                scrollListener = new QuickReturnListViewOnScrollListener.Builder(QuickReturnViewType.FOOTER)
+                        .footer(mQuickReturnTextView)
+                        .minFooterTranslation(footerHeight)
+                        .build();
                 mListView.setOnScrollListener(scrollListener);
                 break;
         }
