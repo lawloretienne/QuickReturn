@@ -6,15 +6,10 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.etiennelawlor.quickreturn.R;
-import com.etiennelawlor.quickreturn.library.utils.QuickReturnUtils;
-import com.etiennelawlor.quickreturn.models.FacebookPost;
-import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.ButterKnife;
@@ -25,7 +20,7 @@ import butterknife.InjectView;
 /**
  * Created by etiennelawlor on 7/17/14.
  */
-public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.ViewHolder> {
+public class CountriesLinearLayoutAdapter extends RecyclerView.Adapter<CountriesLinearLayoutAdapter.ViewHolder> {
 
     // region Constants
     // endregion
@@ -38,7 +33,7 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.View
     // endregion
 
     // region Constructors
-    public CountriesAdapter(Context context, List<String> countries) {
+    public CountriesLinearLayoutAdapter(Context context, List<String> countries) {
         mContext = context;
         mCountries = countries;
 
@@ -47,7 +42,7 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.View
     // endregion
 
     @Override
-    public CountriesAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public CountriesLinearLayoutAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.country_row, parent, false);
         ViewHolder vh = new ViewHolder(v);

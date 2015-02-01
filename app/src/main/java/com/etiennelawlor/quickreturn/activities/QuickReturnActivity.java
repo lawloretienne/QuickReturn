@@ -27,9 +27,14 @@ public class QuickReturnActivity extends QuickReturnBaseActivity {
         startActivity(new Intent(QuickReturnActivity.this, QuickReturnGooglePlusActivity.class));
     }
 
-    @OnClick(R.id.recyclerview_cv)
-    public void onRecyclerViewClicked(){
-        startActivity(new Intent(QuickReturnActivity.this, QuickReturnRecyclerViewActivity.class));
+    @OnClick(R.id.recyclerview_linearlayout_cv)
+    public void onRecyclerViewLinearLayoutClicked(){
+        startActivity(new Intent(QuickReturnActivity.this, QuickReturnRecyclerViewActivity.class).putExtra("layout_manager", "linear"));
+    }
+
+    @OnClick(R.id.recyclerview_gridlayout_cv)
+    public void onRecyclerViewGridLayoutClicked(){
+        startActivity(new Intent(QuickReturnActivity.this, QuickReturnRecyclerViewActivity.class).putExtra("layout_manager", "grid"));
     }
     
     @OnClick(R.id.listview_cv)

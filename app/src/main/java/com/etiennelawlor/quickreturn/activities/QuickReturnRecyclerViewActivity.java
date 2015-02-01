@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v13.app.FragmentPagerAdapter;
@@ -28,6 +29,7 @@ public class QuickReturnRecyclerViewActivity extends QuickReturnBaseActivity imp
     // region Member Variables
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private LinearLayout mTabsLinearLayout;
+    private String mLayoutManagerType;
 
     @InjectView(R.id.tabs)
     PagerSlidingTabStrip mTabs;
@@ -68,6 +70,14 @@ public class QuickReturnRecyclerViewActivity extends QuickReturnBaseActivity imp
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quick_return_recyclerview);
         ButterKnife.inject(this);
+
+        Intent intent = getIntent();
+        if(intent != null){
+            Bundle bundle = intent.getExtras();
+            if(bundle != null){
+                mLayoutManagerType = bundle.getString("layout_manager");
+            }
+        }
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
 
@@ -143,6 +153,8 @@ public class QuickReturnRecyclerViewActivity extends QuickReturnBaseActivity imp
         @Override
         public Fragment getItem(int position) {
             Bundle bundle = new Bundle();
+            bundle.putString("layout_manager", mLayoutManagerType);
+
             switch (position) {
                 case 0:
                     bundle.putString("quick_return_animation_type",

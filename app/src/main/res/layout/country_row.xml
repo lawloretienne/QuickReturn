@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.etiennelawlor.quickreturn.views.CustomFontTextView 
+
+<com.etiennelawlor.quickreturn.views.CustomFontTextView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/country_tv"
@@ -13,3 +14,4 @@
     android:background="?android:attr/selectableItemBackground"
     android:clickable="true"
     />
+    
