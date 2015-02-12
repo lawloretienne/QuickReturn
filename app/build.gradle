@@ -58,8 +58,8 @@ dependencies {
     compile project(':library')
 }
 
+// Extract signing info into a properties file
 def props = new Properties()
-
 props.load(new FileInputStream(project.file("signing.properties")))
 
 android.signingConfigs.release.storeFile project.file(props.keyStore)
