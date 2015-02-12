@@ -13,10 +13,6 @@ android {
     }
     signingConfigs {
         release {
-            storeFile file("interapptiv3.keystore")
-            storePassword "senditallofit"
-            keyAlias "quickreturn-release"
-            keyPassword "senditallofit"
         }
     }
     buildTypes {
@@ -61,3 +57,12 @@ dependencies {
     }
     compile project(':library')
 }
+
+def props = new Properties()
+
+props.load(new FileInputStream(project.file("release.properties")))
+
+android.signingConfigs.release.storeFile project.file(props.keyStore)
+android.signingConfigs.release.storePassword props.keyStorePassword
+android.signingConfigs.release.keyAlias props.keyAlias
+android.signingConfigs.release.keyPassword props.keyAliasPassword

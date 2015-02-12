@@ -67,3 +67,7 @@ release.properties
 
 # Ignore Gradle GUI config
 gradle-app.setting
+
+# Gradle Signing
+release.properties
+interapptiv3.keystore
