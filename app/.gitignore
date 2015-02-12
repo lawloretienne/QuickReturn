@@ -69,5 +69,5 @@ release.properties
 gradle-app.setting
 
 # Gradle Signing
-release.properties
+signing.properties
 interapptiv3.keystore

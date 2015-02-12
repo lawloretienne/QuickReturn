@@ -60,7 +60,7 @@ dependencies {
 
 def props = new Properties()
 
-props.load(new FileInputStream(project.file("release.properties")))
+props.load(new FileInputStream(project.file("signing.properties")))
 
 android.signingConfigs.release.storeFile project.file(props.keyStore)
 android.signingConfigs.release.storePassword props.keyStorePassword
