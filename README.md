@@ -40,6 +40,7 @@ Projects/Apps using QuickReturn
 ===============================
 
 - <a href="https://play.google.com/store/apps/details?id=com.tradehero.th">TradeHero</a>
+- <a href="https://play.google.com/store/apps/details?id=com.radpad.RadPad">RadPad</a>
 
 Feel free to contact me to add yours to this list.
 
