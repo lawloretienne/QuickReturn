@@ -80,6 +80,7 @@
     <string name="twitter">Twitter</string>
     <string name="list_view">ListView</string>
     <string name="scroll_view">ScrollView</string>
+    <string name="web_view">WebView</string>
     <string name="home">Home</string>
     <string name="discover">Discover</string>
     <string name="activity">Activity</string>
@@ -96,6 +97,7 @@
     <string name="recyclerview">RecyclerView</string>
     <string name="listview">ListView</string>
     <string name="scrollview">ScrollView</string>
+    <string name="webview">WebView</string>
     <string name="like">Like</string>
     <string name="comment">Comment</string>
     <string name="share">Share</string>

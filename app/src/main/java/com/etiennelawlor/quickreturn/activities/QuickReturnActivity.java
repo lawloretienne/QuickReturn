@@ -46,6 +46,11 @@ public class QuickReturnActivity extends QuickReturnBaseActivity {
     public void onScrollViewClicked(){
         startActivity(new Intent(QuickReturnActivity.this, QuickReturnScrollViewActivity.class));
     }
+
+    @OnClick(R.id.webview_cv)
+    public void onWebViewClicked() {
+        startActivity(new Intent(QuickReturnActivity.this, QuickReturnWebViewActivity.class));
+    }
     // endregion
 
     // region Lifecycle Methods
