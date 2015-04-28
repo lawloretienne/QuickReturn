@@ -81,6 +81,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.QuickReturnActivity" />
         </activity>
+        <activity
+            android:name=".activities.QuickReturnWebViewActivity"
+            android:label="@string/web_view"
+            android:parentActivityName=".activities.QuickReturnActivity">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.QuickReturnActivity" />
+        </activity>
     </application>
 
 </manifest>

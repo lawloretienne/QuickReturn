@@ -190,7 +190,30 @@
                 app:textFont="Roboto_Bold" />
 
         </android.support.v7.widget.CardView>
-        
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/webview_cv"
+            style="@style/CardViewStyle"
+            app:cardBackgroundColor="@color/quick_return_primary"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="4dp"
+            >
+
+            <com.etiennelawlor.quickreturn.views.CustomFontTextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/scrollview"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@android:color/white"
+                app:textFont="Roboto_Bold" />
+
+        </android.support.v7.widget.CardView>
         
     </LinearLayout>
 
