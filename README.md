@@ -11,7 +11,7 @@ This library has support for **RecyclerView**, **ListView**, and **ScrollView**.
 
 The samples in the project include examples of the **QuickReturn UI Pattern** as seen in **Google+**, **Facebook**, and **Twitter**.
 
-<img src="https://raw.githubusercontent.com/lawloretienne/QuickReturn/master/images/web_hi_res_512.png">
+<img src="https://raw.githubusercontent.com/lawloretienne/QuickReturn/master/images/QuickReturn_feature_graphic.png">
 
 Sample Usage
 ============
