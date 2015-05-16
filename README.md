@@ -1,17 +1,17 @@
 QuickReturn
 ===========
 
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-lawloretienne%2FQuickReturn-blue.svg?style=flat)](https://android-arsenal.com/details/3/698)
+<img src="https://raw.githubusercontent.com/lawloretienne/QuickReturn/master/images/QuickReturn_feature_graphic.png">
 
-**QuickReturn** is a library which showcases the **QuickReturn UI Pattern**.  
+**QuickReturn** is a library which showcases the **QuickReturn UI Pattern**.
 
-The **QuickReturn UI Pattern** reveals or hides a header or footer as content is scrolled up or down.  
+The **QuickReturn UI Pattern** reveals or hides a header or footer as content is scrolled up or down.
 
 This library has support for **RecyclerView**, **ListView**, and **ScrollView**.
 
 The samples in the project include examples of the **QuickReturn UI Pattern** as seen in **Google+**, **Facebook**, and **Twitter**.
 
-<img src="https://raw.githubusercontent.com/lawloretienne/QuickReturn/master/images/QuickReturn_feature_graphic.png">
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-lawloretienne%2FQuickReturn-blue.svg?style=flat)](https://android-arsenal.com/details/3/698)
 
 Sample Usage
 ============
