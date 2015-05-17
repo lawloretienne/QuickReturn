@@ -69,10 +69,14 @@ dependencies {
 }
 
 // Extract signing info into a properties file
-def props = new Properties()
-props.load(new FileInputStream(project.file("signing.properties")))
+def propsFile = project.file("signing.properties")
 
-android.signingConfigs.release.storeFile project.file(props.keyStore)
-android.signingConfigs.release.storePassword props.keyStorePassword
-android.signingConfigs.release.keyAlias props.keyAlias
-android.signingConfigs.release.keyPassword props.keyAliasPassword
+if ( propsFile.exists() ) { 
+  def props = new Properties()
+  props.load(new FileInputStream(propsFile))
+
+  android.signingConfigs.release.storeFile project.file(props.keyStore)
+  android.signingConfigs.release.storePassword props.keyStorePassword
+  android.signingConfigs.release.keyAlias props.keyAlias
+  android.signingConfigs.release.keyPassword props.keyAliasPassword
+}
