@@ -10,22 +10,35 @@ The samples in the project include examples of the **QuickReturn UI Pattern** as
 
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-lawloretienne%2FQuickReturn-blue.svg?style=flat)](https://android-arsenal.com/details/3/698)
 
-Sample Usage
-============
+## Setup
+
+#### Gradle
+
+`compile 'com.github.lawloretienne:quickreturn:0.0.1'`
+
+#### Maven
+```
+<dependency>
+    <groupId>com.github.lawloretienne</groupId>
+    <artifactId>quickreturn</artifactId>
+    <version>0.0.1</version>
+</dependency>
+```
+
+## Sample Usage
 
 [Wiki Examples](https://github.com/lawloretienne/QuickReturn/wiki)
 
-###Download Link
+### Download Link
 
 https://www.dropbox.com/s/2vf3pzqme9r2gu1/app-release.apk?dl=0
 
-###QuickReturn Demo
+### QuickReturn Demo
 
 [![QuickReturn Demo](http://img.youtube.com/vi/SxcvZ1qIyZ4/0.jpg)](https://www.youtube.com/watch?v=SxcvZ1qIyZ4)
 
 
-Developed By
-============
+## Developed By
 
 * Etienne Lawlor 
  
@@ -33,20 +46,15 @@ Developed By
 
 &nbsp;&nbsp;&nbsp;**Website** - www.interapptiv3.com 
 
-Projects/Apps using QuickReturn
-===============================
+## Projects/Apps using QuickReturn
 
 - <a href="https://play.google.com/store/apps/details?id=com.tradehero.th">TradeHero</a>
 - <a href="https://play.google.com/store/apps/details?id=com.radpad.RadPad">RadPad</a>
 
 Feel free to contact me to add yours to this list.
 
-Todo
-====
-Convert library into an Android archive (.aar)
 
-License
-========
+## License
 
 ```
 Copyright 2014 Etienne Lawlor
