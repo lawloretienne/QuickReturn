@@ -44,7 +44,7 @@ https://www.dropbox.com/s/2vf3pzqme9r2gu1/app-release.apk?dl=0
  
 &nbsp;&nbsp;&nbsp;**Email** - lawloretienne@gmail.com
 
-&nbsp;&nbsp;&nbsp;**Website** - lawloretienne.github.io
+&nbsp;&nbsp;&nbsp;**Website** - http://lawloretienne.github.io
 
 ## Projects/Apps using QuickReturn
 
