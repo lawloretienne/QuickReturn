@@ -15,8 +15,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 //import java.util.logging.Handler;
 
@@ -92,18 +92,22 @@ public class FacebookAdapter extends RecyclerView.Adapter<FacebookAdapter.ViewHo
         return mFacebookPosts.size();
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
-        @InjectView(R.id.user_iv) ImageView mUserImageView;
-        @InjectView(R.id.display_name_tv) TextView mDisplayNameTextView;
-        @InjectView(R.id.comment_count_tv) TextView mCommentCountTextView;
-        @InjectView(R.id.like_count_tv) TextView mLikeCountTextView;
-        @InjectView(R.id.timestamp_tv) TextView mTimestampTextView;
-        @InjectView(R.id.message_tv) TextView mMessageTextView;
-        @InjectView(R.id.post_iv) ImageView mPostImageView;
+    // region Inner Classes
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        @Bind(R.id.user_iv) ImageView mUserImageView;
+        @Bind(R.id.display_name_tv) TextView mDisplayNameTextView;
+        @Bind(R.id.comment_count_tv) TextView mCommentCountTextView;
+        @Bind(R.id.like_count_tv) TextView mLikeCountTextView;
+        @Bind(R.id.timestamp_tv) TextView mTimestampTextView;
+        @Bind(R.id.message_tv) TextView mMessageTextView;
+        @Bind(R.id.post_iv) ImageView mPostImageView;
 
         ViewHolder(View view) {
             super(view);
-            ButterKnife.inject(this, view);
+            ButterKnife.bind(this, view);
         }
     }
+
+    // endregion
 }

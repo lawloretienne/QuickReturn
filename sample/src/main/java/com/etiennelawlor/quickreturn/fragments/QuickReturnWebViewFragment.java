@@ -14,8 +14,8 @@ import com.etiennelawlor.quickreturn.library.listeners.QuickReturnWebViewOnScrol
 import com.etiennelawlor.quickreturn.library.views.NotifyingScrollView;
 import com.etiennelawlor.quickreturn.library.views.NotifyingWebView;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 /**
  * Created by etiennelawlor on 6/23/14.
@@ -25,11 +25,11 @@ public class QuickReturnWebViewFragment extends Fragment {
     // region Member Variables
     private QuickReturnViewType mQuickReturnViewType;
 
-    @InjectView(R.id.web_view)
+    @Bind(R.id.web_view)
     NotifyingWebView mNotifyingWebView;
-    @InjectView(R.id.quick_return_header_tv)
+    @Bind(R.id.quick_return_header_tv)
     TextView mQuickReturnHeaderTextView;
-    @InjectView(R.id.quick_return_footer_tv)
+    @Bind(R.id.quick_return_footer_tv)
     TextView mQuickReturnFooterTextView;
     // endregion
 
@@ -63,7 +63,7 @@ public class QuickReturnWebViewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_quick_return_webview, container, false);
-        ButterKnife.inject(this, view);
+        ButterKnife.bind(this, view);
         return view;
     }
 
@@ -115,7 +115,7 @@ public class QuickReturnWebViewFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.reset(this);
+        ButterKnife.unbind(this);
     }
     // endregion
 }

@@ -13,8 +13,8 @@ import com.etiennelawlor.quickreturn.library.listeners.SpeedyQuickReturnListView
 import com.etiennelawlor.quickreturn.library.listeners.SpeedyQuickReturnScrollViewOnScrollChangedListener;
 import com.etiennelawlor.quickreturn.library.views.NotifyingScrollView;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 /**
  * Created by etiennelawlor on 6/23/14.
@@ -24,11 +24,11 @@ public class SpeedyQuickReturnFragment extends Fragment {
     // region Member Variables
     private QuickReturnViewType mQuickReturnViewType;
 
-    @InjectView(R.id.scroll_view)
+    @Bind(R.id.scroll_view)
     NotifyingScrollView mNotifyingScrollView;
-    @InjectView(R.id.quick_return_header_tv)
+    @Bind(R.id.quick_return_header_tv)
     TextView mQuickReturnHeaderTextView;
-    @InjectView(R.id.quick_return_footer_tv)
+    @Bind(R.id.quick_return_footer_tv)
     TextView mQuickReturnFooterTextView;
     // endregion
 
@@ -62,7 +62,7 @@ public class SpeedyQuickReturnFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_quick_return, container, false);
-        ButterKnife.inject(this, view);
+        ButterKnife.bind(this, view);
         return view;
     }
 
@@ -104,7 +104,7 @@ public class SpeedyQuickReturnFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.reset(this);
+        ButterKnife.unbind(this);
     }
     // endregion
 }

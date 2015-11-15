@@ -16,8 +16,8 @@ import com.etiennelawlor.quickreturn.fragments.QuickReturnFacebookFragment;
 import com.etiennelawlor.quickreturn.interfaces.QuickReturnInterface;
 import com.etiennelawlor.quickreturn.library.utils.QuickReturnUtils;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 
 public class QuickReturnFacebookActivity extends QuickReturnBaseActivity implements ActionBar.TabListener, QuickReturnInterface {
@@ -26,56 +26,13 @@ public class QuickReturnFacebookActivity extends QuickReturnBaseActivity impleme
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private LinearLayout mTabsLinearLayout;
 
-    @InjectView(R.id.tabs) 
+    @Bind(R.id.tabs)
     PagerSlidingTabStrip mTabs;
-    @InjectView(R.id.pager) 
+    @Bind(R.id.pager)
     ViewPager mViewPager;
     // endregion
 
     // region Listeners
-//    @OnPageChange(R.id.tabs)
-//    public void onPageSelected(int position){
-//        for(int i=0; i < mTabsLinearLayout.getChildCount(); i++){
-//            ImageButton ib = (ImageButton) mTabsLinearLayout.getChildAt(i);
-//            switch (i){
-//                case 0:
-//                    if(i == position)
-//                        ib.setImageResource(R.drawable.ic_action_event_highlighted);
-//                    else
-//                        ib.setImageResource(R.drawable.ic_action_event);
-//                    break;
-//                case 1:
-//                    if(i == position)
-//                        ib.setImageResource(R.drawable.ic_action_cc_bcc_highlighted);
-//                    else
-//                        ib.setImageResource(R.drawable.ic_action_cc_bcc);
-//                    break;
-//                case 2:
-//                    if(i == position)
-//                        ib.setImageResource(R.drawable.ic_action_chat_highlighted);
-//                    else
-//                        ib.setImageResource(R.drawable.ic_action_google_plus_comment);
-//                    break;
-//                case 3:
-//                    if(i == position)
-//                        ib.setImageResource(R.drawable.ic_action_web_site_highlighted);
-//                    else
-//                        ib.setImageResource(R.drawable.ic_action_web_site);
-//                    break;
-//                case 4:
-//                    if(i == position)
-//                        ib.setImageResource(R.drawable.ic_action_sort_by_size_highlighted);
-//                    else
-//                        ib.setImageResource(R.drawable.ic_action_sort_by_size);
-//                    break;
-//                default:
-//                    break;
-//            }
-//        }
-//
-//    }
-
-
     private ViewPager.OnPageChangeListener mTabsOnPageChangeListener = new ViewPager.OnPageChangeListener() {
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -134,7 +91,7 @@ public class QuickReturnFacebookActivity extends QuickReturnBaseActivity impleme
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quick_return_facebook);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
 

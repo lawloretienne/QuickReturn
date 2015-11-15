@@ -12,8 +12,8 @@ import com.etiennelawlor.quickreturn.R;
 
 import java.util.List;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 //import java.util.logging.Handler;
 
@@ -63,12 +63,16 @@ public class CountriesLinearLayoutAdapter extends RecyclerView.Adapter<Countries
         return mCountries.size();
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
-        @InjectView(R.id.country_tv) TextView mCountryTextView;
+    // region Inner Classes
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        @Bind(R.id.country_tv) TextView mCountryTextView;
 
         ViewHolder(View view) {
             super(view);
-            ButterKnife.inject(this, view);
+            ButterKnife.bind(this, view);
         }
     }
+
+    // endregion
 }

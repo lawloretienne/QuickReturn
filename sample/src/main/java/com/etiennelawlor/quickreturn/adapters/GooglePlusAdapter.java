@@ -15,14 +15,14 @@ import android.widget.TextView;
 import com.etiennelawlor.quickreturn.R;
 import com.etiennelawlor.quickreturn.library.utils.QuickReturnUtils;
 import com.etiennelawlor.quickreturn.models.GooglePlusPost;
-import com.makeramen.RoundedTransformationBuilder;
+import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
 import java.util.ArrayList;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 //import java.util.logging.Handler;
 
@@ -203,26 +203,30 @@ public class GooglePlusAdapter extends RecyclerView.Adapter<GooglePlusAdapter.Vi
         return mGooglePlusPosts.size();
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
-        @InjectView(R.id.user_iv) ImageView mUserImageView;
-        @InjectView(R.id.display_name_tv) TextView mDisplayNameTextView;
-        @InjectView(R.id.comment_tv) TextView mCommentTextView;
-        @InjectView(R.id.plus_one_tv) TextView mPlusOneTextView;
-        @InjectView(R.id.add_comment_tv) TextView mAddCommentTextView;
-        @InjectView(R.id.timestamp_tv) TextView mTimestampTextView;
-        @InjectView(R.id.message_tv) TextView mMessageTextView;
-        @InjectView(R.id.post_iv) ImageView mPostImageView;
-        @InjectView(R.id.commenter_one_iv) ImageView mCommenterOneImageView;
-        @InjectView(R.id.commenter_two_iv) ImageView mCommenterTwoImageView;
-        @InjectView(R.id.commenter_three_iv) ImageView mCommenterThreeImageView;
-        @InjectView(R.id.indicator_v) View mIndicatorView;
+    // region Inner Classes
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        @Bind(R.id.user_iv) ImageView mUserImageView;
+        @Bind(R.id.display_name_tv) TextView mDisplayNameTextView;
+        @Bind(R.id.comment_tv) TextView mCommentTextView;
+        @Bind(R.id.plus_one_tv) TextView mPlusOneTextView;
+        @Bind(R.id.add_comment_tv) TextView mAddCommentTextView;
+        @Bind(R.id.timestamp_tv) TextView mTimestampTextView;
+        @Bind(R.id.message_tv) TextView mMessageTextView;
+        @Bind(R.id.post_iv) ImageView mPostImageView;
+        @Bind(R.id.commenter_one_iv) ImageView mCommenterOneImageView;
+        @Bind(R.id.commenter_two_iv) ImageView mCommenterTwoImageView;
+        @Bind(R.id.commenter_three_iv) ImageView mCommenterThreeImageView;
+        @Bind(R.id.indicator_v) View mIndicatorView;
 
 //        Runnable mRunnable;
 
         ViewHolder(View view) {
             super(view);
-            ButterKnife.inject(this, view);
+            ButterKnife.bind(this, view);
         }
     }
+
+    // endregion
 
 }

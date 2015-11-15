@@ -23,8 +23,8 @@ import com.etiennelawlor.quickreturn.library.utils.QuickReturnUtils;
 
 import java.util.Arrays;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 /**
  * Created by etiennelawlor on 6/23/14.
@@ -35,10 +35,12 @@ public class QuickReturnFooterRecyclerViewFragment extends Fragment {
     private String[] mValues;
     private QuickReturnAnimationType mQuickReturnAnimationType;
     private String mLayoutManagerType;
+    private QuickReturnRecyclerViewOnScrollListener mScrollListener;
+    private SpeedyQuickReturnRecyclerViewOnScrollListener mScrollListener2;
 
-    @InjectView(R.id.rv)
+    @Bind(R.id.rv)
     RecyclerView mRecyclerView;
-    @InjectView(R.id.quick_return_tv)
+    @Bind(R.id.quick_return_tv)
     TextView mQuickReturnTextView;
     // endregion
 
@@ -76,7 +78,7 @@ public class QuickReturnFooterRecyclerViewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_recyclerview_quick_return_footer, container, false);
-        ButterKnife.inject(this, view);
+        ButterKnife.bind(this, view);
         return view;
     }
 
@@ -106,69 +108,66 @@ public class QuickReturnFooterRecyclerViewFragment extends Fragment {
 
         int footerHeight = getActivity().getResources().getDimensionPixelSize(R.dimen.footer_height);
 
-        QuickReturnRecyclerViewOnScrollListener scrollListener;
-        SpeedyQuickReturnRecyclerViewOnScrollListener scrollListener2;
-
         switch (mQuickReturnAnimationType){
             case TRANSLATION_SIMPLE:
                 if(mLayoutManagerType.equals("grid")){
-                    scrollListener = new QuickReturnRecyclerViewOnScrollListener.Builder(QuickReturnViewType.FOOTER)
+                    mScrollListener = new QuickReturnRecyclerViewOnScrollListener.Builder(QuickReturnViewType.FOOTER)
                             .footer(mQuickReturnTextView)
                             .minFooterTranslation(footerHeight)
                             .columnCount(2)
                             .build();
                 } else {
-                    scrollListener = new QuickReturnRecyclerViewOnScrollListener.Builder(QuickReturnViewType.FOOTER)
+                    mScrollListener = new QuickReturnRecyclerViewOnScrollListener.Builder(QuickReturnViewType.FOOTER)
                             .footer(mQuickReturnTextView)
                             .minFooterTranslation(footerHeight)
                             .build();
                 }
-                mRecyclerView.setOnScrollListener(scrollListener);
+                mRecyclerView.addOnScrollListener(mScrollListener);
                 break;
             case TRANSLATION_SNAP:
                 if(mLayoutManagerType.equals("grid")){
-                    scrollListener = new QuickReturnRecyclerViewOnScrollListener.Builder(QuickReturnViewType.FOOTER)
+                    mScrollListener = new QuickReturnRecyclerViewOnScrollListener.Builder(QuickReturnViewType.FOOTER)
                             .footer(mQuickReturnTextView)
                             .minFooterTranslation(footerHeight)
                             .columnCount(2)
                             .isSnappable(true)
                             .build();
                 } else {
-                    scrollListener = new QuickReturnRecyclerViewOnScrollListener.Builder(QuickReturnViewType.FOOTER)
+                    mScrollListener = new QuickReturnRecyclerViewOnScrollListener.Builder(QuickReturnViewType.FOOTER)
                             .footer(mQuickReturnTextView)
                             .minFooterTranslation(footerHeight)
                             .isSnappable(true)
                             .build();
                 }
-                mRecyclerView.setOnScrollListener(scrollListener);
+                mRecyclerView.addOnScrollListener(mScrollListener);
                 break;
             case TRANSLATION_ANTICIPATE_OVERSHOOT:
                 if(mLayoutManagerType.equals("grid")){
-                    scrollListener2 = new SpeedyQuickReturnRecyclerViewOnScrollListener.Builder(getActivity(), QuickReturnViewType.FOOTER)
+                    mScrollListener2 = new SpeedyQuickReturnRecyclerViewOnScrollListener.Builder(getActivity(), QuickReturnViewType.FOOTER)
                             .footer(mQuickReturnTextView)
                             .columnCount(2)
                             .build();
                 } else {
-                    scrollListener2 = new SpeedyQuickReturnRecyclerViewOnScrollListener.Builder(getActivity(), QuickReturnViewType.FOOTER)
+                    mScrollListener2 = new SpeedyQuickReturnRecyclerViewOnScrollListener.Builder(getActivity(), QuickReturnViewType.FOOTER)
                             .footer(mQuickReturnTextView)
                             .build();
                 }
-                mRecyclerView.setOnScrollListener(scrollListener2);
+                mRecyclerView.addOnScrollListener(mScrollListener2);
                 break;
             default:
                 if(mLayoutManagerType.equals("grid")){
-                    scrollListener = new QuickReturnRecyclerViewOnScrollListener.Builder(QuickReturnViewType.FOOTER)
+                    mScrollListener = new QuickReturnRecyclerViewOnScrollListener.Builder(QuickReturnViewType.FOOTER)
                             .footer(mQuickReturnTextView)
                             .minFooterTranslation(footerHeight)
                             .columnCount(2)
                             .build();
                 } else {
-                    scrollListener = new QuickReturnRecyclerViewOnScrollListener.Builder(QuickReturnViewType.FOOTER)
+                    mScrollListener = new QuickReturnRecyclerViewOnScrollListener.Builder(QuickReturnViewType.FOOTER)
                             .footer(mQuickReturnTextView)
                             .minFooterTranslation(footerHeight)
                             .build();
                 }
-                mRecyclerView.setOnScrollListener(scrollListener);
+                mRecyclerView.addOnScrollListener(mScrollListener);
                 break;
         }
     }
@@ -176,7 +175,17 @@ public class QuickReturnFooterRecyclerViewFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.reset(this);
+        removeListeners();
+        ButterKnife.unbind(this);
+    }
+    // endregion
+
+    // region Helper Methods
+    private void removeListeners(){
+        if(mQuickReturnAnimationType == QuickReturnAnimationType.TRANSLATION_ANTICIPATE_OVERSHOOT)
+            mRecyclerView.removeOnScrollListener(mScrollListener2);
+        else
+            mRecyclerView.removeOnScrollListener(mScrollListener);
     }
     // endregion
 

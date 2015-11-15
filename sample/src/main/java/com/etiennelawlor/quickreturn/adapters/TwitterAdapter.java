@@ -15,8 +15,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 /**
  * Created by etiennelawlor on 7/17/14.
@@ -115,26 +115,29 @@ public class TwitterAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public int getItemCount() {
         return mTweets.size()+1;
     }
-    
-    static class ItemViewHolder extends RecyclerView.ViewHolder {
-        @InjectView(R.id.user_iv) ImageView mUserImageView;
-        @InjectView(R.id.display_name_tv) TextView mDisplayNameTextView;
-        @InjectView(R.id.username_tv) TextView mUsernameTextView;
-        @InjectView(R.id.timestamp_tv) TextView mTimestampTextView;
-        @InjectView(R.id.message_tv) TextView mMessageTextView;
-        @InjectView(R.id.retweet_tv) TextView mRetweetTextView;
-        @InjectView(R.id.star_tv) TextView mStarTextView;
+
+    // region Inner Classes
+
+    public static class ItemViewHolder extends RecyclerView.ViewHolder {
+        @Bind(R.id.user_iv) ImageView mUserImageView;
+        @Bind(R.id.display_name_tv) TextView mDisplayNameTextView;
+        @Bind(R.id.username_tv) TextView mUsernameTextView;
+        @Bind(R.id.timestamp_tv) TextView mTimestampTextView;
+        @Bind(R.id.message_tv) TextView mMessageTextView;
+        @Bind(R.id.retweet_tv) TextView mRetweetTextView;
+        @Bind(R.id.star_tv) TextView mStarTextView;
 
         ItemViewHolder(View view) {
             super(view);
-            ButterKnife.inject(this, view);
+            ButterKnife.bind(this, view);
         }
     }
 
-    static class HeaderViewHolder extends RecyclerView.ViewHolder {
-        
+    public static class HeaderViewHolder extends RecyclerView.ViewHolder {
         public HeaderViewHolder(View itemView) {
             super(itemView);
         }
     }
+
+    // endregion
 }

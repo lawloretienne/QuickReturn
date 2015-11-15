@@ -58,7 +58,7 @@ public class QuickReturnActivity extends QuickReturnBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quick_return);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
     }
     // endregion
     

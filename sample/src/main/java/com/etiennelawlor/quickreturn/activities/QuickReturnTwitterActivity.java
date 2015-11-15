@@ -17,8 +17,8 @@ import com.etiennelawlor.quickreturn.fragments.QuickReturnTwitterFragment;
 import com.etiennelawlor.quickreturn.interfaces.QuickReturnInterface;
 import com.etiennelawlor.quickreturn.library.utils.QuickReturnUtils;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 
 public class QuickReturnTwitterActivity extends QuickReturnBaseActivity implements ActionBar.TabListener, QuickReturnInterface {
@@ -27,9 +27,9 @@ public class QuickReturnTwitterActivity extends QuickReturnBaseActivity implemen
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private LinearLayout mTabsLinearLayout;
 
-    @InjectView(R.id.tabs)
+    @Bind(R.id.tabs)
     PagerSlidingTabStrip mTabs;
-    @InjectView(R.id.pager)
+    @Bind(R.id.pager)
     ViewPager mViewPager;
     // endregion
 
@@ -65,7 +65,7 @@ public class QuickReturnTwitterActivity extends QuickReturnBaseActivity implemen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quick_return_twitter);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
 

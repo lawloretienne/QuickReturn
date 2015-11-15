@@ -21,7 +21,7 @@ public class QuickReturnGooglePlusActivity extends QuickReturnBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quick_return_google_plus);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
 
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()

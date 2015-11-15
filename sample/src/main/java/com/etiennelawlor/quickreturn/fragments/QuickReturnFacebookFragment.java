@@ -20,8 +20,8 @@ import com.etiennelawlor.quickreturn.models.FacebookPost;
 
 import java.util.ArrayList;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 /**
  * Created by etiennelawlor on 6/23/14.
@@ -36,12 +36,13 @@ public class QuickReturnFacebookFragment extends Fragment {
     private String[] mPostImageUrls;
     private int[] mCommentCounts;
     private int[] mLikeCounts;
+    private QuickReturnRecyclerViewOnScrollListener mScrollListener;
 
-    @InjectView(R.id.rv)
+    @Bind(R.id.rv)
     RecyclerView mRecyclerView;
-    @InjectView(R.id.quick_return_footer_ll)
+    @Bind(R.id.quick_return_footer_ll)
     LinearLayout mQuickReturnFooterLinearLayout;
-    @InjectView(R.id.quick_return_header_tv)
+    @Bind(R.id.quick_return_header_tv)
     TextView mQuickReturnHeaderTextView;
     // endregion
 
@@ -78,7 +79,7 @@ public class QuickReturnFacebookFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_quick_return_facebook, container, false);
-        ButterKnife.inject(this, view);
+        ButterKnife.bind(this, view);
         return view;
     }
 
@@ -117,20 +118,28 @@ public class QuickReturnFacebookFragment extends Fragment {
         int headerTranslation = -headerHeight;
         int footerTranslation = -footerHeight;
 
-        QuickReturnRecyclerViewOnScrollListener scrollListener = new QuickReturnRecyclerViewOnScrollListener.Builder(QuickReturnViewType.BOTH)
+        mScrollListener = new QuickReturnRecyclerViewOnScrollListener.Builder(QuickReturnViewType.BOTH)
                 .header(mQuickReturnHeaderTextView)
                 .minHeaderTranslation(headerTranslation)
                 .footer(mQuickReturnFooterLinearLayout)
                 .minFooterTranslation(-footerTranslation)
                 .isSnappable(true)
                 .build();
-        mRecyclerView.setOnScrollListener(scrollListener);
+        mRecyclerView.addOnScrollListener(mScrollListener);
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.reset(this);
+
+        removeListeners();
+        ButterKnife.unbind(this);
+    }
+    // endregion
+
+    // region Helper Methods
+    private void removeListeners(){
+        mRecyclerView.removeOnScrollListener(mScrollListener);
     }
     // endregion
 }

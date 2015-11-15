@@ -21,8 +21,8 @@ import com.etiennelawlor.quickreturn.models.Tweet;
 
 import java.util.ArrayList;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 /**
  * Created by etiennelawlor on 6/23/14.
@@ -38,10 +38,11 @@ public class QuickReturnTwitterFragment extends Fragment {
     private String[] mMessages;
     private int[] mStars;
     private int[] mRetweets;
+    private QuickReturnRecyclerViewOnScrollListener mScrollListener;
 
-    @InjectView(R.id.rv)
+    @Bind(R.id.rv)
     RecyclerView mRecyclerView;
-    @InjectView(R.id.quick_return_footer_ll)
+    @Bind(R.id.quick_return_footer_ll)
     LinearLayout mQuickReturnFooterLinearLayout;
     // endregion
 
@@ -94,7 +95,7 @@ public class QuickReturnTwitterFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_quick_return_twitter, container, false);
-        ButterKnife.inject(this, view);
+        ButterKnife.bind(this, view);
         return view;
     }
 
@@ -129,7 +130,7 @@ public class QuickReturnTwitterFragment extends Fragment {
         int headerTranslation = -headerHeight + indicatorHeight;
         int footerTranslation = -footerHeight + indicatorHeight;
 
-        QuickReturnRecyclerViewOnScrollListener scrollListener = 
+        mScrollListener =
                 new QuickReturnRecyclerViewOnScrollListener.Builder(QuickReturnViewType.TWITTER)
                 .header(mCoordinator.getTabs())
                 .minHeaderTranslation(headerTranslation)
@@ -138,13 +139,22 @@ public class QuickReturnTwitterFragment extends Fragment {
                 .isSnappable(true)
                 .build();
         
-        mRecyclerView.setOnScrollListener(scrollListener);
+        mRecyclerView.addOnScrollListener(mScrollListener);
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.reset(this);
+
+        removeListeners();
+
+        ButterKnife.unbind(this);
+    }
+    // endregion
+
+    // region Helper Methods
+    private void removeListeners(){
+        mRecyclerView.removeOnScrollListener(mScrollListener);
     }
     // endregion
 }

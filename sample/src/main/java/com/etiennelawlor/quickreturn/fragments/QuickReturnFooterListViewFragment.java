@@ -15,8 +15,8 @@ import com.etiennelawlor.quickreturn.library.enums.QuickReturnViewType;
 import com.etiennelawlor.quickreturn.library.listeners.QuickReturnListViewOnScrollListener;
 import com.etiennelawlor.quickreturn.library.listeners.SpeedyQuickReturnListViewOnScrollListener;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 /**
  * Created by etiennelawlor on 6/23/14.
@@ -27,9 +27,9 @@ public class QuickReturnFooterListViewFragment extends ListFragment {
     private String[] mValues;
     private QuickReturnAnimationType mQuickReturnAnimationType;
 
-    @InjectView(android.R.id.list)
+    @Bind(android.R.id.list)
     ListView mListView;
-    @InjectView(R.id.quick_return_tv)
+    @Bind(R.id.quick_return_tv)
     TextView mQuickReturnTextView;
     // endregion
 
@@ -66,7 +66,7 @@ public class QuickReturnFooterListViewFragment extends ListFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_listview_quick_return_footer, container, false);
-        ButterKnife.inject(this, view);
+        ButterKnife.bind(this, view);
         return view;
     }
 
@@ -121,7 +121,7 @@ public class QuickReturnFooterListViewFragment extends ListFragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.reset(this);
+        ButterKnife.unbind(this);
     }
     // endregion
 

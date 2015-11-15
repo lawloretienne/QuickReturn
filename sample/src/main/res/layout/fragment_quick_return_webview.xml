@@ -6,7 +6,6 @@
     <com.etiennelawlor.quickreturn.library.views.NotifyingWebView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="48dp"
         android:id="@+id/web_view">
     </com.etiennelawlor.quickreturn.library.views.NotifyingWebView>
 
@@ -16,7 +15,6 @@
         android:layout_height="80dp"
         android:background="@color/transparent_black_ninty"
         android:textSize="22sp"
-        android:layout_marginTop="48dp"
         android:text="@string/header"
         android:textColor="@android:color/white"
         android:gravity="center"

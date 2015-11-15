@@ -23,8 +23,8 @@ import com.etiennelawlor.quickreturn.models.GooglePlusPost;
 import java.util.ArrayList;
 import java.util.Random;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 /**
  * Created by etiennelawlor on 6/23/14.
@@ -40,12 +40,13 @@ public class QuickReturnGooglePlusFragment extends Fragment {
     private String[] mComments;
     private int[] mCommentCounts;
     private int[] mPlusOneCounts;
+    private SpeedyQuickReturnRecyclerViewOnScrollListener mScrollListener;
 
-    @InjectView(R.id.rv)
+    @Bind(R.id.rv)
     RecyclerView mRecyclerView;
-    @InjectView(R.id.quick_return_footer_iv)
+    @Bind(R.id.quick_return_footer_iv)
     ImageView mQuickReturnFooterImageView;
-    @InjectView(R.id.quick_return_footer_tv)
+    @Bind(R.id.quick_return_footer_tv)
     TextView mQuickReturnFooterTextView;
     // endregion
 
@@ -82,7 +83,7 @@ public class QuickReturnGooglePlusFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_quick_return_google_plus, container, false);
-        ButterKnife.inject(this, view);
+        ButterKnife.bind(this, view);
         return view;
     }
 
@@ -142,7 +143,7 @@ public class QuickReturnGooglePlusFragment extends Fragment {
         mQuickReturnFooterImageView.setTag(R.id.scroll_threshold_key, 3);
         footerViews.add(mQuickReturnFooterImageView);
 
-        SpeedyQuickReturnRecyclerViewOnScrollListener scrollListener = new SpeedyQuickReturnRecyclerViewOnScrollListener.Builder(getActivity(), QuickReturnViewType.GOOGLE_PLUS)
+        mScrollListener = new SpeedyQuickReturnRecyclerViewOnScrollListener.Builder(getActivity(), QuickReturnViewType.GOOGLE_PLUS)
                 .footerViews(footerViews)
                 .slideHeaderUpAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.slide_header_up))
                 .slideHeaderDownAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.slide_header_down))
@@ -150,13 +151,15 @@ public class QuickReturnGooglePlusFragment extends Fragment {
                 .slideFooterDownAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.slide_footer_down))
                 .build();
 
-        mRecyclerView.setOnScrollListener(scrollListener);
+        mRecyclerView.addOnScrollListener(mScrollListener);
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.reset(this);
+        removeListeners();
+
+        ButterKnife.unbind(this);
     }
     // endregion
 
@@ -166,6 +169,10 @@ public class QuickReturnGooglePlusFragment extends Fragment {
         View v = window.getDecorView();
         int resId = getResources().getIdentifier("action_bar_container", "id", "android");
         return v.findViewById(resId);
+    }
+
+    private void removeListeners() {
+        mRecyclerView.removeOnScrollListener(mScrollListener);
     }
     // endregion
 }
