@@ -14,14 +14,14 @@ The samples in the project include examples of the **QuickReturn UI Pattern** as
 
 #### Gradle
 
-`compile 'com.github.lawloretienne:quickreturn:0.0.1'`
+`compile 'com.github.lawloretienne:quickreturn:0.0.2'`
 
 #### Maven
 ```
 <dependency>
     <groupId>com.github.lawloretienne</groupId>
     <artifactId>quickreturn</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
 </dependency>
 ```
 
