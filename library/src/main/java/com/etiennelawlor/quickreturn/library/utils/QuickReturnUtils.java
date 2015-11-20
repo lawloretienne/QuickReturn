@@ -69,7 +69,6 @@ public class QuickReturnUtils {
 //        int scrollY = 0;
 
 
-
         sListViewItemHeights.put(lv.getFirstVisiblePosition(), c.getHeight());
 
 //        if(scrollY>0)
@@ -77,7 +76,7 @@ public class QuickReturnUtils {
 //        else
 //            Log.i("QuickReturnUtils", "getScrollY() : -(c.getTop()) - "+ -(c.getTop()));
 
-        if(scrollY<0)
+        if (scrollY < 0)
             scrollY = 0;
 
         for (int i = 0; i < firstVisiblePosition; ++i) {
@@ -101,7 +100,7 @@ public class QuickReturnUtils {
             return 0;
         }
 
-        LinearLayoutManager layoutManager = (LinearLayoutManager)rv.getLayoutManager();
+        LinearLayoutManager layoutManager = (LinearLayoutManager) rv.getLayoutManager();
         int firstVisiblePosition = layoutManager.findFirstVisibleItemPosition();
 
 //        Log.d("", "getScrollY() : firstVisiblePosition - " + firstVisiblePosition);
@@ -110,13 +109,13 @@ public class QuickReturnUtils {
 
 //        Log.d("", "getScrollY() : scrollY - " + scrollY);
 
-        if(columnCount > 1){
-            sRecyclerViewItemHeights.put(firstVisiblePosition, c.getHeight() + QuickReturnUtils.dp2px(rv.getContext(), 8)/columnCount);
+        if (columnCount > 1) {
+            sRecyclerViewItemHeights.put(firstVisiblePosition, c.getHeight() + QuickReturnUtils.dp2px(rv.getContext(), 8) / columnCount);
         } else {
             sRecyclerViewItemHeights.put(firstVisiblePosition, c.getHeight());
         }
 
-        if(scrollY<0)
+        if (scrollY < 0)
             scrollY = 0;
 
         for (int i = 0; i < firstVisiblePosition; ++i) {
@@ -126,7 +125,6 @@ public class QuickReturnUtils {
 
         return scrollY;
     }
-
 
     public static int getActionBarHeight(Context context) {
         if (sActionBarHeight != 0) {

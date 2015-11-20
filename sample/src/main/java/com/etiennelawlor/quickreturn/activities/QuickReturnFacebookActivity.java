@@ -40,35 +40,35 @@ public class QuickReturnFacebookActivity extends QuickReturnBaseActivity impleme
 
         @Override
         public void onPageSelected(int position) {
-            for(int i=0; i < mTabsLinearLayout.getChildCount(); i++){
+            for (int i = 0; i < mTabsLinearLayout.getChildCount(); i++) {
                 ImageButton ib = (ImageButton) mTabsLinearLayout.getChildAt(i);
-                switch (i){
+                switch (i) {
                     case 0:
-                        if(i == position)
+                        if (i == position)
                             ib.setImageResource(R.drawable.ic_action_news_highlighted);
                         else
                             ib.setImageResource(R.drawable.ic_action_news);
                         break;
                     case 1:
-                        if(i == position)
+                        if (i == position)
                             ib.setImageResource(R.drawable.ic_action_users_highlighted);
                         else
                             ib.setImageResource(R.drawable.ic_action_users);
                         break;
                     case 2:
-                        if(i == position)
+                        if (i == position)
                             ib.setImageResource(R.drawable.ic_action_messages_highlighted);
                         else
                             ib.setImageResource(R.drawable.ic_action_messages);
                         break;
                     case 3:
-                        if(i == position)
+                        if (i == position)
                             ib.setImageResource(R.drawable.ic_action_notifications_highlighted);
                         else
                             ib.setImageResource(R.drawable.ic_action_notifications);
                         break;
                     case 4:
-                        if(i == position)
+                        if (i == position)
                             ib.setImageResource(R.drawable.ic_action_more_highlighted);
                         else
                             ib.setImageResource(R.drawable.ic_action_more);
@@ -113,7 +113,7 @@ public class QuickReturnFacebookActivity extends QuickReturnBaseActivity impleme
         mTabs.setViewPager(mViewPager);
 
         // Set first tab selected
-        mTabsLinearLayout = ((LinearLayout)mTabs.getChildAt(0));
+        mTabsLinearLayout = ((LinearLayout) mTabs.getChildAt(0));
         ImageButton ib = (ImageButton) mTabsLinearLayout.getChildAt(0);
         ib.setImageResource(R.drawable.ic_action_news_highlighted);
 
@@ -142,7 +142,6 @@ public class QuickReturnFacebookActivity extends QuickReturnBaseActivity impleme
     public PagerSlidingTabStrip getTabs() {
         return mTabs;
     }
-
     // endregion
 
     // region Inner Classes
@@ -151,11 +150,13 @@ public class QuickReturnFacebookActivity extends QuickReturnBaseActivity impleme
      * A {@link android.support.v13.app.FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
      */
-    public class SectionsPagerAdapter extends FragmentPagerAdapter implements PagerSlidingTabStrip.IconTabProvider {
+    public static class SectionsPagerAdapter extends FragmentPagerAdapter implements PagerSlidingTabStrip.IconTabProvider {
 
+        // region Constructors
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
+        // endregion
 
         @Override
         public Fragment getItem(int position) {

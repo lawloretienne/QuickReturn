@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
-* Created by etiennelawlor on 7/10/14.
-*/
+ * Created by etiennelawlor on 7/10/14.
+ */
 public class QuickReturnRecyclerViewOnScrollListener extends RecyclerView.OnScrollListener {
 
     // region Member Variables
@@ -43,20 +43,19 @@ public class QuickReturnRecyclerViewOnScrollListener extends RecyclerView.OnScro
     }
     // endregion
 
-
     @Override
     public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
         super.onScrollStateChanged(recyclerView, newState);
 
         // apply another list' s on scroll listener
         for (RecyclerView.OnScrollListener listener : mExtraOnScrollListenerList) {
-          listener.onScrollStateChanged(recyclerView, newState);
+            listener.onScrollStateChanged(recyclerView, newState);
         }
-        
+
         if (newState == RecyclerView.SCROLL_STATE_IDLE && mIsSnappable) {
 
-            int midHeader = -mMinHeaderTranslation/2;
-            int midFooter = mMinFooterTranslation/2;
+            int midHeader = -mMinHeaderTranslation / 2;
+            int midFooter = mMinFooterTranslation / 2;
 
             switch (mQuickReturnViewType) {
                 case HEADER:
@@ -146,7 +145,7 @@ public class QuickReturnRecyclerViewOnScrollListener extends RecyclerView.OnScro
 
         // apply extra on scroll listener
         for (RecyclerView.OnScrollListener listener : mExtraOnScrollListenerList) {
-          listener.onScrolled(recyclerView, dx, dy);
+            listener.onScrolled(recyclerView, dx, dy);
         }
 
         int scrollY = QuickReturnUtils.getScrollY(recyclerView, mColumnCount);
@@ -154,10 +153,10 @@ public class QuickReturnRecyclerViewOnScrollListener extends RecyclerView.OnScro
         int diff = mPrevScrollY - scrollY;
 //        Log.d("", "onScrolled() : diff - "+diff);
 
-        if(diff != 0){
-            switch (mQuickReturnViewType){
+        if (diff != 0) {
+            switch (mQuickReturnViewType) {
                 case HEADER:
-                    if(diff < 0){ // scrolling down
+                    if (diff < 0) { // scrolling down
                         mHeaderDiffTotal = Math.max(mHeaderDiffTotal + diff, mMinHeaderTranslation);
                     } else { // scrolling up
                         mHeaderDiffTotal = Math.min(Math.max(mHeaderDiffTotal + diff, mMinHeaderTranslation), 0);
@@ -166,7 +165,7 @@ public class QuickReturnRecyclerViewOnScrollListener extends RecyclerView.OnScro
                     mHeader.setTranslationY(mHeaderDiffTotal);
                     break;
                 case FOOTER:
-                    if(diff < 0){ // scrolling down
+                    if (diff < 0) { // scrolling down
                         mFooterDiffTotal = Math.max(mFooterDiffTotal + diff, -mMinFooterTranslation);
                     } else { // scrolling up
                         mFooterDiffTotal = Math.min(Math.max(mFooterDiffTotal + diff, -mMinFooterTranslation), 0);
@@ -175,7 +174,7 @@ public class QuickReturnRecyclerViewOnScrollListener extends RecyclerView.OnScro
                     mFooter.setTranslationY(-mFooterDiffTotal);
                     break;
                 case BOTH:
-                    if(diff < 0){ // scrolling down
+                    if (diff < 0) { // scrolling down
                         mHeaderDiffTotal = Math.max(mHeaderDiffTotal + diff, mMinHeaderTranslation);
                         mFooterDiffTotal = Math.max(mFooterDiffTotal + diff, -mMinFooterTranslation);
                     } else { // scrolling up
@@ -187,11 +186,11 @@ public class QuickReturnRecyclerViewOnScrollListener extends RecyclerView.OnScro
                     mFooter.setTranslationY(-mFooterDiffTotal);
                     break;
                 case TWITTER:
-                    if(diff < 0){ // scrolling down
-                        if(scrollY > -mMinHeaderTranslation)
+                    if (diff < 0) { // scrolling down
+                        if (scrollY > -mMinHeaderTranslation)
                             mHeaderDiffTotal = Math.max(mHeaderDiffTotal + diff, mMinHeaderTranslation);
 
-                        if(scrollY > mMinFooterTranslation)
+                        if (scrollY > mMinFooterTranslation)
                             mFooterDiffTotal = Math.max(mFooterDiffTotal + diff, -mMinFooterTranslation);
                     } else { // scrolling up
                         mHeaderDiffTotal = Math.min(Math.max(mHeaderDiffTotal + diff, mMinHeaderTranslation), 0);
@@ -213,9 +212,9 @@ public class QuickReturnRecyclerViewOnScrollListener extends RecyclerView.OnScro
         mExtraOnScrollListenerList.add(listener);
     }
     // endregion
-    
+
     // region Inner Classes
-    
+
     public static class Builder {
         // Required parameters
         private final QuickReturnViewType mQuickReturnViewType;
@@ -232,32 +231,32 @@ public class QuickReturnRecyclerViewOnScrollListener extends RecyclerView.OnScro
             mQuickReturnViewType = quickReturnViewType;
         }
 
-        public Builder header(View header){
+        public Builder header(View header) {
             mHeader = header;
             return this;
         }
 
-        public Builder minHeaderTranslation(int minHeaderTranslation){
+        public Builder minHeaderTranslation(int minHeaderTranslation) {
             mMinHeaderTranslation = minHeaderTranslation;
             return this;
         }
 
-        public Builder footer(View footer){
+        public Builder footer(View footer) {
             mFooter = footer;
             return this;
         }
 
-        public Builder minFooterTranslation(int minFooterTranslation){
+        public Builder minFooterTranslation(int minFooterTranslation) {
             mMinFooterTranslation = minFooterTranslation;
             return this;
         }
 
-        public Builder columnCount(int columnCount){
+        public Builder columnCount(int columnCount) {
             mColumnCount = columnCount;
             return this;
         }
 
-        public Builder isSnappable(boolean isSnappable){
+        public Builder isSnappable(boolean isSnappable) {
             mIsSnappable = isSnappable;
             return this;
         }

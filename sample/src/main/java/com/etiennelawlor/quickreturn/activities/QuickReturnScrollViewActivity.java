@@ -16,8 +16,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 
-public class QuickReturnScrollViewActivity extends QuickReturnBaseActivity
-{
+public class QuickReturnScrollViewActivity extends QuickReturnBaseActivity {
 
     // region Member Variables
     private SectionsPagerAdapter mSectionsPagerAdapter;
@@ -51,11 +50,13 @@ public class QuickReturnScrollViewActivity extends QuickReturnBaseActivity
      * A {@link android.support.v13.app.FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
      */
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+    public static class SectionsPagerAdapter extends FragmentPagerAdapter {
 
+        // region Constructors
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
+        // endregion
 
         @Override
         public Fragment getItem(int position) {

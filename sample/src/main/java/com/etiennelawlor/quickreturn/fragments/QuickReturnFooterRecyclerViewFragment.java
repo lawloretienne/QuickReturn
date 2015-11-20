@@ -45,21 +45,23 @@ public class QuickReturnFooterRecyclerViewFragment extends Fragment {
     // endregion
 
     // region Constructors
+    public QuickReturnFooterRecyclerViewFragment() {
+    }
+    // endregion
+
+    // region Factory Methods
     public static QuickReturnFooterRecyclerViewFragment newInstance(Bundle extras) {
         QuickReturnFooterRecyclerViewFragment fragment = new QuickReturnFooterRecyclerViewFragment();
         fragment.setRetainInstance(true);
         fragment.setArguments(extras);
         return fragment;
     }
-    
+
     public static QuickReturnFooterRecyclerViewFragment newInstance() {
         QuickReturnFooterRecyclerViewFragment fragment = new QuickReturnFooterRecyclerViewFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
-    }
-
-    public QuickReturnFooterRecyclerViewFragment() {
     }
     // endregion
 
@@ -68,12 +70,12 @@ public class QuickReturnFooterRecyclerViewFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if(getArguments() != null) {
+        if (getArguments() != null) {
             mQuickReturnAnimationType = QuickReturnAnimationType.valueOf(getArguments().getString("quick_return_animation_type"));
             mLayoutManagerType = getArguments().getString("layout_manager");
         }
     }
-    
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -88,16 +90,16 @@ public class QuickReturnFooterRecyclerViewFragment extends Fragment {
 
         mValues = getResources().getStringArray(R.array.countries);
 
-        if(mLayoutManagerType.equals("linear")){
-            CountriesLinearLayoutAdapter countriesLinearLayoutAdapter = new CountriesLinearLayoutAdapter(getActivity(), Arrays.asList(mValues));
+        if (mLayoutManagerType.equals("linear")) {
+            CountriesLinearLayoutAdapter countriesLinearLayoutAdapter = new CountriesLinearLayoutAdapter(Arrays.asList(mValues));
 
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
             mRecyclerView.setLayoutManager(layoutManager);
             mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), null));
 
             mRecyclerView.setAdapter(countriesLinearLayoutAdapter);
-        } else if(mLayoutManagerType.equals("grid")) {
-            CountriesGridLayoutAdapter countriesGridLayoutAdapter = new CountriesGridLayoutAdapter(getActivity(), Arrays.asList(mValues));
+        } else if (mLayoutManagerType.equals("grid")) {
+            CountriesGridLayoutAdapter countriesGridLayoutAdapter = new CountriesGridLayoutAdapter(Arrays.asList(mValues));
 
             RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
             mRecyclerView.setLayoutManager(layoutManager);
@@ -108,9 +110,9 @@ public class QuickReturnFooterRecyclerViewFragment extends Fragment {
 
         int footerHeight = getActivity().getResources().getDimensionPixelSize(R.dimen.footer_height);
 
-        switch (mQuickReturnAnimationType){
+        switch (mQuickReturnAnimationType) {
             case TRANSLATION_SIMPLE:
-                if(mLayoutManagerType.equals("grid")){
+                if (mLayoutManagerType.equals("grid")) {
                     mScrollListener = new QuickReturnRecyclerViewOnScrollListener.Builder(QuickReturnViewType.FOOTER)
                             .footer(mQuickReturnTextView)
                             .minFooterTranslation(footerHeight)
@@ -125,7 +127,7 @@ public class QuickReturnFooterRecyclerViewFragment extends Fragment {
                 mRecyclerView.addOnScrollListener(mScrollListener);
                 break;
             case TRANSLATION_SNAP:
-                if(mLayoutManagerType.equals("grid")){
+                if (mLayoutManagerType.equals("grid")) {
                     mScrollListener = new QuickReturnRecyclerViewOnScrollListener.Builder(QuickReturnViewType.FOOTER)
                             .footer(mQuickReturnTextView)
                             .minFooterTranslation(footerHeight)
@@ -142,7 +144,7 @@ public class QuickReturnFooterRecyclerViewFragment extends Fragment {
                 mRecyclerView.addOnScrollListener(mScrollListener);
                 break;
             case TRANSLATION_ANTICIPATE_OVERSHOOT:
-                if(mLayoutManagerType.equals("grid")){
+                if (mLayoutManagerType.equals("grid")) {
                     mScrollListener2 = new SpeedyQuickReturnRecyclerViewOnScrollListener.Builder(getActivity(), QuickReturnViewType.FOOTER)
                             .footer(mQuickReturnTextView)
                             .columnCount(2)
@@ -155,7 +157,7 @@ public class QuickReturnFooterRecyclerViewFragment extends Fragment {
                 mRecyclerView.addOnScrollListener(mScrollListener2);
                 break;
             default:
-                if(mLayoutManagerType.equals("grid")){
+                if (mLayoutManagerType.equals("grid")) {
                     mScrollListener = new QuickReturnRecyclerViewOnScrollListener.Builder(QuickReturnViewType.FOOTER)
                             .footer(mQuickReturnTextView)
                             .minFooterTranslation(footerHeight)
@@ -181,8 +183,8 @@ public class QuickReturnFooterRecyclerViewFragment extends Fragment {
     // endregion
 
     // region Helper Methods
-    private void removeListeners(){
-        if(mQuickReturnAnimationType == QuickReturnAnimationType.TRANSLATION_ANTICIPATE_OVERSHOOT)
+    private void removeListeners() {
+        if (mQuickReturnAnimationType == QuickReturnAnimationType.TRANSLATION_ANTICIPATE_OVERSHOOT)
             mRecyclerView.removeOnScrollListener(mScrollListener2);
         else
             mRecyclerView.removeOnScrollListener(mScrollListener);

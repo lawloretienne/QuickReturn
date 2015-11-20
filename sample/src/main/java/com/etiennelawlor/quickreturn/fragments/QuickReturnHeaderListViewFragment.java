@@ -36,21 +36,23 @@ public class QuickReturnHeaderListViewFragment extends ListFragment {
     // endregion
 
     // region Constructors
+    public QuickReturnHeaderListViewFragment() {
+    }
+    // endregion
+
+    // region Factory Methods
     public static QuickReturnHeaderListViewFragment newInstance(Bundle extras) {
         QuickReturnHeaderListViewFragment fragment = new QuickReturnHeaderListViewFragment();
         fragment.setRetainInstance(true);
         fragment.setArguments(extras);
         return fragment;
     }
-    
+
     public static QuickReturnHeaderListViewFragment newInstance() {
         QuickReturnHeaderListViewFragment fragment = new QuickReturnHeaderListViewFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
-    }
-
-    public QuickReturnHeaderListViewFragment() {
     }
     // endregion
 
@@ -59,11 +61,11 @@ public class QuickReturnHeaderListViewFragment extends ListFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if(getArguments() != null) {
+        if (getArguments() != null) {
             mQuickReturnAnimationType = QuickReturnAnimationType.valueOf(getArguments().getString("quick_return_animation_type"));
         }
     }
-    
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -87,7 +89,7 @@ public class QuickReturnHeaderListViewFragment extends ListFragment {
 
         SpeedyQuickReturnListViewOnScrollListener scrollListener2;
 
-        switch (mQuickReturnAnimationType){
+        switch (mQuickReturnAnimationType) {
             case TRANSLATION_SIMPLE:
                 mScrollListener = new QuickReturnListViewOnScrollListener.Builder(QuickReturnViewType.HEADER)
                         .header(mQuickReturnTextView)

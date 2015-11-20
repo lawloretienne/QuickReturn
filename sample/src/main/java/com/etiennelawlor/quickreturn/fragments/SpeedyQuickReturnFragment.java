@@ -32,18 +32,17 @@ public class SpeedyQuickReturnFragment extends Fragment {
     TextView mQuickReturnFooterTextView;
     // endregion
 
-    //region Listeners
-    //endregion
-
     // region Constructors
+    public SpeedyQuickReturnFragment() {
+    }
+    // endregion
+
+    // region Factory Methods
     public static SpeedyQuickReturnFragment newInstance(Bundle extras) {
         SpeedyQuickReturnFragment fragment = new SpeedyQuickReturnFragment();
         fragment.setRetainInstance(true);
         fragment.setArguments(extras);
         return fragment;
-    }
-
-    public SpeedyQuickReturnFragment() {
     }
     // endregion
 
@@ -53,7 +52,7 @@ public class SpeedyQuickReturnFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if(getArguments() != null) {
+        if (getArguments() != null) {
             mQuickReturnViewType = QuickReturnViewType.valueOf(getArguments().getString("quick_return_view_type"));
         }
     }
@@ -71,8 +70,8 @@ public class SpeedyQuickReturnFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         SpeedyQuickReturnScrollViewOnScrollChangedListener scrollListener;
-        
-        switch (mQuickReturnViewType){
+
+        switch (mQuickReturnViewType) {
             case HEADER:
                 mQuickReturnHeaderTextView.setVisibility(View.VISIBLE);
                 scrollListener = new SpeedyQuickReturnScrollViewOnScrollChangedListener.Builder(getActivity(), QuickReturnViewType.HEADER)

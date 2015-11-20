@@ -46,18 +46,17 @@ public class QuickReturnFacebookFragment extends Fragment {
     TextView mQuickReturnHeaderTextView;
     // endregion
 
-    //region Listeners
-    //endregion
-
     // region Constructors
+    public QuickReturnFacebookFragment() {
+    }
+    // endregion
+
+    // region Factory Methods
     public static QuickReturnFacebookFragment newInstance() {
         QuickReturnFacebookFragment fragment = new QuickReturnFacebookFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
-    }
-
-    public QuickReturnFacebookFragment() {
     }
     // endregion
 
@@ -88,7 +87,7 @@ public class QuickReturnFacebookFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         ArrayList<FacebookPost> posts = new ArrayList<>();
-        for(int i=0; i<23; i++){
+        for (int i = 0; i < 23; i++) {
             FacebookPost post = new FacebookPost();
             post.setAvatarUrl(mAvatarUrls[i]);
             post.setDisplayName(mDisplayNames[i]);
@@ -100,7 +99,7 @@ public class QuickReturnFacebookFragment extends Fragment {
             posts.add(post);
         }
 
-        FacebookAdapter adapter = new FacebookAdapter(getActivity(), posts);
+        FacebookAdapter adapter = new FacebookAdapter(posts);
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
@@ -138,7 +137,7 @@ public class QuickReturnFacebookFragment extends Fragment {
     // endregion
 
     // region Helper Methods
-    private void removeListeners(){
+    private void removeListeners() {
         mRecyclerView.removeOnScrollListener(mScrollListener);
     }
     // endregion

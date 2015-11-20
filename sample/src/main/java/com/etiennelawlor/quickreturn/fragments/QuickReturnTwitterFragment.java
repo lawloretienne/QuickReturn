@@ -46,10 +46,12 @@ public class QuickReturnTwitterFragment extends Fragment {
     LinearLayout mQuickReturnFooterLinearLayout;
     // endregion
 
-    //region Listeners
-    //endregion
-
     // region Constructors
+    public QuickReturnTwitterFragment() {
+    }
+    // endregion
+
+    // region Factory Methods
     public static QuickReturnTwitterFragment newInstance(Bundle extras) {
         QuickReturnTwitterFragment fragment = new QuickReturnTwitterFragment();
         fragment.setArguments(extras);
@@ -61,9 +63,6 @@ public class QuickReturnTwitterFragment extends Fragment {
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
-    }
-
-    public QuickReturnTwitterFragment() {
     }
     // endregion
 
@@ -104,7 +103,7 @@ public class QuickReturnTwitterFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         ArrayList<Tweet> tweets = new ArrayList<>();
-        for(int i=0; i<23; i++){
+        for (int i = 0; i < 23; i++) {
             Tweet tweet = new Tweet();
             tweet.setAvatarUrl(mAvatarUrls[i]);
             tweet.setDisplayName(mDisplayNames[i]);
@@ -116,8 +115,8 @@ public class QuickReturnTwitterFragment extends Fragment {
             tweets.add(tweet);
         }
 
-        TwitterAdapter adapter = new TwitterAdapter(getActivity(), tweets);
-        
+        TwitterAdapter adapter = new TwitterAdapter(tweets);
+
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), null));
@@ -126,19 +125,19 @@ public class QuickReturnTwitterFragment extends Fragment {
 
         int headerHeight = getResources().getDimensionPixelSize(R.dimen.twitter_header_height);
         int footerHeight = getResources().getDimensionPixelSize(R.dimen.twitter_footer_height);
-        int indicatorHeight =  QuickReturnUtils.dp2px(getActivity(), 4);
+        int indicatorHeight = QuickReturnUtils.dp2px(getActivity(), 4);
         int headerTranslation = -headerHeight + indicatorHeight;
         int footerTranslation = -footerHeight + indicatorHeight;
 
         mScrollListener =
                 new QuickReturnRecyclerViewOnScrollListener.Builder(QuickReturnViewType.TWITTER)
-                .header(mCoordinator.getTabs())
-                .minHeaderTranslation(headerTranslation)
-                .footer(mQuickReturnFooterLinearLayout)
-                .minFooterTranslation(-footerTranslation)
-                .isSnappable(true)
-                .build();
-        
+                        .header(mCoordinator.getTabs())
+                        .minHeaderTranslation(headerTranslation)
+                        .footer(mQuickReturnFooterLinearLayout)
+                        .minFooterTranslation(-footerTranslation)
+                        .isSnappable(true)
+                        .build();
+
         mRecyclerView.addOnScrollListener(mScrollListener);
     }
 
@@ -153,7 +152,7 @@ public class QuickReturnTwitterFragment extends Fragment {
     // endregion
 
     // region Helper Methods
-    private void removeListeners(){
+    private void removeListeners() {
         mRecyclerView.removeOnScrollListener(mScrollListener);
     }
     // endregion

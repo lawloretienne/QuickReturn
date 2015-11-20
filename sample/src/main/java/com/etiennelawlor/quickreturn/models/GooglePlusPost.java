@@ -5,7 +5,7 @@ package com.etiennelawlor.quickreturn.models;
  */
 public class GooglePlusPost {
 
-    // region Member Variables
+    // region Fields
     private String mAvatarUrl;
     private String mPostImageUrl;
     private String mCommenterOneAvatarUrl;

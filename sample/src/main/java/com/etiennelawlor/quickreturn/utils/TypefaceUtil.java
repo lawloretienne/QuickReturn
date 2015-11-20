@@ -27,7 +27,7 @@ public class TypefaceUtil {
     public static Typeface getTypeface(TypefaceId id) {
         Typeface typeface = sTypefaceCache.get(id);
         if (typeface == null) {
-            typeface = Typeface.createFromAsset(QuickReturnApplication.get().getAssets(), id.getFilePath());
+            typeface = Typeface.createFromAsset(QuickReturnApplication.getInstance().getAssets(), id.getFilePath());
             sTypefaceCache.put(id, typeface);
         }
         return typeface;

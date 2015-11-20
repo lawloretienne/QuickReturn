@@ -50,18 +50,17 @@ public class QuickReturnGooglePlusFragment extends Fragment {
     TextView mQuickReturnFooterTextView;
     // endregion
 
-    //region Listeners
-    //endregion
-
     // region Constructors
+    public QuickReturnGooglePlusFragment() {
+    }
+    // endregion
+
+    // region Factory Methods
     public static QuickReturnGooglePlusFragment newInstance() {
         QuickReturnGooglePlusFragment fragment = new QuickReturnGooglePlusFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
-    }
-
-    public QuickReturnGooglePlusFragment() {
     }
     // endregion
 
@@ -92,7 +91,7 @@ public class QuickReturnGooglePlusFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         ArrayList<GooglePlusPost> posts = new ArrayList<>();
-        for(int i=0; i<23; i++){
+        for (int i = 0; i < 23; i++) {
             GooglePlusPost post = new GooglePlusPost();
             post.setAvatarUrl(mAvatarUrls[i]);
             post.setDisplayName(mDisplayNames[i]);

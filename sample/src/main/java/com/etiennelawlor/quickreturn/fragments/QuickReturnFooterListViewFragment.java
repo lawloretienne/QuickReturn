@@ -34,21 +34,23 @@ public class QuickReturnFooterListViewFragment extends ListFragment {
     // endregion
 
     // region Constructors
+    public QuickReturnFooterListViewFragment() {
+    }
+    // endregion
+
+    // region Factory Methods
     public static QuickReturnFooterListViewFragment newInstance(Bundle extras) {
         QuickReturnFooterListViewFragment fragment = new QuickReturnFooterListViewFragment();
         fragment.setRetainInstance(true);
         fragment.setArguments(extras);
         return fragment;
     }
-    
+
     public static QuickReturnFooterListViewFragment newInstance() {
         QuickReturnFooterListViewFragment fragment = new QuickReturnFooterListViewFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
-    }
-
-    public QuickReturnFooterListViewFragment() {
     }
     // endregion
 
@@ -57,11 +59,11 @@ public class QuickReturnFooterListViewFragment extends ListFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if(getArguments() != null) {
+        if (getArguments() != null) {
             mQuickReturnAnimationType = QuickReturnAnimationType.valueOf(getArguments().getString("quick_return_animation_type"));
         }
     }
-    
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -86,16 +88,16 @@ public class QuickReturnFooterListViewFragment extends ListFragment {
         QuickReturnListViewOnScrollListener scrollListener;
         SpeedyQuickReturnListViewOnScrollListener scrollListener2;
 
-        switch (mQuickReturnAnimationType){
+        switch (mQuickReturnAnimationType) {
             case TRANSLATION_SIMPLE:
                 scrollListener = new QuickReturnListViewOnScrollListener.Builder(QuickReturnViewType.FOOTER)
                         .footer(mQuickReturnTextView)
-                        .minFooterTranslation(footerHeight)                   
+                        .minFooterTranslation(footerHeight)
                         .build();
                 mListView.setOnScrollListener(scrollListener);
                 break;
             case TRANSLATION_SNAP:
-                scrollListener = new QuickReturnListViewOnScrollListener.Builder(QuickReturnViewType.FOOTER)                        
+                scrollListener = new QuickReturnListViewOnScrollListener.Builder(QuickReturnViewType.FOOTER)
                         .footer(mQuickReturnTextView)
                         .minFooterTranslation(footerHeight)
                         .isSnappable(true)

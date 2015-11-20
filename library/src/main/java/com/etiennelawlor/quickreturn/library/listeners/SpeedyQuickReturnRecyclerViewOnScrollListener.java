@@ -53,7 +53,7 @@ public class SpeedyQuickReturnRecyclerViewOnScrollListener extends RecyclerView.
     public void onScrollStateChanged(RecyclerView view, int newState) {
         // apply extra listener first
         for (RecyclerView.OnScrollListener listener : mExtraOnScrollListeners) {
-          listener.onScrollStateChanged(view, newState);
+            listener.onScrollStateChanged(view, newState);
         }
     }
 
@@ -69,46 +69,46 @@ public class SpeedyQuickReturnRecyclerViewOnScrollListener extends RecyclerView.
         int scrollY = QuickReturnUtils.getScrollY(recyclerView, mColumnCount);
         int diff = mPrevScrollY - scrollY;
 
-        if(diff>0){ // scrolling up
-            switch (mQuickReturnViewType){
+        if (diff > 0) { // scrolling up
+            switch (mQuickReturnViewType) {
                 case HEADER:
-                    if(mHeader.getVisibility() == View.GONE){
+                    if (mHeader.getVisibility() == View.GONE) {
                         mHeader.setVisibility(View.VISIBLE);
                         mHeader.startAnimation(mSlideHeaderDownAnimation);
                     }
                     break;
                 case FOOTER:
-                    if(mFooter.getVisibility() == View.GONE){
+                    if (mFooter.getVisibility() == View.GONE) {
                         mFooter.setVisibility(View.VISIBLE);
                         mFooter.startAnimation(mSlideFooterUpAnimation);
                     }
                     break;
                 case BOTH:
-                    if(mHeader.getVisibility() == View.GONE){
+                    if (mHeader.getVisibility() == View.GONE) {
                         mHeader.setVisibility(View.VISIBLE);
                         mHeader.startAnimation(mSlideHeaderDownAnimation);
                     }
 
-                    if(mFooter.getVisibility() == View.GONE){
+                    if (mFooter.getVisibility() == View.GONE) {
                         mFooter.setVisibility(View.VISIBLE);
                         mFooter.startAnimation(mSlideFooterUpAnimation);
                     }
                     break;
                 case GOOGLE_PLUS:
-                    if(mHeaderViews!=null){
-                        for(View view : mHeaderViews){
-                            if(view.getVisibility() == View.GONE){
+                    if (mHeaderViews != null) {
+                        for (View view : mHeaderViews) {
+                            if (view.getVisibility() == View.GONE) {
                                 view.setVisibility(View.VISIBLE);
                                 view.startAnimation(mSlideHeaderDownAnimation);
                             }
                         }
                     }
 
-                    if(mFooterViews!=null){
-                        for(View view : mFooterViews){
+                    if (mFooterViews != null) {
+                        for (View view : mFooterViews) {
                             int scrollThreshold = (Integer) view.getTag(R.id.scroll_threshold_key);
-                            if(diff > scrollThreshold){
-                                if(view.getVisibility() == View.GONE){
+                            if (diff > scrollThreshold) {
+                                if (view.getVisibility() == View.GONE) {
                                     view.setVisibility(View.VISIBLE);
                                     view.startAnimation(mSlideFooterUpAnimation);
                                 }
@@ -117,46 +117,46 @@ public class SpeedyQuickReturnRecyclerViewOnScrollListener extends RecyclerView.
                     }
                     break;
             }
-        } else if(diff<0){ // scrolling down
-            switch (mQuickReturnViewType){
+        } else if (diff < 0) { // scrolling down
+            switch (mQuickReturnViewType) {
                 case HEADER:
-                    if(mHeader.getVisibility() == View.VISIBLE){
+                    if (mHeader.getVisibility() == View.VISIBLE) {
                         mHeader.setVisibility(View.GONE);
                         mHeader.startAnimation(mSlideHeaderUpAnimation);
                     }
                     break;
                 case FOOTER:
-                    if(mFooter.getVisibility() == View.VISIBLE){
+                    if (mFooter.getVisibility() == View.VISIBLE) {
                         mFooter.setVisibility(View.GONE);
                         mFooter.startAnimation(mSlideFooterDownAnimation);
                     }
                     break;
                 case BOTH:
-                    if(mHeader.getVisibility() == View.VISIBLE){
+                    if (mHeader.getVisibility() == View.VISIBLE) {
                         mHeader.setVisibility(View.GONE);
                         mHeader.startAnimation(mSlideHeaderUpAnimation);
                     }
 
-                    if(mFooter.getVisibility() == View.VISIBLE){
+                    if (mFooter.getVisibility() == View.VISIBLE) {
                         mFooter.setVisibility(View.GONE);
                         mFooter.startAnimation(mSlideFooterDownAnimation);
                     }
                     break;
                 case GOOGLE_PLUS:
-                    if(mHeaderViews!=null){
-                        for(View view : mHeaderViews){
-                            if(view.getVisibility() == View.VISIBLE){
+                    if (mHeaderViews != null) {
+                        for (View view : mHeaderViews) {
+                            if (view.getVisibility() == View.VISIBLE) {
                                 view.setVisibility(View.GONE);
                                 view.startAnimation(mSlideHeaderUpAnimation);
                             }
                         }
                     }
 
-                    if(mFooterViews!=null){
-                        for(View view : mFooterViews){
+                    if (mFooterViews != null) {
+                        for (View view : mFooterViews) {
                             int scrollThreshold = (Integer) view.getTag(R.id.scroll_threshold_key);
-                            if(diff < -scrollThreshold){
-                                if(view.getVisibility() == View.VISIBLE){
+                            if (diff < -scrollThreshold) {
+                                if (view.getVisibility() == View.VISIBLE) {
                                     view.setVisibility(View.GONE);
                                     view.startAnimation(mSlideFooterDownAnimation);
                                 }
@@ -197,52 +197,52 @@ public class SpeedyQuickReturnRecyclerViewOnScrollListener extends RecyclerView.
             mSlideHeaderUpAnimation = AnimationUtils.loadAnimation(context, R.anim.anticipate_slide_header_up);
             mSlideHeaderDownAnimation = AnimationUtils.loadAnimation(context, R.anim.overshoot_slide_header_down);
             mSlideFooterUpAnimation = AnimationUtils.loadAnimation(context, R.anim.overshoot_slide_footer_up);
-            mSlideFooterDownAnimation= AnimationUtils.loadAnimation(context, R.anim.anticipate_slide_footer_down);
+            mSlideFooterDownAnimation = AnimationUtils.loadAnimation(context, R.anim.anticipate_slide_footer_down);
 
             mQuickReturnViewType = quickReturnViewType;
         }
 
-        public Builder header(View header){
+        public Builder header(View header) {
             mHeader = header;
             return this;
         }
 
-        public Builder footer(View footer){
+        public Builder footer(View footer) {
             mFooter = footer;
             return this;
         }
 
-        public Builder headerViews(ArrayList<View> headerViews){
+        public Builder headerViews(ArrayList<View> headerViews) {
             mHeaderViews = headerViews;
             return this;
         }
 
-        public Builder footerViews(ArrayList<View> footerViews){
+        public Builder footerViews(ArrayList<View> footerViews) {
             mFooterViews = footerViews;
             return this;
         }
 
-        public Builder slideHeaderUpAnimation(Animation slideHeaderUpAnimation){
+        public Builder slideHeaderUpAnimation(Animation slideHeaderUpAnimation) {
             mSlideHeaderUpAnimation = slideHeaderUpAnimation;
             return this;
         }
 
-        public Builder slideHeaderDownAnimation(Animation slideHeaderDownAnimation){
+        public Builder slideHeaderDownAnimation(Animation slideHeaderDownAnimation) {
             mSlideHeaderDownAnimation = slideHeaderDownAnimation;
             return this;
         }
 
-        public Builder slideFooterUpAnimation(Animation slideFooterUpAnimation){
+        public Builder slideFooterUpAnimation(Animation slideFooterUpAnimation) {
             mSlideFooterUpAnimation = slideFooterUpAnimation;
             return this;
         }
 
-        public Builder slideFooterDownAnimation(Animation slideFooterDownAnimation){
+        public Builder slideFooterDownAnimation(Animation slideFooterDownAnimation) {
             mSlideFooterDownAnimation = slideFooterDownAnimation;
             return this;
         }
 
-        public Builder columnCount(int columnCount){
+        public Builder columnCount(int columnCount) {
             mColumnCount = columnCount;
             return this;
         }

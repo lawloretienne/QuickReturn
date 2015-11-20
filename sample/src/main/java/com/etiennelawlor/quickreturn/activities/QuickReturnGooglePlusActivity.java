@@ -10,12 +10,6 @@ import butterknife.ButterKnife;
 
 public class QuickReturnGooglePlusActivity extends QuickReturnBaseActivity {
 
-    // region Member Variables
-    // endregion
-
-    // region Listeners
-    // endregion
-
     // region Lifecycle Methods
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,10 +22,7 @@ public class QuickReturnGooglePlusActivity extends QuickReturnBaseActivity {
                     .add(R.id.container, new QuickReturnGooglePlusFragment())
                     .commit();
         }
-
-
     }
     // endregion
-
 
 }

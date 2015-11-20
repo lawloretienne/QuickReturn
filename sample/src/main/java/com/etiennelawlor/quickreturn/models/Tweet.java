@@ -5,7 +5,7 @@ package com.etiennelawlor.quickreturn.models;
  */
 public class Tweet {
 
-    // region Member Variables
+    // region Fields
     private String mAvatarUrl;
     private String mDisplayName;
     private String mUsername;

@@ -40,11 +40,11 @@ public class QuickReturnBaseActivity extends AppCompatActivity {
     private static final int BILLING_RESPONSE_RESULT_OK = 0;
     private static final int BILLING_RESPONSE_RESULT_USER_CANCELED = 1;
     private static final int BILLING_RESPONSE_RESULT_BILLING_UNAVAILABLE = 3;
-    private static final int BILLING_RESPONSE_RESULT_ITEM_UNAVAILABLE =	4;
+    private static final int BILLING_RESPONSE_RESULT_ITEM_UNAVAILABLE = 4;
     private static final int BILLING_RESPONSE_RESULT_DEVELOPER_ERROR = 5;
     private static final int BILLING_RESPONSE_RESULT_ERROR = 6;
-    private static final int BILLING_RESPONSE_RESULT_ITEM_ALREADY_OWNED	= 7;
-    private static final int BILLING_RESPONSE_RESULT_ITEM_NOT_OWNED	= 8;
+    private static final int BILLING_RESPONSE_RESULT_ITEM_ALREADY_OWNED = 7;
+    private static final int BILLING_RESPONSE_RESULT_ITEM_NOT_OWNED = 8;
 
     private static final int BUY_REQUEST_CODE = 4;
 
@@ -103,17 +103,18 @@ public class QuickReturnBaseActivity extends AppCompatActivity {
     }
     // endregion
 
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == BUY_REQUEST_CODE) {
             int responseCode;
 
-            switch (resultCode){
+            switch (resultCode) {
                 case RESULT_OK:
                     Log.d(getClass().getSimpleName(), "onActivityResult() : RESULT_OK");
 
                     responseCode = data.getIntExtra(RESPONSE_CODE, -5);
 
-                    switch (responseCode){
+                    switch (responseCode) {
                         case BILLING_RESPONSE_RESULT_OK:
                             String signature = data.getStringExtra(RESPONSE_INAPP_SIGNATURE);
 
@@ -135,7 +136,7 @@ public class QuickReturnBaseActivity extends AppCompatActivity {
 
                                 String sku = object.getString("productId");
 
-                                if(!TextUtils.isEmpty(sku)){
+                                if (!TextUtils.isEmpty(sku)) {
                                     if (sku.equals(getString(R.string.buy_one_beer))) {
                                         showCrouton(android.R.color.holo_green_light, getResources().getQuantityString(R.plurals.beer_cheers, 1, 1));
                                     } else if (sku.equals(getString(R.string.buy_two_beers))) {
@@ -214,7 +215,7 @@ public class QuickReturnBaseActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        switch (id){
+        switch (id) {
             case R.id.action_github:
                 openWebPage("https://github.com/lawloretienne/QuickReturn");
                 return true;
@@ -254,7 +255,7 @@ public class QuickReturnBaseActivity extends AppCompatActivity {
 
             String developerPayload = "bGoa+V7g/yqDXvKRqq+JTFn4uQZbPiQJo4pf9RzK";
 
-            if(mService != null){
+            if (mService != null) {
                 Bundle bundle = mService.getBuyIntent(3, getPackageName(),
                         productSku, ITEM_TYPE_INAPP, developerPayload);
 
@@ -265,7 +266,7 @@ public class QuickReturnBaseActivity extends AppCompatActivity {
                 PendingIntent pendingIntent = bundle.getParcelable(RESPONSE_BUY_INTENT);
                 int responseCode = bundle.getInt(RESPONSE_CODE);
 
-                switch (responseCode){
+                switch (responseCode) {
                     case BILLING_RESPONSE_RESULT_OK:
                         startIntentSenderForResult(pendingIntent.getIntentSender(), BUY_REQUEST_CODE, new Intent(),
                                 0, 0, 0);
@@ -307,13 +308,13 @@ public class QuickReturnBaseActivity extends AppCompatActivity {
         }
     }
 
-    private void consumePurchase(){
+    private void consumePurchase() {
         //            "purchaseToken": "inapp:com.etiennelawlor.quickreturn:android.test.purchased"
 
         String token = "inapp:com.etiennelawlor.quickreturn:android.test.purchased";
         try {
             int response = mService.consumePurchase(3, getPackageName(), token);
-            Log.d(getClass().getSimpleName(), "consumePurchase() : response - "+response);
+            Log.d(getClass().getSimpleName(), "consumePurchase() : response - " + response);
 
         } catch (RemoteException e) {
             e.printStackTrace();
@@ -321,8 +322,8 @@ public class QuickReturnBaseActivity extends AppCompatActivity {
 
     }
 
-    private void getAllSkus(){
-        ArrayList<String> skuList = new ArrayList<> ();
+    private void getAllSkus() {
+        ArrayList<String> skuList = new ArrayList<>();
         skuList.add("buy_one_beer");
         skuList.add("buy_two_beers");
         skuList.add("buy_four_beers");
@@ -346,13 +347,13 @@ public class QuickReturnBaseActivity extends AppCompatActivity {
                         String price = object.getString("price");
 
                         if (sku.equals(getString(R.string.buy_one_beer))) {
-                            Log.d(getClass().getSimpleName(), "price - "+price);
+                            Log.d(getClass().getSimpleName(), "price - " + price);
 //                            mPremiumUpgradePrice = price;
                         } else if (sku.equals(getString(R.string.buy_two_beers))) {
-                            Log.d(getClass().getSimpleName(), "price - "+price);
+                            Log.d(getClass().getSimpleName(), "price - " + price);
 //                            mGasPrice = price;
                         } else if (sku.equals(getString(R.string.buy_four_beers))) {
-                            Log.d(getClass().getSimpleName(), "price - "+price);
+                            Log.d(getClass().getSimpleName(), "price - " + price);
 //                            mGasPrice = price;
                         }
                     } catch (JSONException e) {
@@ -366,7 +367,7 @@ public class QuickReturnBaseActivity extends AppCompatActivity {
         }
     }
 
-    private void getAllPurchases(){
+    private void getAllPurchases() {
         try {
             Bundle purchases = mService.getPurchases(3, getPackageName(), ITEM_TYPE_INAPP, INAPP_CONTINUATION_TOKEN);
             if (purchases.getInt(RESPONSE_CODE) == BILLING_RESPONSE_RESULT_OK) {
@@ -384,7 +385,7 @@ public class QuickReturnBaseActivity extends AppCompatActivity {
 
     }
 
-    private void showCrouton(int colorRes, int messageRes){
+    private void showCrouton(int colorRes, int messageRes) {
         Style croutonStyle = new Style.Builder()
                 .setHeight(QuickReturnUtils.dp2px(this, 50))
 //                                .setTextColor(getResources().getColor(R.color.white))
@@ -401,7 +402,7 @@ public class QuickReturnBaseActivity extends AppCompatActivity {
                 .show();
     }
 
-    private void showCrouton(int colorRes, String message){
+    private void showCrouton(int colorRes, String message) {
         Style croutonStyle = new Style.Builder()
                 .setHeight(QuickReturnUtils.dp2px(this, 50))
 //                                .setTextColor(getResources().getColor(R.color.white))

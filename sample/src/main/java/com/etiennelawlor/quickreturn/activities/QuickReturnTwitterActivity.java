@@ -42,9 +42,9 @@ public class QuickReturnTwitterActivity extends QuickReturnBaseActivity implemen
 
         @Override
         public void onPageSelected(int position) {
-            for(int i=0; i < mTabsLinearLayout.getChildCount(); i++){
+            for (int i = 0; i < mTabsLinearLayout.getChildCount(); i++) {
                 TextView tv = (TextView) mTabsLinearLayout.getChildAt(i);
-                if(i == position){
+                if (i == position) {
                     tv.setTextColor(getResources().getColor(R.color.twitter_primary));
                     tv.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Roboto-Medium.ttf"));
                 } else {
@@ -86,12 +86,12 @@ public class QuickReturnTwitterActivity extends QuickReturnBaseActivity implemen
         mTabs.setViewPager(mViewPager);
 
         // Set first tab selected
-        mTabsLinearLayout = ((LinearLayout)mTabs.getChildAt(0));
+        mTabsLinearLayout = ((LinearLayout) mTabs.getChildAt(0));
 
-        for(int i=0; i < mTabsLinearLayout.getChildCount(); i++){
+        for (int i = 0; i < mTabsLinearLayout.getChildCount(); i++) {
             TextView tv = (TextView) mTabsLinearLayout.getChildAt(i);
 
-            if(i == 0){
+            if (i == 0) {
                 tv.setTextColor(getResources().getColor(R.color.twitter_primary));
                 tv.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Roboto-Medium.ttf"));
             } else {
@@ -136,9 +136,11 @@ public class QuickReturnTwitterActivity extends QuickReturnBaseActivity implemen
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
+        // region Constructors
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
+        // endregion
 
         @Override
         public Fragment getItem(int position) {

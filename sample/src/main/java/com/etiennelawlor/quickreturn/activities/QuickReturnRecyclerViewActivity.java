@@ -17,12 +17,11 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 
-public class QuickReturnRecyclerViewActivity extends QuickReturnBaseActivity
-{
+public class QuickReturnRecyclerViewActivity extends QuickReturnBaseActivity {
 
     // region Member Variables
     private SectionsPagerAdapter mSectionsPagerAdapter;
-    private String mLayoutManagerType;
+    private static String sLayoutManagerType;
 
     @Bind(R.id.tabs)
     TabLayout mTabLayout;
@@ -38,10 +37,10 @@ public class QuickReturnRecyclerViewActivity extends QuickReturnBaseActivity
         ButterKnife.bind(this);
 
         Intent intent = getIntent();
-        if(intent != null){
+        if (intent != null) {
             Bundle bundle = intent.getExtras();
-            if(bundle != null){
-                mLayoutManagerType = bundle.getString("layout_manager");
+            if (bundle != null) {
+                sLayoutManagerType = bundle.getString("layout_manager");
             }
         }
 
@@ -62,16 +61,18 @@ public class QuickReturnRecyclerViewActivity extends QuickReturnBaseActivity
      * A {@link android.support.v13.app.FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
      */
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+    public static class SectionsPagerAdapter extends FragmentPagerAdapter {
 
+        // region Constructors
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
+        // endregion
 
         @Override
         public Fragment getItem(int position) {
             Bundle bundle = new Bundle();
-            bundle.putString("layout_manager", mLayoutManagerType);
+            bundle.putString("layout_manager", sLayoutManagerType);
 
             switch (position) {
                 case 0:

@@ -32,18 +32,17 @@ public class SpeedyQuickReturnWebViewFragment extends Fragment {
     TextView mQuickReturnFooterTextView;
     // endregion
 
-    //region Listeners
-    //endregion
-
     // region Constructors
+    public SpeedyQuickReturnWebViewFragment() {
+    }
+    // endregion
+
+    // region Factory Methods
     public static SpeedyQuickReturnWebViewFragment newInstance(Bundle extras) {
         SpeedyQuickReturnWebViewFragment fragment = new SpeedyQuickReturnWebViewFragment();
         fragment.setRetainInstance(true);
         fragment.setArguments(extras);
         return fragment;
-    }
-
-    public SpeedyQuickReturnWebViewFragment() {
     }
     // endregion
 
@@ -53,7 +52,7 @@ public class SpeedyQuickReturnWebViewFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if(getArguments() != null) {
+        if (getArguments() != null) {
             mQuickReturnViewType = QuickReturnViewType.valueOf(getArguments().getString("quick_return_view_type"));
         }
     }
@@ -72,8 +71,8 @@ public class SpeedyQuickReturnWebViewFragment extends Fragment {
 
         mNotifyingWebView.loadUrl("file:///android_asset/lipsum.html");
         SpeedyQuickReturnWebViewOnScrollChangedListener scrollListener;
-        
-        switch (mQuickReturnViewType){
+
+        switch (mQuickReturnViewType) {
             case HEADER:
                 mQuickReturnHeaderTextView.setVisibility(View.VISIBLE);
                 scrollListener = new SpeedyQuickReturnWebViewOnScrollChangedListener.Builder(getActivity(), QuickReturnViewType.HEADER)

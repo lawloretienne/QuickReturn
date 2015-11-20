@@ -13,37 +13,37 @@ public class QuickReturnActivity extends QuickReturnBaseActivity {
 
     // region Listeners
     @OnClick(R.id.twitter_cv)
-    public void onTwitterClicked(){
+    public void onTwitterClicked() {
         startActivity(new Intent(QuickReturnActivity.this, QuickReturnTwitterActivity.class));
     }
 
     @OnClick(R.id.facebook_cv)
-    public void onFacebookClicked(){
+    public void onFacebookClicked() {
         startActivity(new Intent(QuickReturnActivity.this, QuickReturnFacebookActivity.class));
     }
 
     @OnClick(R.id.google_plus_cv)
-    public void onGooglePlusClicked(){
+    public void onGooglePlusClicked() {
         startActivity(new Intent(QuickReturnActivity.this, QuickReturnGooglePlusActivity.class));
     }
 
     @OnClick(R.id.recyclerview_linearlayout_cv)
-    public void onRecyclerViewLinearLayoutClicked(){
+    public void onRecyclerViewLinearLayoutClicked() {
         startActivity(new Intent(QuickReturnActivity.this, QuickReturnRecyclerViewActivity.class).putExtra("layout_manager", "linear"));
     }
 
     @OnClick(R.id.recyclerview_gridlayout_cv)
-    public void onRecyclerViewGridLayoutClicked(){
+    public void onRecyclerViewGridLayoutClicked() {
         startActivity(new Intent(QuickReturnActivity.this, QuickReturnRecyclerViewActivity.class).putExtra("layout_manager", "grid"));
     }
-    
+
     @OnClick(R.id.listview_cv)
-    public void onListViewClicked(){
+    public void onListViewClicked() {
         startActivity(new Intent(QuickReturnActivity.this, QuickReturnListViewActivity.class));
     }
 
     @OnClick(R.id.scrollview_cv)
-    public void onScrollViewClicked(){
+    public void onScrollViewClicked() {
         startActivity(new Intent(QuickReturnActivity.this, QuickReturnScrollViewActivity.class));
     }
 
@@ -61,5 +61,5 @@ public class QuickReturnActivity extends QuickReturnBaseActivity {
         ButterKnife.bind(this);
     }
     // endregion
-    
+
 }

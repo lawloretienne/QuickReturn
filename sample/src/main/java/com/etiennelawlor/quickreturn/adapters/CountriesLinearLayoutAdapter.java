@@ -15,29 +15,19 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-//import java.util.logging.Handler;
-
 /**
  * Created by etiennelawlor on 7/17/14.
  */
 public class CountriesLinearLayoutAdapter extends RecyclerView.Adapter<CountriesLinearLayoutAdapter.ViewHolder> {
 
-    // region Constants
-    // endregion
-
     // region Member Variables
     private Context mContext;
     private List<String> mCountries;
-    private final LayoutInflater mInflater;
-
     // endregion
 
     // region Constructors
-    public CountriesLinearLayoutAdapter(Context context, List<String> countries) {
-        mContext = context;
+    public CountriesLinearLayoutAdapter(List<String> countries) {
         mCountries = countries;
-
-        mInflater = LayoutInflater.from(mContext);
     }
     // endregion
 
@@ -53,9 +43,7 @@ public class CountriesLinearLayoutAdapter extends RecyclerView.Adapter<Countries
     public void onBindViewHolder(ViewHolder holder, int position) {
         String country = mCountries.get(position);
 
-        if(!TextUtils.isEmpty(country)){
-            holder.mCountryTextView.setText(country);
-        }
+        setUpCountry(holder.mCountryTextView, country);
     }
 
     @Override
@@ -63,12 +51,21 @@ public class CountriesLinearLayoutAdapter extends RecyclerView.Adapter<Countries
         return mCountries.size();
     }
 
+    // region Helper Methods
+    private void setUpCountry(TextView tv, String country){
+        if (!TextUtils.isEmpty(country)) {
+            tv.setText(country);
+        }
+    }
+    // endregion
+
     // region Inner Classes
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        @Bind(R.id.country_tv) TextView mCountryTextView;
+        @Bind(R.id.country_tv)
+        TextView mCountryTextView;
 
-        ViewHolder(View view) {
+        public ViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
         }

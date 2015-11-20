@@ -6,6 +6,5 @@ import com.astuetz.PagerSlidingTabStrip;
  * Created by etiennelawlor on 6/29/14.
  */
 public interface QuickReturnInterface {
-    public PagerSlidingTabStrip getTabs();
-
+    PagerSlidingTabStrip getTabs();
 }

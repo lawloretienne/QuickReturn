@@ -15,11 +15,13 @@ import android.view.View;
  */
 public class DividerItemDecoration extends RecyclerView.ItemDecoration {
 
+    // region Member Variables
     private Drawable mDivider;
     private boolean mShowFirstDivider = false;
     private boolean mShowLastDivider = false;
+    // endregion
 
-
+    // region Constructors
     public DividerItemDecoration(Context context, AttributeSet attrs) {
         final TypedArray a = context
                 .obtainStyledAttributes(attrs, new int[]{android.R.attr.listDivider});
@@ -44,6 +46,7 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
         mShowFirstDivider = showFirstDivider;
         mShowLastDivider = showLastDivider;
     }
+    // endregion
 
     @Override
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent,
@@ -116,6 +119,7 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
         }
     }
 
+    // region Helper Methods
     private int getOrientation(RecyclerView parent) {
         if (parent.getLayoutManager() instanceof LinearLayoutManager) {
             LinearLayoutManager layoutManager = (LinearLayoutManager) parent.getLayoutManager();
@@ -125,4 +129,5 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
                     "DividerItemDecoration can only be used with a LinearLayoutManager.");
         }
     }
+    // endregion
 }

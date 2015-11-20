@@ -9,29 +9,36 @@ import android.view.View;
  * Created by etiennelawlor on 1/24/15.
  */
 public class SpacesItemDecoration extends RecyclerView.ItemDecoration {
-    private int space;
 
+    // region Member Variables
+    private int mSpace;
+    // endregion
+
+    // region Constructors
     public SpacesItemDecoration(int space) {
-        this.space = space;
+        this.mSpace = space;
     }
+    // endregion
 
     @Override
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-        if(parent.getChildPosition(view) == 0){
-            outRect.left = space;
-            outRect.right = space;
-            outRect.top = space;
-            outRect.bottom = space/2;
-        } else if (parent.getChildPosition(view) == parent.getLayoutManager().getItemCount()-1){
-            outRect.left = space;
-            outRect.right = space;
-            outRect.top = space/2;
-            outRect.bottom = space;
+
+        int childPosition = parent.getChildAdapterPosition(view);
+        if (childPosition == 0) {
+            outRect.left = mSpace;
+            outRect.right = mSpace;
+            outRect.top = mSpace;
+            outRect.bottom = mSpace / 2;
+        } else if (childPosition == parent.getLayoutManager().getItemCount() - 1) {
+            outRect.left = mSpace;
+            outRect.right = mSpace;
+            outRect.top = mSpace / 2;
+            outRect.bottom = mSpace;
         } else {
-            outRect.left = space;
-            outRect.right = space;
-            outRect.top = space/2;
-            outRect.bottom = space/2;
+            outRect.left = mSpace;
+            outRect.right = mSpace;
+            outRect.top = mSpace / 2;
+            outRect.bottom = mSpace / 2;
         }
     }
 }

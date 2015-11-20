@@ -42,27 +42,27 @@ public class SpeedyQuickReturnScrollViewOnScrollChangedListener implements Notif
 
     @Override
     public void onScrollChanged(ScrollView who, int l, int t, int oldl, int oldt) {
-        if(t<oldt){ // scrolling up
-            switch (mQuickReturnViewType){
+        if (t < oldt) { // scrolling up
+            switch (mQuickReturnViewType) {
                 case HEADER:
-                    if(mHeader.getVisibility() == View.GONE){
+                    if (mHeader.getVisibility() == View.GONE) {
                         mHeader.setVisibility(View.VISIBLE);
                         mHeader.startAnimation(mSlideHeaderDownAnimation);
                     }
                     break;
                 case FOOTER:
-                    if(mFooter.getVisibility() == View.GONE){
+                    if (mFooter.getVisibility() == View.GONE) {
                         mFooter.setVisibility(View.VISIBLE);
                         mFooter.startAnimation(mSlideFooterUpAnimation);
                     }
                     break;
                 case BOTH:
-                    if(mHeader.getVisibility() == View.GONE){
+                    if (mHeader.getVisibility() == View.GONE) {
                         mHeader.setVisibility(View.VISIBLE);
                         mHeader.startAnimation(mSlideHeaderDownAnimation);
                     }
 
-                    if(mFooter.getVisibility() == View.GONE){
+                    if (mFooter.getVisibility() == View.GONE) {
                         mFooter.setVisibility(View.VISIBLE);
                         mFooter.startAnimation(mSlideFooterUpAnimation);
                     }
@@ -70,27 +70,27 @@ public class SpeedyQuickReturnScrollViewOnScrollChangedListener implements Notif
             }
 
 
-        } else if (t>oldt){ // scrolling down
-            switch (mQuickReturnViewType){
+        } else if (t > oldt) { // scrolling down
+            switch (mQuickReturnViewType) {
                 case HEADER:
-                    if(mHeader.getVisibility() == View.VISIBLE){
+                    if (mHeader.getVisibility() == View.VISIBLE) {
                         mHeader.setVisibility(View.GONE);
                         mHeader.startAnimation(mSlideHeaderUpAnimation);
                     }
                     break;
                 case FOOTER:
-                    if(mFooter.getVisibility() == View.VISIBLE){
+                    if (mFooter.getVisibility() == View.VISIBLE) {
                         mFooter.setVisibility(View.GONE);
                         mFooter.startAnimation(mSlideFooterDownAnimation);
                     }
                     break;
                 case BOTH:
-                    if(mHeader.getVisibility() == View.VISIBLE){
+                    if (mHeader.getVisibility() == View.VISIBLE) {
                         mHeader.setVisibility(View.GONE);
                         mHeader.startAnimation(mSlideHeaderUpAnimation);
                     }
 
-                    if(mFooter.getVisibility() == View.VISIBLE){
+                    if (mFooter.getVisibility() == View.VISIBLE) {
                         mFooter.setVisibility(View.GONE);
                         mFooter.startAnimation(mSlideFooterDownAnimation);
                     }
@@ -117,37 +117,37 @@ public class SpeedyQuickReturnScrollViewOnScrollChangedListener implements Notif
             mSlideHeaderUpAnimation = AnimationUtils.loadAnimation(context, R.anim.anticipate_slide_header_up);
             mSlideHeaderDownAnimation = AnimationUtils.loadAnimation(context, R.anim.overshoot_slide_header_down);
             mSlideFooterUpAnimation = AnimationUtils.loadAnimation(context, R.anim.overshoot_slide_footer_up);
-            mSlideFooterDownAnimation= AnimationUtils.loadAnimation(context, R.anim.anticipate_slide_footer_down);
+            mSlideFooterDownAnimation = AnimationUtils.loadAnimation(context, R.anim.anticipate_slide_footer_down);
 
             mQuickReturnViewType = quickReturnViewType;
         }
 
-        public Builder header(View header){
+        public Builder header(View header) {
             mHeader = header;
             return this;
         }
 
-        public Builder footer(View footer){
+        public Builder footer(View footer) {
             mFooter = footer;
             return this;
         }
 
-        public Builder slideHeaderUpAnimation(Animation slideHeaderUpAnimation){
+        public Builder slideHeaderUpAnimation(Animation slideHeaderUpAnimation) {
             mSlideHeaderUpAnimation = slideHeaderUpAnimation;
             return this;
         }
 
-        public Builder slideHeaderDownAnimation(Animation slideHeaderDownAnimation){
+        public Builder slideHeaderDownAnimation(Animation slideHeaderDownAnimation) {
             mSlideHeaderDownAnimation = slideHeaderDownAnimation;
             return this;
         }
 
-        public Builder slideFooterUpAnimation(Animation slideFooterUpAnimation){
+        public Builder slideFooterUpAnimation(Animation slideFooterUpAnimation) {
             mSlideFooterUpAnimation = slideFooterUpAnimation;
             return this;
         }
 
-        public Builder slideFooterDownAnimation(Animation slideFooterDownAnimation){
+        public Builder slideFooterDownAnimation(Animation slideFooterDownAnimation) {
             mSlideFooterDownAnimation = slideFooterDownAnimation;
             return this;
         }

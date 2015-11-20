@@ -19,7 +19,7 @@ public class QuickReturnApplication extends Application {
     }    
     
     // region Getters
-    public static QuickReturnApplication get() {
+    public static QuickReturnApplication getInstance() {
         return sCurrentApplication;
     }
     // endregion

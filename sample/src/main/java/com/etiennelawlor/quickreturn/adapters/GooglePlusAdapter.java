@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.Spanned;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,35 +25,23 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-//import java.util.logging.Handler;
-
 /**
  * Created by etiennelawlor on 7/17/14.
  */
 public class GooglePlusAdapter extends RecyclerView.Adapter<GooglePlusAdapter.ViewHolder> {
 
-    // region Constants
-//    private static final int INTERVAL = 5000;
-    // endregion
-
     // region Member Variables
     private Context mContext;
     private ArrayList<GooglePlusPost> mGooglePlusPosts;
-    private final LayoutInflater mInflater;
     private Transformation mTransformation;
     private Transformation mTransformation2;
     private int lastPosition = -1;
-
-//    private int mIndicatorPosition = 0;
-//    private final Handler mHandler = new Handler();
     // endregion
 
     // region Constructors
-    public GooglePlusAdapter(Context context, ArrayList<GooglePlusPost> googlePlusPosts){
+    public GooglePlusAdapter(Context context, ArrayList<GooglePlusPost> googlePlusPosts) {
         mContext = context;
         mGooglePlusPosts = googlePlusPosts;
-
-        mInflater = LayoutInflater.from(mContext);
 
         mTransformation = new RoundedTransformationBuilder()
 //                .borderColor(getContext().getResources().getColor(R.color.white))
@@ -78,112 +67,23 @@ public class GooglePlusAdapter extends RecyclerView.Adapter<GooglePlusAdapter.Vi
     public void onBindViewHolder(ViewHolder holder, int position) {
         GooglePlusPost post = mGooglePlusPosts.get(position);
 
-        if(post != null){
-            holder.mDisplayNameTextView.setText(post.getDisplayName());
-            holder.mTimestampTextView.setText(post.getTimestamp());
-            holder.mAddCommentTextView.setText(String.valueOf(post.getCommentCount()));
-            holder.mPlusOneTextView.setText(mContext.getString(R.string.plus_one, post.getPlusOneCount()));
-            holder.mMessageTextView.setText(post.getMessage());
-//        holder.mCommentTextView.setText(post.getCommenterOneDisplayName());
-
-            Spanned styledText = Html.fromHtml("<b>"+post.getCommenterOneDisplayName()+"</b> "+post.getComment());
-            holder.mCommentTextView.setText(styledText);
-//
-
-            Picasso.with(holder.mUserImageView.getContext())
-                    .load(post.getAvatarUrl())
-                    .transform(mTransformation)
-                    .centerCrop()
-                    .resize(QuickReturnUtils.dp2px(mContext, 50),
-                            QuickReturnUtils.dp2px(mContext, 50))
-//                    .placeholder(R.drawable.ic_facebook)
-                    .error(android.R.drawable.stat_notify_error)
-                    .into(holder.mUserImageView);
-
-            Picasso.with(holder.mPostImageView.getContext())
-                    .load(post.getPostImageUrl())
-//                    .placeholder(R.drawable.ic_facebook)
-                    .centerCrop()
-                    .resize(QuickReturnUtils.dp2px(mContext, 346),
-                            QuickReturnUtils.dp2px(mContext, 320))
-                    .error(android.R.drawable.stat_notify_error)
-                    .into(holder.mPostImageView);
-
-            Picasso.with(holder.mCommenterOneImageView.getContext())
-                    .load(post.getCommenterOneAvatarUrl())
-                    .transform(mTransformation2)
-                    .centerCrop()
-                    .resize(QuickReturnUtils.dp2px(mContext, 34),
-                            QuickReturnUtils.dp2px(mContext, 34))
-//                    .placeholder(R.drawable.ic_facebook)
-                    .error(android.R.drawable.stat_notify_error)
-                    .into(holder.mCommenterOneImageView);
-
-            Picasso.with(holder.mCommenterTwoImageView.getContext())
-                    .load(post.getCommenterTwoAvatarUrl())
-                    .transform(mTransformation2)
-                    .centerCrop()
-                    .resize(QuickReturnUtils.dp2px(mContext, 34),
-                            QuickReturnUtils.dp2px(mContext, 34))
-//                    .placeholder(R.drawable.ic_facebook)
-                    .error(android.R.drawable.stat_notify_error)
-                    .into(holder.mCommenterTwoImageView);
-
-            Picasso.with(holder.mCommenterThreeImageView.getContext())
-                    .load(post.getCommenterThreeAvatarUrl())
-                    .transform(mTransformation2)
-                    .centerCrop()
-                    .resize(QuickReturnUtils.dp2px(mContext, 34),
-                            QuickReturnUtils.dp2px(mContext, 34))
-//                    .placeholder(R.drawable.ic_facebook)
-                    .error(android.R.drawable.stat_notify_error)
-                    .into(holder.mCommenterThreeImageView);
-
-//        holder.mRunnable = new Runnable() {
-//            @Override
-//            public void run() {
-//
-//                TranslateAnimation ta;
-//
-//                switch (mIndicatorPosition){
-//                    case 0:
-//                        ta = new TranslateAnimation(holder.mIndicatorView.getX(),
-//                                holder.mIndicatorView.getX() + (QuickReturnUtils.dp2px(getContext(),37)) , 0, 0);
-//                        ta.setDuration(500);
-//                        ta.setFillAfter(true);
-//                        holder.mIndicatorView.startAnimation(ta);
-//                        mIndicatorPosition = 1;
-//                        break;
-//                    case 1:
-//                        ta = new TranslateAnimation(holder.mIndicatorView.getX() + (QuickReturnUtils.dp2px(getContext(),37)),
-//                                holder.mIndicatorView.getX() + (QuickReturnUtils.dp2px(getContext(),75)) , 0, 0);
-//                        ta.setDuration(500);
-//                        ta.setFillAfter(true);
-//                        holder.mIndicatorView.startAnimation(ta);
-//                        mIndicatorPosition = 2;
-//                        break;
-//                    case 2:
-//                        ta = new TranslateAnimation(holder.mIndicatorView.getX() + (QuickReturnUtils.dp2px(getContext(),75)),
-//                                holder.mIndicatorView.getX() , 0, 0);
-//                        ta.setDuration(500);
-//                        ta.setFillAfter(true);
-//                        holder.mIndicatorView.startAnimation(ta);
-//                        mIndicatorPosition = 0;
-//                        break;
-//                }
-//
-//                mHandler.postDelayed(holder.mRunnable, INTERVAL);
-//            }
-//        };
-//
-//        mHandler.removeCallbacks(holder.mRunnable);
-//        mHandler.post(holder.mRunnable);
-
+        if (post != null) {
+            setUpUserImage(holder.mUserImageView, post);
+            setUpDisplayName(holder.mDisplayNameTextView, post);
+            setUpComment(holder.mCommentTextView, post);
+            setUpPlusOne(holder.mPlusOneTextView, post);
+            setUpAddComment(holder.mAddCommentTextView, post);
+            setUpTimestamp(holder.mTimestampTextView, post);
+            setUpMessage(holder.mMessageTextView, post);
+            setUpPostImage(holder.mPostImageView, post);
+            setUpCommenterOneImage(holder.mCommenterOneImageView, post);
+            setUpCommenterTwoImage(holder.mCommenterTwoImageView, post);
+            setUpCommenterThreeImage(holder.mCommenterThreeImageView, post);
 
 //        Animation animation = AnimationUtils.loadAnimation(getContext(), (position > lastPosition) ? R.anim.up_from_bottom : R.anim.down_from_top);
 //        convertView.startAnimation(animation);
 
-            if(position > lastPosition){
+            if (position > lastPosition) {
                 Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.up_from_bottom);
                 holder.itemView.startAnimation(animation);
             }
@@ -194,7 +94,7 @@ public class GooglePlusAdapter extends RecyclerView.Adapter<GooglePlusAdapter.Vi
 //                    .playOn(convertView);
 //        }
 
-            lastPosition = position;    
+            lastPosition = position;
         }
     }
 
@@ -203,25 +103,154 @@ public class GooglePlusAdapter extends RecyclerView.Adapter<GooglePlusAdapter.Vi
         return mGooglePlusPosts.size();
     }
 
+    // region Helper Methods
+    private void setUpUserImage(ImageView iv, GooglePlusPost post) {
+        String avatarUrl = post.getAvatarUrl();
+        if (!TextUtils.isEmpty(avatarUrl)) {
+            Picasso.with(iv.getContext())
+                    .load(avatarUrl)
+                    .transform(mTransformation)
+                    .centerCrop()
+                    .resize(QuickReturnUtils.dp2px(mContext, 50),
+                            QuickReturnUtils.dp2px(mContext, 50))
+//                    .placeholder(R.drawable.ic_facebook)
+                    .error(android.R.drawable.stat_notify_error)
+                    .into(iv);
+        }
+    }
+
+    private void setUpDisplayName(TextView tv, GooglePlusPost post) {
+        String displayName = post.getDisplayName();
+        if (!TextUtils.isEmpty(displayName)) {
+            tv.setText(displayName);
+        }
+    }
+
+    private void setUpComment(TextView tv, GooglePlusPost post) {
+        String commenterOneDisplayName = post.getCommenterOneDisplayName();
+        String comment = post.getComment();
+
+        Spanned styledText = Html.fromHtml("<b>" + commenterOneDisplayName + "</b> " + comment);
+        if (!TextUtils.isEmpty(styledText)) {
+            tv.setText(styledText);
+        }
+    }
+
+    private void setUpPlusOne(TextView tv, GooglePlusPost post) {
+        int plusOneCount = post.getPlusOneCount();
+        tv.setText(tv.getContext().getString(R.string.plus_one, plusOneCount));
+    }
+
+    private void setUpAddComment(TextView tv, GooglePlusPost post) {
+        int commentCount = post.getCommentCount();
+        tv.setText(String.valueOf(commentCount));
+    }
+
+    private void setUpTimestamp(TextView tv, GooglePlusPost post) {
+        String timestamp = post.getTimestamp();
+        if (!TextUtils.isEmpty(timestamp)) {
+            tv.setText(timestamp);
+        }
+    }
+
+    private void setUpMessage(TextView tv, GooglePlusPost post) {
+        String message = post.getMessage();
+        if (!TextUtils.isEmpty(message)) {
+            tv.setText(message);
+        }
+    }
+
+    private void setUpPostImage(ImageView iv, GooglePlusPost post) {
+        String postImageUrl = post.getPostImageUrl();
+        if (!TextUtils.isEmpty(postImageUrl)) {
+            Picasso.with(iv.getContext())
+                    .load(postImageUrl)
+//                    .placeholder(R.drawable.ic_facebook)
+                    .centerCrop()
+                    .resize(QuickReturnUtils.dp2px(mContext, 346),
+                            QuickReturnUtils.dp2px(mContext, 320))
+                    .error(android.R.drawable.stat_notify_error)
+                    .into(iv);
+        }
+    }
+
+    private void setUpCommenterOneImage(ImageView iv, GooglePlusPost post) {
+        String commenterOneAvatarUrl = post.getCommenterOneAvatarUrl();
+        if (!TextUtils.isEmpty(commenterOneAvatarUrl)) {
+            Picasso.with(iv.getContext())
+                    .load(commenterOneAvatarUrl)
+                    .transform(mTransformation2)
+                    .centerCrop()
+                    .resize(QuickReturnUtils.dp2px(mContext, 34),
+                            QuickReturnUtils.dp2px(mContext, 34))
+//                    .placeholder(R.drawable.ic_facebook)
+                    .error(android.R.drawable.stat_notify_error)
+                    .into(iv);
+        }
+    }
+
+    private void setUpCommenterTwoImage(ImageView iv, GooglePlusPost post) {
+        String commenterTwoAvatarUrl = post.getCommenterTwoAvatarUrl();
+        if (!TextUtils.isEmpty(commenterTwoAvatarUrl)) {
+            Picasso.with(iv.getContext())
+                    .load(commenterTwoAvatarUrl)
+                    .transform(mTransformation2)
+                    .centerCrop()
+                    .resize(QuickReturnUtils.dp2px(mContext, 34),
+                            QuickReturnUtils.dp2px(mContext, 34))
+//                    .placeholder(R.drawable.ic_facebook)
+                    .error(android.R.drawable.stat_notify_error)
+                    .into(iv);
+        }
+    }
+
+    private void setUpCommenterThreeImage(ImageView iv, GooglePlusPost post) {
+        String commenterThreeAvatarUrl = post.getCommenterThreeAvatarUrl();
+        if (!TextUtils.isEmpty(commenterThreeAvatarUrl)) {
+            Picasso.with(iv.getContext())
+                    .load(commenterThreeAvatarUrl)
+                    .transform(mTransformation2)
+                    .centerCrop()
+                    .resize(QuickReturnUtils.dp2px(mContext, 34),
+                            QuickReturnUtils.dp2px(mContext, 34))
+//                    .placeholder(R.drawable.ic_facebook)
+                    .error(android.R.drawable.stat_notify_error)
+                    .into(iv);
+        }
+    }
+    // endregion
+
     // region Inner Classes
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        @Bind(R.id.user_iv) ImageView mUserImageView;
-        @Bind(R.id.display_name_tv) TextView mDisplayNameTextView;
-        @Bind(R.id.comment_tv) TextView mCommentTextView;
-        @Bind(R.id.plus_one_tv) TextView mPlusOneTextView;
-        @Bind(R.id.add_comment_tv) TextView mAddCommentTextView;
-        @Bind(R.id.timestamp_tv) TextView mTimestampTextView;
-        @Bind(R.id.message_tv) TextView mMessageTextView;
-        @Bind(R.id.post_iv) ImageView mPostImageView;
-        @Bind(R.id.commenter_one_iv) ImageView mCommenterOneImageView;
-        @Bind(R.id.commenter_two_iv) ImageView mCommenterTwoImageView;
-        @Bind(R.id.commenter_three_iv) ImageView mCommenterThreeImageView;
-        @Bind(R.id.indicator_v) View mIndicatorView;
+        @Bind(R.id.user_iv)
+        ImageView mUserImageView;
+        @Bind(R.id.display_name_tv)
+        TextView mDisplayNameTextView;
+        @Bind(R.id.comment_tv)
+        TextView mCommentTextView;
+        @Bind(R.id.plus_one_tv)
+        TextView mPlusOneTextView;
+        @Bind(R.id.add_comment_tv)
+        TextView mAddCommentTextView;
+        @Bind(R.id.timestamp_tv)
+        TextView mTimestampTextView;
+        @Bind(R.id.message_tv)
+        TextView mMessageTextView;
+        @Bind(R.id.post_iv)
+        ImageView mPostImageView;
+        @Bind(R.id.commenter_one_iv)
+        ImageView mCommenterOneImageView;
+        @Bind(R.id.commenter_two_iv)
+        ImageView mCommenterTwoImageView;
+        @Bind(R.id.commenter_three_iv)
+        ImageView mCommenterThreeImageView;
+        @Bind(R.id.indicator_v)
+        View mIndicatorView;
 
 //        Runnable mRunnable;
 
-        ViewHolder(View view) {
+        public ViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
         }

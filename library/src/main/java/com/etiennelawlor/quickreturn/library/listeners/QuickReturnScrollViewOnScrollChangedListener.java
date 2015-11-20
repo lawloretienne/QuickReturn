@@ -36,18 +36,18 @@ public class QuickReturnScrollViewOnScrollChangedListener implements NotifyingSc
     public void onScrollChanged(ScrollView who, int l, int t, int oldl, int oldt) {
         int diff = oldt - t;
 
-        switch (mQuickReturnViewType){
+        switch (mQuickReturnViewType) {
             case HEADER:
-                if(diff <=0){ // scrolling down
-                    mHeaderDiffTotal = Math.max(mHeaderDiffTotal+diff, mMinHeaderTranslation);
+                if (diff <= 0) { // scrolling down
+                    mHeaderDiffTotal = Math.max(mHeaderDiffTotal + diff, mMinHeaderTranslation);
                 } else { // scrolling up
-                    mHeaderDiffTotal = Math.min(Math.max(mHeaderDiffTotal+diff, mMinHeaderTranslation), 0);
+                    mHeaderDiffTotal = Math.min(Math.max(mHeaderDiffTotal + diff, mMinHeaderTranslation), 0);
                 }
 
                 mHeader.setTranslationY(mHeaderDiffTotal);
                 break;
             case FOOTER:
-                if(diff <=0){ // scrolling down
+                if (diff <= 0) { // scrolling down
                     mFooterDiffTotal = Math.max(mFooterDiffTotal + diff, -mMinFooterTranslation);
                 } else { // scrolling up
                     mFooterDiffTotal = Math.min(Math.max(mFooterDiffTotal + diff, -mMinFooterTranslation), 0);
@@ -56,11 +56,11 @@ public class QuickReturnScrollViewOnScrollChangedListener implements NotifyingSc
                 mFooter.setTranslationY(-mFooterDiffTotal);
                 break;
             case BOTH:
-                if(diff <=0){ // scrolling down
-                    mHeaderDiffTotal = Math.max(mHeaderDiffTotal+diff, mMinHeaderTranslation);
+                if (diff <= 0) { // scrolling down
+                    mHeaderDiffTotal = Math.max(mHeaderDiffTotal + diff, mMinHeaderTranslation);
                     mFooterDiffTotal = Math.max(mFooterDiffTotal + diff, -mMinFooterTranslation);
                 } else { // scrolling up
-                    mHeaderDiffTotal = Math.min(Math.max(mHeaderDiffTotal+diff, mMinHeaderTranslation), 0);
+                    mHeaderDiffTotal = Math.min(Math.max(mHeaderDiffTotal + diff, mMinHeaderTranslation), 0);
                     mFooterDiffTotal = Math.min(Math.max(mFooterDiffTotal + diff, -mMinFooterTranslation), 0);
                 }
 
@@ -86,22 +86,22 @@ public class QuickReturnScrollViewOnScrollChangedListener implements NotifyingSc
             mQuickReturnViewType = quickReturnViewType;
         }
 
-        public Builder header(View header){
+        public Builder header(View header) {
             mHeader = header;
             return this;
         }
 
-        public Builder minHeaderTranslation(int minHeaderTranslation){
+        public Builder minHeaderTranslation(int minHeaderTranslation) {
             mMinHeaderTranslation = minHeaderTranslation;
             return this;
         }
 
-        public Builder footer(View footer){
+        public Builder footer(View footer) {
             mFooter = footer;
             return this;
         }
 
-        public Builder minFooterTranslation(int minFooterTranslation){
+        public Builder minFooterTranslation(int minFooterTranslation) {
             mMinFooterTranslation = minFooterTranslation;
             return this;
         }
