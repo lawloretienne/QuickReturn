@@ -1,6 +1,6 @@
 ## DEPRECATED
 
-**QuickReturn** is deprecated. No more development will be taking place. At the time of creating this library <a href="https://developer.android.com/reference/android/support/design/widget/CoordinatorLayout.html">CoordinatorLayout</a> did not exist.  Please check out <a href="https://developer.android.com/reference/android/support/design/widget/CoordinatorLayout.html">CoordinatorLayout</a> as you should be able to implement all the similar functionality that is in this library with the help of <a href="https://developer.android.com/reference/android/support/design/widget/CoordinatorLayout.Behavior.html">Behaviors</a>
+**QuickReturn** is deprecated. No more development will be taking place. At the time of creating this library <a href="https://developer.android.com/reference/android/support/design/widget/CoordinatorLayout.html">CoordinatorLayout</a> did not exist.  Please check out <a href="https://developer.android.com/reference/android/support/design/widget/CoordinatorLayout.html">CoordinatorLayout</a> as you should be able to implement all the similar functionality that is in this library with the help of <a href="https://developer.android.com/reference/android/support/design/widget/CoordinatorLayout.Behavior.html">Behaviors</a>.
 
 Thanks for all your support!
 
