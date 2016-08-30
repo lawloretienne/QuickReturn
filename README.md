@@ -4,6 +4,8 @@
 
 Thanks for all your support!
 
+***
+
 <img src="https://raw.githubusercontent.com/lawloretienne/QuickReturn/master/images/QuickReturn_feature_graphic.png">
 
 **QuickReturn** is a library which showcases the **QuickReturn UI Pattern**.
